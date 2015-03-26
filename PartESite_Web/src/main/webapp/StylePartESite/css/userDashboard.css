@@ -1,0 +1,21 @@
+.dashboardContent #stats-ligne-1{margin:2em 0 1em 13em;}
+.dashboardContent #stats-ligne-1 #stats-ligne-1-a ul {border-radius:3em;background: linear-gradient(#CED8F6,white) ;text-align:center;border:solid 2px #CED8F6;padding:1em 1em 1em 1em;}
+.dashboardContent #stats-ligne-1 #stats-ligne-1-b ul {border-radius:3em;background: linear-gradient(#CED8F6,white) ;text-align:center;border:solid 2px #CED8F6;padding:1em 1em 1em 1em;}
+.dashboardContent #stats-ligne-1 #stats-ligne-1-c ul {border-radius:3em;background: linear-gradient(#CED8F6,white) ;text-align:center;border:solid 2px #CED8F6;padding:1em 1em 1em 1em;}
+.dashboardContent #stats-ligne-1  #stats-ligne-1-a ul li span{color:navy;font-weight: bold;}
+.dashboardContent #stats-ligne-1  #stats-ligne-1-b ul li span{color:navy;font-weight: bold;}
+.dashboardContent #stats-ligne-1  #stats-ligne-1-c ul li span{color:navy;font-weight: bold;}
+.dashboardContent #stats-ligne-1 #stats-ligne-1-a ul li{list-style-type: none;padding:1em 1em 1em 1em; margin:0 1em 1em 0;}
+.dashboardContent #stats-ligne-1 #stats-ligne-1-b ul li{list-style-type: none;padding:1em 1em 1em 1em; margin:0 1em 1em 0;}
+.dashboardContent #stats-ligne-1 #stats-ligne-1-c ul li{list-style-type: none;padding:1em 1em 1em 1em; margin:0 1em 1em 0;}
+
+.dashboardContent #stats-ligne-2{margin:1em 0 0 13em;}
+.dashboardContent #stats-ligne-2  #stats-ligne-2-a ul{border-radius:3em;background: linear-gradient(#CED8F6,white) ;text-align:center;border:solid 2px #CED8F6;padding:1em 1em 1em 1em;}
+.dashboardContent #stats-ligne-2  #stats-ligne-2-b ul{border-radius:3em;background: linear-gradient(#CED8F6,white) ;text-align:center;border:solid 2px #CED8F6;padding:1em 1em 1em 1em;}
+.dashboardContent #stats-ligne-2  #stats-ligne-2-c ul{border-radius:3em;background: linear-gradient(#CED8F6,white) ;text-align:center;border:solid 2px #CED8F6;padding:1em 1em 1em 1em;}
+.dashboardContent #stats-ligne-2  #stats-ligne-2-a ul li span{color:navy;font-weight: bold;}
+.dashboardContent #stats-ligne-2  #stats-ligne-2-b ul li span{color:navy;font-weight: bold;}
+.dashboardContent #stats-ligne-2  #stats-ligne-2-c ul li span{color:navy;font-weight: bold;}
+.dashboardContent #stats-ligne-2 #stats-ligne-2-a ul li{list-style-type: none;padding:1em 1em 1em 1em; margin:0 1em 1em 0;}
+.dashboardContent #stats-ligne-2 #stats-ligne-2-b ul li{list-style-type: none;padding:1em 1em 1em 1em; margin:0 1em 1em 0;}
+.dashboardContent #stats-ligne-2 #stats-ligne-2-c ul li{list-style-type: none;padding:1em 1em 1em 1em; margin:0 1em 1em 0;}

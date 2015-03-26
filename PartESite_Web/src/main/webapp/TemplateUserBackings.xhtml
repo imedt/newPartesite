@@ -1,0 +1,255 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<head>
+<title><ui:insert name="header-title">Template User Backings</ui:insert></title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+
+<!-- Script : StronglyTyped & Bootstrap-->
+<script src="stronglyTyped/js/jquery.min.js"></script>
+<script src="stronglyTyped/js/jquery.dropotron.min.js"></script>
+<script src="stronglyTyped/js/skel.min.js"></script>
+<script src="stronglyTyped/js/skel-layers.min.js"></script>
+<script src="stronglyTyped/js/init.js"></script>
+<script src="stronglyTyped/js/bootstrap.js"></script>
+
+<!-- Style : StronglyTyped & Bootstrap-->
+<link rel="stylesheet" href="stronglyTyped/css/bootstrap.css" />
+<link rel="stylesheet" href="stronglyTyped/css/skel.css" />
+<link rel="stylesheet" href="stronglyTyped/css/style.css" />
+<link rel="stylesheet" href="stronglyTyped/css/style-desktop.css" />
+
+<!-- Style : PartESite -->
+<link rel="stylesheet" href="StylePartESite/css/userBackings.css" />
+<ui:insert name="style"></ui:insert>
+<ui:insert name="script"></ui:insert>
+</head>
+<body class="no-sidebar">
+	<f:view>
+		<h:form>
+
+			<!-- Header -->
+			<div id="header-wrapper">
+				<div id="header" class="container">
+
+					<!-- Logo -->
+
+					<h1 id="logo" class="row">
+						<a href="Home.xhtml" class="col-lg-12"> Part E-Site </a>
+					</h1>
+					<p class="col-lg-12" id="sous-logo">
+						Bienvenue&nbsp;<ui:insert name="sous-logo">Utilisateur</ui:insert>&bnsp;!
+					</p>
+
+				</div>
+			</div>
+
+			<!-- Main -->
+			<div class="content">
+
+				<div class="nav">
+					<div class="row">
+						<ui:insert name="nav-ul">
+							<ul class="col-lg-12">
+								<li class="col-3"><a href="UserDashboard.xhtml"
+									class="icon fa-dashboard"> <span>Tableau de bord</span>
+								</a></li>
+								<li class="col-3"><a href="UserProjects.xhtml"
+									class="icon fa-briefcase"> <span>Mes Projets</span>
+								</a></li>
+								<li class="col-3"><a href="UserBackings.xhtml"
+									class="icon fa-credit-card" id="selected"> <span>Mes
+											Participations</span>
+								</a></li>
+								<li class="col-3"><h:commandLink class="icon fa-sign-out" action="#{mbConnexion.deconnexion}"><span>Deconnexion</span></h:commandLink></li>
+							</ul>
+						</ui:insert>
+					</div>
+				</div>
+
+
+				<div class="newBacking">
+
+
+					<div class="row" id="contentCentre">
+						<div class="col-lg-12">
+							<h1>Nouvelle Participation</h1>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-lg-12" id="contentCentre">
+							<ul>
+								<li><span>1- Sélectionner un projet</span></li>
+								<li><span>2- Choisir un package</span></li>
+								<li><span>3- Valider votre commande</span></li>
+								<li><span>4- Effectuer votre paiement</span></li>
+								<li><span>5- Suivre l'avancement des participations</span></li>
+								<li><span>6- Suivre les projets financés</span></li>
+								<li><span>7- Consulter les rewards obtenus</span></li>
+							</ul>
+						</div>
+					</div>
+
+
+
+					<div class="row">
+						<div class="col-lg-12">
+							<h1>Liste de vos participations</h1>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-4">
+							<ul>
+								<li><button class="button col-btn-default" id="selected">
+										<span>Consultation</span>
+									</button></li>
+								<li><button class="button col-btn-default">
+										<span>Annulations</span>
+									</button></li>
+								<li><button class="button col-btn-default">
+										<span>Reward</span>
+									</button></li>
+								<li><button class="button col-btn-default">
+										<span>Historique</span>
+									</button></li>
+								<li><button class="button col-btn-default">
+										<span>Commentaires</span>
+									</button></li>
+								<li><button class="button col-btn-default">
+										<span>Signalements</span>
+									</button></li>
+							</ul>
+						</div>
+						<div class="col-lg-8" id="content">
+							<div class="col-lg-12" id="consultBackings">
+							<ui:insert name="bakingsList">
+							<table class="col-lg-10">
+									<tr>
+										<th>Date</th>
+										<th>Projet</th>
+										<th>Montant</th>
+										<th>Reward</th>
+									</tr>
+									<tr>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+									</tr>
+								</table>
+								</ui:insert>
+							</div>
+						</div>
+					</div>
+
+					<div class="row" >
+					<div class="col-lg-12" id="contentCentre">
+						<div class="col-lg-12">
+							<h1>Montant de participation global : <ui:insert name="totalAmount"></ui:insert> &euro;</h1>
+						</div>
+
+						
+							<ul class="col-lg-12">
+								<li><span class="col-lg-12">Nombre de projets
+										concernés : 0.</span></li>
+								<li><span class="col-lg-12">Nombre de projets
+										finalisé : 0.</span></li>
+								<li><span class="col-lg-12">Participations avec
+										Reward : <ui:insert name="nbInvestment"></ui:insert>.</span></li>
+								<li><span class="col-lg-12">Participations sans
+										Reward : <ui:insert name="nbGift"></ui:insert>.</span></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<!-- Footer -->
+
+			<div id="footer-wrapper">
+				<div id="footer" class="container">
+
+					<header>
+					<h2 class="footerTitre">
+						<ui:insert name="footer-titre">
+						Partagez votre expérience sur <strong>Part E-Site</strong>!
+					</ui:insert>
+					</h2>
+					</header>
+					<div class="row">
+						<div class="6u">
+							<section>
+							<form method="post" action="#">
+								<div class="row 50%">
+									<div class="6u">
+										<input name="name" placeholder="Name" type="text" />
+									</div>
+									<div class="6u">
+										<input name="email" placeholder="Email" type="text" />
+									</div>
+								</div>
+								<div class="row 50%">
+									<div class="12u">
+										<textarea name="message" placeholder="Message"></textarea>
+									</div>
+								</div>
+								<div class="row 50%">
+									<div class="12u">
+										<a href="#" class="form-button-submit button icon fa-envelope">Envoyer</a>
+									</div>
+								</div>
+							</form>
+							</section>
+						</div>
+						<div class="6u">
+							<section>
+							<p>
+								<ui:insert name="footer-sous-titre">Part E-Site : nouvelle plateforme participative.</ui:insert>
+							</p>
+							<div class="row">
+								<div class="6u">
+									<ul class="icons">
+										<li class="icon fa-home">3 rue Danton,<br /> 92240
+											Malakoff<br /> FRANCE
+										</li>
+										<li class="icon fa-phone">00 33 1 41 45 45 45</li>
+										<li class="icon fa-envelope"><a href="#">contact@partE-Site.fr</a>
+										</li>
+									</ul>
+								</div>
+								<div class="6u">
+									<ul class="icons">
+										<li class="icon fa-twitter"><a href="#">@partE-Site.fr</a>
+										</li>
+										<li class="icon fa-instagram"><a href="#">instagram.com/partE-Site.fr</a>
+										</li>
+										<li class="icon fa-dribbble"><a href="#">dribbble.com/partE-Site.fr</a>
+										</li>
+										<li class="icon fa-facebook"><a href="#">facebook.com/partE-Site.fr</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+							</section>
+						</div>
+					</div>
+				</div>
+				<div id="copyright" class="container">
+					<ul class="links">
+						<li>Part E-Site. All rights reserved.</li>
+						<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</div>
+		</h:form>
+	</f:view>
+</body>
+</html>

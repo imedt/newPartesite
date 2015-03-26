@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="TemplateUserBackings.xhtml">
+
+
+	<ui:define name="header-title">User Backings</ui:define>
+
+	<ui:define name="sous-logo">Utilisateur</ui:define>
+<!--  
+	<ui:define name="bakingsList">
+		<h:form>
+			<h:panelGroup layout="block" rendered="#{mbOrder.orders.size() > 0}">
+				<h:dataTable value="#{mbOrder.orders}" var="order">
+					<h:column>
+						<f:facet name="header">Date</f:facet>
+						<h:outputText value="#{order.createdDate}">
+							<f:convertDateTime pattern="dd-MM-yyyy" />
+						</h:outputText>
+					</h:column>
+					<h:column>
+						<f:facet name="header">N°de commande</f:facet>
+						<h:outputText value="#{order.idUserOrder}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Montant</f:facet>
+						<h:outputText value="#{order.totalAmount}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Etat</f:facet>
+						<h:outputText value="#{order.userOrderState.userOrderStateName}" />
+					</h:column>
+				</h:dataTable>
+			</h:panelGroup>
+		</h:form>
+	</ui:define>
+	<ui:define name="totalAmount">#{mbOrder.totalAmount}</ui:define>
+	<ui:define name="nbInvestment">#{mbInvestment.nbInvestment}</ui:define>
+	<ui:define name="nbGift">#{mbInvestment.nbGift}</ui:define>
+-->
+</ui:composition>
+</html>

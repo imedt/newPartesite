@@ -1,0 +1,63 @@
+body {font-family: 'Source Sans Pro';font-weight:300;text-transform: uppercase;background-color:white;}
+
+#header-wrapper{width:auto;height:10em;margin-top:0;padding-top:0;background: linear-gradient(#CED8F6,white);}
+#header.container{margin:0 0 0 0;padding:2em 0 2em 0;}
+#header h1 {
+	font-family: 'Arvo';
+	font-weight: 700;
+	color: navy;
+	text-shadow: 0.05em 0.075em 0 rgba(0, 0, 0, 0.1);
+	text-align:left;
+	margin:0 0 1em 0;padding:0;
+}
+#header p {
+	text-align:center;
+	margin:0 0 2em 0;padding:0 0 1em 0;
+}
+
+.content {width:auto;}
+
+.nav {background-color:black;width:100%;height:auto;padding:0;margin-top:5em;}
+.nav ul {text-align:center;}
+.nav ul li {display: inline-block;list-style-type: none; color:#47b8af;font-weight: 300;}
+.nav ul li a {display: inline-block;list-style-type: none; color:#47b8af;font-weight: 300;font-weight: bold;padding-left:7em;padding-top:0.7em;}
+.nav ul li a span{display: inline-block;list-style-type: none; color:#47b8af;font-weight: 300;font-weight: bold;}
+.nav ul li a.icon span {padding-left:1em;}
+.nav ul li a.icon#selected {color:white;font-weight: 300;font-weight: bold;}
+.nav ul li a#selected span{color:white;font-weight: 300;font-weight: bold;}
+
+.newBacking {width:100%;margin:2em 2em 2em 2em;}
+.newBacking h1{text-align:center;color:navy;
+font-family: 'Arvo';
+font-weight: 600;
+text-shadow: 0.05em 0.075em 0 rgba(0, 0, 0, 0.1);}
+
+.newBacking ul li {list-style-type: none;text-align:center;padding:0em 1em 0.2em 1em;height:2em;}
+.newBacking #content ul li {text-align:left;padding-top:1em;}
+.newBacking #contentCentre ul li {text-align:centre;padding-top:1em;}
+.newBacking #editContent ul li {text-align:centre;padding-top:1em 0 1 0;}
+.newBacking #editContent ul li textarea{width:100%;height:10em;}
+.newBacking #content #consultBackings {padding:1em 1em 1em 1em;}
+.newBacking #content #consultBackings table {border-radius:3em;border-collapse:collapse;border:solid 2px #47b8af; }
+.newBacking #content #consultBackings table tr{border-radius:3em;border-collapse:collapse;border:solid 2px #47b8af; }
+.newBacking #content #consultBackings table tr th{width:20%;text-align:center;color:navy;font-weight: bold;background-color:#47b8af;border:solid 2px #47b8af;}
+.newBacking #content #consultBackings table tr td{text-align:center;color:navy;border:solid 2px #47b8af;}
+.newBacking ul li span {font-weight:bold;color:navy;margin:1em 1em 1em 1em;height:2em;vertical-align: middle;text-align:left;}
+.newBacking ul li button {width:50%;margin:1em 1em 1em 1em;height:2em;padding: 0;}
+.newBacking ul li #selected {background-color:navy;}
+.newBacking ul li #selected span{color:#47b8af;}
+.newBacking ul li button span{color:navy;}
+.newBacking ul li button:hover span{color:#47b8af;}
+
+.newBacking #contentCentre ul li span{text-align:center;}
+
+
+.box.post h3 span{color:#47b8af !important;}
+
+.footerTitre {color:#47b8af;}
+
+.footerTitre strong {color:#47b8af;}
+
+
+
+	

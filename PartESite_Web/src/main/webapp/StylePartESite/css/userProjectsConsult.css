@@ -1,0 +1,11 @@
+fieldset table{border-collapse:collapse;border:solid 2px #47b8af;width:100%; margin:2em 1em 2em 1em;}
+
+fieldset table tr{border:solid 2px #47b8af; }
+
+fieldset table tr th{width:auto;border:solid 2px #47b8af;text-align:center;background-color:#47b8af; color:navy;text-transform: uppercase;font-weight: bold; }
+
+fieldset table tr td{color:navy;border:solid 2px #47b8af; text-align:left;}
+
+fieldset h2{color:navy;text-align:center; font-weight: 400;margin-top:2em;}
+
+	

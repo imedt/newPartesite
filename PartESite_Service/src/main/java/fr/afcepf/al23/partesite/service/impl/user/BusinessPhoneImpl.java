@@ -1,0 +1,40 @@
+package fr.afcepf.al23.partesite.service.impl.user;
+
+import java.util.List;
+
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
+
+import fr.afcepf.al23.partesite.idao.user.IDaoPhone;
+import fr.afcepf.al23.partesite.iservice.user.IBusinessPhone;
+import fr.afcepf.al23.partesite.model.entities.Phone;
+@Stateless
+public class BusinessPhoneImpl implements IBusinessPhone {
+
+	@EJB
+	private IDaoPhone daoPh;
+	
+	@Override
+	public Phone save(Phone phone) {
+		if(phone.getIdPhone() == 0)
+			daoPh.add(phone);
+		else
+			daoPh.update(phone);
+		return phone;
+	}
+
+	@Override
+	public Phone get(int idPhone) {
+		Phone phone = null;
+		phone = daoPh.get(idPhone);
+		return phone;
+	}
+
+	@Override
+	public List<Phone> getByIdIdentity(int idIdentity) {
+		List<Phone> phones = null;
+		phones = daoPh.getByIdIdentity(idIdentity);
+		return phones;
+	}
+
+}

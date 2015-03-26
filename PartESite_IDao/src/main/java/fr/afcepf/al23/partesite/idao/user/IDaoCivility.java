@@ -1,0 +1,17 @@
+package fr.afcepf.al23.partesite.idao.user;
+
+import java.util.List;
+
+import javax.ejb.Remote;
+
+import fr.afcepf.al23.partesite.model.entities.Civility;
+
+
+@Remote
+public interface IDaoCivility {
+	public Civility add(Civility civility);
+	public Civility update(Civility civility);
+	public Civility get(int idCivility);
+	public List<Civility> getall();
+	public boolean civilityExist(String civilityName);
+}

@@ -1,0 +1,41 @@
+package fr.afcepf.al23.partesite.service.impl.user;
+
+import java.util.List;
+
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
+
+import fr.afcepf.al23.partesite.idao.user.IDaoAddress;
+import fr.afcepf.al23.partesite.iservice.user.IBusinessAddress;
+import fr.afcepf.al23.partesite.model.entities.Address;
+
+@Stateless
+public class BusinessAddressImpl implements IBusinessAddress {
+	
+	@EJB
+	private IDaoAddress daoAdd;
+
+	@Override
+	public Address save(Address address) {
+		if (address.getIdAddress() == 0)
+			daoAdd.add(address);
+		else
+			daoAdd.update(address);
+		return address;
+	}
+
+	@Override
+	public Address get(int idAddress) {
+		Address address = null;
+		address = daoAdd.get(idAddress);
+		return address;
+	}
+
+	@Override
+	public List<Address> getByIdIdentity(int idIdentity) {
+		List<Address> addresses = null;
+		addresses = daoAdd.getByIdIdentity(idIdentity);
+		return addresses;
+	}
+
+}

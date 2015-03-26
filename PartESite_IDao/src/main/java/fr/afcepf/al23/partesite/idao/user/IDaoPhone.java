@@ -1,0 +1,17 @@
+package fr.afcepf.al23.partesite.idao.user;
+
+import java.util.List;
+
+import javax.ejb.Remote;
+
+import fr.afcepf.al23.partesite.model.entities.Phone;
+
+
+@Remote
+public interface IDaoPhone {
+	public Phone add(Phone phone);
+	public Phone update(Phone phone);
+	public Phone get(int idPhone);
+	public List<Phone> getByIdIdentity(int idIdentity);
+	public boolean phoneExist(String phoneNumber);
+}

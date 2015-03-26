@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+
+<ui:composition template="TemplateProjectDetails.xhtml">
+
+	<ui:define name="header-title">Project Category</ui:define>
+	<ui:define name="logo">Project Category</ui:define>
+
+	<ui:define name="projectTitle">Project Name</ui:define>
+	<ui:define name="backers-Nb">Nb Backers</ui:define>
+	<ui:define name="packagesLeft-Nb">Nb Packages Left</ui:define>
+	<ui:define name="amountLeft-Nb">Nb Amount Left</ui:define>
+	<ui:define name="publishingDate-End">End Publishing Date</ui:define>
+	<ui:define name="project-img">Project Img</ui:define>
+
+	<ui:define name="authorProject">Author Project</ui:define>
+	<ui:define name="contentAuthor">Author Content</ui:define>
+	<ui:define name="conceptProject">Concept Project</ui:define>
+	<ui:define name="contentConcept">Concept Content</ui:define>
+
+	<ui:define name="globalAmountExpected">Global Amount Expected (Sans le sigle EURO)</ui:define>
+
+	<ui:define name="packagePrice">Package Price</ui:define>
+	<ui:define name="packageReward">Package Reward</ui:define>
+	<ui:define name="packageDescription">Package Description</ui:define>
+	<ui:define name="packageNbLeft">Package Nb Left</ui:define>
+	<ui:define name="package">
+	
+
+		<h:form>
+			<div class="col-lg-3" id="content-package-1">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="row">
+							<div class="col-lg-12">
+								<h1 class="col-lg-12">
+									<ui:insert name="packagePrice">Package Price</ui:insert>
+									&euro;
+								</h1>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-12">
+								<span class="col-lg-12"> <ui:insert name="packageReward">Package Reward</ui:insert>
+								</span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-12">
+								<span class="col-lg-12"><ui:insert
+										name="packageDescription">Package Description</ui:insert></span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-12">
+								<span class="col-lg-12"><ui:insert name="packageNbLeft">Package Nb Left</ui:insert></span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-12">
+								<span class="col-lg-12"> Quantité Souhaité: </span>
+								<h:inputText value="#{mbCart.aimingQuantity}" styleClass="col-lg-12" id="nbToOrder"/>
+								<!-- 							<input type="text" class="col-lg-12" id="nbToOrder"></input> -->
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-12">
+								<span class="col-lg-12">Montant Total Souhaité:</span>
+								<h:inputText value="#{mbCart.aimingAmount}" styleClass="col-lg-12" id="amountToOrder"/>
+								<!-- 							<input type="text" class="col-lg-12" id="amountToOrder"></input> -->
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-12">
+  							<input type="submit" class="col-lg-12" id="buttonValidate" value="Commander"></input>
+ 								
+ 								<!--  
+ 								<h:commandButton action="#{mbCart.addPackageToCart()}" value="Commander" styleClass="col-lg-12" id="buttonValidate"/>
+							--></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</h:form>
+	
+	</ui:define>
+</ui:composition>
+
+</html>

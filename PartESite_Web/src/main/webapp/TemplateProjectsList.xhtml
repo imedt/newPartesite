@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="Home.xhtml">
+
+	<ui:define name="header-title">Template Projects</ui:define>
+
+	<ui:define name="style">
+		<!-- PopUp Login -->
+		<link rel="shortcut icon" href="http://designshack.net/favicon.ico" />
+		<link rel="icon" href="http://designshack.net/favicon.ico" />
+		<link rel="stylesheet" type="text/css" media="all"
+			href="popupLogin/css/style.css" />
+		<!-- Style : PartESite -->
+		<link rel="stylesheet" href="StylePartESite/css/currentProjects.css" />
+		<link rel="stylesheet" href="StylePartESite/css/searchProject.css" />
+		<!-- Style : Sequence & Bootstrap-->
+		<link rel="stylesheet"
+			href="sequence/css/sequencejs-theme.modern-slide-in.css" />
+
+	</ui:define>
+
+	<ui:define name="script">
+		<!-- Script : Sequence & Bootstrap-->
+		<script src="sequence/js/jquery.sequence.js"></script>
+		<script src="sequence/js/sequencejs-options.modern-slide-in.js"></script>
+		
+	</ui:define>
+
+	<ui:define name="logo">Template Projects</ui:define>
+
+
+	<ui:define name="icone-menu-1">
+		<a href="Home.xhtml" class="icon fa-edit">Accueil</a>
+	</ui:define>
+	<ui:define name="icone-menu-2">
+		<a href="NewProjects.xhtml" class="icon fa-exclamation-triangle">Consulter
+			les nouveautés</a>
+	</ui:define>
+	<ui:define name="icone-menu-3">
+		<a href="SearchProject.xhtml" class="icon fa-exclamation-triangle">Rechercher
+			un projet</a>
+	</ui:define>
+	<ui:define name="icone-menu-4">
+		<a href="#loginmodal" id="modaltrigger" class="icon fa-sign-in"><span>S'identifier</span></a>
+	</ui:define>
+
+	<ui:define name="image-centre"></ui:define>
+
+	<ui:define name="content">
+		<ui:insert name="recherche"></ui:insert>
+		<!-- Slider -->
+		<div class="slide">
+			<div class="col-lg-12" >
+			
+				<h3 class="col-lg-4">
+					<a href="BestProjects.xhtml" alt="bestProjects">MEILLEURES
+						POPULARITES</a>
+				</h3>
+				<h3 class="col-lg-4">
+					<a href="NewProjects.xhtml" alt="newProjects">NOUVEAUTES</a>
+				</h3>
+				<h3 class="col-lg-4">
+					<a href="LastProjects.xhtml" alt="lastProjects">FIN DE
+						PUBLICATION</a>
+				</h3>
+				
+			</div>
+
+<ui:insert name="sequence">
+		
+			</ui:insert>
+		</div>
+
+	</ui:define>
+
+	<ui:define name="footer-titre">Nous contacter</ui:define>
+	<ui:define name="footer-sous-titre">Nous contacter</ui:define>
+
+</ui:composition>
+
+</html>
