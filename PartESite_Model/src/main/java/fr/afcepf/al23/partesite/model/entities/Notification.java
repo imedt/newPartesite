@@ -26,6 +26,7 @@ public class Notification implements Serializable {
 	private String contentNotification;
 
 	@Column(name="created_by")
+	//@Transient pas une entité de la base
 	private Integer createdBy;
 
 	@Temporal(TemporalType.TIMESTAMP)

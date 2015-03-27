@@ -42,6 +42,20 @@ public class OrderRow implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="id_item")
 	private Item item;
+	
+	//bi-directional many-to-one association to OrderRow
+		@ManyToOne
+		@JoinColumn(name="id_pack")
+		private Pack pack;
+
+
+	public Pack getPack() {
+			return pack;
+		}
+
+		public void setPack(Pack pack) {
+			this.pack = pack;
+		}
 
 	//bi-directional many-to-one association to UserOrder
 	@ManyToOne

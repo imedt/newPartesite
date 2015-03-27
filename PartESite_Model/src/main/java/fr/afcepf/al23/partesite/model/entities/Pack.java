@@ -55,6 +55,10 @@ public class Pack implements Serializable {
 	//bi-directional many-to-one association to Item
 	@OneToMany(mappedBy="pack")
 	private List<Item> items;
+	
+	//bi-directional many-to-one association to OrderRow
+		@OneToMany(mappedBy="order_row")
+		private List<OrderRow> orderrows;
 
 	//bi-directional many-to-one association to Project
 	@ManyToOne
@@ -173,10 +177,37 @@ public class Pack implements Serializable {
 
 		return item;
 	}
+	
+	///////
+	
+	public List<OrderRow> getOrderrows() {
+		return orderrows;
+	}
+
+	public void setOrderrows(List<OrderRow> orderrows) {
+		this.orderrows = orderrows;
+	}
+	
+	public OrderRow addItem(OrderRow orderrow) {
+		getOrderrows().add(orderrow);
+		orderrow.setPack(this);
+
+		return orderrow;
+	}
+
+	public OrderRow removeItem(OrderRow orderrow) {
+		getOrderrows().remove(orderrow);
+		orderrow.setPack(null);
+
+		return orderrow;
+	}
+	//////
 
 	public Project getProject() {
 		return this.project;
 	}
+
+	
 
 	public void setProject(Project project) {
 		this.project = project;
