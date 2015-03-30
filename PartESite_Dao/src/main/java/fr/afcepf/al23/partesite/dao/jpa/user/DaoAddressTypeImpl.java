@@ -37,11 +37,11 @@ public class DaoAddressTypeImpl implements IDaoAddressType {
 	}
 
 	@Override
-	public AddressType get(int idAddressType) {
+	public AddressType get(Integer idAddressType) {
 		AddressType addressType = null;
 		Query hql = em
 				.createQuery(
-						"SELECT add FROM AddressType add WHERE add.id_addressType = :id_addressType ")
+						"SELECT add FROM AddressType add WHERE add.idAddressType = :id_addressType ")
 				.setParameter("id_addressType", idAddressType);
 		addressType = (AddressType) hql.getSingleResult();
 		return addressType;

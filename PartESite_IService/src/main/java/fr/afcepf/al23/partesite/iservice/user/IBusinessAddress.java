@@ -9,6 +9,6 @@ import fr.afcepf.al23.partesite.model.entities.Address;
 @Remote
 public interface IBusinessAddress {
 public Address save(Address address);
-public Address get(int idAddress);
-public List<Address> getByIdIdentity(int idIdentity);
+public Address get(Integer idAddress);
+public List<Address> getByIdIdentity(Integer idIdentity);
 }

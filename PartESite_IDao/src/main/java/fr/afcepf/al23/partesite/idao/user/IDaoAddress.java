@@ -10,6 +10,6 @@ import fr.afcepf.al23.partesite.model.entities.Address;
 public interface IDaoAddress {
 public Address add(Address address);
 public Address update(Address address);
-public Address get(int idAddress);
-public List<Address> getByIdIdentity(int idIdentity);
+public Address get(Integer idAddress);
+public List<Address> getByIdIdentity(Integer idIdentity);
 }

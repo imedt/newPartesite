@@ -8,6 +8,6 @@ import fr.afcepf.al23.partesite.model.entities.AddressType;
 @Remote
 public interface IBusinessAddressType {
 public AddressType save(AddressType addressType);
-public AddressType get(int idAddresstype);
+public AddressType get(Integer idAddresstype);
 public List<AddressType> getAll();
 }

@@ -26,7 +26,7 @@ public class BusinessIdentityImpl implements IBusinessIdentity {
 	@Override
 	public Identity save(Identity identity) {
 
-		if (identity.getIdIdentity() == null || identity.getIdIdentity() == 0)
+		if (identity.getIdIdentity() == null || identity.getIdIdentity() == null)
 			identity = daoIdent.add(identity);
 		else
 			identity = daoIdent.update(identity);

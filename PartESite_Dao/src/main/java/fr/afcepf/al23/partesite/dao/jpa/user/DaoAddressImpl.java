@@ -38,7 +38,7 @@ public class DaoAddressImpl implements IDaoAddress {
 	}
 
 	@Override
-	public Address get(int idAddress) {
+	public Address get(Integer idAddress) {
 		Address address = null;
 		Query hql = em
 				.createQuery(
@@ -49,7 +49,7 @@ public class DaoAddressImpl implements IDaoAddress {
 	}
 
 	@Override
-	public List<Address> getByIdIdentity(int idIdentity) {
+	public List<Address> getByIdIdentity(Integer idIdentity) {
 		List<Address> addresses = null;
 		Query hql = em
 				.createQuery(

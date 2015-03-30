@@ -18,7 +18,7 @@ public class BusinessAddressTypeImpl implements IBusinessAddressType {
 	
 	@Override
 	public AddressType save(AddressType addressType) {
-		if (addressType.getIdAddressType() == 0)
+		if (addressType.getIdAddressType() == null)
 			daoAddT.add(addressType);
 		else
 			daoAddT.update(addressType);
@@ -26,7 +26,7 @@ public class BusinessAddressTypeImpl implements IBusinessAddressType {
 	}
 
 	@Override
-	public AddressType get(int idAddresstype) {
+	public AddressType get(Integer idAddresstype) {
 		AddressType addressType = null;
 		addressType = daoAddT.get(idAddresstype);
 		return addressType;

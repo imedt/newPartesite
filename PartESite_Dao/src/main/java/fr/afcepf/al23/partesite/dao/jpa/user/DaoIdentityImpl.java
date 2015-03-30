@@ -11,6 +11,7 @@ import org.apache.log4j.Logger;
 
 import fr.afcepf.al23.partesite.idao.user.IDaoIdentity;
 import fr.afcepf.al23.partesite.model.entities.Address;
+import fr.afcepf.al23.partesite.model.entities.Civility;
 import fr.afcepf.al23.partesite.model.entities.Identity;
 import fr.afcepf.al23.partesite.model.entities.IdentityRight;
 import fr.afcepf.al23.partesite.model.entities.Phone;
@@ -31,6 +32,8 @@ public class DaoIdentityImpl implements IDaoIdentity {
 
 	@Override
 	public Identity add(Identity identity) {
+		//Civility civ = em.find(Civility.class, identity.getCivility());
+		//identity.setCivility(civ);
 		em.persist(identity);
 		em.flush();
 		return identity;
@@ -44,7 +47,7 @@ public class DaoIdentityImpl implements IDaoIdentity {
 	}
 
 	@Override
-	public Identity get(int idIdentity) {
+	public Identity get(Integer idIdentity) {
 		Identity identity = null;
 		log.info(em);
 		Query hql = em
@@ -56,19 +59,19 @@ public class DaoIdentityImpl implements IDaoIdentity {
 	}
 
 	@Override
-	public List<IdentityRight> getIdentityRights(int idIdentityRole) {
+	public List<IdentityRight> getIdentityRights(Integer idIdentityRole) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Address> getAddresses(int idIdentity) {
+	public List<Address> getAddresses(Integer idIdentity) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Phone> getPhones(int idIdentity) {
+	public List<Phone> getPhones(Integer idIdentity) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -80,7 +83,7 @@ public class DaoIdentityImpl implements IDaoIdentity {
 				.createQuery(
 						"SELECT ident FROM Identity ident WHERE ident.email = :email AND ident.mdp = :mdp")
 				.setParameter("email", email).setParameter("mdp", mdp);
-		identity = (Identity) hql.getSingleResult();
+		identity = (Identity) hql.getResultList().get(0);
 		return identity;
 	}
 

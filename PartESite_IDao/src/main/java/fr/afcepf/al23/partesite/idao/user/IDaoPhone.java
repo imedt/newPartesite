@@ -11,7 +11,7 @@ import fr.afcepf.al23.partesite.model.entities.Phone;
 public interface IDaoPhone {
 	public Phone add(Phone phone);
 	public Phone update(Phone phone);
-	public Phone get(int idPhone);
-	public List<Phone> getByIdIdentity(int idIdentity);
+	public Phone get(Integer idPhone);
+	public List<Phone> getByIdIdentity(Integer idIdentity);
 	public boolean phoneExist(String phoneNumber);
 }

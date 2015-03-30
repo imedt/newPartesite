@@ -13,10 +13,10 @@ import fr.afcepf.al23.partesite.model.entities.Phone;
 public interface IDaoIdentity {
 public Identity add(Identity identity);
 public Identity update(Identity identity);
-public Identity get(int idIdentity);
-public List<IdentityRight> getIdentityRights(int idIdentityRole);
-public List<Address> getAddresses(int idIdentity);
-public List<Phone> getPhones(int idIdentity);
+public Identity get(Integer idIdentity);
+public List<IdentityRight> getIdentityRights(Integer idIdentityRole);
+public List<Address> getAddresses(Integer idIdentity);
+public List<Phone> getPhones(Integer idIdentity);
 public Identity connexion(String email, String mdp);
 public boolean phoneExist(String phoneNumber);
 public boolean emailExist(String email);

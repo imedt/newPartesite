@@ -35,7 +35,7 @@ public class DaoPhoneImpl implements IDaoPhone {
 	}
 
 	@Override
-	public Phone get(int idPhone) {
+	public Phone get(Integer idPhone) {
 		Phone phone = null;
 		Query hql = em.createQuery(
 				"SELECT ph FROM Phone ph WHERE ph.id_phone = :id_phone")
@@ -45,7 +45,7 @@ public class DaoPhoneImpl implements IDaoPhone {
 	}
 
 	@Override
-	public List<Phone> getByIdIdentity(int idIdentity) {
+	public List<Phone> getByIdIdentity(Integer idIdentity) {
 		List<Phone> phones = null;
 		Query hql = em.createQuery(
 				"SELECT ph FROM Phone ph WHERE ph.id_Identity = :id_Identity")

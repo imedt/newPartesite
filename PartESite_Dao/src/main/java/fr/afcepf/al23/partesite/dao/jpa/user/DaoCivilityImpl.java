@@ -35,11 +35,11 @@ public class DaoCivilityImpl implements IDaoCivility {
 	}
 
 	@Override
-	public Civility get(int idCivility) {
+	public Civility get(Integer idCivility) {
 		Civility civility = null;
 		Query hql = em
 				.createQuery(
-						"SELECT civ FROM Civility civ WHERE civ.id_civility = :id_civility")
+						"SELECT civ FROM Civility civ WHERE civ.idCivility = :id_civility")
 				.setParameter("id_civility", idCivility);
 		civility = (Civility) hql.getSingleResult();
 		return civility;

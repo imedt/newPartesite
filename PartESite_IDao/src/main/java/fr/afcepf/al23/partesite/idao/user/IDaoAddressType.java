@@ -10,6 +10,6 @@ import fr.afcepf.al23.partesite.model.entities.AddressType;;
 public interface IDaoAddressType {
 	public AddressType add(AddressType addressType);
 	public AddressType update(AddressType addressType);
-	public AddressType get(int idAddressType);
+	public AddressType get(Integer idAddressType);
 	public List<AddressType> getall();
 }

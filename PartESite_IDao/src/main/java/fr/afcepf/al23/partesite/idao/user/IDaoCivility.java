@@ -11,7 +11,7 @@ import fr.afcepf.al23.partesite.model.entities.Civility;
 public interface IDaoCivility {
 	public Civility add(Civility civility);
 	public Civility update(Civility civility);
-	public Civility get(int idCivility);
+	public Civility get(Integer idCivility);
 	public List<Civility> getall();
 	public boolean civilityExist(String civilityName);
 }
