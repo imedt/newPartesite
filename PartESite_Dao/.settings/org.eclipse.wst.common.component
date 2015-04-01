@@ -2,6 +2,7 @@
     <wb-module deploy-name="PartESite_Dao">
         <wb-resource deploy-path="/" source-path="/src/main/resources" tag="defaultRootSource"/>
         <wb-resource deploy-path="/" source-path="/src/main/java"/>
+        <wb-resource deploy-path="/" source-path="/src/test/java"/>
         <property name="java-output-path" value="/PartESite_Dao/target/classes"/>
     </wb-module>
 </project-modules>
