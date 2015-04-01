@@ -66,200 +66,210 @@ $(function(){
 </head>
 <body class="no-sidebar">
 	<f:view>
-		
 
 
-			<!-- Header -->
-			<div id="header-wrapper">
-				<div id="header" class="container">
 
-					<!-- Logo -->
+		<!-- Header -->
+		<div id="header-wrapper">
+			<div id="header" class="container">
 
-					<h1 id="logo" class="row">
-						<a href="Home.xhtml" class="col-lg-12"> B<span
-							style="font-size: 30px; color: navy;">usiness </span>P<span
-							style="font-size: 30px; color: navy;">artner's</span>C<span
-							style="font-size: 30px; color: navy;">ommunity</span>
-						</a>
+				<!-- Logo -->
 
-					</h1>
-					<ui:insert name="sous-logo">
-						<div class="col-lg-push-3 col-lg-6">
-							<div class="scroll">
-								<div class="mask">
-									<ul id="sous-logo">
-										<li><span> <a> ******Plateforme européenne de
-													financement participatif // </a>
-										</span></li>
-										<li><span> <a> ******Plateforme européenne de
-													financement participatif // </a>
-										</span></li>
-									</ul>
-								</div>
+				<h1 id="logo" class="row">
+					<a href="Home.xhtml" class="col-lg-12"> B<span
+						style="font-size: 30px; color: navy;">usiness </span>P<span
+						style="font-size: 30px; color: navy;">artner's</span>C<span
+						style="font-size: 30px; color: navy;">ommunity</span>
+					</a>
+
+				</h1>
+				<ui:insert name="sous-logo">
+					<div class="col-lg-push-3 col-lg-6">
+						<div class="scroll">
+							<div class="mask">
+								<ul id="sous-logo">
+									<li><span> <a> ******Plateforme européenne de
+												financement participatif // </a>
+									</span></li>
+									<li><span> <a> ******Plateforme européenne de
+												financement participatif // </a>
+									</span></li>
+								</ul>
 							</div>
 						</div>
+					</div>
+				</ui:insert>
+
+			</div>
+		</div>
+		<!-- Nav -->
+		<nav id="nav"> <ui:insert name="nav">
+			<ul class="col-lg-12">
+				<!-- no side bar -->
+				<li class="col-lg-3"><ui:insert name="icone-menu-1">
+						<a class="icon fa-home" href="Home.xhtml"><span>Accueil
+						</span></a>
+					</ui:insert></li>
+				<li class="col-lg-3"><ui:insert name="icone-menu-2">
+						<a class="icon fa-newspaper-o" href="NewProjects.xhtml"><span>Consulter
+								les nouveautés</span></a>
+					</ui:insert></li>
+				<li class="col-lg-3"><ui:insert name="icone-menu-3">
+						<a href="NewUser.xhtml" class="icon fa-edit"><span>Devenir
+								Membre</span></a>
+					</ui:insert></li>
+				<li class="col-lg-3"><ui:insert name="icone-menu-4">
+						<a href="#loginmodal" id="modaltrigger" class="icon fa-sign-in"><span>S'identifier</span></a>
+					</ui:insert></li>
+			</ul>
+		</ui:insert></nav>
+
+		<!-- Main -->
+		<div id="main-wrapper">
+			<div id="main" class="container">
+				<div id="content">
+
+					<ui:insert name="content">
+						<article class="box post">
+						<h3 class="col-lg-12">
+							<a class="col-lg-6" href="Concept.xhtml">Comment déposer un
+								projet ?</a> <a class="col-lg-6" href="Concept.xhtml">Comment
+								participer à un projet ?</a>
+						</h3>
+
+						</article>
 					</ui:insert>
 
 				</div>
 			</div>
-			<!-- Nav -->
-			<nav id="nav"> <ui:insert name="nav">
-				<ul class="col-lg-12">
-					<!-- no side bar -->
-					<li class="col-lg-3"><ui:insert name="icone-menu-1">
-							<a class="icon fa-home" href="Home.xhtml"><span>Accueil
-							</span></a>
-						</ui:insert></li>
-					<li class="col-lg-3"><ui:insert name="icone-menu-2">
-							<a class="icon fa-newspaper-o" href="NewProjects.xhtml"><span>Consulter
-									les nouveautés</span></a>
-						</ui:insert></li>
-					<li class="col-lg-3"><ui:insert name="icone-menu-3">
-							<a href="NewUser.xhtml" class="icon fa-edit"><span>Devenir
-									Membre</span></a>
-						</ui:insert></li>
-					<li class="col-lg-3"><ui:insert name="icone-menu-4">
-							<a href="#loginmodal" id="modaltrigger" class="icon fa-sign-in"><span>S'identifier</span></a>
-						</ui:insert></li>
-				</ul>
-			</ui:insert></nav>
-
-			<!-- Main -->
-			<div id="main-wrapper">
-				<div id="main" class="container">
-					<div id="content">
-					
-						<ui:insert name="content">
-							<article class="box post">
-							<h3 class="col-lg-12">
-								<a class="col-lg-6" href="Concept.xhtml">Comment déposer un
-									projet ?</a> <a class="col-lg-6" href="Concept.xhtml">Comment
-									participer à un projet ?</a>
-							</h3>
-
-							</article>
-						</ui:insert>
-						
-					</div>
+		</div>
+		<ui:insert name="image-centre">
+			<div class="col-lg-12" style="width: 100%; background-color: black;">
+				<div class="col-lg-push-1 col-lg-10">
+					<center>
+						<iframe class="col-lg-12" width="auto" height="500"
+							src="https://www.youtube.com/embed/OI-bTpbkH4Y?feature=player_detailpage"
+							frameborder="0" allowfullscreen="false"></iframe>
+					</center>
 				</div>
 			</div>
-			<ui:insert name="image-centre">
-				<div class="box post"
-					style="margin: 0; padding: 0; width: auto; height: 400px; background-image: url('stronglyTyped/images/partesite.jpg')">
-
+		</ui:insert>
+		<br />
+		<ui:insert name="text-home">
+			<div class="row">
+				<div class="col-lg-offset-1 col-lg-10">
+					<center class="text-home">
+						<h1 class="col-lg-push-12">Créer, Concevoir, Industrialiser,
+							Produire... | Investir sur un concept, une idée, un
+							entrepreneur... | Suivre l'avancement d'un projet financé en
+							totalité. | Part E-Site vous met en relation en toute sécurité !</h1>
+					</center>
 				</div>
-			</ui:insert>
-			<br />
-			<ui:insert name="text-home">
-				<div class="row">
-					<div class="col-lg-offset-1 col-lg-10">
-						<center class="text-home">
-							<h1 class="col-lg-push-12">Créer, Concevoir, Industrialiser,
-								Produire... | Investir sur un concept, une idée, un
-								entrepreneur... | Suivre l'avancement d'un projet financé en
-								totalité. | Part E-Site vous met en relation en toute sécurité !</h1>
-						</center>
-					</div>
-				</div>
-			</ui:insert>
+			</div>
+		</ui:insert>
 
-			<!-- Footer -->
+		<!-- Footer -->
 
-			<div id="footer-wrapper">
-				<div id="footer" class="container">
+		<div id="footer-wrapper">
+			<div id="footer" class="container">
 
-					<header>
-					<h2 class="footerTitre">
-						<ui:insert name="footer-titre">
+				<header>
+				<h2 class="footerTitre">
+					<ui:insert name="footer-titre">
 						Partagez votre expérience sur <strong>Part E-Site</strong>!
 					</ui:insert>
-					</h2>
-					</header>
+				</h2>
+				</header>
 
-					<div class="row">
+				<div class="row">
+					<div class="col-lg-12">
+
+						<section class="col-lg-6">
+
+						<div class="col-lg-6">
+							<h:inputText name="name" placeholder="Name" type="text"
+								value="Nom" style="width:110%;" />
+						</div>
+						<div class="col-lg-6">
+							<h:inputText name="email" placeholder="Email" type="text"
+								value="Email" style="width:100%;" />
+						</div>
+
 						<div class="col-lg-12">
-
-							<section class="col-lg-6">
-
-							<div class="col-lg-6">
-								<h:inputText name="name" placeholder="Name" type="text" value="Nom" style="width:110%;"/>
-							</div>
-							<div class="col-lg-6" >
-								<h:inputText name="email" placeholder="Email" type="text" value="Email" style="width:100%;"/>
-							</div>
-
-							<div class="col-lg-12">
-								<h:inputTextarea
-								name="message" placeholder="Message" style="width:100%;height:200px;" value="Message"/>
-							</div>
+							<h:inputTextarea name="message" placeholder="Message"
+								style="width:100%;height:200px;" value="Message" />
+						</div>
 
 
-							<div class="col-lg-12">
-								<h:commandButton type="submit" class="button lg-btn-default col-lg-12 icon fa-envelope"
-								value="Envoyer"/>
-							</div>
+						<div class="col-lg-12">
+							<h:commandButton type="submit"
+								class="button lg-btn-default col-lg-12 icon fa-envelope"
+								value="Envoyer" />
+						</div>
 
-							</section>
+						</section>
 
 
-							<section class="col-lg-6">
-							<p>
-								<ui:insert name="footer-sous-titre">Part E-Site : nouvelle plateforme participative.</ui:insert>
-							</p>
+						<section class="col-lg-6">
+						<p>
+							<ui:insert name="footer-sous-titre">Part E-Site : nouvelle plateforme participative.</ui:insert>
+						</p>
 
-							<div class="col-lg-12">
-								<ul class="icons col-lg-6">
-									<li class="icon fa-home">3 rue Danton,<br /> 92240
-										Malakoff<br /> FRANCE
-									</li>
-									<li class="icon fa-phone">00 33 1 41 45 45 45</li>
-									<li class="icon fa-envelope"><a href="#">contact@partE-Site.fr</a>
-									</li>
-								</ul>
+						<div class="col-lg-12">
+							<ul class="icons col-lg-6">
+								<li class="icon fa-home">3 rue Danton,<br /> 92240
+									Malakoff<br /> FRANCE
+								</li>
+								<li class="icon fa-phone">00 33 1 41 45 45 45</li>
+								<li class="icon fa-envelope"><a href="#">contact@partE-Site.fr</a>
+								</li>
+							</ul>
 
-								<ul class="icons col-lg-6">
-									<li class="icon fa-twitter"><a href="#">@partE-Site.fr</a>
-									</li>
-									<li class="icon fa-instagram"><a href="#">instagram.com/partE-Site.fr</a>
-									</li>
-									<li class="icon fa-dribbble"><a href="#">dribbble.com/partE-Site.fr</a>
-									</li>
-									<li class="icon fa-facebook"><a href="#">facebook.com/partE-Site.fr</a>
-									</li>
-								</ul>
-
-							</div>
-
-							</section>
+							<ul class="icons col-lg-6">
+								<li class="icon fa-twitter"><a href="#">@partE-Site.fr</a>
+								</li>
+								<li class="icon fa-instagram"><a href="#">instagram.com/partE-Site.fr</a>
+								</li>
+								<li class="icon fa-dribbble"><a href="#">dribbble.com/partE-Site.fr</a>
+								</li>
+								<li class="icon fa-facebook"><a href="#">facebook.com/partE-Site.fr</a>
+								</li>
+							</ul>
 
 						</div>
+
+						</section>
+
 					</div>
-
-
-
 				</div>
-			</div>
-			<div id="copyright" class="container">
-				<ul class="links">
-					<li>Part E-Site. All rights reserved.</li>
-					<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-				</ul>
-			</div>
 
-			<!-- PopUp -->
-			<div id="loginmodal" style="display: none;"
-				class="col-lg-push-4 col-lg-4">
-				<h1 class="bold col-lg-12 ">Identification</h1>
-				<h:form>
-				<span class="col-lg-12">Login</span> <h:inputText
-					class="col-lg-12" value="#{mbConnexion.login}" /> <span
-					class="col-lg-12">Password</span> <h:inputSecret 
-					class="password col-lg-12" value="#{mbConnexion.password}" />
-<h:commandButton class="button lg-btn-default col-lg-12" action="#{mbConnexion.connexion}" value="Connexion"></h:commandButton>
-</h:form>
-			</div>
 
-		
+
+			</div>
+		</div>
+		<div id="copyright" class="container">
+			<ul class="links">
+				<li>Part E-Site. All rights reserved.</li>
+				<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+			</ul>
+		</div>
+
+		<!-- PopUp -->
+		<div id="loginmodal" style="display: none;"
+			class="col-lg-push-4 col-lg-4">
+			<h1 class="bold col-lg-12 ">Identification</h1>
+			<h:form>
+				<span class="col-lg-12">Login</span>
+				<h:inputText class="col-lg-12" value="#{mbConnexion.login}" />
+				<span class="col-lg-12">Password</span>
+				<h:inputSecret class="password col-lg-12"
+					value="#{mbConnexion.password}" />
+				<h:commandButton class="button lg-btn-default col-lg-12"
+					action="#{mbConnexion.connexion}" value="Connexion"></h:commandButton>
+			</h:form>
+		</div>
+
+
 	</f:view>
 </body>
 </html>
