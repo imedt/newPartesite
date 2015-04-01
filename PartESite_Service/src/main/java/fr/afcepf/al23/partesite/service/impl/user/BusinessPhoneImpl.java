@@ -5,9 +5,9 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
+import fr.afcepf.al23.model.entities.Phone;
 import fr.afcepf.al23.partesite.idao.user.IDaoPhone;
 import fr.afcepf.al23.partesite.iservice.user.IBusinessPhone;
-import fr.afcepf.al23.partesite.model.entities.Phone;
 @Stateless
 public class BusinessPhoneImpl implements IBusinessPhone {
 
@@ -16,7 +16,7 @@ public class BusinessPhoneImpl implements IBusinessPhone {
 	
 	@Override
 	public Phone save(Phone phone) {
-		if(phone.getIdPhone() == 0)
+		if(phone.getIdPhone() == null)
 			daoPh.add(phone);
 		else
 			daoPh.update(phone);
@@ -24,14 +24,14 @@ public class BusinessPhoneImpl implements IBusinessPhone {
 	}
 
 	@Override
-	public Phone get(int idPhone) {
+	public Phone get(Integer idPhone) {
 		Phone phone = null;
 		phone = daoPh.get(idPhone);
 		return phone;
 	}
 
 	@Override
-	public List<Phone> getByIdIdentity(int idIdentity) {
+	public List<Phone> getByIdIdentity(Integer idIdentity) {
 		List<Phone> phones = null;
 		phones = daoPh.getByIdIdentity(idIdentity);
 		return phones;

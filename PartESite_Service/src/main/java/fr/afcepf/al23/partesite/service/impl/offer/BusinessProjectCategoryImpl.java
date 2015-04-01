@@ -4,14 +4,12 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 import org.apache.log4j.Logger;
 
+import fr.afcepf.al23.model.entities.ProjectCategory;
 import fr.afcepf.al23.partesite.idao.offer.IDaoProjectCategory;
 import fr.afcepf.al23.partesite.iservice.offer.IBusinessProjectCategory;
-import fr.afcepf.al23.partesite.model.entities.ProjectCategory;
 
 @Stateless
 public class BusinessProjectCategoryImpl implements IBusinessProjectCategory {

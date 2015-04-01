@@ -11,12 +11,11 @@ import javax.ejb.Stateless;
 
 import org.apache.log4j.Logger;
 
-
+import fr.afcepf.al23.model.entities.Item;
+import fr.afcepf.al23.model.entities.OrderRow;
+import fr.afcepf.al23.model.entities.UserOrder;
 import fr.afcepf.al23.partesite.idao.transaction.IDaoOrderRow;
 import fr.afcepf.al23.partesite.iservice.transaction.IBusinessOrderRow;
-import fr.afcepf.al23.partesite.model.entities.Item;
-import fr.afcepf.al23.partesite.model.entities.OrderRow;
-import fr.afcepf.al23.partesite.model.entities.UserOrder;
 
 /**
  * @author awagu_000
@@ -66,7 +65,7 @@ public class BusinessOrderRowImpl implements IBusinessOrderRow {
 	 * @see fr.afcepf.al23.partesite.iservice.transaction.IBusinessOrderRow#getByAmount(double)
 	 */
 	@Override
-	public List<OrderRow> getByAmount(double amount) {
+	public List<OrderRow> getByAmount(Double amount) {
 		log.info("BusinessOrderRowImpl, getByAmount");
 		return daoOrderRow.getByAmount(amount);
 	}
@@ -75,7 +74,7 @@ public class BusinessOrderRowImpl implements IBusinessOrderRow {
 	 * @see fr.afcepf.al23.partesite.iservice.transaction.IBusinessOrderRow#getByCreatedBy(int)
 	 */
 	@Override
-	public List<OrderRow> getByCreatedBy(int idIdentity) {
+	public List<OrderRow> getByCreatedBy(Integer idIdentity) {
 		log.info("BusinessOrderRowImpl, getByCreatedBy");
 		return daoOrderRow.getByCreatedBy(idIdentity);
 	}
@@ -93,7 +92,7 @@ public class BusinessOrderRowImpl implements IBusinessOrderRow {
 	 * @see fr.afcepf.al23.partesite.iservice.transaction.IBusinessOrderRow#getByDisabled(boolean)
 	 */
 	@Override
-	public List<OrderRow> getByDisabled(boolean disabled) {
+	public List<OrderRow> getByDisabled(Boolean disabled) {
 		log.info("BusinessOrderRowImpl, getByDisabled");
 		return daoOrderRow.getByDisabled(disabled);
 	}
@@ -102,7 +101,7 @@ public class BusinessOrderRowImpl implements IBusinessOrderRow {
 	 * @see fr.afcepf.al23.partesite.iservice.transaction.IBusinessOrderRow#getByUpdatedBy(int)
 	 */
 	@Override
-	public List<OrderRow> getByUpdatedBy(int idIdentity) {
+	public List<OrderRow> getByUpdatedBy(Integer idIdentity) {
 		log.info("BusinessOrderRowImpl, getByUpdatedBy");
 		return daoOrderRow.getByUpdatedBy(idIdentity);
 	}

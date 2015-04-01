@@ -7,8 +7,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import fr.afcepf.al23.model.entities.IdentityRight;
 import fr.afcepf.al23.partesite.idao.user.IDaoIdentityRight;
-import fr.afcepf.al23.partesite.model.entities.IdentityRight;
 @Stateless
 public class DaoIdentityRightImpl implements IDaoIdentityRight {
 
@@ -35,11 +35,11 @@ public class DaoIdentityRightImpl implements IDaoIdentityRight {
 	}
 
 	@Override
-	public IdentityRight get(int idIdentityRight) {
+	public IdentityRight get(Integer  idIdentityRight) {
 		IdentityRight identityRight = null;
 		Query hql = em
 				.createQuery(
-						"SELECT identRi FROM IdentityRight identRi WHERE identRi.id_identityRight = :id_identityRight")
+						"SELECT identRi FROM IdentityRight identRi WHERE identRi.idIdentityRight = :id_identityRight")
 				.setParameter("id_identityRight", idIdentityRight);
 		identityRight = (IdentityRight) hql.getSingleResult();
 		return identityRight;
@@ -54,18 +54,18 @@ public class DaoIdentityRightImpl implements IDaoIdentityRight {
 	}
 
 	@Override
-	public List<IdentityRight> getByIdRole(int idIdentityRole) {
+	public List<IdentityRight> getByIdRole(Integer  idIdentityRole) {
 		List<IdentityRight> identityRights = null;
 		Query hql = em
 				.createQuery(
-						"SELECT identRi FROM IdentityRight identRi WHERE identRi.id_identityRole = :id_identityRole")
+						"SELECT identRi FROM IdentityRight identRi WHERE identRi.idIdentityRole = :id_identityRole")
 				.setParameter("id_identityRole", idIdentityRole);
 		identityRights = hql.getResultList();
 		return identityRights;
 	}
 
 	@Override
-	public boolean rightExist(String actionName) {
+	public Boolean  rightExist(String actionName) {
 		List<IdentityRight> identityRights = null;
 		Query hql = em
 				.createQuery(

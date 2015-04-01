@@ -11,9 +11,9 @@ import javax.ejb.Stateless;
 
 import org.apache.log4j.Logger;
 
+import fr.afcepf.al23.model.entities.TargetType;
 import fr.afcepf.al23.partesite.idao.notification.IDaoNotificationType;
 import fr.afcepf.al23.partesite.iservice.notification.IBusinessNotificationType;
-import fr.afcepf.al23.partesite.model.entities.TargetType;
 
 /**
  * @author awagu_000
@@ -71,7 +71,7 @@ public class BusinessNotificationTypeImpl implements IBusinessNotificationType {
 	 * @see fr.afcepf.al23.partesite.iservice.notification.IBusinessNotificationType#getByCreatedBy(int)
 	 */
 	@Override
-	public List<TargetType> getByCreatedBy(int idIdentity) {
+	public List<TargetType> getByCreatedBy(Integer idIdentity) {
 		log.info("BusinessNotificationTypeImpl, getByCreatedBy");
 		return daoTargetType.getByCreatedBy(idIdentity);
 	}
@@ -89,7 +89,7 @@ public class BusinessNotificationTypeImpl implements IBusinessNotificationType {
 	 * @see fr.afcepf.al23.partesite.iservice.notification.IBusinessNotificationType#getByDisabled(boolean)
 	 */
 	@Override
-	public List<TargetType> getByDisabled(boolean disabled) {
+	public List<TargetType> getByDisabled(Boolean disabled) {
 		log.info("BusinessNotificationTypeImpl, getByDisabled");
 		return daoTargetType.getByDisabled(disabled);
 	}
@@ -98,7 +98,7 @@ public class BusinessNotificationTypeImpl implements IBusinessNotificationType {
 	 * @see fr.afcepf.al23.partesite.iservice.notification.IBusinessNotificationType#getByUpdatedBy(int)
 	 */
 	@Override
-	public List<TargetType> getByUpdatedBy(int idIdentity) {
+	public List<TargetType> getByUpdatedBy(Integer idIdentity) {
 		log.info("BusinessNotificationTypeImpl, getByUpdatedBy");
 		return daoTargetType.getByUpdatedBy(idIdentity);
 	}

@@ -2,7 +2,6 @@ package fr.afcepf.al23.partesite.managedbean;
 
 
 import java.util.Date;
-import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -11,11 +10,9 @@ import javax.faces.bean.SessionScoped;
 
 import org.apache.log4j.Logger;
 
+import fr.afcepf.al23.model.entities.Project;
 import fr.afcepf.al23.partesite.iservice.offer.IBusinessPack;
 import fr.afcepf.al23.partesite.iservice.offer.IBusinessProject;
-import fr.afcepf.al23.partesite.iservice.offer.IBusinessProjectCategory;
-import fr.afcepf.al23.partesite.model.entities.Project;
-import fr.afcepf.al23.partesite.model.entities.ProjectCategory;
 
 @ManagedBean(name="mbEditProject")
 @SessionScoped
@@ -97,7 +94,6 @@ public String create(){
 		p = new Project();
 		p.setAimingAmount(aimingAmount);
 		p.setProjectName(projectName);
-		p.setDescription(contentConcept);
 		p.setIdentity(cnx.getId());
 		p.setPublish(true);
 		p.setCreatedDate(new Date());

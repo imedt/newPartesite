@@ -6,7 +6,6 @@ package fr.afcepf.al23.partesite.dao.jpa.notification;
 import java.util.Date;
 import java.util.List;
 
-import javax.ejb.Stateful;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -14,11 +13,10 @@ import javax.persistence.Query;
 
 import org.apache.log4j.Logger;
 
+import fr.afcepf.al23.model.entities.Notification;
+import fr.afcepf.al23.model.entities.TargetType;
 import fr.afcepf.al23.partesite.dao.offer.DaoProjectImpl;
 import fr.afcepf.al23.partesite.idao.notification.IDaoNotification;
-import fr.afcepf.al23.partesite.model.entities.Notification;
-import fr.afcepf.al23.partesite.model.entities.OrderRow;
-import fr.afcepf.al23.partesite.model.entities.TargetType;
 
 /**
  * @author awagu_000
@@ -85,7 +83,7 @@ public class DaoNotificationImpl implements IDaoNotification {
 	 * @see fr.afcepf.al23.partesite.idao.notification.IDaoNotification#getByCreatedBy(int)
 	 */
 	@Override
-	public List<Notification> getByCreatedBy(int idIdentity) {
+	public List<Notification> getByCreatedBy(Integer idIdentity) {
 		Query hql = em.createQuery("SELECT n FROM Notification n "
 				+ "WHERE n.createdBy = :idIdentity")
 				.setParameter("createdBy", idIdentity);
@@ -109,7 +107,7 @@ public class DaoNotificationImpl implements IDaoNotification {
 	 * @see fr.afcepf.al23.partesite.idao.notification.IDaoNotification#getByDisabled(boolean)
 	 */
 	@Override
-	public List<Notification> getByDisabled(boolean disabled) {
+	public List<Notification> getByDisabled(Boolean disabled) {
 		Query hql = em.createQuery("SELECT n FROM Notification n "
 				+ "WHERE n.disabled = :disabled")
 				.setParameter("disabled", disabled);
@@ -121,7 +119,7 @@ public class DaoNotificationImpl implements IDaoNotification {
 	 * @see fr.afcepf.al23.partesite.idao.notification.IDaoNotification#getByTarget(int)
 	 */
 	@Override
-	public List<Notification> getByTarget(int idTarget) {
+	public List<Notification> getByTarget(Integer idTarget) {
 		Query hql = em.createQuery("SELECT n FROM Notification n "
 				+ "WHERE n.idTarget = :idTarget")
 				.setParameter("idTarget", idTarget);
@@ -145,7 +143,7 @@ public class DaoNotificationImpl implements IDaoNotification {
 	 * @see fr.afcepf.al23.partesite.idao.notification.IDaoNotification#getByUpdatedBy(int)
 	 */
 	@Override
-	public List<Notification> getByUpdatedBy(int idIdentity) {
+	public List<Notification> getByUpdatedBy(Integer idIdentity) {
 		Query hql = em.createQuery("SELECT n FROM Notification n "
 				+ "WHERE n.updatedBy = :updatedBy")
 				.setParameter("updatedBy", idIdentity);

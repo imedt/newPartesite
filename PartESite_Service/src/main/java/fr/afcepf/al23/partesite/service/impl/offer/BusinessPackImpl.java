@@ -9,11 +9,10 @@ import javax.persistence.PersistenceContext;
 
 import org.apache.log4j.Logger;
 
+import fr.afcepf.al23.model.entities.Pack;
 import fr.afcepf.al23.partesite.idao.offer.IDaoItem;
 import fr.afcepf.al23.partesite.idao.offer.IDaoPack;
 import fr.afcepf.al23.partesite.iservice.offer.IBusinessPack;
-import fr.afcepf.al23.partesite.model.entities.Item;
-import fr.afcepf.al23.partesite.model.entities.Pack;
 
 @Stateless
 public class BusinessPackImpl implements IBusinessPack {
@@ -45,7 +44,7 @@ public class BusinessPackImpl implements IBusinessPack {
 	}
 
 	@Override
-	public List<Pack> getByidProject(int idProject) {
+	public List<Pack> getByidProject(Integer idProject) {
 		List<Pack> packs = daoPack.getByidProject(idProject);
 		return packs;
 	}

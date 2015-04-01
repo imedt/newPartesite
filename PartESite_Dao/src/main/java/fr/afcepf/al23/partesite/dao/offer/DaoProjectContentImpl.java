@@ -8,11 +8,9 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.apache.log4j.Logger;
-import org.w3c.dom.Text;
 
+import fr.afcepf.al23.model.entities.ProjectContent;
 import fr.afcepf.al23.partesite.idao.offer.IDaoProjectContent;
-import fr.afcepf.al23.partesite.model.entities.Pack;
-import fr.afcepf.al23.partesite.model.entities.ProjectContent;
 
 @Stateless
 public class DaoProjectContentImpl implements IDaoProjectContent {

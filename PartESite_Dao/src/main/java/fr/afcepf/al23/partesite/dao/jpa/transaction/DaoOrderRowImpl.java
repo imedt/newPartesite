@@ -6,7 +6,6 @@ package fr.afcepf.al23.partesite.dao.jpa.transaction;
 import java.util.Date;
 import java.util.List;
 
-import javax.ejb.Stateful;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -14,11 +13,11 @@ import javax.persistence.Query;
 
 import org.apache.log4j.Logger;
 
+import fr.afcepf.al23.model.entities.Item;
+import fr.afcepf.al23.model.entities.OrderRow;
+import fr.afcepf.al23.model.entities.UserOrder;
 import fr.afcepf.al23.partesite.dao.offer.DaoProjectImpl;
 import fr.afcepf.al23.partesite.idao.transaction.IDaoOrderRow;
-import fr.afcepf.al23.partesite.model.entities.Item;
-import fr.afcepf.al23.partesite.model.entities.OrderRow;
-import fr.afcepf.al23.partesite.model.entities.UserOrder;
 
 /**
  * @author awagu_000
@@ -70,10 +69,10 @@ public class DaoOrderRowImpl implements IDaoOrderRow {
 	}
 
 	/* (non-Javadoc)
-	 * @see fr.afcepf.al23.partesite.idao.transaction.IDaoOrderRow#getByAmount(double)
+	 * @see fr.afcepf.al23.partesite.idao.transaction.IDaoOrderRow#getByAmount(Double )
 	 */
 	@Override
-	public List<OrderRow> getByAmount(double amount) {
+	public List<OrderRow> getByAmount(Double  amount) {
 		Query hql = em.createQuery("SELECT o FROM OrderRow o "
 				+ "WHERE o.amount = :amount")
 				.setParameter("amount", amount);
@@ -82,10 +81,10 @@ public class DaoOrderRowImpl implements IDaoOrderRow {
 	}
 
 	/* (non-Javadoc)
-	 * @see fr.afcepf.al23.partesite.idao.transaction.IDaoOrderRow#getByCreatedBy(int)
+	 * @see fr.afcepf.al23.partesite.idao.transaction.IDaoOrderRow#getByCreatedBy(Integer )
 	 */
 	@Override
-	public List<OrderRow> getByCreatedBy(int idIdentity) {
+	public List<OrderRow> getByCreatedBy(Integer  idIdentity) {
 		Query hql = em.createQuery("SELECT o FROM OrderRow o "
 				+ "WHERE o.createdBy = :createdBy");
 		hql.setParameter("createdBy", idIdentity);
@@ -106,10 +105,10 @@ public class DaoOrderRowImpl implements IDaoOrderRow {
 	}
 
 	/* (non-Javadoc)
-	 * @see fr.afcepf.al23.partesite.idao.transaction.IDaoOrderRow#getByDisabled(boolean)
+	 * @see fr.afcepf.al23.partesite.idao.transaction.IDaoOrderRow#getByDisabled(Boolean )
 	 */
 	@Override
-	public List<OrderRow> getByDisabled(boolean disabled) {
+	public List<OrderRow> getByDisabled(Boolean  disabled) {
 		Query hql = em.createQuery("SELECT o FROM OrderRow o "
 				+ "WHERE o.disabled = :disabled")
 				.setParameter("disabled", disabled);
@@ -118,10 +117,10 @@ public class DaoOrderRowImpl implements IDaoOrderRow {
 	}
 
 	/* (non-Javadoc)
-	 * @see fr.afcepf.al23.partesite.idao.transaction.IDaoOrderRow#getByUpdatedBy(int)
+	 * @see fr.afcepf.al23.partesite.idao.transaction.IDaoOrderRow#getByUpdatedBy(Integer )
 	 */
 	@Override
-	public List<OrderRow> getByUpdatedBy(int idIdentity) {
+	public List<OrderRow> getByUpdatedBy(Integer  idIdentity) {
 		Query hql = em.createQuery("SELECT o FROM OrderRow o "
 				+ "WHERE o.updatedBy = :updatedBy")
 				.setParameter("updatedBy", idIdentity);

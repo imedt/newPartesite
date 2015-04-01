@@ -4,15 +4,13 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 import org.apache.log4j.Logger;
 
+import fr.afcepf.al23.model.entities.Item;
+import fr.afcepf.al23.model.entities.Pack;
 import fr.afcepf.al23.partesite.idao.offer.IDaoItem;
 import fr.afcepf.al23.partesite.iservice.offer.IBusinessItem;
-import fr.afcepf.al23.partesite.model.entities.Item;
-import fr.afcepf.al23.partesite.model.entities.Pack;
 
 @Stateless
 public class BusinessItemImpl implements IBusinessItem {

@@ -7,9 +7,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import fr.afcepf.al23.model.entities.IdentityRight;
+import fr.afcepf.al23.model.entities.IdentityRole;
 import fr.afcepf.al23.partesite.idao.user.IDaoIdentityRole;
-import fr.afcepf.al23.partesite.model.entities.IdentityRight;
-import fr.afcepf.al23.partesite.model.entities.IdentityRole;
 @Stateless
 public class DaoIdentityRoleImpl implements IDaoIdentityRole {
 
@@ -36,18 +36,18 @@ public class DaoIdentityRoleImpl implements IDaoIdentityRole {
 	}
 
 	@Override
-	public IdentityRole get(int idIdentityRole) {
+	public IdentityRole get(Integer  idIdentityRole) {
 		IdentityRole identityRole = null;
 		Query hql = em
 				.createQuery(
-						"SELECT identRi FROM IdentityRight identRi WHERE identRi.id_identityRole = :id_identityRole")
+						"SELECT identRo FROM IdentityRole identRo WHERE identRo.idIdentityRole = :id_identityRole")
 				.setParameter("id_identityRole", idIdentityRole);
 		identityRole = (IdentityRole) hql.getSingleResult();
 		return identityRole;
 	}
 
 	@Override
-	public List<IdentityRight> getRights(int idIdentityRole) {
+	public List<IdentityRight> getRights(Integer  idIdentityRole) {
 		List<IdentityRight> identityRights = null;
 		DaoIdentityRightImpl daoRight = new DaoIdentityRightImpl();
 		identityRights = daoRight.getByIdRole(idIdentityRole);
@@ -55,7 +55,7 @@ public class DaoIdentityRoleImpl implements IDaoIdentityRole {
 	}
 
 	@Override
-	public boolean roleExist(String roleName) {
+	public Boolean roleExist(String roleName) {
 		// TODO Auto-generated method stub
 		return false;
 	}

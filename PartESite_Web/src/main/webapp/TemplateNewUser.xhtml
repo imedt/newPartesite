@@ -1,0 +1,256 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<head>
+<title><ui:insert name="header-titre">Template User Dashboard</ui:insert></title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+
+<!-- Script : StronglyTyped & Bootstrap-->
+<script src="stronglyTyped/js/jquery.min.js"></script>
+<script src="stronglyTyped/js/jquery.dropotron.min.js"></script>
+<script src="stronglyTyped/js/skel.min.js"></script>
+<script src="stronglyTyped/js/skel-layers.min.js"></script>
+<script src="stronglyTyped/js/init.js"></script>
+<script src="stronglyTyped/js/bootstrap.js"></script>
+
+<!-- Script : DateTime Picker -->
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script>
+  $(function() {
+    $( "#datepicker" ).datepicker();
+  });
+  </script>
+
+<!-- Style : StronglyTyped & Bootstrap-->
+<link rel="stylesheet" href="stronglyTyped/css/bootstrap.css" />
+<link rel="stylesheet" href="stronglyTyped/css/skel.css" />
+<link rel="stylesheet" href="stronglyTyped/css/style.css" />
+<link rel="stylesheet" href="stronglyTyped/css/style-desktop.css" />
+
+<!-- Style : DateTime Picker -->
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
+
+<!-- Style : PartESite -->
+<link rel="stylesheet" href="StylePartESite/css/newUser.css" />
+<ui:insert name="style"></ui:insert>
+<ui:insert name="script"></ui:insert>
+</head>
+<body class="no-sidebar">
+	<f:view>
+	
+		<!-- Header -->
+		<div id="header-wrapper">
+			<div id="header" class="container">
+
+				<!-- Logo -->
+
+				<h1 id="logo" class="row">
+					<a href="Home.xhtml" class="col-lg-12"> B<span
+						style="font-size: 30px; color: navy;">usiness </span>P<span
+						style="font-size: 30px; color: navy;">artner's</span>C<span
+						style="font-size: 30px; color: navy;">ommunity</span>
+					</a>
+				</h1>
+				<p class="col-lg-12" id="sous-logo">
+					Bienvenue <span rendered="#{mbUser.identity!=null}"
+						style="color: #47b8af;">&nbsp;#{mbUser.identity.firstName}</span>
+					<ui:insert name="sous-logo">
+					</ui:insert>
+					!
+				</p>
+
+			</div>
+		</div>
+
+
+		<!-- Main -->
+		<div class="content">
+
+			<div class="nav">
+				<div class="row">
+					<ui:insert name="nav-ul">
+						<ul class="col-lg-12">
+							<li class="col-3"><a href="UserDashBoard.xhtml"
+								class="icon fa-edit" id="selected" style="padding-left: 0;">
+									<span>Formulaire d'inscription</span>
+							</a></li>
+						</ul>
+					</ui:insert>
+				</div>
+			</div>
+
+
+			<div class="row" id="formulaire">
+				<h:form>
+					<fieldset class="col-lg-11">
+						<legend>Informations personnelles</legend>
+
+						<div class="col-lg-5">
+
+							<span class="col-lg-6"> Civilité :</span>
+							<h:selectOneMenu class="col-lg-6" value="#{mbUser.idCivility}">
+								<f:selectItems value="#{mbUser.civilities}" var="c"
+									itemValue="#{c.idCivility}" itemLabel="#{c.civility}" />
+							</h:selectOneMenu>
+							<br /> <span class="col-lg-6"> Prénom :</span>
+							<h:inputText class="col-lg-6" value="#{mbUser.firstName}" />
+
+							<span class="col-lg-6"> Nom :</span>
+							<h:inputText class="col-lg-6" value="#{mbUser.lastName}" />
+
+							<span class="col-lg-6"> Email :</span>
+							<h:inputText class="col-lg-6" value="#{mbUser.email}" />
+
+							<span class="col-lg-6"> Mot de passe :</span>
+							<h:inputText class="col-lg-6" value="#{mbUser.password}" />
+
+							<span class="col-lg-6"> Date de naissance :</span>
+							<h:inputText id="datepicker" class="col-lg-6"
+								value="#{mbUser.birthdate}" />
+
+							<h:selectBooleanCheckbox value="true" />
+							&nbsp; <span id="cgu">J'accepte les conditions générales
+								d'utilisation de la plateforme.</span>
+							<h:commandButton type="submit" class="lg-btn-default col-lg-12"
+								value="Valider" action="#{mbUser.inscription()}" />
+
+
+
+						</div>
+						<div class="col-lg-push-1 col-lg-6">
+
+							<h:panelGroup  class="col-lg-12"
+								rendered="#{mbUser.identity!=null}">
+								<h3>Telephone</h3>
+								<span class="col-lg-6">Type :</span>
+								<h:inputText class="col-lg-6" value="#{mbUser.typePhoneNumber}" />
+								<span class="col-lg-6">Numéro :</span>
+								<h:inputText class="col-lg-6" value="#{mbUser.phoneNumber}" />
+								<h:commandButton  class="col-lg-push-6 col-lg-6"
+									action="#{mbUser.addPhoneToUser()}" value="Ajouter" />
+							</h:panelGroup>
+						</div>
+						
+						<div class="col-lg-push-1 col-lg-6">
+
+							<h:panelGroup  class="col-lg-12"
+								rendered="#{mbUser.identity!=null}">
+								<h3>Adresse</h3>
+								<span class="col-lg-6">Rue :</span>
+								<h:inputText class="col-lg-6" value="#{mbUser.street}" />
+								<span class="col-lg-6">Code Postal :</span>
+								<h:inputText  class="col-lg-6" value="#{mbUser.zipcode}" />
+								<span class="col-lg-6">Ville :</span>
+								<h:inputText  class="col-lg-6" value="#{mbUser.city}" />
+								<span class="col-lg-6">Pays :</span>
+								<h:inputText class="col-lg-6" value="#{mbUser.country}" />
+								<span class="col-lg-6"> Type :</span>
+							<h:selectOneMenu class="col-lg-6" value="#{mbUser.idAddressType}">
+								<f:selectItems value="#{mbUser.addressTypes}" var="a"
+									itemValue="#{a.idAddressType}" itemLabel="#{a.addressType}" />
+							</h:selectOneMenu>
+
+								<h:commandButton  class="col-lg-6"
+									action="#{mbUser.addAddressToUser()}" value="Ajouter" />
+							</h:panelGroup>
+						</div>
+					</fieldset>
+				</h:form>
+			</div>
+		</div>
+
+
+
+					<!-- Footer -->
+
+			<div id="footer-wrapper">
+				<div id="footer" class="container">
+
+					<header>
+					<h2 class="footerTitre">
+						<ui:insert name="footer-titre">
+						Partagez votre expérience sur <strong>Part E-Site</strong>!
+					</ui:insert>
+					</h2>
+					</header>
+
+					<div class="row">
+						<div class="col-lg-12">
+
+							<section class="col-lg-6">
+
+							<div class="col-lg-6">
+								<h:inputText name="name" placeholder="Name" type="text" value="Nom" style="width:110%;"/>
+							</div>
+							<div class="col-lg-6" >
+								<h:inputText name="email" placeholder="Email" type="text" value="Email" style="width:100%;"/>
+							</div>
+
+							<div class="col-lg-12">
+								<h:inputTextarea
+								name="message" placeholder="Message" style="width:100%;height:200px;" value="Message"/>
+							</div>
+
+
+							<div class="col-lg-12">
+								<h:commandButton type="submit" class="button lg-btn-default col-lg-12 icon fa-envelope"
+								value="Envoyer"/>
+							</div>
+
+							</section>
+
+
+							<section class="col-lg-6">
+							<p>
+								<ui:insert name="footer-sous-titre">Part E-Site : nouvelle plateforme participative.</ui:insert>
+							</p>
+
+							<div class="col-lg-12">
+								<ul class="icons col-lg-6">
+									<li class="icon fa-home">3 rue Danton,<br /> 92240
+										Malakoff<br /> FRANCE
+									</li>
+									<li class="icon fa-phone">00 33 1 41 45 45 45</li>
+									<li class="icon fa-envelope"><a href="#">contact@partE-Site.fr</a>
+									</li>
+								</ul>
+
+								<ul class="icons col-lg-6">
+									<li class="icon fa-twitter"><a href="#">@partE-Site.fr</a>
+									</li>
+									<li class="icon fa-instagram"><a href="#">instagram.com/partE-Site.fr</a>
+									</li>
+									<li class="icon fa-dribbble"><a href="#">dribbble.com/partE-Site.fr</a>
+									</li>
+									<li class="icon fa-facebook"><a href="#">facebook.com/partE-Site.fr</a>
+									</li>
+								</ul>
+
+							</div>
+
+							</section>
+
+						</div>
+					</div>
+
+
+
+				</div>
+			</div>
+			<div id="copyright" class="container">
+				<ul class="links">
+					<li>Part E-Site. All rights reserved.</li>
+					<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+				</ul>
+			</div>
+		
+	</f:view>
+</body>
+</html>

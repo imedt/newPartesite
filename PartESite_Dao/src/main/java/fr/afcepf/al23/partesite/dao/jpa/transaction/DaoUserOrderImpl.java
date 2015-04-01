@@ -6,7 +6,6 @@ package fr.afcepf.al23.partesite.dao.jpa.transaction;
 import java.util.Date;
 import java.util.List;
 
-import javax.ejb.Stateful;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -14,11 +13,10 @@ import javax.persistence.Query;
 
 import org.apache.log4j.Logger;
 
+import fr.afcepf.al23.model.entities.Identity;
+import fr.afcepf.al23.model.entities.UserOrder;
 import fr.afcepf.al23.partesite.dao.offer.DaoProjectImpl;
 import fr.afcepf.al23.partesite.idao.transaction.IDaoUserOrder;
-import fr.afcepf.al23.partesite.model.entities.Identity;
-import fr.afcepf.al23.partesite.model.entities.Payment;
-import fr.afcepf.al23.partesite.model.entities.UserOrder;
 
 /**
  * @author awagu_000
@@ -73,7 +71,7 @@ public class DaoUserOrderImpl implements IDaoUserOrder {
 	 * @see fr.afcepf.al23.partesite.idao.transaction.IDaoUserOrder#getByTotalAmount(double)
 	 */
 	@Override
-	public List<UserOrder> getByTotalAmount(double totalAmount) {
+	public List<UserOrder> getByTotalAmount(Double totalAmount) {
 		Query hql = em.createQuery("SELECT uo FROM UserOrder uo "
 				+ "WHERE uo.totalAmount = :totalAmount");
 		hql.setParameter("totalAmount", totalAmount);
@@ -85,7 +83,7 @@ public class DaoUserOrderImpl implements IDaoUserOrder {
 	 * @see fr.afcepf.al23.partesite.idao.transaction.IDaoUserOrder#getByCreatedBy(int)
 	 */
 	@Override
-	public List<UserOrder> getByCreatedBy(int idIdentity) {
+	public List<UserOrder> getByCreatedBy(Integer idIdentity) {
 		Query hql = em.createQuery("SELECT uo FROM UserOrder uo "
 				+ "WHERE uo.createdBy = :createdBy");
 		hql.setParameter("createdBy", idIdentity);
@@ -109,7 +107,7 @@ public class DaoUserOrderImpl implements IDaoUserOrder {
 	 * @see fr.afcepf.al23.partesite.idao.transaction.IDaoUserOrder#getByDisabled(boolean)
 	 */
 	@Override
-	public List<UserOrder> getByDisabled(boolean disabled) {
+	public List<UserOrder> getByDisabled(Boolean disabled) {
 		Query hql = em.createQuery("SELECT uo FROM UserOrder uo "
 				+ "WHERE uo.disabled = :disabled");
 		hql.setParameter("disabled", disabled);
@@ -121,7 +119,7 @@ public class DaoUserOrderImpl implements IDaoUserOrder {
 	 * @see fr.afcepf.al23.partesite.idao.transaction.IDaoUserOrder#getByUpdatedBy(int)
 	 */
 	@Override
-	public List<UserOrder> getByUpdatedBy(int idIdentity) {
+	public List<UserOrder> getByUpdatedBy(Integer idIdentity) {
 		Query hql = em.createQuery("SELECT uo FROM UserOrder uo "
 				+ "WHERE uo.updatedBy = :updatedBy");
 		hql.setParameter("updatedBy", idIdentity);

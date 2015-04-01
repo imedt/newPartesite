@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?><persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.1" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 	<persistence-unit name="PartESite_Dao">
 		<jta-data-source>java:jboss/datasources/partesiteDS</jta-data-source>
-        <class>fr.afcepf.al23.partesite.model.entities.Address</class>
-        <class>fr.afcepf.al23.partesite.model.entities.AddressType</class>
-        <class>fr.afcepf.al23.partesite.model.entities.Civility</class>
-        <class>fr.afcepf.al23.partesite.model.entities.Identity</class>
-        <class>fr.afcepf.al23.partesite.model.entities.IdentityRight</class>
-        <class>fr.afcepf.al23.partesite.model.entities.IdentityRole</class>
-        <class>fr.afcepf.al23.partesite.model.entities.Item</class>
-        <class>fr.afcepf.al23.partesite.model.entities.ItemState</class>
-        <class>fr.afcepf.al23.partesite.model.entities.Notification</class>
-        <class>fr.afcepf.al23.partesite.model.entities.OrderRow</class>
-        <class>fr.afcepf.al23.partesite.model.entities.Pack</class>
-        <class>fr.afcepf.al23.partesite.model.entities.Payment</class>
-        <class>fr.afcepf.al23.partesite.model.entities.Phone</class>
-        <class>fr.afcepf.al23.partesite.model.entities.Project</class>
-        <class>fr.afcepf.al23.partesite.model.entities.ProjectCategory</class>
-        <class>fr.afcepf.al23.partesite.model.entities.ProjectContent</class>
-        <class>fr.afcepf.al23.partesite.model.entities.TargetType</class>
-        <class>fr.afcepf.al23.partesite.model.entities.UserOrder</class>
-        <class>fr.afcepf.al23.partesite.model.entities.UserOrderState</class>
+        <class>fr.afcepf.al23.model.entities.Address</class>
+		<class>fr.afcepf.al23.model.entities.AddressType</class>
+		<class>fr.afcepf.al23.model.entities.Civility</class>
+		<class>fr.afcepf.al23.model.entities.Identity</class>
+		<class>fr.afcepf.al23.model.entities.IdentityRight</class>
+		<class>fr.afcepf.al23.model.entities.IdentityRole</class>
+		<class>fr.afcepf.al23.model.entities.Item</class>
+		<class>fr.afcepf.al23.model.entities.ItemState</class>
+		<class>fr.afcepf.al23.model.entities.Notification</class>
+		<class>fr.afcepf.al23.model.entities.OrderRow</class>
+		<class>fr.afcepf.al23.model.entities.Pack</class>
+		<class>fr.afcepf.al23.model.entities.Payment</class>
+		<class>fr.afcepf.al23.model.entities.Phone</class>
+		<class>fr.afcepf.al23.model.entities.Project</class>
+		<class>fr.afcepf.al23.model.entities.ProjectCategory</class>
+		<class>fr.afcepf.al23.model.entities.ProjectContent</class>
+		<class>fr.afcepf.al23.model.entities.TargetType</class>
+		<class>fr.afcepf.al23.model.entities.UserOrder</class>
+		<class>fr.afcepf.al23.model.entities.UserOrderState</class>
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
 		</properties>

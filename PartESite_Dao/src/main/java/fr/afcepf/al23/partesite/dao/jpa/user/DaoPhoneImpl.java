@@ -7,8 +7,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import fr.afcepf.al23.model.entities.Phone;
 import fr.afcepf.al23.partesite.idao.user.IDaoPhone;
-import fr.afcepf.al23.partesite.model.entities.Phone;
 @Stateless
 public class DaoPhoneImpl implements IDaoPhone {
 
@@ -35,27 +35,27 @@ public class DaoPhoneImpl implements IDaoPhone {
 	}
 
 	@Override
-	public Phone get(int idPhone) {
+	public Phone get(Integer  idPhone) {
 		Phone phone = null;
 		Query hql = em.createQuery(
-				"SELECT ph FROM Phone ph WHERE ph.id_phone = :id_phone")
+				"SELECT ph FROM Phone ph WHERE ph.idPhone = :id_phone")
 				.setParameter("id_phone", idPhone);
 		phone = (Phone) hql.getSingleResult();
 		return phone;
 	}
 
 	@Override
-	public List<Phone> getByIdIdentity(int idIdentity) {
+	public List<Phone> getByIdIdentity(Integer  idIdentity) {
 		List<Phone> phones = null;
 		Query hql = em.createQuery(
-				"SELECT ph FROM Phone ph WHERE ph.id_Identity = :id_Identity")
+				"SELECT ph FROM Phone ph WHERE ph.idIdentity = :id_Identity")
 				.setParameter("id_Identity", idIdentity);
 		phones = hql.getResultList();
 		return phones;
 	}
 
 	@Override
-	public boolean phoneExist(String phoneNumber) {
+	public Boolean phoneExist(String phoneNumber) {
 		Phone phone = null;
 		Query hql = em.createQuery(
 				"SELECT ph FROM Phone ph WHERE ph.phoneNumber = :phoneNumber")

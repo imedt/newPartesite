@@ -1,14 +1,17 @@
+
 package fr.afcepf.al23.partesite.dao.offer;
 
 import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+
 import org.apache.log4j.Logger;
+
+import fr.afcepf.al23.model.entities.Pack;
 import fr.afcepf.al23.partesite.idao.offer.IDaoPack;
-import fr.afcepf.al23.partesite.model.entities.Pack;
-import fr.afcepf.al23.partesite.model.entities.Project;
 
 @Stateless
 public class DaoPackImpl implements IDaoPack {

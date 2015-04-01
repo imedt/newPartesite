@@ -55,10 +55,9 @@ body {
 
 /* Container */
 .container {
-	margin-left: auto;
-	margin-right: auto;
 	/* width: (containers) */
-	width: 1200px;
+	width: auto;
+	height:auto;
 }
 
 /* Modifiers */

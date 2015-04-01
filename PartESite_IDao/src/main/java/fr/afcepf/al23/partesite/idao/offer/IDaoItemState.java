@@ -1,8 +1,10 @@
 package fr.afcepf.al23.partesite.idao.offer;
 
 import java.util.List;
+
 import javax.ejb.Remote;
-import fr.afcepf.al23.partesite.model.entities.ItemState;
+
+import fr.afcepf.al23.model.entities.ItemState;
 
 @Remote
 public interface IDaoItemState {

@@ -2,14 +2,15 @@ package fr.afcepf.al23.partesite.managedbean;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
 import org.apache.log4j.Logger;
 
+import fr.afcepf.al23.model.entities.Identity;
 import fr.afcepf.al23.partesite.iservice.user.IBusinessIdentity;
-import fr.afcepf.al23.partesite.model.entities.Identity;
 
-@ManagedBean(name="mbConnexion")
+@ManagedBean(name = "mbConnexion")
 @SessionScoped
 public class MBConnexion {
 
@@ -18,17 +19,12 @@ public class MBConnexion {
 	@EJB
 	IBusinessIdentity buIdentity;
 
+	@ManagedProperty(value="#{mbUser}")
+	private MBUser user;
+
 	String login;
 	String password;
 	String bienvenue;
-	public Logger getLog() {
-		return log;
-	}
-
-	public void setLog(Logger log) {
-		this.log = log;
-	}
-
 	String direction;
 	Identity id;
 
@@ -42,6 +38,14 @@ public class MBConnexion {
 
 	public void setBuIdentity(IBusinessIdentity buIdentity) {
 		this.buIdentity = buIdentity;
+	}
+
+	public MBUser getUser() {
+		return user;
+	}
+
+	public void setUser(MBUser user) {
+		this.user = user;
 	}
 
 	public Identity getId() {
@@ -84,41 +88,31 @@ public class MBConnexion {
 		this.bienvenue = bienvenue;
 	}
 
-	public String connexion()
-	{
-		direction="";
-		id=null;
-		id = buIdentity.connexion(login, password);
+	public String connexion() {
+		id = null;
 
-		if ( id != null)
-		{
-			if ( id.getIdentityRole().getIdIdentityRole()==2)
-			{
-				setDirection("/ModeratorDashBoard.xhtml?faces-redirect=true");
-			}
-			else 
-			{
+		try {
+			id = buIdentity.connexion(login, password);
+			
+			if (id.getIdentityRole().getIdIdentityRole() == 3) {
 				setDirection("/UserDashBoard.xhtml?faces-redirect=true");
 			}
-			setBienvenue(" "+id.getFirstName()+" !");//à récupérer dans la page UserDashBoard
-		}
-		else
-		{
-			setDirection("/Home.xhtml?faces-redirect=true");
-			setBienvenue("Identification erronée !");
-		}
+			if (id.getIdentityRole().getIdIdentityRole() == 2) {
+				setDirection("/ModeratorDashBoard.xhtml?faces-redirect=true");
+			}
 
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return direction;
 	}
 
-	public String deconnexion()
-	{
+	public String deconnexion() {
 
-		id=null;
+		id = null;
+		user.setIdentity(null);
 
 		setDirection("/Home.xhtml?faces-redirect=true");
-
-
 		return direction;
 	}
 }

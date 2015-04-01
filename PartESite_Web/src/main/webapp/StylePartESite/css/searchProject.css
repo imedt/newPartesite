@@ -1,5 +1,6 @@
 
-fieldset {padding:2em 2em 2em 2em; border:solid 2px #CED8F6; border-radius:3em;background: linear-gradient(#CED8F6,white);}
+fieldset {padding:2em 2em 2em 2em; background: linear-gradient(white,#CED8F6);}
+fieldset legend {color:navy;font-weight: bold;}
 
 form span{color:navy;text-align:right;margin-top:2em;}
 

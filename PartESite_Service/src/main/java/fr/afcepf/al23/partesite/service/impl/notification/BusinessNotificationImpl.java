@@ -11,10 +11,10 @@ import javax.ejb.Stateless;
 
 import org.apache.log4j.Logger;
 
+import fr.afcepf.al23.model.entities.Notification;
+import fr.afcepf.al23.model.entities.TargetType;
 import fr.afcepf.al23.partesite.idao.notification.IDaoNotification;
 import fr.afcepf.al23.partesite.iservice.notification.IBusinessNotification;
-import fr.afcepf.al23.partesite.model.entities.Notification;
-import fr.afcepf.al23.partesite.model.entities.TargetType;
 
 /**
  * @author awagu_000
@@ -73,7 +73,7 @@ public class BusinessNotificationImpl implements IBusinessNotification {
 	 * @see fr.afcepf.al23.partesite.iservice.notification.IBusinessNotification#getByCreatedBy(int)
 	 */
 	@Override
-	public List<Notification> getByCreatedBy(int idIdentity) {
+	public List<Notification> getByCreatedBy(Integer idIdentity) {
 		log.info("BusinessNotificationImpl, getByCreatedBy");
 		return daoNotification.getByCreatedBy(idIdentity);
 	}
@@ -91,7 +91,7 @@ public class BusinessNotificationImpl implements IBusinessNotification {
 	 * @see fr.afcepf.al23.partesite.iservice.notification.IBusinessNotification#getByDisabled(boolean)
 	 */
 	@Override
-	public List<Notification> getByDisabled(boolean disabled) {
+	public List<Notification> getByDisabled(Boolean disabled) {
 		log.info("BusinessNotificationImpl, getByDisabled");
 		return daoNotification.getByDisabled(disabled);
 	}
@@ -100,7 +100,7 @@ public class BusinessNotificationImpl implements IBusinessNotification {
 	 * @see fr.afcepf.al23.partesite.iservice.notification.IBusinessNotification#getByTarget(int)
 	 */
 	@Override
-	public List<Notification> getByTarget(int idTarget) {
+	public List<Notification> getByTarget(Integer idTarget) {
 		log.info("BusinessNotificationImpl, getByTarget");
 		return daoNotification.getByTarget(idTarget);
 	}
@@ -118,7 +118,7 @@ public class BusinessNotificationImpl implements IBusinessNotification {
 	 * @see fr.afcepf.al23.partesite.iservice.notification.IBusinessNotification#getByUpdatedBy(int)
 	 */
 	@Override
-	public List<Notification> getByUpdatedBy(int idIdentity) {
+	public List<Notification> getByUpdatedBy(Integer idIdentity) {
 		log.info("BusinessNotificationImpl, getByUpdatedBy");
 		return daoNotification.getByUpdatedBy(idIdentity);
 	}

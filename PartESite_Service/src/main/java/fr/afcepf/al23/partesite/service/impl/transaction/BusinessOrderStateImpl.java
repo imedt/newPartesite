@@ -11,9 +11,9 @@ import javax.ejb.Stateless;
 
 import org.apache.log4j.Logger;
 
+import fr.afcepf.al23.model.entities.UserOrderState;
 import fr.afcepf.al23.partesite.idao.transaction.IDaoUserOrderState;
 import fr.afcepf.al23.partesite.iservice.transaction.IBusinessOrderState;
-import fr.afcepf.al23.partesite.model.entities.UserOrderState;
 
 /**
  * @author awagu_000
@@ -71,7 +71,7 @@ public class BusinessOrderStateImpl implements IBusinessOrderState {
 	 * @see fr.afcepf.al23.partesite.iservice.transaction.IBusinessOrderState#getByCreatedBy(int)
 	 */
 	@Override
-	public List<UserOrderState> getByCreatedBy(int idIdentity) {
+	public List<UserOrderState> getByCreatedBy(Integer idIdentity) {
 		log.info("BusinessOrderImpl, getByCreatedBy");
 		return daoOrderState.getByCreatedBy(idIdentity);
 	}
@@ -89,7 +89,7 @@ public class BusinessOrderStateImpl implements IBusinessOrderState {
 	 * @see fr.afcepf.al23.partesite.iservice.transaction.IBusinessOrderState#getByDisabled(boolean)
 	 */
 	@Override
-	public List<UserOrderState> getByDisabled(boolean disabled) {
+	public List<UserOrderState> getByDisabled(Boolean disabled) {
 		log.info("BusinessOrderImpl, getByDisabled");
 		return daoOrderState.getByDisabled(disabled);
 	}
@@ -98,7 +98,7 @@ public class BusinessOrderStateImpl implements IBusinessOrderState {
 	 * @see fr.afcepf.al23.partesite.iservice.transaction.IBusinessOrderState#getByUpdatedBy(int)
 	 */
 	@Override
-	public List<UserOrderState> getByUpdatedBy(int idIdentity) {
+	public List<UserOrderState> getByUpdatedBy(Integer idIdentity) {
 		log.info("BusinessOrderImpl, getByUpdatedBy");
 		return daoOrderState.getByUpdatedBy(idIdentity);
 	}

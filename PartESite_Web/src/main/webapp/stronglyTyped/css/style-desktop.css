@@ -56,6 +56,20 @@
 			font-size: 0.85em;
 			letter-spacing: 2px;
 			padding: 0.85em 2.75em 0.85em 2.75em;
+			margin-top:1em;
+			color : navy;
+		}
+		
+		input[type="button"],
+		input[type="submit"],
+		input[type="reset"],
+		.button:hover
+		{
+			font-size: 0.85em;
+			letter-spacing: 2px;
+			padding: 0.85em 2.75em 0.85em 2.75em;
+			margin-top:1em;
+			color : #47b8af;
 		}
 		
 	/* List */
@@ -384,6 +398,6 @@
 
 	#copyright
 	{
-		margin-top: 1em;
 		padding-top: 1em;
+	background-color:black;
 	}

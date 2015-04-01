@@ -4,14 +4,14 @@ import java.util.List;
 
 import javax.ejb.Remote;
 
-import fr.afcepf.al23.partesite.model.entities.Phone;
+import fr.afcepf.al23.model.entities.Phone;
 
 
 @Remote
 public interface IDaoPhone {
 	public Phone add(Phone phone);
 	public Phone update(Phone phone);
-	public Phone get(int idPhone);
-	public List<Phone> getByIdIdentity(int idIdentity);
-	public boolean phoneExist(String phoneNumber);
+	public Phone get(Integer idPhone);
+	public List<Phone> getByIdIdentity(Integer idIdentity);
+	public Boolean phoneExist(String phoneNumber);
 }

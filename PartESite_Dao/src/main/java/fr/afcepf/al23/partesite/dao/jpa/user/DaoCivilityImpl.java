@@ -7,8 +7,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import fr.afcepf.al23.model.entities.Civility;
 import fr.afcepf.al23.partesite.idao.user.IDaoCivility;
-import fr.afcepf.al23.partesite.model.entities.Civility;
 @Stateless
 public class DaoCivilityImpl implements IDaoCivility {
 
@@ -35,11 +35,11 @@ public class DaoCivilityImpl implements IDaoCivility {
 	}
 
 	@Override
-	public Civility get(int idCivility) {
+	public Civility get(Integer idCivility) {
 		Civility civility = null;
 		Query hql = em
 				.createQuery(
-						"SELECT civ FROM Civility civ WHERE civ.id_civility = :id_civility")
+						"SELECT civ FROM Civility civ WHERE civ.idCivility = :id_civility")
 				.setParameter("id_civility", idCivility);
 		civility = (Civility) hql.getSingleResult();
 		return civility;
@@ -55,7 +55,7 @@ public class DaoCivilityImpl implements IDaoCivility {
 	}
 
 	@Override
-	public boolean civilityExist(String civilityName) {
+	public Boolean civilityExist(String civilityName) {
 		Civility civility = null;
 		Query hql = em.createQuery(
 				"SELECT civ FROM Civility civ WHERE civ.civility = :civility")

@@ -1,19 +1,13 @@
 package fr.afcepf.al23.partesite.service.impl.offer;
 
-import java.util.Date;
-import java.util.List;
-
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 import org.apache.log4j.Logger;
 
+import fr.afcepf.al23.model.entities.ItemState;
 import fr.afcepf.al23.partesite.idao.offer.IDaoItemState;
 import fr.afcepf.al23.partesite.iservice.offer.IBusinessItemState;
-import fr.afcepf.al23.partesite.model.entities.Item;
-import fr.afcepf.al23.partesite.model.entities.ItemState;
 
 @Stateless
 public class BusinessItemStateImpl implements IBusinessItemState {

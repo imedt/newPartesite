@@ -1,12 +1,8 @@
 package fr.afcepf.al23.partesite.iservice.offer;
 
-import java.util.Date;
-import java.util.List;
-
 import javax.ejb.Remote;
 
-import fr.afcepf.al23.partesite.model.entities.Item;
-import fr.afcepf.al23.partesite.model.entities.ItemState;
+import fr.afcepf.al23.model.entities.ItemState;
 
 @Remote
 public interface IBusinessItemState {

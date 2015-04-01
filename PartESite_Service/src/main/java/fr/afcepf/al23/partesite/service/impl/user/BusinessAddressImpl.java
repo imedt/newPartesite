@@ -5,9 +5,9 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
+import fr.afcepf.al23.model.entities.Address;
 import fr.afcepf.al23.partesite.idao.user.IDaoAddress;
 import fr.afcepf.al23.partesite.iservice.user.IBusinessAddress;
-import fr.afcepf.al23.partesite.model.entities.Address;
 
 @Stateless
 public class BusinessAddressImpl implements IBusinessAddress {
@@ -17,7 +17,7 @@ public class BusinessAddressImpl implements IBusinessAddress {
 
 	@Override
 	public Address save(Address address) {
-		if (address.getIdAddress() == 0)
+		if (address.getIdAddress() == null)
 			daoAdd.add(address);
 		else
 			daoAdd.update(address);
@@ -25,14 +25,14 @@ public class BusinessAddressImpl implements IBusinessAddress {
 	}
 
 	@Override
-	public Address get(int idAddress) {
+	public Address get(Integer idAddress) {
 		Address address = null;
 		address = daoAdd.get(idAddress);
 		return address;
 	}
 
 	@Override
-	public List<Address> getByIdIdentity(int idIdentity) {
+	public List<Address> getByIdIdentity(Integer idIdentity) {
 		List<Address> addresses = null;
 		addresses = daoAdd.getByIdIdentity(idIdentity);
 		return addresses;

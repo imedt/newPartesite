@@ -1,8 +1,5 @@
 package fr.afcepf.al23.partesite.managedbean;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -12,11 +9,9 @@ import javax.faces.bean.SessionScoped;
 
 import org.apache.log4j.Logger;
 
+import fr.afcepf.al23.model.entities.Project;
 import fr.afcepf.al23.partesite.iservice.offer.IBusinessPack;
 import fr.afcepf.al23.partesite.iservice.offer.IBusinessProject;
-import fr.afcepf.al23.partesite.model.entities.Identity;
-import fr.afcepf.al23.partesite.model.entities.Project;
-import fr.afcepf.al23.partesite.model.entities.ProjectCategory;
 
 @ManagedBean(name = "mbUProjet")
 @SessionScoped

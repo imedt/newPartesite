@@ -5,9 +5,9 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
+import fr.afcepf.al23.model.entities.IdentityRole;
 import fr.afcepf.al23.partesite.idao.user.IDaoIdentityRole;
 import fr.afcepf.al23.partesite.iservice.user.IBusinessIdentityRole;
-import fr.afcepf.al23.partesite.model.entities.IdentityRole;
 @Stateless
 public class BusinessIdentityRoleImpl implements IBusinessIdentityRole {
 	
@@ -16,7 +16,7 @@ private IDaoIdentityRole daoIR;
 	
 	@Override
 	public IdentityRole save(IdentityRole identityRole) {
-		if(identityRole.getIdIdentityRole() == 0)
+		if(identityRole.getIdIdentityRole() == null)
 			daoIR.add(identityRole);
 		else
 			daoIR.update(identityRole);
@@ -24,7 +24,7 @@ private IDaoIdentityRole daoIR;
 	}
 
 	@Override
-	public IdentityRole get(int idIdentityRole) {
+	public IdentityRole get(Integer idIdentityRole) {
 		IdentityRole identityRole = null;
 		identityRole = daoIR.get(idIdentityRole);
 		return identityRole;

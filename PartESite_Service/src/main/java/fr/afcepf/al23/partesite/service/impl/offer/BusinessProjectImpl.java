@@ -6,21 +6,16 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
-import org.apache.log4j.Logger;
-
+import fr.afcepf.al23.model.entities.Identity;
+import fr.afcepf.al23.model.entities.Item;
+import fr.afcepf.al23.model.entities.Pack;
+import fr.afcepf.al23.model.entities.Project;
+import fr.afcepf.al23.model.entities.ProjectCategory;
 import fr.afcepf.al23.partesite.idao.offer.IDaoItem;
 import fr.afcepf.al23.partesite.idao.offer.IDaoPack;
 import fr.afcepf.al23.partesite.idao.offer.IDaoProject;
 import fr.afcepf.al23.partesite.iservice.offer.IBusinessProject;
-import fr.afcepf.al23.partesite.model.entities.Identity;
-import fr.afcepf.al23.partesite.model.entities.Item;
-import fr.afcepf.al23.partesite.model.entities.Pack;
-import fr.afcepf.al23.partesite.model.entities.Project;
-import fr.afcepf.al23.partesite.model.entities.ProjectCategory;
-import fr.afcepf.al23.partesite.model.entities.ProjectContent;
 
 @Stateless
 public class BusinessProjectImpl implements IBusinessProject {

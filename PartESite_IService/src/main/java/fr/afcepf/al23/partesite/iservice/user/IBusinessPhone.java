@@ -4,10 +4,10 @@ import java.util.List;
 
 import javax.ejb.Remote;
 
-import fr.afcepf.al23.partesite.model.entities.Phone;
+import fr.afcepf.al23.model.entities.Phone;
 @Remote
 public interface IBusinessPhone {
 public Phone save(Phone phone);
-public Phone get(int idPhone);
-public List<Phone> getByIdIdentity(int idIdentity);
+public Phone get(Integer idPhone);
+public List<Phone> getByIdIdentity(Integer idIdentity);
 }

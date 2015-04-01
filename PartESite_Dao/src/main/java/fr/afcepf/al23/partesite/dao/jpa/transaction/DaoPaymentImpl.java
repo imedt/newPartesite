@@ -6,7 +6,6 @@ package fr.afcepf.al23.partesite.dao.jpa.transaction;
 import java.util.Date;
 import java.util.List;
 
-import javax.ejb.Stateful;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -14,11 +13,10 @@ import javax.persistence.Query;
 
 import org.apache.log4j.Logger;
 
+import fr.afcepf.al23.model.entities.Payment;
+import fr.afcepf.al23.model.entities.UserOrder;
 import fr.afcepf.al23.partesite.dao.offer.DaoProjectImpl;
 import fr.afcepf.al23.partesite.idao.transaction.IDaoPayment;
-import fr.afcepf.al23.partesite.model.entities.Payment;
-import fr.afcepf.al23.partesite.model.entities.TargetType;
-import fr.afcepf.al23.partesite.model.entities.UserOrder;
 
 /**
  * @author awagu_000
@@ -73,7 +71,7 @@ public class DaoPaymentImpl implements IDaoPayment {
 	 * @see fr.afcepf.al23.partesite.idao.transaction.IDaoPayment#getByCreatedBy(int)
 	 */
 	@Override
-	public List<Payment> getByCreatedBy(int idIdentity) {
+	public List<Payment> getByCreatedBy(Integer idIdentity) {
 		Query hql = em.createQuery("SELECT p FROM Payment p "
 				+ "WHERE p.createdBy = :createdBy");
 		hql.setParameter("createdBy", idIdentity);
@@ -97,7 +95,7 @@ public class DaoPaymentImpl implements IDaoPayment {
 	 * @see fr.afcepf.al23.partesite.idao.transaction.IDaoPayment#getByDisabled(boolean)
 	 */
 	@Override
-	public List<Payment> getByDisabled(boolean disabled) {
+	public List<Payment> getByDisabled(Boolean disabled) {
 		Query hql = em.createQuery("SELECT p FROM Payment p "
 				+ "WHERE p.disabled = :disabled");
 		hql.setParameter("disabled", disabled);
@@ -109,7 +107,7 @@ public class DaoPaymentImpl implements IDaoPayment {
 	 * @see fr.afcepf.al23.partesite.idao.transaction.IDaoPayment#getByUpdatedBy(int)
 	 */
 	@Override
-	public List<Payment> getByUpdatedBy(int idIdentity) {
+	public List<Payment> getByUpdatedBy(Integer idIdentity) {
 		Query hql = em.createQuery("SELECT p FROM Payment p "
 				+ "WHERE p.updatedBy = :updatedBy");
 		hql.setParameter("updatedBy", idIdentity);

@@ -20,8 +20,9 @@ body {font-family: 'Source Sans Pro';font-weight:300;text-transform: uppercase;b
 .nav {background-color:black;width:100%;height:auto;padding:0;margin-top:5em;}
 .nav ul {text-align:center;}
 .nav ul li {display: inline-block;list-style-type: none; color:#47b8af;font-weight: 300;}
-.nav ul li a {display: inline-block;list-style-type: none; color:#47b8af;font-weight: 300;font-weight: bold;padding-left:7em;padding-top:0.7em;}
+.nav ul li a {display: inline-block;list-style-type: none; color:#47b8af;font-weight: 300;font-weight: bold;}
 .nav ul li a span{display: inline-block;list-style-type: none; color:#47b8af;font-weight: 300;font-weight: bold;}
+.nav ul li a.icon {padding-top:1em;margin-left:5em;}
 .nav ul li a.icon span {padding-left:1em;}
 .nav ul li a.icon#selected {color:white;font-weight: 300;font-weight: bold;}
 .nav ul li a#selected span{color:white;font-weight: 300;font-weight: bold;}

@@ -5,13 +5,11 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
+import fr.afcepf.al23.model.entities.Identity;
 import fr.afcepf.al23.partesite.idao.user.IDaoAddress;
 import fr.afcepf.al23.partesite.idao.user.IDaoIdentity;
 import fr.afcepf.al23.partesite.idao.user.IDaoPhone;
 import fr.afcepf.al23.partesite.iservice.user.IBusinessIdentity;
-import fr.afcepf.al23.partesite.model.entities.Address;
-import fr.afcepf.al23.partesite.model.entities.Identity;
-import fr.afcepf.al23.partesite.model.entities.Phone;
 
 @Stateless
 public class BusinessIdentityImpl implements IBusinessIdentity {
@@ -26,15 +24,41 @@ public class BusinessIdentityImpl implements IBusinessIdentity {
 	@Override
 	public Identity save(Identity identity) {
 
-		if (identity.getIdIdentity() == null || identity.getIdIdentity() == 0)
+		if (identity.getIdIdentity() == null )
 			identity = daoIdent.add(identity);
 		else
 			identity = daoIdent.update(identity);
 		return identity;
 	}
+	
+	//Verifier que l'identity n'existe pas déjà dans la base
+	@Override
+	public String saveWithControlsBefore(Identity identity) {
+
+		String message="";
+		
+		//On vérifie que les champs sont bien remplis
+		if ( identity.getCivility() != null
+			&& identity.getFirstName()!= null
+			&& identity.getLastName() != null
+			&& identity.getEmail()!= null 
+			&& identity.getMdp()!= null )
+		{
+			if ( daoIdent.emailExist(identity.getEmail())==false)
+			{
+				save(identity);
+				message ="Inscription validée !";
+			}
+		}
+		else 
+		{
+			message = "Email déjà existant, veuillez vous connecter !";
+		}
+		return message;
+	}
 
 	@Override
-	public Identity get(int IdIdentity) {
+	public Identity get(Integer IdIdentity) {
 		Identity ident = null;
 		ident = daoIdent.get(IdIdentity);
 		return ident;

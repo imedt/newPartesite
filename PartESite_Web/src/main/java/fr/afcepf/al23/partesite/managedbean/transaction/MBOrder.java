@@ -7,9 +7,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
+import fr.afcepf.al23.model.entities.UserOrder;
 import fr.afcepf.al23.partesite.iservice.transaction.IBusinessOrder;
 import fr.afcepf.al23.partesite.managedbean.MBConnexion;
-import fr.afcepf.al23.partesite.model.entities.UserOrder;
 
 @ManagedBean(name="mbOrder")
 @SessionScoped

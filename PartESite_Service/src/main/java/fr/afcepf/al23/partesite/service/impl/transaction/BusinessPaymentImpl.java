@@ -11,10 +11,10 @@ import javax.ejb.Stateless;
 
 import org.apache.log4j.Logger;
 
+import fr.afcepf.al23.model.entities.Payment;
+import fr.afcepf.al23.model.entities.UserOrder;
 import fr.afcepf.al23.partesite.idao.transaction.IDaoPayment;
 import fr.afcepf.al23.partesite.iservice.transaction.IBusinessPayment;
-import fr.afcepf.al23.partesite.model.entities.Payment;
-import fr.afcepf.al23.partesite.model.entities.UserOrder;
 
 /**
  * @author awagu_000
@@ -60,10 +60,10 @@ public class BusinessPaymentImpl implements IBusinessPayment {
 	}
 
 	/* (non-Javadoc)
-	 * @see fr.afcepf.al23.partesite.iservice.transaction.IBusinessPayment#getByCreatedBy(int)
+	 * @see fr.afcepf.al23.partesite.iservice.transaction.IBusinessPayment#getByCreatedBy(Integer )
 	 */
 	@Override
-	public List<Payment> getByCreatedBy(int idIdentity) {
+	public List<Payment> getByCreatedBy(Integer  idIdentity) {
 		log.info("BusinessPaymentImpl, getByCreatedBy");
 		return daoPayment.getByCreatedBy(idIdentity);
 	}
@@ -81,16 +81,16 @@ public class BusinessPaymentImpl implements IBusinessPayment {
 	 * @see fr.afcepf.al23.partesite.iservice.transaction.IBusinessPayment#getByDisabled(boolean)
 	 */
 	@Override
-	public List<Payment> getByDisabled(boolean disabled) {
+	public List<Payment> getByDisabled(Boolean disabled) {
 		log.info("BusinessPaymentImpl, getByDisabled");
 		return daoPayment.getByDisabled(disabled);
 	}
 
 	/* (non-Javadoc)
-	 * @see fr.afcepf.al23.partesite.iservice.transaction.IBusinessPayment#getByUpdatedBy(int)
+	 * @see fr.afcepf.al23.partesite.iservice.transaction.IBusinessPayment#getByUpdatedBy(Integer )
 	 */
 	@Override
-	public List<Payment> getByUpdatedBy(int idIdentity) {
+	public List<Payment> getByUpdatedBy(Integer  idIdentity) {
 		log.info("BusinessPaymentImpl, getByUpdatedBy");
 		return daoPayment.getByUpdatedBy(idIdentity);
 	}

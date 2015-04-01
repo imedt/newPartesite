@@ -4,9 +4,7 @@ import java.util.List;
 
 import javax.ejb.Remote;
 
-import org.w3c.dom.Text;
-
-import fr.afcepf.al23.partesite.model.entities.ProjectContent;
+import fr.afcepf.al23.model.entities.ProjectContent;
 
 
 @Remote

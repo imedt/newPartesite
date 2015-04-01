@@ -9,11 +9,11 @@ import javax.persistence.Query;
 
 import org.apache.log4j.Logger;
 
+import fr.afcepf.al23.model.entities.Address;
+import fr.afcepf.al23.model.entities.Identity;
+import fr.afcepf.al23.model.entities.IdentityRight;
+import fr.afcepf.al23.model.entities.Phone;
 import fr.afcepf.al23.partesite.idao.user.IDaoIdentity;
-import fr.afcepf.al23.partesite.model.entities.Address;
-import fr.afcepf.al23.partesite.model.entities.Identity;
-import fr.afcepf.al23.partesite.model.entities.IdentityRight;
-import fr.afcepf.al23.partesite.model.entities.Phone;
 
 @Stateless
 public class DaoIdentityImpl implements IDaoIdentity {
@@ -44,31 +44,37 @@ public class DaoIdentityImpl implements IDaoIdentity {
 	}
 
 	@Override
-	public Identity get(int idIdentity) {
+	public Identity get(Integer idIdentity) {
 		Identity identity = null;
 		log.info(em);
-		Query hql = em
+		
+		try {
+			Query hql = em
 				.createQuery(
-						"SELECT ident FROM Identity ident WHERE ident.id_identity = :id_identity")
+						"SELECT ident FROM Identity ident WHERE ident.idIentity = :id_identity")
 				.setParameter("id_identity", idIdentity);
 		identity = (Identity) hql.getSingleResult();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		return identity;
 	}
 
 	@Override
-	public List<IdentityRight> getIdentityRights(int idIdentityRole) {
+	public List<IdentityRight> getIdentityRights(Integer  idIdentityRole) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Address> getAddresses(int idIdentity) {
+	public List<Address> getAddresses(Integer  idIdentity) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Phone> getPhones(int idIdentity) {
+	public List<Phone> getPhones(Integer  idIdentity) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -85,13 +91,13 @@ public class DaoIdentityImpl implements IDaoIdentity {
 	}
 
 	@Override
-	public boolean phoneExist(String phoneNumber) {
+	public Boolean  phoneExist(String phoneNumber) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean emailExist(String email) {
+	public Boolean  emailExist(String email) {
 		// TODO Auto-generated method stub
 		return false;
 	}

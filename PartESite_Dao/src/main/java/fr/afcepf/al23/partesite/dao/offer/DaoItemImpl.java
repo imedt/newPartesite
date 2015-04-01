@@ -9,10 +9,9 @@ import javax.persistence.Query;
 
 import org.apache.log4j.Logger;
 
+import fr.afcepf.al23.model.entities.Item;
+import fr.afcepf.al23.model.entities.Pack;
 import fr.afcepf.al23.partesite.idao.offer.IDaoItem;
-import fr.afcepf.al23.partesite.model.entities.Item;
-import fr.afcepf.al23.partesite.model.entities.Pack;
-import fr.afcepf.al23.partesite.model.entities.ProjectCategory;
 
 @Stateless
 public class DaoItemImpl implements IDaoItem {

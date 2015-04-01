@@ -6,7 +6,6 @@ package fr.afcepf.al23.partesite.dao.jpa.notification;
 import java.util.Date;
 import java.util.List;
 
-import javax.ejb.Stateful;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -14,10 +13,9 @@ import javax.persistence.Query;
 
 import org.apache.log4j.Logger;
 
+import fr.afcepf.al23.model.entities.TargetType;
 import fr.afcepf.al23.partesite.dao.offer.DaoProjectImpl;
 import fr.afcepf.al23.partesite.idao.notification.IDaoNotificationType;
-import fr.afcepf.al23.partesite.model.entities.Notification;
-import fr.afcepf.al23.partesite.model.entities.TargetType;
 
 /**
  * @author awagu_000
@@ -84,7 +82,7 @@ public class DaoNotificationTypeImpl implements IDaoNotificationType {
 	 * @see fr.afcepf.al23.partesite.idao.notification.IDaoNotificationType#getByCreatedBy(int)
 	 */
 	@Override
-	public List<TargetType> getByCreatedBy(int idIdentity) {
+	public List<TargetType> getByCreatedBy(Integer idIdentity) {
 		Query hql = em.createQuery("SELECT t FROM TargetType t "
 				+ "WHERE t.createdBy = :idIdentity")
 				.setParameter("createdBy", idIdentity);
@@ -105,10 +103,10 @@ public class DaoNotificationTypeImpl implements IDaoNotificationType {
 	}
 
 	/* (non-Javadoc)
-	 * @see fr.afcepf.al23.partesite.idao.notification.IDaoNotificationType#getByDisabled(boolean)
+	 * @see fr.afcepf.al23.partesite.idao.notification.IDaoNotificationType#getByDisabled(Boolean )
 	 */
 	@Override
-	public List<TargetType> getByDisabled(boolean disabled) {
+	public List<TargetType> getByDisabled(Boolean  disabled) {
 		Query hql = em.createQuery("SELECT t FROM TargetType t "
 				+ "WHERE t.disabled = :disabled")
 				.setParameter("disabled", disabled);
@@ -120,7 +118,7 @@ public class DaoNotificationTypeImpl implements IDaoNotificationType {
 	 * @see fr.afcepf.al23.partesite.idao.notification.IDaoNotificationType#getByUpdatedBy(int)
 	 */
 	@Override
-	public List<TargetType> getByUpdatedBy(int idIdentity) {
+	public List<TargetType> getByUpdatedBy(Integer idIdentity) {
 		Query hql = em.createQuery("SELECT t FROM TargetType t "
 				+ "WHERE t.updatedBy = :updatedBy")
 				.setParameter("updatedBy", idIdentity);

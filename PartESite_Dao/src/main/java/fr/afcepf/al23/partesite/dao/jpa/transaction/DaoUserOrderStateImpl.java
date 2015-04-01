@@ -6,7 +6,6 @@ package fr.afcepf.al23.partesite.dao.jpa.transaction;
 import java.util.Date;
 import java.util.List;
 
-import javax.ejb.Stateful;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -14,10 +13,9 @@ import javax.persistence.Query;
 
 import org.apache.log4j.Logger;
 
+import fr.afcepf.al23.model.entities.UserOrderState;
 import fr.afcepf.al23.partesite.dao.offer.DaoProjectImpl;
 import fr.afcepf.al23.partesite.idao.transaction.IDaoUserOrderState;
-import fr.afcepf.al23.partesite.model.entities.OrderRow;
-import fr.afcepf.al23.partesite.model.entities.UserOrderState;
 
 /**
  * @author awagu_000
@@ -84,7 +82,7 @@ public class DaoUserOrderStateImpl implements IDaoUserOrderState {
 	 * @see fr.afcepf.al23.partesite.idao.transaction.IDaoUserOrderState#getByCreatedBy(int)
 	 */
 	@Override
-	public List<UserOrderState> getByCreatedBy(int idIdentity) {
+	public List<UserOrderState> getByCreatedBy(Integer idIdentity) {
 		Query hql = em.createQuery("SELECT uos FROM UserOrderState uos "
 				+ "WHERE uos.createdBy = :createdBy");
 		hql.setParameter("createdBy", idIdentity);
@@ -108,7 +106,7 @@ public class DaoUserOrderStateImpl implements IDaoUserOrderState {
 	 * @see fr.afcepf.al23.partesite.idao.transaction.IDaoUserOrderState#getByDisabled(boolean)
 	 */
 	@Override
-	public List<UserOrderState> getByDisabled(boolean disabled) {
+	public List<UserOrderState> getByDisabled(Boolean disabled) {
 		Query hql = em.createQuery("SELECT uos FROM UserOrderState uos "
 				+ "WHERE uos.disabled = :disabled");
 		hql.setParameter("disabled", disabled);
@@ -120,7 +118,7 @@ public class DaoUserOrderStateImpl implements IDaoUserOrderState {
 	 * @see fr.afcepf.al23.partesite.idao.transaction.IDaoUserOrderState#getByUpdatedBy(int)
 	 */
 	@Override
-	public List<UserOrderState> getByUpdatedBy(int idIdentity) {
+	public List<UserOrderState> getByUpdatedBy(Integer idIdentity) {
 		Query hql = em.createQuery("SELECT uos FROM UserOrderState uos "
 				+ "WHERE uos.updatedBy = :updatedBy");
 		hql.setParameter("updatedBy", idIdentity);

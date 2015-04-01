@@ -11,10 +11,10 @@ import javax.ejb.Stateless;
 
 import org.apache.log4j.Logger;
 
+import fr.afcepf.al23.model.entities.Identity;
+import fr.afcepf.al23.model.entities.UserOrder;
 import fr.afcepf.al23.partesite.idao.transaction.IDaoUserOrder;
 import fr.afcepf.al23.partesite.iservice.transaction.IBusinessOrder;
-import fr.afcepf.al23.partesite.model.entities.Identity;
-import fr.afcepf.al23.partesite.model.entities.UserOrder;
 
 /**
  * @author awagu_000
@@ -63,7 +63,7 @@ public class BusinessOrderImpl implements IBusinessOrder {
 	 * @see fr.afcepf.al23.partesite.iservice.transaction.IBusinessUserOrder#getByTotalAmount(double)
 	 */
 	@Override
-	public List<UserOrder> getByTotalAmount(double totalAmount) {
+	public List<UserOrder> getByTotalAmount(Double totalAmount) {
 		log.info("BusinessOrderImpl, getByTotalAmount");
 		return daoUserOrder.getByTotalAmount(totalAmount);
 	}
@@ -90,7 +90,7 @@ public class BusinessOrderImpl implements IBusinessOrder {
 	 * @see fr.afcepf.al23.partesite.iservice.transaction.IBusinessUserOrder#getByDisabled(boolean)
 	 */
 	@Override
-	public List<UserOrder> getByDisabled(boolean disabled) {
+	public List<UserOrder> getByDisabled(Boolean disabled) {
 		log.info("BusinessOrderImpl, getByDisabled");
 		return daoUserOrder.getByDisabled(disabled);
 	}

@@ -7,9 +7,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import fr.afcepf.al23.model.entities.Address;
 import fr.afcepf.al23.partesite.idao.user.IDaoAddress;
-import fr.afcepf.al23.partesite.model.entities.Address;
-import fr.afcepf.al23.partesite.model.entities.Project;
 @Stateless
 public class DaoAddressImpl implements IDaoAddress {
 
@@ -38,22 +37,22 @@ public class DaoAddressImpl implements IDaoAddress {
 	}
 
 	@Override
-	public Address get(int idAddress) {
+	public Address get(Integer idAddress) {
 		Address address = null;
 		Query hql = em
 				.createQuery(
-						"SELECT add FROM Address add WHERE add.id_address = :id_address ")
+						"SELECT add FROM Address add WHERE add.idAddress = :id_address ")
 				.setParameter("id_address", idAddress);
 		address = (Address) hql.getSingleResult();
 		return address;
 	}
 
 	@Override
-	public List<Address> getByIdIdentity(int idIdentity) {
+	public List<Address> getByIdIdentity(Integer idIdentity) {
 		List<Address> addresses = null;
 		Query hql = em
 				.createQuery(
-						"SELECT add FROM Address add WHERE add.id_identity = :id_identity ")
+						"SELECT add FROM Address add WHERE add.idIdentity = :id_identity ")
 				.setParameter("id_identity", idIdentity);
 		addresses = hql.getResultList();
 		return addresses;

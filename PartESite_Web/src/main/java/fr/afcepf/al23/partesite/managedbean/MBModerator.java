@@ -4,17 +4,16 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
 import org.apache.log4j.Logger;
 
+import fr.afcepf.al23.model.entities.Identity;
+import fr.afcepf.al23.model.entities.Item;
+import fr.afcepf.al23.model.entities.Pack;
+import fr.afcepf.al23.model.entities.Project;
 import fr.afcepf.al23.partesite.iservice.offer.IBusinessProject;
 import fr.afcepf.al23.partesite.iservice.user.IBusinessIdentity;
-import fr.afcepf.al23.partesite.model.entities.Identity;
-import fr.afcepf.al23.partesite.model.entities.Item;
-import fr.afcepf.al23.partesite.model.entities.Pack;
-import fr.afcepf.al23.partesite.model.entities.Project;
 
 @ManagedBean(name = "mbModerator")
 @SessionScoped

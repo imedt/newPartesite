@@ -5,9 +5,9 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
+import fr.afcepf.al23.model.entities.Civility;
 import fr.afcepf.al23.partesite.idao.user.IDaoCivility;
 import fr.afcepf.al23.partesite.iservice.user.IBusinessCivility;
-import fr.afcepf.al23.partesite.model.entities.Civility;
 
 @Stateless
 public class BusinessCivilityImpl implements IBusinessCivility {
@@ -25,7 +25,7 @@ public class BusinessCivilityImpl implements IBusinessCivility {
 	}
 
 	@Override
-	public Civility get(int idCivility) {
+	public Civility get(Integer idCivility) {
 		Civility civility = null;
 		civility = daoCiv.get(idCivility);
 		return civility;

@@ -9,9 +9,8 @@ import javax.persistence.Query;
 
 import org.apache.log4j.Logger;
 
+import fr.afcepf.al23.model.entities.ProjectCategory;
 import fr.afcepf.al23.partesite.idao.offer.IDaoProjectCategory;
-import fr.afcepf.al23.partesite.model.entities.Pack;
-import fr.afcepf.al23.partesite.model.entities.ProjectCategory;
 
 @Stateless
 public class DaoProjectCategoryImpl implements IDaoProjectCategory {

@@ -7,8 +7,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import fr.afcepf.al23.model.entities.AddressType;
 import fr.afcepf.al23.partesite.idao.user.IDaoAddressType;
-import fr.afcepf.al23.partesite.model.entities.AddressType;
 
 @Stateless
 public class DaoAddressTypeImpl implements IDaoAddressType {
@@ -37,11 +37,11 @@ public class DaoAddressTypeImpl implements IDaoAddressType {
 	}
 
 	@Override
-	public AddressType get(int idAddressType) {
+	public AddressType get(Integer idAddressType) {
 		AddressType addressType = null;
 		Query hql = em
 				.createQuery(
-						"SELECT add FROM AddressType add WHERE add.id_addressType = :id_addressType ")
+						"SELECT add FROM AddressType add WHERE add.idAddressType = :id_addressType ")
 				.setParameter("id_addressType", idAddressType);
 		addressType = (AddressType) hql.getSingleResult();
 		return addressType;
