@@ -64,6 +64,9 @@ public class Pack implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="id_project")
 	private Project project;
+	
+	@Transient
+	private Integer nbSale;
 
 	public Pack() {
 	}

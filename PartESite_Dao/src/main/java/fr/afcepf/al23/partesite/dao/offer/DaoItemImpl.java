@@ -11,6 +11,7 @@ import org.apache.log4j.Logger;
 
 import fr.afcepf.al23.partesite.idao.offer.IDaoItem;
 import fr.afcepf.al23.partesite.model.entities.Item;
+import fr.afcepf.al23.partesite.model.entities.ItemState;
 import fr.afcepf.al23.partesite.model.entities.Pack;
 import fr.afcepf.al23.partesite.model.entities.ProjectCategory;
 
@@ -44,7 +45,7 @@ public class DaoItemImpl implements IDaoItem {
 
 		Query hql = em.createQuery(
 				"SELECT i FROM Item i WHERE i.idItem=:pidItem").setParameter(
-				":pidItem", idItem);
+				"pidItem", idItem);
 
 		Item i = null;
 
@@ -78,6 +79,58 @@ public class DaoItemImpl implements IDaoItem {
 		is = hql.getResultList();
 
 		return is;
+	}
+
+	@Override
+	public List<Item> holdItemByNbByPack(int nb, Pack pack) {
+		
+		Query hql = em.createQuery(
+				"SELECT i FROM Item i WHERE i.pack=:pPack AND i.itemState = 1 and i.disabled != true")
+				.setParameter("pPack", pack);
+
+		List<Item> is = null;
+		hql.setMaxResults(nb);
+		is = hql.getResultList();
+		if(is.size() == nb)
+		{
+			ItemState itemS = new ItemState();
+			itemS.setIdItemState(2);
+			itemS.setItemStateName("RESERVE");
+			for (Item item : is) {
+				item.setItemState(itemS);
+				em.merge(item);
+				em.flush();
+			}
+		}
+		return is;
+	}
+
+	@Override
+	public List<Item> SaleItemByNbByPack(List<Item> items) {
+		ItemState itemSt = new ItemState();
+		itemSt.setIdItemState(3);
+		itemSt.setItemStateName("VENDU");
+		
+		for (Item item : items) {
+			item.setItemState(itemSt);
+		}
+		em.merge(items);
+		
+		return items;
+	}
+
+	@Override
+	public List<Item> ClearItemByNbByPack(List<Item> items) {
+		ItemState itemSt = new ItemState();
+		itemSt.setIdItemState(1);
+		itemSt.setItemStateName("DISPONIBLE");
+		
+		for (Item item : items) {
+			item.setItemState(itemSt);
+			item.setIdOrderRow(null);
+		}
+		em.merge(items);
+		return items;
 	}
 
 }

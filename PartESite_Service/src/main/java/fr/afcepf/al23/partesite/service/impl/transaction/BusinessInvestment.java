@@ -22,7 +22,7 @@ public class BusinessInvestment implements IBusinessInvestment {
 		List<OrderRow> orderRows = daoOrderRow.getByCreatedBy(identity.getIdIdentity());
 		if(!orderRows.isEmpty()){
 			for (OrderRow orderRow : orderRows) {
-				if (!orderRow.getItem().getPack().getReward()) {
+				if (!orderRow.getPack().getReward()) {
 					investments++;
 				}
 			}
@@ -36,7 +36,7 @@ public class BusinessInvestment implements IBusinessInvestment {
 		List<OrderRow> orderRows = daoOrderRow.getByCreatedBy(identity.getIdIdentity());
 		if(!orderRows.isEmpty()){
 			for (OrderRow orderRow : orderRows) {
-				if (orderRow.getItem().getPack().getReward()) {
+				if (orderRow.getPack().getReward()) {
 					gifts++;
 				}
 			}

@@ -8,6 +8,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
 import fr.afcepf.al23.partesite.iservice.transaction.IBusinessOrder;
+import fr.afcepf.al23.partesite.iservice.transaction.IBusinessOrderRow;
 import fr.afcepf.al23.partesite.managedbean.MBConnexion;
 import fr.afcepf.al23.partesite.model.entities.UserOrder;
 
@@ -17,6 +18,8 @@ public class MBOrder {
 	
 	@EJB
 	IBusinessOrder buOrder;
+	@EJB
+	IBusinessOrderRow buOrderRow;
 	
 	@ManagedProperty(value = "#{mbConnexion}")
 	private MBConnexion MBCnx;

@@ -1,7 +1,9 @@
 package fr.afcepf.al23.partesite.model.entities;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.util.Date;
 import java.util.List;
 
@@ -27,6 +29,21 @@ public class UserOrderState implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="created_date")
 	private Date createdDate;
+
+	public UserOrderState(Integer idUserOrderState, Integer createdBy,
+			Date createdDate, Boolean disabled, Integer updatedBy,
+			Date updatedDate, String userOrderStateName,
+			List<UserOrder> userOrders) {
+		super();
+		this.idUserOrderState = idUserOrderState;
+		this.createdBy = createdBy;
+		this.createdDate = createdDate;
+		this.disabled = disabled;
+		this.updatedBy = updatedBy;
+		this.updatedDate = updatedDate;
+		this.userOrderStateName = userOrderStateName;
+		this.userOrders = userOrders;
+	}
 
 	private Boolean disabled;
 

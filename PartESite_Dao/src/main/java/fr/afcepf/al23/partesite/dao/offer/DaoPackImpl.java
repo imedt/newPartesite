@@ -38,7 +38,7 @@ public class DaoPackImpl implements IDaoPack {
 
 		Query hql = em.createQuery(
 				"SELECT p FROM Pack p WHERE p.idPack=:pidPack").setParameter(
-				":pidPack", idPack);
+				"pidPack", idPack);
 
 		Pack pack = null;
 
@@ -65,12 +65,24 @@ public class DaoPackImpl implements IDaoPack {
 		
 		Query hql = em.createQuery(
 				"SELECT p FROM Pack p WHERE p.project.idProject=:pidproject")
-				.setParameter(":pidproject", idProject);
+				.setParameter("pidproject", idProject);
 		List<Pack> packs = null;
 
 		packs = hql.getResultList();
 
 		return packs;
+	}
+
+	@Override
+	public int getNbSale(Pack pack) {
+		int nbSale = 0;
+		Query hql = em.createQuery(
+				"SELECT count(i.idItem) FROM Item i WHERE i.pack = :ppack and i.itemState.id_item_state = 3")
+				.setParameter("ppack", pack);
+
+		nbSale = (int) hql.getSingleResult();
+
+		return nbSale;
 	}
 
 }

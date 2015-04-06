@@ -23,6 +23,17 @@ public class Item implements Serializable {
 	@Column(name="id_item")
 	private Integer idItem;
 
+	@Column(name="id_order_row")
+	private Integer idOrderRow;
+	
+	public Integer getIdOrderRow() {
+		return idOrderRow;
+	}
+
+	public void setIdOrderRow(Integer idOrderRow) {
+		this.idOrderRow = idOrderRow;
+	}
+
 	private double amount;
 
 	@Column(name="created_by")
@@ -51,9 +62,6 @@ public class Item implements Serializable {
 	@JoinColumn(name="id_pack")
 	private Pack pack;
 
-	//bi-directional many-to-one association to OrderRow
-	@OneToMany(mappedBy="item")
-	private List<OrderRow> orderRows;
 
 	public Item() {
 	}
@@ -130,26 +138,5 @@ public class Item implements Serializable {
 		this.pack = pack;
 	}
 
-	public List<OrderRow> getOrderRows() {
-		return this.orderRows;
-	}
-
-	public void setOrderRows(List<OrderRow> orderRows) {
-		this.orderRows = orderRows;
-	}
-
-	public OrderRow addOrderRow(OrderRow orderRow) {
-		getOrderRows().add(orderRow);
-		orderRow.setItem(this);
-
-		return orderRow;
-	}
-
-	public OrderRow removeOrderRow(OrderRow orderRow) {
-		getOrderRows().remove(orderRow);
-		orderRow.setItem(null);
-
-		return orderRow;
-	}
 
 }
