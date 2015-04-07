@@ -1,5 +1,6 @@
 package fr.afcepf.al23.partesite.service.impl.offer;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -13,6 +14,7 @@ import fr.afcepf.al23.partesite.idao.offer.IDaoItem;
 import fr.afcepf.al23.partesite.idao.offer.IDaoPack;
 import fr.afcepf.al23.partesite.iservice.offer.IBusinessPack;
 import fr.afcepf.al23.partesite.model.entities.Item;
+import fr.afcepf.al23.partesite.model.entities.ItemState;
 import fr.afcepf.al23.partesite.model.entities.Pack;
 
 @Stateless
@@ -30,8 +32,16 @@ public class BusinessPackImpl implements IBusinessPack {
 
 	@Override
 	public Pack save(Pack pack) {
-		if(pack.getIdPack() == null)
+		if(pack.getIdPack() == null){
 			pack = daoPack.add(pack);
+			ItemState itemSt = new ItemState();
+			itemSt.setIdItemState(1);
+			itemSt.setItemStateName("DISPONIBLE");
+			for (int i = 0; i < pack.getStock(); i++) {
+				Item item = new Item(null, null, pack.getAmount(), 1, new Date(), null, 1, new Date(), itemSt, pack);
+				daoItem.add(item);
+			}
+		}
 		else
 			pack = daoPack.update(pack);
 		return pack;

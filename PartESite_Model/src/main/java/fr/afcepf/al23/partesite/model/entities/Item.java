@@ -23,6 +23,22 @@ public class Item implements Serializable {
 	@Column(name="id_item")
 	private Integer idItem;
 
+	public Item(Integer idItem, Integer idOrderRow, double amount,
+			Integer createdBy, Date createdDate, Boolean disabled,
+			Integer updatedBy, Date updatedDate, ItemState itemState, Pack pack) {
+		super();
+		this.idItem = idItem;
+		this.idOrderRow = idOrderRow;
+		this.amount = amount;
+		this.createdBy = createdBy;
+		this.createdDate = createdDate;
+		this.disabled = disabled;
+		this.updatedBy = updatedBy;
+		this.updatedDate = updatedDate;
+		this.itemState = itemState;
+		this.pack = pack;
+	}
+
 	@Column(name="id_order_row")
 	private Integer idOrderRow;
 	
