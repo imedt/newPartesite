@@ -27,7 +27,7 @@ public interface IBusinessProject {
 	public List<Project> waitingProjects();
 	public List<Project> getByCategory(ProjectCategory projectCategory);
 	public List<Project> getByName(String name);
-	
+	public List<Project> getByNameWithCategory(String name);
 	public List<Project> searchProjectsBy(
 			String name,
 			Date publishingDate,

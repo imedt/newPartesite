@@ -8,98 +8,66 @@
 
 	<ui:define name="header-title">New Projects</ui:define>
 
-	
+
 	<ui:define name="logo">Recherche de projets</ui:define>
 
 	<ui:define name="content">
-	
-	<fieldset>
-	<legend>Recherche de projets</legend>
-			<h:form>		
-						<div class="row">
-							<div class="col-lg-push-1 col-lg-10">
 
-								<div class="col-lg-12">
-										<span class="col-lg-3">Nom</span>
-									<h:inputText class="col-lg-3" type="text" value="#{mbSearchProject.name}"></h:inputText>
-									
-										<h:commandButton class="col-lg-6" 
-										type="submit" 
-										action="#" value="GO !">
-											</h:commandButton>
-									
-								</div>
-								<div class="col-lg-12">
-									
-										<span>Categorie </span>
-									
-									<h:selectOneMenu class="col-lg-6" type="text" value="#{mbSearchProject.cat}">
-									<f:selectItems value="#{mbSearchProject.categories}" var="cat" itemLabel="#{cat.category}" itemValue="#{cat}"/>
-									</h:selectOneMenu>
-									<h:commandButton class="col-lg-6" 
-										type="submit" 
-										action="#" value="GO !">
-											</h:commandButton>
-									
-								</div>
+		<fieldset>
+			<legend>Recherche de projets</legend>
+			<h:form>
+				<div class="row">
+					<div class="col-lg-push-1 col-lg-10">
 
-							</div>
-						</div>
-		</h:form>			
-</fieldset>
-<br/>
-<br/>
+						<div class="col-lg-12">
+							<strong><span class="col-lg-2" style="text-align:left;">Nom</span></strong>
+							<h:inputText class="col-lg-10" type="text"
+								value="#{mbSearchProject.name}"/>
 
-					
-						<div class="row">
-							<div class="col-lg-push-1 col-lg-10">
-<center>
-								<h1 rendered="#{mbSearchProject.projects==null}">AUCUN RESULTAT</h1>
-</center>
-<table rendered="#{mbSearchProject.searchByName()!=null}">
-<tr>
-<th>Date de publication</th>
-<th>Auteur</th>
-<th>Projet</th>
-<th>Categorie</th>
-<th>Montant</th>
-</tr>
+							<h:commandButton class="col-lg-12" type="submit"
+								action="#{mbSearchProject.searchByName}"
+								value="Recherche par nom">
+							</h:commandButton>
 
-<ui:repeat var="project" value="#{mbSearchProject.projects}">
-<tr>
-<td>#{project.publishingDate}</td>
-<td>#{project.identity.firstName}</td>
-<td>#{project.projectName}</td>
-<td>#{project.projectCategory}</td>
-<td>#{project.aimingAmount}</td>
-</tr>
-</ui:repeat>
-</table>
-
-<table rendered="#{mbSearchProject.searchByCategory()!=null}">
-<tr>
-<th>Date de publication</th>
-<th>Auteur</th>
-<th>Projet</th>
-<th>Categorie</th>
-<th>Montant</th>
-</tr>
-
-<ui:repeat var="project" value="#{mbSearchProject.projects}">
-<tr>
-<td>#{project.publishingDate}</td>
-<td>#{project.identity.firstName}</td>
-<td>#{project.projectName}</td>
-<td>#{project.projectCategory}</td>
-<td>#{project.aimingAmount}</td>
-</tr>
-</ui:repeat>
-</table>
-							</div>
 						</div>
 
-	
-	
+
+					</div>
+				</div>
+			</h:form>
+		</fieldset>
+		<br />
+		<br />
+
+
+		<fieldset>
+			<center rendered="#{mbSearchProject.projects.size()==0}">
+				<h1>AUCUN RESULTAT</h1>
+			</center>
+
+			<h:panelGroup rendered="#{mbSearchProject.projects.size()!=0}"
+				class="col-lg-push-1 col-lg-10">
+				<center>
+					<legend>Résultats</legend>
+				</center>
+				<strong> <span class="col-lg-2">Date de publication</span>
+					<span class="col-lg-2">Auteur</span> <span class="col-lg-2">Projet</span>
+					<span class="col-lg-2">Categorie</span> <span class="col-lg-2">Montant</span>
+					<span class="col-lg-2"></span>
+				</strong>
+				<br />
+				<ui:repeat var="project" value="#{mbSearchProject.projects}"
+					style="margin:0 0 0 0;">
+					<span class="col-lg-2">#{project.publishingDate}</span>
+					<span class="col-lg-2">#{project.identity.firstName}</span>
+					<span class="col-lg-2">#{project.projectName}</span>
+					<span class="col-lg-2">#{project.projectCategory.category}</span>
+					<span class="col-lg-2">#{project.aimingAmount}</span>
+<a href="projectDetails.xhtml" class="button lg-btn-default col-lg-2" style="width=auto;margin-top:1em;"><span>Détails</span></a>
+				</ui:repeat>
+			</h:panelGroup>
+		</fieldset>
+
 	</ui:define>
 
 	<ui:define name="text-home"></ui:define>

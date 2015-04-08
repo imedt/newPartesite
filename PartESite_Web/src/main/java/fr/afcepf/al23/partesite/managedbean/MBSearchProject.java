@@ -28,18 +28,13 @@ public class MBSearchProject {
 	private String name;
 	private List<ProjectCategory> categories;
 	private List<Project> projects;
+	private Integer idProject;
 
-	public String getCategory() {
-		return category;
-	}
-	public void setCategory(String category) {
-		this.category = category;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
+	// Get & Set
+	
+	public List<ProjectCategory> getCategories() {
+		categories = buProjectCategory.getAll();
+		return categories;
 	}
 	public IBusinessProject getBuProject() {
 		return buProject;
@@ -59,27 +54,41 @@ public class MBSearchProject {
 	public void setCat(ProjectCategory cat) {
 		this.cat = cat;
 	}
-	public List<ProjectCategory> getCategories() {
-		categories = buProjectCategory.getAll();
-		return categories;
+	public String getCategory() {
+		return category;
 	}
-	public void setCategories(List<ProjectCategory> categories) {
-		this.categories = categories;
+	public void setCategory(String category) {
+		this.category = category;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	public List<Project> getProjects() {
+		this.searchByName();
 		return projects;
 	}
 	public void setProjects(List<Project> projects) {
 		this.projects = projects;
 	}
+	public void setCategories(List<ProjectCategory> categories) {
+		this.categories = categories;
+	}
+	
 
-
-
-	public List<Project> searchByName() {
+	// Méthodes 
+	
+	public Integer getIdProject() {
+		return idProject;
+	}
+	public void setIdProject(Integer idProject) {
+		this.idProject = idProject;
+	}
+	public void searchByName() {
 		
-		projects = buProject.getByName(name);
-
-		return projects;
+		projects = buProject.getByNameWithCategory(name);
 	}
 
 	public List<Project> searchByCategory() {

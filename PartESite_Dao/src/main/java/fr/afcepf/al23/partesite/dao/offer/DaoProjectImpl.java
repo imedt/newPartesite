@@ -69,15 +69,26 @@ public class DaoProjectImpl implements IDaoProject {
 	public List<Project> getByName(String name) {
 
 		Query hql = em
-				.createQuery("SELECT DISTINCT p FROM Project p inner join fetch p.packs WHERE p.projectName like :pprojectName");
-		hql.setParameter("pprojectName", "'%" + name + "%'");
-
-		hql.executeUpdate();
+				.createQuery("SELECT DISTINCT p FROM Project p inner join fetch p.packs WHERE p.projectName LIKE :pprojectName");
+		hql.setParameter("pprojectName", "'%"+name+"%'");
 
 		List<Project> liste = null;
 
 		liste = hql.getResultList();
 
+		return liste;
+	}
+	
+
+	@Override
+	public List<Project> getByNameWithCategory(String name) {
+
+		Query hql = em
+				.createQuery("SELECT DISTINCT p FROM Project p inner join fetch p.projectCategory");
+		
+		List<Project> liste = null;
+		liste = hql.getResultList();
+		System.out.println("dans le dao taille liste :"+liste.size());
 		return liste;
 	}
 
@@ -109,7 +120,7 @@ public class DaoProjectImpl implements IDaoProject {
 						+ " AND p.aimingAmount=:paimingAmount"
 						+ " AND p.identity=:pidentity");
 		hql.setParameter("ppublishingDate", publishingDate);
-		hql.setParameter("pname", "%'+name+'%");
+		hql.setParameter("pname", "'%"+name+"%'");
 		hql.setParameter("pcategory", projectCategory);
 		hql.setParameter("paimingAmount", aimingAmount);
 		hql.setParameter("pidentity", identity);
