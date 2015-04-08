@@ -1,7 +1,9 @@
 package fr.afcepf.al23.model.entities;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.util.Date;
 
 
@@ -11,6 +13,7 @@ import java.util.Date;
  */
 @Entity
 @NamedQuery(name="Payment.findAll", query="SELECT p FROM Payment p")
+@Table(name="payment") 
 public class Payment implements Serializable {
 	private static final long serialVersionUID = 1L;
 

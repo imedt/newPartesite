@@ -1,7 +1,9 @@
 package fr.afcepf.al23.model.entities;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.util.Date;
 import java.util.List;
 
@@ -12,6 +14,7 @@ import java.util.List;
  */
 @Entity
 @NamedQuery(name="Civility.findAll", query="SELECT c FROM Civility c")
+@Table(name="civility")
 public class Civility implements Serializable {
 	private static final long serialVersionUID = 1L;
 
