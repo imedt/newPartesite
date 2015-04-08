@@ -1,51 +1,87 @@
 package fr.afcepf.al23.model.entities;
 
 import java.io.Serializable;
-import javax.persistence.*;
-import java.util.Date;
 
+import javax.persistence.*;
+
+import java.util.Date;
+import java.util.List;
 
 /**
  * The persistent class for the order_row database table.
  * 
  */
 @Entity
-@Table(name="order_row")
-@NamedQuery(name="OrderRow.findAll", query="SELECT o FROM OrderRow o")
+@Table(name = "order_row")
+@NamedQuery(name = "OrderRow.findAll", query = "SELECT o FROM OrderRow o")
 public class OrderRow implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id_order_row")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_order_row")
 	private Integer idOrderRow;
 
 	private Double amount;
 
-	@Column(name="created_by")
+	public OrderRow(Integer idOrderRow, Double amount, Integer createdBy,
+			Date createdDate, Boolean disabled, Integer updatedBy,
+			Date updatedDate, Pack pack, UserOrder userOrder) {
+		super();
+		this.idOrderRow = idOrderRow;
+		this.amount = amount;
+		this.createdBy = createdBy;
+		this.createdDate = createdDate;
+		this.disabled = disabled;
+		this.updatedBy = updatedBy;
+		this.updatedDate = updatedDate;
+		this.pack = pack;
+		this.userOrder = userOrder;
+	}
+
+	@Column(name = "created_by")
 	private Integer createdBy;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="created_date")
+	@Column(name = "created_date")
 	private Date createdDate;
 
-	private Boolean  disabled;
+	private Boolean disabled;
 
-	@Column(name="updated_by")
+	@Column(name = "updated_by")
 	private Integer updatedBy;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="updated_date")
+	@Column(name = "updated_date")
 	private Date updatedDate;
 
-	//bi-directional many-to-one association to Item
-	@ManyToOne
-	@JoinColumn(name="id_item")
-	private Item item;
+	@Transient
+	private List<Item> items;
 
-	//bi-directional many-to-one association to UserOrder
+	public List<Item> getItems() {
+		return items;
+	}
+
+	public void setItems(List<Item> items) {
+		this.items = items;
+	}
+
+	// bi-directional many-to-one association to OrderRow
 	@ManyToOne
-	@JoinColumn(name="id_user_order")
+	@JoinColumn(name = "id_pack")
+	private Pack pack;
+
+	public Pack getPack() {
+		return pack;
+	}
+
+	public void setPack(Pack pack) {
+		this.pack = pack;
+	}
+
+	// bi-directional many-to-one association to UserOrder
+	@ManyToOne
+	@JoinColumn(name = "id_user_order")
 	private UserOrder userOrder;
 
 	public OrderRow() {
@@ -83,11 +119,11 @@ public class OrderRow implements Serializable {
 		this.createdDate = createdDate;
 	}
 
-	public Boolean  getDisabled() {
+	public Boolean getDisabled() {
 		return this.disabled;
 	}
 
-	public void setDisabled(Boolean  disabled) {
+	public void setDisabled(Boolean disabled) {
 		this.disabled = disabled;
 	}
 
@@ -105,14 +141,6 @@ public class OrderRow implements Serializable {
 
 	public void setUpdatedDate(Date updatedDate) {
 		this.updatedDate = updatedDate;
-	}
-
-	public Item getItem() {
-		return this.item;
-	}
-
-	public void setItem(Item item) {
-		this.item = item;
 	}
 
 	public UserOrder getUserOrder() {

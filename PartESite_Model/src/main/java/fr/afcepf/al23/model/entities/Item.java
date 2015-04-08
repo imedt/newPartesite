@@ -23,7 +23,36 @@ public class Item implements Serializable {
 	@Column(name="id_item")
 	private Integer idItem;
 
-	private Double amount;
+
+	public Item(Integer idItem, Integer idOrderRow, double amount,
+			Integer createdBy, Date createdDate, Boolean disabled,
+			Integer updatedBy, Date updatedDate, ItemState itemState, Pack pack) {
+		super();
+		this.idItem = idItem;
+		this.idOrderRow = idOrderRow;
+		this.amount = amount;
+		this.createdBy = createdBy;
+		this.createdDate = createdDate;
+		this.disabled = disabled;
+		this.updatedBy = updatedBy;
+		this.updatedDate = updatedDate;
+		this.itemState = itemState;
+		this.pack = pack;
+	}
+
+	@Column(name="id_order_row")
+	private Integer idOrderRow;
+	
+	public Integer getIdOrderRow() {
+		return idOrderRow;
+	}
+
+	public void setIdOrderRow(Integer idOrderRow) {
+		this.idOrderRow = idOrderRow;
+	}
+
+	private double amount;
+
 
 	@Column(name="created_by")
 	private Integer createdBy;
@@ -51,9 +80,6 @@ public class Item implements Serializable {
 	@JoinColumn(name="id_pack")
 	private Pack pack;
 
-	//bi-directional many-to-one association to OrderRow
-	@OneToMany(mappedBy="item")
-	private List<OrderRow> orderRows;
 
 	public Item() {
 	}
@@ -130,26 +156,5 @@ public class Item implements Serializable {
 		this.pack = pack;
 	}
 
-	public List<OrderRow> getOrderRows() {
-		return this.orderRows;
-	}
-
-	public void setOrderRows(List<OrderRow> orderRows) {
-		this.orderRows = orderRows;
-	}
-
-	public OrderRow addOrderRow(OrderRow orderRow) {
-		getOrderRows().add(orderRow);
-		orderRow.setItem(this);
-
-		return orderRow;
-	}
-
-	public OrderRow removeOrderRow(OrderRow orderRow) {
-		getOrderRows().remove(orderRow);
-		orderRow.setItem(null);
-
-		return orderRow;
-	}
 
 }

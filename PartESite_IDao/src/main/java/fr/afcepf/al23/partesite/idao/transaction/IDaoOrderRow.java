@@ -11,8 +11,8 @@ import fr.afcepf.al23.model.entities.UserOrder;
 
 @Remote
 public interface IDaoOrderRow {
-	public Integer add(OrderRow orderRow);
-	public void update(OrderRow orderRow);
+	public OrderRow add(OrderRow orderRow);
+	public OrderRow update(OrderRow orderRow);
 	public OrderRow get(Integer idOrderRow);
 	public List<OrderRow> getAll();
 	public List<OrderRow> getByAmount(Double  amount);

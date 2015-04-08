@@ -1,7 +1,9 @@
 package fr.afcepf.al23.model.entities;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.util.Date;
 import java.util.List;
 
@@ -23,6 +25,24 @@ public class UserOrder implements Serializable {
 
 	@Column(name="created_by")
 	private Integer  createdBy;
+
+	public UserOrder(Integer idUserOrder, Integer createdBy, Date createdDate,
+			Boolean disabled, Double totalAmount, Integer updatedBy,
+			Date updatedDate, List<OrderRow> orderRows, List<Payment> payments,
+			Identity identity, UserOrderState userOrderState) {
+		super();
+		this.idUserOrder = idUserOrder;
+		this.createdBy = createdBy;
+		this.createdDate = createdDate;
+		this.disabled = disabled;
+		this.totalAmount = totalAmount;
+		this.updatedBy = updatedBy;
+		this.updatedDate = updatedDate;
+		this.orderRows = orderRows;
+		this.payments = payments;
+		this.identity = identity;
+		this.userOrderState = userOrderState;
+	}
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="created_date")

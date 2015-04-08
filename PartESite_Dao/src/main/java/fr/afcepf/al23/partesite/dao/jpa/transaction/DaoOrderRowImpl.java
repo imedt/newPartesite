@@ -35,19 +35,20 @@ public class DaoOrderRowImpl implements IDaoOrderRow {
 	 * @see fr.afcepf.al23.partesite.idao.transaction.IDaoOrderRow#add(fr.afcepf.al23.partesite.model.entities.OrderRow)
 	 */
 	@Override
-	public Integer add(OrderRow orderRow) {
+	public OrderRow add(OrderRow orderRow) {
 		em.persist(orderRow);
 		em.flush();
-		return orderRow.getIdOrderRow();
+		return orderRow;
 	}
 
 	/* (non-Javadoc)
 	 * @see fr.afcepf.al23.partesite.idao.transaction.IDaoOrderRow#update(fr.afcepf.al23.partesite.model.entities.OrderRow)
 	 */
 	@Override
-	public void update(OrderRow orderRow) {
+	public OrderRow update(OrderRow orderRow) {
 		em.merge(orderRow);
 		em.flush();
+		return orderRow;
 	}
 
 	/* (non-Javadoc)
