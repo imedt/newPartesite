@@ -43,7 +43,7 @@ public class DaoProjectImpl implements IDaoProject {
 	public Project get(Integer idProject) {
 
 		Query hql = em.createQuery(
-				"SELECT p FROM Project p WHERE p.idProject=:pidProject")
+				"SELECT DISTINCT p FROM Project p WHERE p.idProject=:pidProject")
 				.setParameter("pidProject", idProject);
 		Project p = null;
 
@@ -69,7 +69,7 @@ public class DaoProjectImpl implements IDaoProject {
 	public List<Project> getByName(String name) {
 
 		Query hql = em
-				.createQuery("SELECT p FROM Project p WHERE p.projectName like :pprojectName");
+				.createQuery("SELECT DISTINCT p FROM Project p inner join fetch p.packs WHERE p.projectName like :pprojectName");
 		hql.setParameter("pprojectName", "'%" + name + "%'");
 
 		hql.executeUpdate();
@@ -85,7 +85,7 @@ public class DaoProjectImpl implements IDaoProject {
 	public List<Project> getByPublishingDate(Date publishingDate) {
 
 		Query hql = em
-				.createQuery("SELECT p FROM Project p WHERE p.publishingDate=:ppublishingDate");
+				.createQuery("SELECT DISTINCT p FROM Project p WHERE p.publishingDate=:ppublishingDate");
 		hql.setParameter("ppublishingDate", publishingDate);
 
 		hql.executeUpdate();
@@ -103,16 +103,16 @@ public class DaoProjectImpl implements IDaoProject {
 			Identity identity) {
 
 		Query hql = em
-				.createQuery("SELECT p FROM Project p WHERE p.publishingDate=:ppublishingDate"
+				.createQuery("SELECT DISTINCT p FROM Project p WHERE p.publishingDate=:ppublishingDate"
 						+ " AND p.projectName=:pname"
 						+ " AND p.projectCategory=:pcategory"
 						+ " AND p.aimingAmount=:paimingAmount"
 						+ " AND p.identity=:pidentity");
-		hql.setParameter(":ppublishingDate", publishingDate);
-		hql.setParameter(":pname", name);
-		hql.setParameter(":pcategory", projectCategory);
-		hql.setParameter(":paimingAmount", aimingAmount);
-		hql.setParameter(":pidentity", identity);
+		hql.setParameter("ppublishingDate", publishingDate);
+		hql.setParameter("pname", "%'+name+'%");
+		hql.setParameter("pcategory", projectCategory);
+		hql.setParameter("paimingAmount", aimingAmount);
+		hql.setParameter("pidentity", identity);
 
 		hql.executeUpdate();
 
@@ -127,7 +127,7 @@ public class DaoProjectImpl implements IDaoProject {
 	public List<Project> getAllPublish() {
 		List<Project> projects = null;
 		Query hql = em.createQuery(
-				"SELECT p FROM Project p WHERE p.publish=:ppublish")
+				"SELECT DISTINCT p FROM Project p WHERE p.publish=:ppublish")
 				.setParameter("ppublish", true);
 		projects = hql.getResultList();
 		return projects;
@@ -137,7 +137,7 @@ public class DaoProjectImpl implements IDaoProject {
 	public List<Project> getByIdentity(Identity identity) {
 		List<Project> projects = null;
 		Query hql = em.createQuery(
-				"SELECT p FROM Project p  inner join fetch p.packs WHERE p.identity=:pidentity")
+				"SELECT DISTINCT p FROM Project p  inner join fetch p.packs WHERE p.identity=:pidentity")
 				.setParameter("pidentity", identity);
 		projects = hql.getResultList();
 		return projects;
@@ -147,7 +147,7 @@ public class DaoProjectImpl implements IDaoProject {
 	public List<Project> getByCategory(ProjectCategory projectCategory) {
 		Query hql = em
 				.createQuery(
-						"SELECT p FROM Project p WHERE p.projectCategory = :pprojectCategory")
+						"SELECT DISTINCT p FROM Project p WHERE p.projectCategory = :pprojectCategory")
 				.setParameter("pprojectCategory", projectCategory);
 
 		List<Project> liste = null;

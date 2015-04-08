@@ -42,6 +42,10 @@ public class MBUser {
 	@EJB
 	private IBusinessAddressType buAddressType;
 
+	@ManagedProperty(value="#{mbConnexion}")
+	private MBConnexion cnx;
+
+
 	//Civility
 	private Integer idCivility;
 	private List<Civility> civilities;
@@ -110,6 +114,12 @@ public class MBUser {
 	public void setBuAddressType(IBusinessAddressType buAddressType) {
 		this.buAddressType = buAddressType;
 	}
+	public MBConnexion getCnx() {
+		return cnx;
+	}
+	public void setCnx(MBConnexion cnx) {
+		this.cnx = cnx;
+	}
 	public String getFirstName() {
 		return firstName;
 	}public void setFirstName(String firstName) {
@@ -132,8 +142,21 @@ public class MBUser {
 		this.password = password;
 	}
 	public Identity getIdentity() {
+		try {
+			if ( cnx.getId()!=null)
+				identity = cnx.getId();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return identity;
+		
 	}public void setIdentity(Identity identity) {
+		try {
+			if ( cnx.getId()!=null)
+				identity = cnx.getId();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		this.identity = identity;
 	}
 	public String getDirection() {
@@ -147,18 +170,32 @@ public class MBUser {
 		return idCivility;
 	}
 	public void setIdCivility(Integer idCivility) {
-		System.out.println(idCivility);
 		this.idCivility = idCivility;
 	}
 	public List<Civility> getCivilities() {
 		civilities = new ArrayList<Civility>();
-		civilities  =  buCivility.getAll();
+		try {
+			civilities  =  buCivility.getAll();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return civilities;
 	}
 	public void setCivilities(List<Civility> civilities) {
 		this.civilities = civilities;
 	}
 	public List<Phone> getPhones() {
+		if ( cnx.getId()!=null)
+		{
+			try {
+				phones = buPhone.getByIdIdentity(cnx.getId().getIdIdentity());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else {
+			phones = buPhone.getByIdIdentity(getIdentity().getIdIdentity());
+		}
 		return phones;
 	}
 	public void setPhones(List<Phone> phones) {
@@ -201,6 +238,20 @@ public class MBUser {
 		this.country = country;
 	}
 	public List<Address> getAddresses() {
+		if ( cnx.getId()!=null) {
+			try {
+				addresses = buAddress.getByIdIdentity(cnx.getId().getIdIdentity());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else {
+			try {
+				addresses = buAddress.getByIdIdentity(getIdentity().getIdIdentity());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}	
 		return addresses;
 	}
 	public void setAddresses(List<Address> addresses) {
@@ -213,7 +264,11 @@ public class MBUser {
 		this.idAddressType = idAddresstype;
 	}
 	public List<AddressType> getAddressTypes() {
-		addressTypes=buAddressType.getAll();
+		try {
+			addressTypes=buAddressType.getAll();	
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return addressTypes;
 	}
 	public void setAddressTypes(List<AddressType> addressTypes) {
@@ -231,8 +286,8 @@ public class MBUser {
 	//Méhode inscription
 	public String inscription()
 	{
-
 		identity = new Identity();
+
 		identity.setIdentityRole(buIdentityRole.get(3));
 		identity.setFirstName(firstName);
 		identity.setLastName(lastName);
@@ -257,12 +312,12 @@ public class MBUser {
 
 		identity.setBirthdate(date);
 
-		identity = buIdentity.save(identity);
-
-		setDirection("/UserInfo.xhtml?faces-redirect=true");
+		setIdentity(buIdentity.save(identity));
+	
+		setDirection("/Home.xhtml?faces-redirect=true");
 
 		
-
+		
 		return direction;
 	}
 
@@ -274,12 +329,13 @@ public class MBUser {
 
 		phone.setType(typePhoneNumber);
 		phone.setPhoneNumber(phoneNumber);
-		phone.setIdentity(identity);
+		phone.setIdentity(getIdentity());
 		buPhone.save(phone);
+		
 
 		phones.add(phone);
 		identity.setPhones(phones);
-		buIdentity.save(identity);
+		buIdentity.save(getIdentity());
 
 	}
 
@@ -295,12 +351,15 @@ public class MBUser {
 
 		AddressType addressType = buAddressType.get(idAddressType);
 		address.setAddressType(addressType);
-		address.setIdentity(identity);
+
+		address.setIdentity(getIdentity());
 		buAddress.save(address);
+
+
 
 		addresses.add(address);
 		identity.setAddresses(addresses);
-		buIdentity.save(identity);
+		buIdentity.save(getIdentity());
 
 	}
 

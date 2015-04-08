@@ -4,7 +4,8 @@ body {font-family: 'Source Sans Pro';font-weight:300;background-color:white;}
 #logo a:hover{color:#47b8af;}
 #sous-logo {margin-bottom:0; padding-bottom:0;}
 
-#formulaire {width:auto;height:auto; margin:2em 1em 2em 1em;}
+#formulaire {width:auto;height:auto; margin:5em 1em 2em 1em;}
+#formulaire .info fieldset {padding:2em 2em 2em 2em; border:solid 2px navy;margin-left:55px;background: linear-gradient(#CED8F6,white);}
 #formulaire  fieldset {padding:2em 2em 2em 2em; border:solid 2px navy;margin-left:55px;}
 #formulaire  fieldset legend{color:navy;text-align:center;font-weight: bold;}
 #formulaire  fieldset span{color:navy;text-align:left;}

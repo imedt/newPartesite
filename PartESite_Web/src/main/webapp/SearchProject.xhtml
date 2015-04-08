@@ -20,45 +20,27 @@
 							<div class="col-lg-push-1 col-lg-10">
 
 								<div class="col-lg-12">
-									<div class="col-lg-6">
-										<span>Nom</span>
-									</div>
-									<div class="col-lg-6">
-									<h:inputText class="col-lg-6" type="text" value="#{mbProjet.projectName}"></h:inputText>
-									</div>
-								</div>
-								<div class="col-lg-12">
-									<div class="col-lg-6">
-										<span>Categorie </span>
-									</div>
-									<div class="col-lg-6">
-									<h:inputText class="col-lg-6" type="text" value="#{mbProjet.projectCategory}"></h:inputText>
-									</div>
-								</div>
-
-								<div class="col-lg-12">
-									<div class="col-lg-6">
-										<span>Montant</span>
-									</div>
-									<div class="col-lg-6">
-										<h:inputText class="col-lg-6" type="text" value="#{mbProjet.aimingAmount}"></h:inputText>
-									</div>
-								</div>
-								<div class="col-lg-12">
-									<div class="col-lg-6">
-										<span>Date de publication</span>
-									</div>
-									<div class="col-lg-6">
-										<h:inputText class="col-lg-6" value="#{mbProjet.publishingDate}"></h:inputText>
-									</div>
-								</div>
-								
-								<div class="col-lg-12">
-
-									<div class="col-lg-push-6 col-lg-6">
-										<h:commandButton class="col-lg-6" type="submit" action="#{mbProjet.search}" value="GO !">
+										<span class="col-lg-3">Nom</span>
+									<h:inputText class="col-lg-3" type="text" value="#{mbSearchProject.name}"></h:inputText>
+									
+										<h:commandButton class="col-lg-6" 
+										type="submit" 
+										action="#" value="GO !">
 											</h:commandButton>
-									</div>
+									
+								</div>
+								<div class="col-lg-12">
+									
+										<span>Categorie </span>
+									
+									<h:selectOneMenu class="col-lg-6" type="text" value="#{mbSearchProject.cat}">
+									<f:selectItems value="#{mbSearchProject.categories}" var="cat" itemLabel="#{cat.category}" itemValue="#{cat}"/>
+									</h:selectOneMenu>
+									<h:commandButton class="col-lg-6" 
+										type="submit" 
+										action="#" value="GO !">
+											</h:commandButton>
+									
 								</div>
 
 							</div>
@@ -72,9 +54,9 @@
 						<div class="row">
 							<div class="col-lg-push-1 col-lg-10">
 <center>
-								<h1>AUCUN RESULTAT</h1>
+								<h1 rendered="#{mbSearchProject.projects==null}">AUCUN RESULTAT</h1>
 </center>
-<table>
+<table rendered="#{mbSearchProject.searchByName()!=null}">
 <tr>
 <th>Date de publication</th>
 <th>Auteur</th>
@@ -83,7 +65,27 @@
 <th>Montant</th>
 </tr>
 
-<ui:repeat var="project" value="#{mbProjet.liste}">
+<ui:repeat var="project" value="#{mbSearchProject.projects}">
+<tr>
+<td>#{project.publishingDate}</td>
+<td>#{project.identity.firstName}</td>
+<td>#{project.projectName}</td>
+<td>#{project.projectCategory}</td>
+<td>#{project.aimingAmount}</td>
+</tr>
+</ui:repeat>
+</table>
+
+<table rendered="#{mbSearchProject.searchByCategory()!=null}">
+<tr>
+<th>Date de publication</th>
+<th>Auteur</th>
+<th>Projet</th>
+<th>Categorie</th>
+<th>Montant</th>
+</tr>
+
+<ui:repeat var="project" value="#{mbSearchProject.projects}">
 <tr>
 <td>#{project.publishingDate}</td>
 <td>#{project.identity.firstName}</td>

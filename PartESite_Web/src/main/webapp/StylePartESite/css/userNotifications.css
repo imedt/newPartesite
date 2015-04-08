@@ -27,11 +27,15 @@ body {font-family: 'Source Sans Pro';font-weight:300;text-transform: uppercase;b
 .nav ul li a.icon#selected {color:white;font-weight: 300;font-weight: bold;}
 .nav ul li a#selected span{color:white;font-weight: 300;font-weight: bold;}
 
-.projects {margin-top:5em;}
-.projects fieldset legend {color:navy;text-align:center;font-weight:bold;}
-.projects fieldset {border:solid 2px navy;padding : 1em 1em 1em 1em;}
-.projects fieldset .header span{color:navy;text-align:center;font-weight:bold;}
-.projects fieldset span{color:navy;text-align:center;}
+
+
+.contentNotifications {margin-top:5em;}
+
+.contentNotifications fieldset legend {color:navy;text-align:center;font-weight:bold;}
+.contentNotifications fieldset {border:solid 2px navy;padding : 1em 1em 1em 1em;margin-left:6em;}
+.contentNotifications .degrade{border:solid 2px navy;padding : 1em 1em 1em 1em;margin-left:5em;background: linear-gradient(#CED8F6,white);}
+.contentNotifications fieldset .header span{color:navy;text-align:center;font-weight:bold;}
+.contentNotifications fieldset span{color:navy;text-align:center;}
 
 .box.post h3 span{color:#47b8af !important;}
 

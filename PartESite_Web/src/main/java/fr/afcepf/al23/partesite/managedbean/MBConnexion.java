@@ -1,5 +1,7 @@
 package fr.afcepf.al23.partesite.managedbean;
 
+import java.lang.annotation.Annotation;
+
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -14,14 +16,13 @@ import fr.afcepf.al23.partesite.iservice.user.IBusinessIdentity;
 @SessionScoped
 public class MBConnexion {
 
+	
 	Logger log = Logger.getLogger(getClass());
 
 	@EJB
 	IBusinessIdentity buIdentity;
 
-	@ManagedProperty(value="#{mbUser}")
-	private MBUser user;
-
+	String statut;
 	String login;
 	String password;
 	String bienvenue;
@@ -40,19 +41,15 @@ public class MBConnexion {
 		this.buIdentity = buIdentity;
 	}
 
-	public MBUser getUser() {
-		return user;
-	}
-
-	public void setUser(MBUser user) {
-		this.user = user;
-	}
-
 	public Identity getId() {
+
 		return id;
 	}
 
 	public void setId(Identity id) {
+
+			id = buIdentity.connexion(login, password);	
+
 		this.id = id;
 	}
 
@@ -88,31 +85,41 @@ public class MBConnexion {
 		this.bienvenue = bienvenue;
 	}
 
-	public String connexion() {
-		id = null;
+	public String getStatut() {
+		return statut;
+	}
 
+	public void setStatut(String statut) {
+		this.statut = statut;
+	}
+
+	public String connexion() {
+		id = new Identity();
 		try {
 			id = buIdentity.connexion(login, password);
-			
 			if (id.getIdentityRole().getIdIdentityRole() == 3) {
 				setDirection("/UserDashBoard.xhtml?faces-redirect=true");
+				setStatut("Utilisateur");
 			}
 			if (id.getIdentityRole().getIdIdentityRole() == 2) {
 				setDirection("/ModeratorDashBoard.xhtml?faces-redirect=true");
+				setStatut("Moderateur");
 			}
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return direction;
-	}
+	return direction;
+}
 
-	public String deconnexion() {
-
-		id = null;
-		user.setIdentity(null);
-
+public String deconnexion() {
+	try {
+		setStatut(null);
+		setId(null);
 		setDirection("/Home.xhtml?faces-redirect=true");
-		return direction;
+	} catch (Exception e) {
+		e.printStackTrace();
 	}
+	setDirection("/Home.xhtml?faces-redirect=true");
+	return direction;
+}
 }

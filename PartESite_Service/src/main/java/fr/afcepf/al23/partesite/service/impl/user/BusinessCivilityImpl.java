@@ -16,10 +16,11 @@ public class BusinessCivilityImpl implements IBusinessCivility {
 
 	@Override
 	public Civility save(Civility civility) {
-		if (civility.getIdCivility() == null)
-			daoCiv.add(civility);
-		else
-			daoCiv.update(civility);
+		
+			if (civility.getIdCivility() == null)
+				daoCiv.add(civility);
+			else
+				daoCiv.update(civility);
 
 		return civility;
 	}
@@ -27,14 +28,18 @@ public class BusinessCivilityImpl implements IBusinessCivility {
 	@Override
 	public Civility get(Integer idCivility) {
 		Civility civility = null;
-		civility = daoCiv.get(idCivility);
+
+			civility = daoCiv.get(idCivility);	
+
 		return civility;
 	}
 
 	@Override
 	public List<Civility> getAll() {
 		List<Civility> civilities = null;
-		civilities = daoCiv.getall();
+	
+			civilities = daoCiv.getall();
+	
 		return civilities;
 	}
 

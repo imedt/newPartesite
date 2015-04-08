@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="TemplateUserNotifications.xhtml">
+
+
+	<ui:define name="header-title">Notifications</ui:define>
+
+	<ui:define name="sous-logo">#{mbConnexion.id.firstName}</ui:define>
+
+	<ui:define name="contentNotifications">
+
+		<div class="row">
+			<div class="col-lg-12">
+
+				<h:panelGroup rendered="#{mbDashboard.listNotifications.size()!=0}">
+					<fieldset class="col-lg-10">
+
+						<legend>Mes Notifications</legend>
+
+						<div class="header">
+							<span class="col-lg-3">Référence</span> <span class="col-lg-3">Création</span>
+							<span class="col-lg-3">Projet/Utilisateur</span> <span
+								class="col-lg-3">Notification</span>
+						</div>
+
+						<ui:repeat var="p" value="#{mbDashboard.listNotifications}">
+							<span class="col-lg-3">#{p.idNotification}</span>
+							<span class="col-lg-3">#{p.createdDate}</span>
+							<span class="col-lg-3">#{p.targetType.targetTypeName}</span>
+							<span class="col-lg-3">#{p.contentNotification}</span>
+
+						</ui:repeat>
+					</fieldset>
+				</h:panelGroup>
+
+				<h:panelGroup rendered="#{mbDashboard.listNotifications.size()==0}">
+					<span class="col-lg-3">Aucun projet enregistré</span>
+				</h:panelGroup>
+
+			</div>
+		</div>
+
+	</ui:define>
+
+</ui:composition>
+</html>

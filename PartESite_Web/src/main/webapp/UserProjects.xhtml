@@ -6,9 +6,140 @@
 
 <ui:composition template="TemplateUserProjects.xhtml">
 
-<ui:define name="header-title">User Project</ui:define>
+<ui:define name="header-title">Projets</ui:define>
 <ui:define name="sous-logo">#{mbConnexion.id.firstName}</ui:define>
-<ui:define name="edition-h1">Edition</ui:define>
+
+<ui:define name="content">
+
+<div class="row">
+<div class="col-lg-12">
+
+<h:panelGroup rendered="#{mbDashboard.projects.size()!=0}">
+<fieldset class="col-lg-push-1 col-lg-10">
+
+<legend>Mes Projets</legend>
+
+<div class="header">
+<span class="col-lg-3">Référence</span>
+<span class="col-lg-3">Création</span>
+<span class="col-lg-3">Nom</span>
+<span class="col-lg-3">Capital Soutenu</span></div>
+
+<ui:repeat var="p" value="#{mbDashboard.projects}">
+
+<span class="col-lg-3">#{p.idProject}</span>
+<span class="col-lg-3">#{p.createdDate}</span>
+<span class="col-lg-3">#{p.projectName}</span>
+<span class="col-lg-3">#{p.aimingAmount}</span>
+
+</ui:repeat>
+</fieldset>
+</h:panelGroup>
+
+<h:panelGroup rendered="#{mbDashboard.projects.size()==0}">
+<span class="col-lg-3">Aucun projet enregistré</span>
+</h:panelGroup>
+
+</div>
+</div>
+
+<div class="row">
+<div class="col-lg-12">
+
+<h:panelGroup rendered="#{mbDashboard.listOnline.size()!=0}">
+<fieldset class="col-lg-push-1 col-lg-10">
+
+<legend>Projets en ligne</legend>
+
+<div class="header">
+<span class="col-lg-3">Référence</span>
+<span class="col-lg-3">Création</span>
+<span class="col-lg-3">Nom</span>
+<span class="col-lg-3">Capital Soutenu</span></div>
+
+<ui:repeat var="p" value="#{mbDashboard.listOnline}">
+
+<span class="col-lg-3">#{p.idProject}</span>
+<span class="col-lg-3">#{p.createdDate}</span>
+<span class="col-lg-3">#{p.projectName}</span>
+<span class="col-lg-3">#{p.aimingAmount}</span>
+
+</ui:repeat>
+</fieldset>
+</h:panelGroup>
+
+<h:panelGroup rendered="#{mbDashboard.listOnline.size()==0}">
+<span class="col-lg-3">Aucun projet enregistré</span>
+</h:panelGroup>
+
+</div>
+</div>
+
+<div class="row">
+<div class="col-lg-12">
+
+<h:panelGroup rendered="#{mbDashboard.listFinanced.size()!=0}">
+<fieldset class="col-lg-push-1 col-lg-10">
+
+<legend>Projets financés</legend>
+
+<div class="header">
+<span class="col-lg-3">Référence</span>
+<span class="col-lg-3">Création</span>
+<span class="col-lg-3">Nom</span>
+<span class="col-lg-3">Capital Soutenu</span></div>
+
+<ui:repeat var="p" value="#{mbDashboard.listFinanced}">
+
+<span class="col-lg-3">#{p.idProject}</span>
+<span class="col-lg-3">#{p.createdDate}</span>
+<span class="col-lg-3">#{p.projectName}</span>
+<span class="col-lg-3">#{p.aimingAmount}</span>
+
+</ui:repeat>
+</fieldset>
+</h:panelGroup>
+
+<h:panelGroup rendered="#{mbDashboard.listFinanced.size()==0}">
+<span class="col-lg-3">Aucun projet enregistré</span>
+</h:panelGroup>
+
+</div>
+</div>
+
+<div class="row">
+<div class="col-lg-12">
+
+<h:panelGroup rendered="#{mbDashboard.listDisabled.size()!=0}">
+<fieldset class="col-lg-push-1 col-lg-10">
+
+<legend>Projets annulés/abandonnés/non publiés</legend>
+
+<div class="header">
+<span class="col-lg-3">Référence</span>
+<span class="col-lg-3">Création</span>
+<span class="col-lg-3">Nom</span>
+<span class="col-lg-3">Capital Soutenu</span></div>
+
+<ui:repeat var="p" value="#{mbDashboard.listDisabled}">
+
+<span class="col-lg-3">#{p.idProject}</span>
+<span class="col-lg-3">#{p.createdDate}</span>
+<span class="col-lg-3">#{p.projectName}</span>
+<span class="col-lg-3">#{p.aimingAmount}</span>
+
+</ui:repeat>
+</fieldset>
+</h:panelGroup>
+
+<h:panelGroup rendered="#{mbDashboard.listDisabled.size()==0}">
+<span class="col-lg-3">Aucun projet enregistré</span>
+</h:panelGroup>
+
+</div>
+</div>
+
+</ui:define>
 
 </ui:composition>
 </html>

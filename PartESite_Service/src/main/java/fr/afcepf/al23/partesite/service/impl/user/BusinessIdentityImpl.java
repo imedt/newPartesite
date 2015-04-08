@@ -24,50 +24,60 @@ public class BusinessIdentityImpl implements IBusinessIdentity {
 	@Override
 	public Identity save(Identity identity) {
 
-		if (identity.getIdIdentity() == null )
-			identity = daoIdent.add(identity);
-		else
-			identity = daoIdent.update(identity);
+			if (identity.getIdIdentity() == null )
+				identity = daoIdent.add(identity);
+			else
+				identity = daoIdent.update(identity);
+	
 		return identity;
 	}
-	
+
 	//Verifier que l'identity n'existe pas déjà dans la base
 	@Override
 	public String saveWithControlsBefore(Identity identity) {
 
 		String message="";
-		
-		//On vérifie que les champs sont bien remplis
-		if ( identity.getCivility() != null
-			&& identity.getFirstName()!= null
-			&& identity.getLastName() != null
-			&& identity.getEmail()!= null 
-			&& identity.getMdp()!= null )
-		{
-			if ( daoIdent.emailExist(identity.getEmail())==false)
+
+			//On vérifie que les champs sont bien remplis
+			if ( identity.getCivility() != null
+					&& identity.getFirstName()!= null
+					&& identity.getLastName() != null
+					&& identity.getEmail()!= null 
+					&& identity.getMdp()!= null )
 			{
-				save(identity);
-				message ="Inscription validée !";
+				if ( daoIdent.emailExist(identity.getEmail())==false)
+				{
+					save(identity);
+					message ="Inscription validée !";
+				}
 			}
-		}
-		else 
-		{
-			message = "Email déjà existant, veuillez vous connecter !";
-		}
+			else 
+			{
+				message = "Email déjà existant, veuillez vous connecter !";
+			}
+
 		return message;
 	}
 
 	@Override
 	public Identity get(Integer IdIdentity) {
 		Identity ident = null;
-		ident = daoIdent.get(IdIdentity);
+		try {
+			ident = daoIdent.get(IdIdentity);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return ident;
 	}
 
 	@Override
 	public Identity connexion(String email, String mdp) {
 		Identity ident = null;
-		ident = daoIdent.connexion(email, mdp);
+		try {
+			ident = daoIdent.connexion(email, mdp);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return ident;
 	}
 

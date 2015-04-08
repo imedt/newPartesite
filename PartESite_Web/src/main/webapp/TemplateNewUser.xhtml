@@ -59,11 +59,7 @@
 					</a>
 				</h1>
 				<p class="col-lg-12" id="sous-logo">
-					Bienvenue <span rendered="#{mbUser.identity!=null}"
-						style="color: #47b8af;">&nbsp;#{mbUser.identity.firstName}</span>
-					<ui:insert name="sous-logo">
-					</ui:insert>
-					!
+					Bienvenue !
 				</p>
 
 			</div>
@@ -124,43 +120,7 @@
 
 
 						</div>
-						<div class="col-lg-push-1 col-lg-6">
-
-							<h:panelGroup  class="col-lg-12"
-								rendered="#{mbUser.identity!=null}">
-								<h3>Telephone</h3>
-								<span class="col-lg-6">Type :</span>
-								<h:inputText class="col-lg-6" value="#{mbUser.typePhoneNumber}" />
-								<span class="col-lg-6">Numéro :</span>
-								<h:inputText class="col-lg-6" value="#{mbUser.phoneNumber}" />
-								<h:commandButton  class="col-lg-push-6 col-lg-6"
-									action="#{mbUser.addPhoneToUser()}" value="Ajouter" />
-							</h:panelGroup>
-						</div>
-						
-						<div class="col-lg-push-1 col-lg-6">
-
-							<h:panelGroup  class="col-lg-12"
-								rendered="#{mbUser.identity!=null}">
-								<h3>Adresse</h3>
-								<span class="col-lg-6">Rue :</span>
-								<h:inputText class="col-lg-6" value="#{mbUser.street}" />
-								<span class="col-lg-6">Code Postal :</span>
-								<h:inputText  class="col-lg-6" value="#{mbUser.zipcode}" />
-								<span class="col-lg-6">Ville :</span>
-								<h:inputText  class="col-lg-6" value="#{mbUser.city}" />
-								<span class="col-lg-6">Pays :</span>
-								<h:inputText class="col-lg-6" value="#{mbUser.country}" />
-								<span class="col-lg-6"> Type :</span>
-							<h:selectOneMenu class="col-lg-6" value="#{mbUser.idAddressType}">
-								<f:selectItems value="#{mbUser.addressTypes}" var="a"
-									itemValue="#{a.idAddressType}" itemLabel="#{a.addressType}" />
-							</h:selectOneMenu>
-
-								<h:commandButton  class="col-lg-6"
-									action="#{mbUser.addAddressToUser()}" value="Ajouter" />
-							</h:panelGroup>
-						</div>
+					
 					</fieldset>
 				</h:form>
 			</div>
