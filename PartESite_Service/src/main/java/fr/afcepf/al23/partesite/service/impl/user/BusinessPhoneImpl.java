@@ -16,24 +16,30 @@ public class BusinessPhoneImpl implements IBusinessPhone {
 	
 	@Override
 	public Phone save(Phone phone) {
-		if(phone.getIdPhone() == null)
-			daoPh.add(phone);
-		else
-			daoPh.update(phone);
+
+			if(phone.getIdPhone() == null)
+				daoPh.add(phone);
+			else
+				daoPh.update(phone);
+
 		return phone;
 	}
 
 	@Override
 	public Phone get(Integer idPhone) {
 		Phone phone = null;
-		phone = daoPh.get(idPhone);
+
+			phone = daoPh.get(idPhone);	
+
 		return phone;
 	}
 
 	@Override
 	public List<Phone> getByIdIdentity(Integer idIdentity) {
 		List<Phone> phones = null;
-		phones = daoPh.getByIdIdentity(idIdentity);
+
+			phones = daoPh.getByIdIdentity(idIdentity);
+
 		return phones;
 	}
 

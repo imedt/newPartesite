@@ -22,11 +22,15 @@
 <!-- Script : DateTime Picker -->
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script>
-	$(function() {
-		$("#datepicker").datepicker();
-	});
-</script>
-
+  $(function() {
+    $( "#datepicker" ).datepicker();
+  });
+  </script>
+<script>
+  $(function() {
+    $( "#alert" ).alert("Inscription Validee !");
+  });
+  </script>
 <!-- Style : StronglyTyped & Bootstrap-->
 <link rel="stylesheet" href="stronglyTyped/css/bootstrap.css" />
 <link rel="stylesheet" href="stronglyTyped/css/skel.css" />
@@ -44,132 +48,88 @@
 </head>
 <body class="no-sidebar">
 	<f:view>
-		<h:form>
-			<!-- Header -->
-			<div id="header-wrapper">
-				<div id="header" class="container">
+	
+		<!-- Header -->
+		<div id="header-wrapper">
+			<div id="header" class="container">
 
-					<!-- Logo -->
+				<!-- Logo -->
 
-					<h1 id="logo" class="row">
-						<a href="Home.xhtml" class="col-lg-12"> B<span
-							style="font-size: 30px; color: navy;">usiness </span>P<span
-							style="font-size: 30px; color: navy;">artner's</span>C<span
-							style="font-size: 30px; color: navy;">ommunity</span>
-						</a>
-					</h1>
-					<p class="col-lg-12" id="sous-logo">
-						Bienvenue <span rendered="#{mbUser.identity!=null}"
-							style="color: #47b8af;">&nbsp;#{mbUser.identity.firstName}</span>
-						<ui:insert name="sous-logo">
-						</ui:insert>
-						!
-					</p>
+				<h1 id="logo" class="row">
+					<a href="Home.xhtml" class="col-lg-12"> B<span
+						style="font-size: 30px; color: navy;">usiness </span>P<span
+						style="font-size: 30px; color: navy;">artner's</span>C<span
+						style="font-size: 30px; color: navy;">ommunity</span>
+					</a>
+				</h1>
+				<p class="col-lg-12" id="sous-logo">
+					Bienvenue !
+				</p>
 
+			</div>
+		</div>
+
+
+		<!-- Main -->
+		<div class="content">
+
+			<div class="nav">
+				<div class="row">
+					<ui:insert name="nav-ul">
+						<ul class="col-lg-12">
+							<li class="col-3"><a href="UserDashBoard.xhtml"
+								class="icon fa-edit" id="selected" style="padding-left: 0;">
+									<span>Formulaire d'inscription</span>
+							</a></li>
+						</ul>
+					</ui:insert>
 				</div>
 			</div>
 
 
-			<!-- Main -->
-			<div class="content">
+			<div class="row" id="formulaire">
+				<h:form>
+					<fieldset class="col-lg-11">
+						<legend>Informations personnelles</legend>
 
-				<div class="nav">
-					<div class="row">
-						<ui:insert name="nav-ul">
-							<ul class="col-lg-12">
-								<li class="col-3"><a href="UserDashBoard.xhtml"
-									class="icon fa-edit" id="selected" style="padding-left: 0;">
-										<span>Formulaire d'inscription</span>
-								</a></li>
-							</ul>
-						</ui:insert>
-					</div>
-				</div>
+						<div class="col-lg-5">
 
+							<span class="col-lg-6"> Civilité :</span>
+							<h:selectOneMenu class="col-lg-6" value="#{mbUser.idCivility}">
+								<f:selectItems value="#{mbUser.civilities}" var="c"
+									itemValue="#{c.idCivility}" itemLabel="#{c.civility}" />
+							</h:selectOneMenu>
+							<br /> <span class="col-lg-6"> Prénom :</span>
+							<h:inputText class="col-lg-6" value="#{mbUser.firstName}" />
 
-				<div class="row" id="formulaire">
-					<h:form>
-						<fieldset class="col-lg-11">
-							<legend>Informations personnelles</legend>
+							<span class="col-lg-6"> Nom :</span>
+							<h:inputText class="col-lg-6" value="#{mbUser.lastName}" />
 
-							<div class="col-lg-5">
+							<span class="col-lg-6"> Email :</span>
+							<h:inputText class="col-lg-6" value="#{mbUser.email}" />
 
-								<span class="col-lg-6"> Civilité :</span>
-								<h:selectOneMenu class="col-lg-6" value="#{mbUser.idCivility}">
-									<f:selectItems value="#{mbUser.civilities}" var="c"
-										itemValue="#{c.idCivility}" itemLabel="#{c.civility}" />
-								</h:selectOneMenu>
-								<br /> <span class="col-lg-6"> Prénom :</span>
-								<h:inputText class="col-lg-6" value="#{mbUser.firstName}" />
+							<span class="col-lg-6"> Mot de passe :</span>
+							<h:inputText class="col-lg-6" value="#{mbUser.password}" />
 
-								<span class="col-lg-6"> Nom :</span>
-								<h:inputText class="col-lg-6" value="#{mbUser.lastName}" />
+							<span class="col-lg-6"> Date de naissance :</span>
+							<h:inputText id="datepicker" class="col-lg-6"
+								value="#{mbUser.birthdate}" />
 
-								<span class="col-lg-6"> Email :</span>
-								<h:inputText class="col-lg-6" value="#{mbUser.email}" />
-
-								<span class="col-lg-6"> Mot de passe :</span>
-								<h:inputText class="col-lg-6" value="#{mbUser.password}" />
-
-								<span class="col-lg-6"> Date de naissance :</span>
-								<h:inputText id="datepicker" class="col-lg-6"
-									value="#{mbUser.birthdate}" />
-
-								<h:selectBooleanCheckbox value="true" />
-								&nbsp; <span id="cgu">J'accepte les conditions générales
-									d'utilisation de la plateforme.</span>
-								<h:commandButton type="submit" class="lg-btn-default col-lg-12"
-									value="Valider" action="#{mbUser.inscription()}"/>
-
-
-
-							</div>
-							<div class="col-lg-push-1 col-lg-6">
-
-								<h:panelGroup class="col-lg-12"
-									rendered="#{mbUser.identity!=null}">
-									<h3>Telephone</h3>
-									<span class="col-lg-6">Type :</span>
-									<h:inputText class="col-lg-6" value="#{mbUser.typePhoneNumber}" />
-									<span class="col-lg-6">Numéro :</span>
-									<h:inputText class="col-lg-6" value="#{mbUser.phoneNumber}" />
-									<h:commandButton class="col-lg-push-6 col-lg-6"
-										action="#{mbUser.addPhoneToUser()}" value="Ajouter" />
-								</h:panelGroup>
-							</div>
-
-							<div class="col-lg-push-1 col-lg-6">
-
-								<h:panelGroup class="col-lg-12"
-									rendered="#{mbUser.identity!=null}">
-									<h3>Adresse</h3>
-									<span class="col-lg-6">Rue :</span>
-									<h:inputText class="col-lg-6" value="#{mbUser.street}" />
-									<span class="col-lg-6">Code Postal :</span>
-									<h:inputText class="col-lg-6" value="#{mbUser.zipcode}" />
-									<span class="col-lg-6">Ville :</span>
-									<h:inputText class="col-lg-6" value="#{mbUser.city}" />
-									<span class="col-lg-6">Pays :</span>
-									<h:inputText class="col-lg-6" value="#{mbUser.country}" />
-									<span class="col-lg-6"> Type :</span>
-									<h:selectOneMenu class="col-lg-6"
-										value="#{mbUser.idAddressType}">
-										<f:selectItems value="#{mbUser.addressTypes}" var="a"
-											itemValue="#{a.idAddressType}" itemLabel="#{a.addressType}" />
-									</h:selectOneMenu>
-
-									<h:commandButton class="col-lg-6"
-										action="#{mbUser.addAddressToUser()}" value="Ajouter" />
-								</h:panelGroup>
-							</div>
-						</fieldset>
-					</h:form>
-				</div>
+							<h:selectBooleanCheckbox value="true" />
+							&nbsp; <span id="cgu">J'accepte les conditions générales
+								d'utilisation de la plateforme.</span>
+							<h:commandButton type="submit" class="lg-btn-default col-lg-12"
+								value="Valider" action="#{mbUser.inscription()}" />
+						</div>
+						
+					</fieldset>
+				</h:form>
 			</div>
+		</div>
 
 
 
-			<!-- Footer -->
+					<!-- Footer -->
 
 			<div id="footer-wrapper">
 				<div id="footer" class="container">
@@ -251,8 +211,7 @@
 					<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
 				</ul>
 			</div>
-
-		</h:form>
+		
 	</f:view>
 </body>
 </html>

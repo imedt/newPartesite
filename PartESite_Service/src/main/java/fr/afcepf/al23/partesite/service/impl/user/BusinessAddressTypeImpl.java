@@ -18,24 +18,30 @@ public class BusinessAddressTypeImpl implements IBusinessAddressType {
 	
 	@Override
 	public AddressType save(AddressType addressType) {
-		if (addressType.getIdAddressType() == null)
-			daoAddT.add(addressType);
-		else
-			daoAddT.update(addressType);
+
+			if (addressType.getIdAddressType() == null)
+				daoAddT.add(addressType);
+			else
+				daoAddT.update(addressType);
+
 		return addressType;
 	}
 
 	@Override
 	public AddressType get(Integer idAddresstype) {
 		AddressType addressType = null;
-		addressType = daoAddT.get(idAddresstype);
+
+			addressType = daoAddT.get(idAddresstype);
+
 		return addressType;
 	}
 
 	@Override
 	public List<AddressType> getAll() {
 		List<AddressType> addressTypes = null;
-		addressTypes = daoAddT.getall();
+
+			addressTypes = daoAddT.getall();
+
 		return addressTypes;
 	}
 

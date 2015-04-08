@@ -4,7 +4,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <head>
-<title><ui:insert name="header-title">Template User</ui:insert></title>
+<title><ui:insert name="header-title">Template User Backings</ui:insert></title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -26,7 +26,7 @@
 <link rel="stylesheet" href="stronglyTyped/css/style-desktop.css" />
 
 <!-- Style : PartESite -->
-<link rel="stylesheet" href="StylePartESite/css/user.css" />
+<link rel="stylesheet" href="StylePartESite/css/userNotifications.css" />
 <ui:insert name="style"></ui:insert>
 <ui:insert name="script"></ui:insert>
 </head>
@@ -48,8 +48,9 @@
 						</a>
 					</h1>
 					<p class="col-lg-12" id="sous-logo">
-						Bienvenue
-						<ui:insert name="sous-logo"> #{mbConnexion.id.firstName} </ui:insert>
+						Bienvenue&nbsp;
+						<ui:insert name="sous-logo"></ui:insert>
+						&bnsp;
 						!
 					</p>
 
@@ -83,9 +84,10 @@
 						</ui:insert>
 					</div>
 				</div>
-				<div class="projects">
-					<ui:insert name="content">
-					</ui:insert>
+
+
+				<div class="contentNotifications">
+					<ui:insert name="contentNotifications"></ui:insert>
 				</div>
 			</div>
 

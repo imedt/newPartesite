@@ -7,39 +7,87 @@
 <ui:composition template="TemplateUserBackings.xhtml">
 
 
-	<ui:define name="header-title">User Backings</ui:define>
+	<ui:define name="header-title">Participations</ui:define>
 
-	<ui:define name="sous-logo">Utilisateur</ui:define>
+	<ui:define name="sous-logo">#{mbConnexion.id.firstName}</ui:define>
 
-	<ui:define name="bakingsList">
-		<h:form>
-			<h:panelGroup layout="block" rendered="#{mbOrder.orders.size() > 0}">
-				<h:dataTable value="#{mbOrder.orders}" var="order">
-					<h:column>
-						<f:facet name="header">Date</f:facet>
-						<h:outputText value="#{order.createdDate}">
-							<f:convertDateTime pattern="dd-MM-yyyy" />
-						</h:outputText>
-					</h:column>
-					<h:column>
-						<f:facet name="header">N°de commande</f:facet>
-						<h:outputText value="#{order.idUserOrder}" />
-					</h:column>
-					<h:column>
-						<f:facet name="header">Montant</f:facet>
-						<h:outputText value="#{order.totalAmount}" />
-					</h:column>
-					<h:column>
-						<f:facet name="header">Etat</f:facet>
-						<h:outputText value="#{order.userOrderState.userOrderStateName}" />
-					</h:column>
-				</h:dataTable>
-			</h:panelGroup>
-		</h:form>
+	<ui:define name="contentBackings">
+
+		<div class="row">
+			<div class="col-lg-12">
+
+				<h:panelGroup
+					rendered="#{mbDashboard.listBackingsWithReward.size()!=0}">
+					<fieldset class="col-lg-10">
+
+						<legend>Mes Participations</legend>
+
+						<div class="header">
+							<span class="col-lg-3">Référence</span> <span class="col-lg-3">Création</span>
+							<span class="col-lg-3">Nom Projet(s)</span> <span
+								class="col-lg-3">Participation Globale</span>
+						</div>
+
+						<ui:repeat var="p" value="#{mbDashboard.listBackingsWithReward}">
+
+							<span class="col-lg-3">#{p.idUserOrder}</span>
+							<span class="col-lg-3">#{p.createdDate}</span>
+
+							<ui:repeat var="row" value="#{p.orderRows}">
+								<span class="col-lg-3">#{row.item.pack.project.projectName}</span>
+							</ui:repeat>
+
+							<span class="col-lg-3">#{p.totalAmount}</span>
+						</ui:repeat>
+					</fieldset>
+				</h:panelGroup>
+
+				<h:panelGroup
+					rendered="#{mbDashboard.listBackingsWithReward.size()==0}">
+					<span class="col-lg-3">Aucun projet enregistré</span>
+				</h:panelGroup>
+
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-lg-12">
+
+				<h:panelGroup rendered="#{mbDashboard.listGivings.size()!=0}">
+					<fieldset class="col-lg-10">
+
+						<legend>Mes Dons</legend>
+
+						<div class="header">
+							<span class="col-lg-3">Référence</span> <span class="col-lg-3">Création</span>
+							<span class="col-lg-3">Nom Projet(s)</span> <span
+								class="col-lg-3">Participation Globale</span>
+						</div>
+
+						<ui:repeat var="p" value="#{mbDashboard.listGivings}">
+
+							<span class="col-lg-3">#{p.idUserOrder}</span>
+							<span class="col-lg-3">#{p.createdDate}</span>
+
+							<ui:repeat var="row" value="#{p.orderRows}">
+								<span class="col-lg-3">#{row.item.pack.project.projectName}</span>
+							</ui:repeat>
+
+							<span class="col-lg-3">#{p.totalAmount}</span>
+						</ui:repeat>
+					</fieldset>
+				</h:panelGroup>
+
+				<h:panelGroup rendered="#{mbDashboard.listGivings.size()==0}">
+					<span class="col-lg-3">Aucun projet enregistré</span>
+				</h:panelGroup>
+
+			</div>
+		</div>
+
 	</ui:define>
-	<ui:define name="totalAmount"></ui:define>
-	<ui:define name="nbInvestment"></ui:define>
-	<ui:define name="nbGift"></ui:define>
+
+	<ui:define name="totalAmount">#{mbDashboard.backingsAmount}</ui:define>
 
 </ui:composition>
 </html>

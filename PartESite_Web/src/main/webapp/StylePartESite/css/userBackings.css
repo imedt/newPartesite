@@ -52,6 +52,13 @@ text-shadow: 0.05em 0.075em 0 rgba(0, 0, 0, 0.1);}
 
 .newBacking #contentCentre ul li span{text-align:center;}
 
+.newBacking {margin-top:5em;}
+
+.newBacking fieldset legend {color:navy;text-align:center;font-weight:bold;}
+.newBacking fieldset {border:solid 2px navy;padding : 1em 1em 1em 1em;margin-left:5em;}
+.newBacking .degrade{border:solid 2px navy;padding : 1em 1em 1em 1em;margin-left:5em;background: linear-gradient(#CED8F6,white);}
+.newBacking fieldset .header span{color:navy;text-align:center;font-weight:bold;}
+.newBacking fieldset span{color:navy;text-align:center;}
 
 .box.post h3 span{color:#47b8af !important;}
 

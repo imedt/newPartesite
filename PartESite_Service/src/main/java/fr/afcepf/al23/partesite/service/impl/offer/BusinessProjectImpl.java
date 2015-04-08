@@ -145,14 +145,27 @@ public class BusinessProjectImpl implements IBusinessProject {
 
 	@Override
 	public List<Project> getByCategory(ProjectCategory projectCategory) {
-		// TODO Auto-generated method stub
-		return daoProj.getByCategory(projectCategory);
+		List<Project> projects = new ArrayList<>();
+		projects = daoProj.getByCategory(projectCategory);
+		return projects;
+	}
+	
+	@Override
+	public List<Project> getByNameWithCategory(String name) {
+		List<Project> projects = new ArrayList<>();
+		try {
+			projects = daoProj.getByNameWithCategory(name.toUpperCase());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println(projects.size()+"dans le business taille liste");
+		return projects;
 	}
 
 	@Override
 	public List<Project> getByName(String name) {
-		// TODO Auto-generated method stub
-		return daoProj.getByName(name);
+		List<Project> projects = daoProj.getByName(name);
+		return projects;
 	}
 
 }

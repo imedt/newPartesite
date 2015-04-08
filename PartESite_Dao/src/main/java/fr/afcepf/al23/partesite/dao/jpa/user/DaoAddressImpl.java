@@ -52,7 +52,7 @@ public class DaoAddressImpl implements IDaoAddress {
 		List<Address> addresses = null;
 		Query hql = em
 				.createQuery(
-						"SELECT add FROM Address add WHERE add.idIdentity = :id_identity ")
+						"SELECT add FROM Address add WHERE add.identity.idIdentity = :id_identity ")
 				.setParameter("id_identity", idIdentity);
 		addresses = hql.getResultList();
 		return addresses;

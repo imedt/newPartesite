@@ -20,6 +20,7 @@ public interface IDaoProject {
 	public List<Project> getByIdentity(Identity identity);
 	public List<Project> getByCategory(ProjectCategory projectCategory);
 	public List<Project> getByName(String name);
+	public List<Project> getByNameWithCategory(String name);
 	public List<Project> getByPublishingDate(Date publishingDate);
 	public List<Project> searchProjectsBy(String name,
 			Date publishingDate, Double aimingAmount, ProjectCategory projectCategory,

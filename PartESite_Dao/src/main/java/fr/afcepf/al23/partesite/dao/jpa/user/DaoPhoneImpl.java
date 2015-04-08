@@ -48,7 +48,7 @@ public class DaoPhoneImpl implements IDaoPhone {
 	public List<Phone> getByIdIdentity(Integer  idIdentity) {
 		List<Phone> phones = null;
 		Query hql = em.createQuery(
-				"SELECT ph FROM Phone ph WHERE ph.idIdentity = :id_Identity")
+				"SELECT ph FROM Phone ph WHERE ph.identity.idIdentity = :id_Identity")
 				.setParameter("id_Identity", idIdentity);
 		phones = hql.getResultList();
 		return phones;

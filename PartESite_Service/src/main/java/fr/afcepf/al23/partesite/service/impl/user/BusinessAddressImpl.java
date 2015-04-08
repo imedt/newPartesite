@@ -17,24 +17,30 @@ public class BusinessAddressImpl implements IBusinessAddress {
 
 	@Override
 	public Address save(Address address) {
-		if (address.getIdAddress() == null)
-			daoAdd.add(address);
-		else
-			daoAdd.update(address);
+
+			if (address.getIdAddress() == null)
+				daoAdd.add(address);
+			else
+				daoAdd.update(address);
+
 		return address;
 	}
 
 	@Override
 	public Address get(Integer idAddress) {
 		Address address = null;
-		address = daoAdd.get(idAddress);
+
+			address = daoAdd.get(idAddress);
+
 		return address;
 	}
 
 	@Override
 	public List<Address> getByIdIdentity(Integer idIdentity) {
 		List<Address> addresses = null;
-		addresses = daoAdd.getByIdIdentity(idIdentity);
+
+			addresses = daoAdd.getByIdIdentity(idIdentity);
+
 		return addresses;
 	}
 

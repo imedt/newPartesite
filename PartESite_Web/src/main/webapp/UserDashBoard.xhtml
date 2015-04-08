@@ -6,9 +6,15 @@
 
 <ui:composition template="TemplateUserDashboard.xhtml">
 
+<ui:define name="header-title">Tableau de bord</ui:define>
 
 <ui:define name="sous-logo">#{mbConnexion.id.firstName}</ui:define>
-<ui:define name="nbInvestment">#{mbInvestment.nbInvestment}</ui:define>
-<ui:define name="nbGift">#{mbInvestment.nbGift}</ui:define>
+
+<ui:define name="allMyProjectsCount">Projets : #{mbDashboard.allMyProjectsCount}</ui:define>
+<ui:define name="allMyProjectsOnlineCount">Projets en ligne : #{mbDashboard.allMyProjectsOnlineCount}</ui:define>
+<ui:define name="allMyProjectsFinancedCount">Projets financés : #{mbDashboard.allMyProjectsFinancedCount}</ui:define>
+<ui:define name="allMyBackingsWithRewardCount">Investissements : #{mbDashboard.allMyBackingsWithRewardCount}</ui:define>
+<ui:define name="allMyGivingsCount">Dons : #{mbDashboard.allMyGivingsCount}</ui:define>
+<ui:define name="allMyNotificationsCount">Notifications : #{mbDashboard.allMyNotificationsCount}</ui:define>
 </ui:composition>
 </html>

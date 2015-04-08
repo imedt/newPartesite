@@ -62,7 +62,7 @@ public class DaoUserOrderImpl implements IDaoUserOrder {
 	 */
 	@Override
 	public List<UserOrder> getAll() {
-		Query hql = em.createQuery("SELECT uo FROM UserOrder uo");
+		Query hql = em.createQuery("SELECT DISTINCT uo FROM UserOrder uo inner join fetch uo.orderRows ");
 		List<UserOrder> list = hql.getResultList();
 		return list;
 	}
@@ -72,7 +72,7 @@ public class DaoUserOrderImpl implements IDaoUserOrder {
 	 */
 	@Override
 	public List<UserOrder> getByTotalAmount(Double totalAmount) {
-		Query hql = em.createQuery("SELECT uo FROM UserOrder uo "
+		Query hql = em.createQuery("SELECT DISTINCT uo FROM UserOrder uo inner join fetch uo.orderRows "
 				+ "WHERE uo.totalAmount = :totalAmount");
 		hql.setParameter("totalAmount", totalAmount);
 		List<UserOrder> list = hql.getResultList();
@@ -84,7 +84,7 @@ public class DaoUserOrderImpl implements IDaoUserOrder {
 	 */
 	@Override
 	public List<UserOrder> getByCreatedBy(Integer idIdentity) {
-		Query hql = em.createQuery("SELECT uo FROM UserOrder uo "
+		Query hql = em.createQuery("SELECT DISTINCT uo FROM UserOrder uo inner join fetch uo.orderRows "
 				+ "WHERE uo.createdBy = :createdBy");
 		hql.setParameter("createdBy", idIdentity);
 		List<UserOrder> list = hql.getResultList();
@@ -96,7 +96,7 @@ public class DaoUserOrderImpl implements IDaoUserOrder {
 	 */
 	@Override
 	public List<UserOrder> getByCreatedDate(Date createdDate) {
-		Query hql = em.createQuery("SELECT uo FROM UserOrder uo "
+		Query hql = em.createQuery("SELECT DISTINCT uo FROM UserOrder uo "
 				+ "WHERE uo.createdDate = :createdDate");
 		hql.setParameter("createdDate", createdDate);
 		List<UserOrder> list = hql.getResultList();
@@ -141,8 +141,8 @@ public class DaoUserOrderImpl implements IDaoUserOrder {
 
 	@Override
 	public List<UserOrder> getByIdentity(Identity identity) {
-		Query hql = em.createQuery("SELECT o FROM UserOrder o "
-				+ "WHERE o.identity = :identity");
+		Query hql = em.createQuery("SELECT DISTINCT uo FROM UserOrder uo inner join fetch uo.orderRows "
+				+ "WHERE uo.identity = :identity");
 		hql.setParameter("identity", identity);
 		List<UserOrder> list = hql.getResultList();
 		return list;
