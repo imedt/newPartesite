@@ -33,13 +33,13 @@ public class MBDashBoard {
 	private Integer allMyBackingsWithRewardCount;
 	private Integer allMyGivingsCount;
 	private Integer allMyNotificationsCount;
-	private List<Project> projects;
-	private List<Project> listOnline;
-	private List<Project> listFinanced;
-	private List<Project> listDisabled;
-	private List<UserOrder> listBackingsWithReward;
-	private List<UserOrder> listGivings;
-	private List<Notification> listNotifications;
+	private List<Project> projects = new ArrayList<>();
+	private List<Project> listOnline = new ArrayList<>();
+	private List<Project> listFinanced = new ArrayList<>();
+	private List<Project> listDisabled = new ArrayList<>();
+	private List<UserOrder> listBackingsWithReward = new ArrayList<>();
+	private List<UserOrder> listGivings = new ArrayList<>();
+	private List<Notification> listNotifications = new ArrayList<>();
 	private Double backingsAmount;
 
 
