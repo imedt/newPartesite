@@ -20,14 +20,14 @@ import fr.afcepf.al23.partesite.iservice.user.IBusinessIdentity;
 public class MBModerator {
 
 	private Logger log = Logger.getLogger(getClass());
-	
+
 	@EJB
 	private IBusinessIdentity buIdentity;
 	@EJB
 	private IBusinessProject buProject;
 
-	//@ManagedProperty(value = "#{mbConnexion}")
-	//private MBConnexion cnx;
+	// @ManagedProperty(value = "#{mbConnexion}")
+	// private MBConnexion cnx;
 
 	private String firstName;
 	private Identity identity;
@@ -69,12 +69,10 @@ public class MBModerator {
 
 	public Double getRentabilite() {
 		List<Project> temp = buProject.getAllFinancedProjects();
-		projectsFinancedMontant = (double)0;
+		projectsFinancedMontant = (double) 0;
 		for (Project project : temp) {
 			for (Pack pack : project.getPacks()) {
-				for(Item item : pack.getItems()){
-					projectsFinancedMontant += item.getAmount();
-				}
+				projectsFinancedMontant += pack.getAmount() * pack.getNbSale();
 			}
 		}
 		rentabilite = projectsFinancedMontant / 10;
@@ -96,7 +94,7 @@ public class MBModerator {
 	}
 
 	public int getProjectsEnCours() {
-		List<Project> temp =  buProject.getAllWithItems();
+		List<Project> temp = buProject.getAllWithItems();
 		projectsEnCours = temp.size();
 		log.info(temp);
 		log.info(temp.size());
@@ -104,16 +102,12 @@ public class MBModerator {
 		return projectsEnCours;
 	}
 
-
-
 	public Double getProjectsEnCoursMontant() {
-		List<Project> temp =  buProject.getAllWithItems();
-		projectsEnCoursMontant = (double)0;
+		List<Project> temp = buProject.getAllWithItems();
+		projectsEnCoursMontant = (double) 0;
 		for (Project project : temp) {
 			for (Pack pack : project.getPacks()) {
-				for(Item item : pack.getItems()){
-					projectsEnCoursMontant += item.getAmount();
-				}
+				projectsEnCoursMontant += pack.getAmount() * pack.getNbSale();
 			}
 		}
 		log.info(temp);
@@ -122,15 +116,12 @@ public class MBModerator {
 		return projectsEnCoursMontant;
 	}
 
-
 	public Double getProjectsFinancedMontant() {
 		List<Project> temp = buProject.getAllFinancedProjects();
-		projectsFinancedMontant = (double)0;
+		projectsFinancedMontant = (double) 0;
 		for (Project project : temp) {
 			for (Pack pack : project.getPacks()) {
-				for(Item item : pack.getItems()){
-					projectsFinancedMontant += item.getAmount();
-				}
+				projectsEnCoursMontant += pack.getAmount() * pack.getNbSale();
 			}
 		}
 		log.info(temp);
@@ -138,10 +129,11 @@ public class MBModerator {
 		temp.clear();
 		return projectsFinancedMontant;
 	}
-	
+
 	public void setProjectsEnCoursMontant(Double projectsEnCoursMontant) {
 		this.projectsEnCoursMontant = projectsEnCoursMontant;
 	}
+
 	public void setProjectsEnCours(int projectsEnCours) {
 		this.projectsEnCours = projectsEnCours;
 	}
@@ -162,10 +154,10 @@ public class MBModerator {
 		this.buIdentity = buIdentity;
 	}
 
-//	public String getFirstName() {
-//		firstName = cnx.getId().getFirstName();
-//		return firstName;
-//	}
+	// public String getFirstName() {
+	// firstName = cnx.getId().getFirstName();
+	// return firstName;
+	// }
 
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;

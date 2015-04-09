@@ -46,6 +46,7 @@ public class DaoPackImpl implements IDaoPack {
 		Pack pack = null;
 
 		pack = (Pack) hql.getSingleResult();
+		pack.setNbSale(getNbSale(pack));
 
 		return pack;
 	}
@@ -58,6 +59,9 @@ public class DaoPackImpl implements IDaoPack {
 		List<Pack> packs = null;
 
 		packs = hql.getResultList();
+		for (Pack pack : packs) {
+			pack.setNbSale(getNbSale(pack));
+		}
 
 		return packs;
 	}
@@ -74,6 +78,9 @@ public class DaoPackImpl implements IDaoPack {
 		List<Pack> packs = null;
 
 		packs = hql.getResultList();
+		for (Pack pack : packs) {
+			pack.setNbSale(getNbSale(pack));
+		}
 
 		return packs;
 	}
