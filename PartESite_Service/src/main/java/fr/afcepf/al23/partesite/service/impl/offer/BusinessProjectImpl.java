@@ -96,7 +96,7 @@ public class BusinessProjectImpl implements IBusinessProject {
 			for (Project project : projects) {
 				if (project.getPacks() != null)
 					for (Pack pack : project.getPacks()) {
-						pack.setItems(daoItem.getSaleByPack(pack));
+						pack.setNbSale(daoPack.getNbSale(pack));
 					}
 
 			}
@@ -113,10 +113,8 @@ public class BusinessProjectImpl implements IBusinessProject {
 				Double amountTemp = (double)0;
 				if (project.getPacks() != null) {
 					for (Pack pack : project.getPacks()) {
-						pack.setItems(daoItem.getSaleByPack(pack));
-						for (Item item : pack.getItems()) {
-							amountTemp += item.getAmount();
-						}
+						pack.setNbSale(daoPack.getNbSale(pack));
+						amountTemp += pack.getNbSale() * pack.getAmount();
 					}
 				}
 				
