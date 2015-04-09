@@ -43,7 +43,7 @@ public class DaoProjectCategoryImpl implements IDaoProjectCategory {
 		Query hql = em
 				.createQuery(
 						"SELECT pc FROM ProjectCategory pc WHERE pc.idProjectCategory=:pidProjectCategory")
-				.setParameter(":pidProjectCategory", idProjectCategory);
+				.setParameter("pidProjectCategory", idProjectCategory);
 
 		ProjectCategory pc = null;
 		pc = (ProjectCategory) hql.getSingleResult();
@@ -68,7 +68,7 @@ public class DaoProjectCategoryImpl implements IDaoProjectCategory {
 		Query hql = em
 				.createQuery("SELECT pc FROM ProjectCategory pc WHERE pc.category=:pcategory");
 
-		hql.setParameter(":pcategory", name);
+		hql.setParameter("pcategory", name);
 		List<ProjectCategory> pcs = null;
 
 		pcs = hql.getResultList();

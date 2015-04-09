@@ -25,7 +25,7 @@ public interface IBusinessProject {
 	public List<Project> getAllWithItems();
 	public List<Project> getAllFinancedProjects();
 	public List<Project> waitingProjects();
-	public List<Project> getByCategory(ProjectCategory projectCategory);
+	public List<Project> getByCategory(Integer idProjectCategory);
 	public List<Project> getByName(String name);
 	public List<Project> getByNameWithCategory(String name);
 	public List<Project> searchProjectsBy(

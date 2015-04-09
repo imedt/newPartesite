@@ -14,15 +14,15 @@
 	<ui:define name="content">
 
 		<fieldset>
-			<legend>Recherche de projets</legend>
 			<h:form>
 				<div class="row">
-					<div class="col-lg-push-1 col-lg-10">
+					<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
 
-						<div class="col-lg-12">
-							<strong><span class="col-lg-2" style="text-align:left;">Nom</span></strong>
-							<h:inputText class="col-lg-10" type="text"
-								value="#{mbSearchProject.name}"/>
+						<div class="col-lg-6 col-sm-12 col-md-12 col-xs-12">
+							<strong><span class="col-lg-12"
+								style="text-align: left;">Nom</span></strong>
+							<h:inputText class="col-lg-12" type="text"
+								value="#{mbSearchProject.name}" />
 
 							<h:commandButton class="col-lg-12" type="submit"
 								action="#{mbSearchProject.searchByName}"
@@ -31,8 +31,77 @@
 
 						</div>
 
+						<div class="col-lg-6 col-sm-12 col-md-12 col-xs-12">
+							<strong><span class="col-lg-12"
+								style="text-align: left;">Categories</span></strong>
+							<h:selectOneMenu class="col-lg-12" type="text"
+								value="#{mbSearchProject.idCategory}"
+								style="margin-top:1em;height:2em;">
+								<f:selectItems value="#{mbSearchProject.categories}" var="c"
+									itemLabel="#{c.category}" itemValue="#{c.idProjectCategory}" />
+							</h:selectOneMenu>
 
+							<h:commandButton class="col-lg-12" type="submit"
+								action="#{mbSearchProject.searchByCategory()}"
+								value="Recherche par catégorie">
+							</h:commandButton>
+
+						</div>
+						<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+							<h:commandButton class="col-lg-12" type="submit"
+								action="#{mbSearchProject.reset()}" value="Reset">
+							</h:commandButton>
+						</div>
 					</div>
+
+					<h:panelGroup rendered="#{mbSearchProject.projects.size()==0}"
+						class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<center>
+							<strong> <span>AUCUN RESULTAT</span></strong>
+						</center>
+					</h:panelGroup>
+
+					<h:panelGroup rendered="#{mbSearchProject.projects.size()!=0}"
+						class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+
+						<h:dataTable value="#{mbSearchProject.projects}" var="project"
+							styleClass="table" headerClass="table-header"
+							rowClasses="table-odd-row, table-even-row">
+
+							<h:column>
+								<f:facet name="header">Date de publication</f:facet>   			
+    				#{project.publishingDate}
+    			</h:column>
+
+							<h:column>
+								<f:facet name="header">Auteur</f:facet>
+    				#{project.identity.firstName}
+    			</h:column>
+
+							<h:column>
+								<f:facet name="header">Projet</f:facet>
+    				#{project.projectName}
+    			</h:column>
+
+							<h:column>
+								<f:facet name="header">Categorie</f:facet>
+    				#{project.projectCategory.category}
+    			</h:column>
+
+							<h:column>
+								<f:facet name="header">Montant</f:facet>
+    				#{project.aimingAmount}
+    			</h:column>
+
+							<h:column>
+								<f:facet name="header">Consultation</f:facet>
+								<span class="col-lg-2" id="details"><a
+									href="projectDetails.xhtml">Détails</a></span>
+							</h:column>
+						</h:dataTable>
+					</h:panelGroup>
+
 				</div>
 			</h:form>
 		</fieldset>
@@ -40,33 +109,10 @@
 		<br />
 
 
-		<fieldset>
-			<center rendered="#{mbSearchProject.projects.size()==0}">
-				<h1>AUCUN RESULTAT</h1>
-			</center>
 
-			<h:panelGroup rendered="#{mbSearchProject.projects.size()!=0}"
-				class="col-lg-push-1 col-lg-10">
-				<center>
-					<legend>Résultats</legend>
-				</center>
-				<strong> <span class="col-lg-2">Date de publication</span>
-					<span class="col-lg-2">Auteur</span> <span class="col-lg-2">Projet</span>
-					<span class="col-lg-2">Categorie</span> <span class="col-lg-2">Montant</span>
-					<span class="col-lg-2"></span>
-				</strong>
-				<br />
-				<ui:repeat var="project" value="#{mbSearchProject.projects}"
-					style="margin:0 0 0 0;">
-					<span class="col-lg-2">#{project.publishingDate}</span>
-					<span class="col-lg-2">#{project.identity.firstName}</span>
-					<span class="col-lg-2">#{project.projectName}</span>
-					<span class="col-lg-2">#{project.projectCategory.category}</span>
-					<span class="col-lg-2">#{project.aimingAmount}</span>
-<a href="projectDetails.xhtml" class="button lg-btn-default col-lg-2" style="width=auto;margin-top:1em;"><span>Détails</span></a>
-				</ui:repeat>
-			</h:panelGroup>
-		</fieldset>
+
+
+
 
 	</ui:define>
 

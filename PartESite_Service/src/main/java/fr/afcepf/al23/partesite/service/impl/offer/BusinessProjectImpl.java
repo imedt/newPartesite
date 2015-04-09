@@ -142,9 +142,9 @@ public class BusinessProjectImpl implements IBusinessProject {
 	}
 
 	@Override
-	public List<Project> getByCategory(ProjectCategory projectCategory) {
+	public List<Project> getByCategory(Integer idProjectCategory) {
 		List<Project> projects = new ArrayList<>();
-		projects = daoProj.getByCategory(projectCategory);
+		projects = daoProj.getByCategory(idProjectCategory);
 		return projects;
 	}
 	
