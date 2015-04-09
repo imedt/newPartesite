@@ -169,7 +169,7 @@ public class MBDashBoard {
 	public List<Project> getListFinanced() {
 		List<Project> list = buProjects.getByIdentity(cnx.getId());
 		listFinanced = new ArrayList<>();
-		
+	
 		for (Project p : list) {
 			
 			// on recupere le montant a financer
@@ -177,16 +177,10 @@ public class MBDashBoard {
 			
 			List<Pack> packs = buPacks.getByidProject(p.getIdProject());
 			System.out.println("id projet : "+p.getIdProject());
+			
 			for (Pack pack : packs) {
-				if ( pack.getItems()!=null) {
-				for (Item i : pack.getItems()) {
-					if ( i.getItemState().getIdItemState()==2) {
-						backings += i.getAmount();
-					}
-				}
-				}
+				backings += (double) (pack.getAmount()*pack.getNbSale()); 
 			}
-			System.out.println("total des soutiens: "+backings);
 			if (backings>=aimingAmount )  {
 				listFinanced.add(p);
 			}
@@ -216,7 +210,7 @@ public class MBDashBoard {
 		listBackingsWithReward = new ArrayList<>();
 		for (UserOrder uo : list) {
 		for (OrderRow or : uo.getOrderRows()) {
-			if (or.getItem().getPack().getReward()==true) {
+			if (or.getPack().getReward()==true) {
 				listBackingsWithReward.add(uo);
 			}
 		}		
@@ -231,7 +225,7 @@ public class MBDashBoard {
 		listGivings = new ArrayList<>();
 		for (UserOrder uo : list) {
 		for (OrderRow or : uo.getOrderRows()) {
-			if (or.getItem().getPack().getReward()==false) {
+			if (or.getPack().getReward()==false) {
 				listGivings.add(uo);
 			}
 		}		
@@ -288,7 +282,7 @@ public class MBDashBoard {
 	public Integer allMyProjectsFinanced() {
 		List<Project> list = buProjects.getByIdentity(cnx.getId());
 		listFinanced = new ArrayList<>();
-		
+	
 		for (Project p : list) {
 			
 			// on recupere le montant a financer
@@ -296,16 +290,10 @@ public class MBDashBoard {
 			
 			List<Pack> packs = buPacks.getByidProject(p.getIdProject());
 			System.out.println("id projet : "+p.getIdProject());
+			
 			for (Pack pack : packs) {
-				if ( pack.getItems()!=null) {
-				for (Item i : pack.getItems()) {
-					if ( i.getItemState().getIdItemState()==2) {
-						backings += i.getAmount();
-					}
-				}
-				}
+				backings += (double) (pack.getAmount()*pack.getNbSale()); 
 			}
-			System.out.println("total des soutiens: "+backings);
 			if (backings>=aimingAmount )  {
 				listFinanced.add(p);
 			}
@@ -322,7 +310,7 @@ public class MBDashBoard {
 		listBackingsWithReward = new ArrayList<>();
 		for (UserOrder uo : list) {
 		for (OrderRow or : uo.getOrderRows()) {
-			if (or.getItem().getPack().getReward()==true) {
+			if (or.getPack().getReward()==true) {
 				listBackingsWithReward.add(uo);
 			}
 		}		
@@ -335,7 +323,7 @@ public class MBDashBoard {
 		listGivings = new ArrayList<>();
 		for (UserOrder uo : list) {
 		for (OrderRow or : uo.getOrderRows()) {
-			if (or.getItem().getPack().getReward()==false) {
+			if (or.getPack().getReward()==false) {
 				listGivings.add(uo);
 			}
 		}		

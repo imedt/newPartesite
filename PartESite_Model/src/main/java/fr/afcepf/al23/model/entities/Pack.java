@@ -184,4 +184,12 @@ public class Pack implements Serializable {
 		this.project = project;
 	}
 
+	public Integer getNbSale() {
+		return nbSale;
+	}
+
+	public void setNbSale(Integer nbSale) {
+		this.nbSale = nbSale;
+	}
+
 }
