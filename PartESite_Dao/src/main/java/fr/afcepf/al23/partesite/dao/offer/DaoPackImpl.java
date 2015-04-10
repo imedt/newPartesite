@@ -1,4 +1,3 @@
-
 package fr.afcepf.al23.partesite.dao.offer;
 
 import java.util.List;
@@ -69,12 +68,12 @@ public class DaoPackImpl implements IDaoPack {
 	@Override
 	public List<Pack> getByidProject(Integer idProject) {
 		log.info("getByidProject = " + idProject);
-		
+
 		Query hql = em.createQuery(
 
-				"SELECT p FROM Pack p WHERE p.project.idProject=:pidproject")
+		"SELECT p FROM Pack p WHERE p.project.idProject=:pidproject")
 
-				.setParameter("pidproject", idProject);
+		.setParameter("pidproject", idProject);
 		List<Pack> packs = null;
 
 		packs = hql.getResultList();
@@ -86,14 +85,17 @@ public class DaoPackImpl implements IDaoPack {
 	}
 
 	@Override
-	public int getNbSale(Pack pack) {
-		int nbSale = 0;
-		Query hql = em.createQuery(
-				"SELECT count(i.idItem) FROM Item i WHERE i.pack = :ppack and i.itemState.id_item_state = 3")
+	public Integer getNbSale(Pack pack) {
+		Integer nbSale = 0;
+		log.info("getNbSale");
+		Query hql = em
+				.createQuery(
+						"SELECT count(*) FROM Item i WHERE i.pack = :ppack and i.itemState.idItemState = 3")
 				.setParameter("ppack", pack);
-
-		nbSale = (int) hql.getSingleResult();
-
+		long nbTemp = 0;
+		nbTemp = (long) hql.getSingleResult();
+		nbSale = (Integer) (int) (long) nbTemp;
+		log.info(nbSale);
 		return nbSale;
 	}
 

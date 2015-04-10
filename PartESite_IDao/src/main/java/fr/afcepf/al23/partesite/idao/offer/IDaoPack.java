@@ -17,6 +17,6 @@ public interface IDaoPack {
 
 	public List<Pack> getByidProject(Integer idProject);
 
-	public int getNbSale(Pack pack);
+	public Integer getNbSale(Pack pack);
 
 }

@@ -7,8 +7,9 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
+import org.apache.log4j.Logger;
+
 import fr.afcepf.al23.model.entities.Identity;
-import fr.afcepf.al23.model.entities.Item;
 import fr.afcepf.al23.model.entities.Pack;
 import fr.afcepf.al23.model.entities.Project;
 import fr.afcepf.al23.model.entities.ProjectCategory;
@@ -19,6 +20,8 @@ import fr.afcepf.al23.partesite.iservice.offer.IBusinessProject;
 
 @Stateless
 public class BusinessProjectImpl implements IBusinessProject {
+
+	private static Logger log = Logger.getLogger(BusinessProjectImpl.class);
 
 	@EJB
 	IDaoProject daoProj;
@@ -90,8 +93,9 @@ public class BusinessProjectImpl implements IBusinessProject {
 
 	@Override
 	public List<Project> getAllWithItems() {
-
+log.info("getAllWithItems");
 		List<Project> projects = daoProj.getAll();
+		log.info("nombre de projets : "+projects.size());
 		if (projects != null)
 			for (Project project : projects) {
 				if (project.getPacks() != null)
