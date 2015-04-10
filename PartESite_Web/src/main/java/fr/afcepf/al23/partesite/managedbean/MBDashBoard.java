@@ -33,13 +33,13 @@ public class MBDashBoard {
 	private Integer allMyBackingsWithRewardCount;
 	private Integer allMyGivingsCount;
 	private Integer allMyNotificationsCount;
-	private List<Project> projects;
-	private List<Project> listOnline;
-	private List<Project> listFinanced;
-	private List<Project> listDisabled;
-	private List<UserOrder> listBackingsWithReward;
-	private List<UserOrder> listGivings;
-	private List<Notification> listNotifications;
+	private List<Project> projects = new ArrayList<>();
+	private List<Project> listOnline = new ArrayList<>();
+	private List<Project> listFinanced = new ArrayList<>();
+	private List<Project> listDisabled = new ArrayList<>();
+	private List<UserOrder> listBackingsWithReward = new ArrayList<>();
+	private List<UserOrder> listGivings = new ArrayList<>();
+	private List<Notification> listNotifications = new ArrayList<>();
 	private Double backingsAmount;
 
 
@@ -167,26 +167,32 @@ public class MBDashBoard {
 		this.listOnline = listOnline;
 	}
 	public List<Project> getListFinanced() {
-		List<Project> list = buProjects.getByIdentity(cnx.getId());
-		listFinanced = new ArrayList<>();
-	
-		for (Project p : list) {
-			
-			// on recupere le montant a financer
-			aimingAmount = p.getAimingAmount();
-			
-			List<Pack> packs = buPacks.getByidProject(p.getIdProject());
-			System.out.println("id projet : "+p.getIdProject());
-			
-			for (Pack pack : packs) {
-				backings += (double) (pack.getAmount()*pack.getNbSale()); 
+		List<Project> list;
+		try {
+			list = buProjects.getByIdentity(cnx.getId());
+			listFinanced = new ArrayList<>();
+		
+			for (Project p : list) {
+				
+				// on recupere le montant a financer
+				aimingAmount = p.getAimingAmount();
+				
+				List<Pack> packs = buPacks.getByidProject(p.getIdProject());
+				System.out.println("id projet : "+p.getIdProject());
+				
+				for (Pack pack : packs) {
+					backings += (double) (pack.getAmount()*pack.getNbSale()); 
+				}
+				if (backings>=aimingAmount )  {
+					listFinanced.add(p);
+				}
+				aimingAmount = 0.00;
+				backings = 0.00;
 			}
-			if (backings>=aimingAmount )  {
-				listFinanced.add(p);
-			}
-			aimingAmount = 0.00;
-			backings = 0.00;
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+		
 		return listFinanced;
 	}
 	public void setListFinanced(List<Project> listFinanced) {
@@ -280,28 +286,33 @@ public class MBDashBoard {
 	private Double backings = 0.00;
 	
 	public Integer allMyProjectsFinanced() {
-		List<Project> list = buProjects.getByIdentity(cnx.getId());
-		listFinanced = new ArrayList<>();
-	
-		for (Project p : list) {
-			
-			// on recupere le montant a financer
-			aimingAmount = p.getAimingAmount();
-			
-			List<Pack> packs = buPacks.getByidProject(p.getIdProject());
-			System.out.println("id projet : "+p.getIdProject());
-			
-			for (Pack pack : packs) {
-				backings += (double) (pack.getAmount()*pack.getNbSale()); 
+		List<Project> list;
+		try {
+			list = buProjects.getByIdentity(cnx.getId());
+			listFinanced = new ArrayList<>();
+		
+			for (Project p : list) {
+				
+				// on recupere le montant a financer
+				aimingAmount = p.getAimingAmount();
+				
+				List<Pack> packs = buPacks.getByidProject(p.getIdProject());
+				System.out.println("id projet : "+p.getIdProject());
+				
+				for (Pack pack : packs) {
+					backings += (double) (pack.getAmount()*pack.getNbSale()); 
+				}
+				if (backings>=aimingAmount )  {
+					listFinanced.add(p);
+				}
+				aimingAmount = 0.00;
+				backings = 0.00;
 			}
-			if (backings>=aimingAmount )  {
-				listFinanced.add(p);
-			}
-			aimingAmount = 0.00;
-			backings = 0.00;
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		if (listFinanced.size()!=0)
-		return allMyProjectsFinancedCount = listFinanced.size();
+			return allMyProjectsFinancedCount = listFinanced.size();
 		else return 0;
 	}
 	

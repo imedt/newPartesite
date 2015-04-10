@@ -18,7 +18,7 @@ public interface IDaoProject {
 	public List<Project> getAll();
 	public List<Project> getAllPublish();
 	public List<Project> getByIdentity(Identity identity);
-	public List<Project> getByCategory(ProjectCategory projectCategory);
+	public List<Project> getByCategory(Integer idProjectCategory);
 	public List<Project> getByName(String name);
 	public List<Project> getByNameWithCategory(String name);
 	public List<Project> getByPublishingDate(Date publishingDate);

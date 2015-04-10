@@ -1,5 +1,6 @@
 package fr.afcepf.al23.partesite.managedbean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -24,14 +25,14 @@ public class MBSearchProject {
 	private IBusinessProjectCategory buProjectCategory;
 
 	private ProjectCategory cat;
-	private String category;
+	private Integer idCategory;
 	private String name;
 	private List<ProjectCategory> categories;
-	private List<Project> projects;
+	private List<Project> projects = new ArrayList<>();
 	private Integer idProject;
 
 	// Get & Set
-	
+
 	public List<ProjectCategory> getCategories() {
 		categories = buProjectCategory.getAll();
 		return categories;
@@ -49,16 +50,17 @@ public class MBSearchProject {
 		this.buProjectCategory = buProjectCategory;
 	}
 	public ProjectCategory getCat() {
+		cat = buProjectCategory.get(getIdCategory());
 		return cat;
 	}
 	public void setCat(ProjectCategory cat) {
 		this.cat = cat;
 	}
-	public String getCategory() {
-		return category;
+	public Integer getIdCategory() {
+		return idCategory;
 	}
-	public void setCategory(String category) {
-		this.category = category;
+	public void setIdCategory(Integer idCategory) {
+		this.idCategory = idCategory;
 	}
 	public String getName() {
 		return name;
@@ -66,36 +68,31 @@ public class MBSearchProject {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public List<Project> getProjects() {
-		this.searchByName();
-		return projects;
-	}
-	public void setProjects(List<Project> projects) {
-		this.projects = projects;
-	}
 	public void setCategories(List<ProjectCategory> categories) {
 		this.categories = categories;
 	}
-	
-
-	// Méthodes 
-	
 	public Integer getIdProject() {
 		return idProject;
 	}
 	public void setIdProject(Integer idProject) {
 		this.idProject = idProject;
 	}
+	public List<Project> getProjects() {
+		return projects;
+	}
+	public void setProjects(List<Project> projects) {
+		this.projects = projects;
+	}
+	// Méthodes 
 	public void searchByName() {
-		
 		projects = buProject.getByNameWithCategory(name);
 	}
 
-	public List<Project> searchByCategory() {
-
-		projects = buProject.getByCategory(cat);
-
-		return projects;
+	public void searchByCategory() {
+		projects = buProject.getByCategory(getIdCategory());
 	}
 
+	public void reset() {
+		projects = new ArrayList<>();
+	}
 }

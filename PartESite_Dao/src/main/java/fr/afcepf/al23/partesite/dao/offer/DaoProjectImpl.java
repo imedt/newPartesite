@@ -84,7 +84,8 @@ public class DaoProjectImpl implements IDaoProject {
 	public List<Project> getByNameWithCategory(String name) {
 
 		Query hql = em
-				.createQuery("SELECT DISTINCT p FROM Project p inner join fetch p.projectCategory");
+				.createQuery("SELECT DISTINCT p FROM Project p inner join fetch p.projectCategory WHERE p.projectName LIKE :pName")
+				.setParameter("pName", "%"+name+"%");
 		
 		List<Project> liste = null;
 		liste = hql.getResultList();
@@ -155,11 +156,11 @@ public class DaoProjectImpl implements IDaoProject {
 	}
 
 	@Override
-	public List<Project> getByCategory(ProjectCategory projectCategory) {
+	public List<Project> getByCategory(Integer idProjectCategory) {
 		Query hql = em
 				.createQuery(
-						"SELECT DISTINCT p FROM Project p WHERE p.projectCategory = :pprojectCategory")
-				.setParameter("pprojectCategory", projectCategory);
+						"SELECT DISTINCT p FROM Project p WHERE p.projectCategory.idProjectCategory=:pIdProjectCategory")
+				.setParameter("pIdProjectCategory", idProjectCategory);
 
 		List<Project> liste = null;
 
