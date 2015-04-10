@@ -48,13 +48,27 @@
 
 <h:panelGroup rendered="#{mbEditProject.cP!=null}">
 <fieldset>
-<legend>Package</legend>
-</fieldset>
-</h:panelGroup>
+<legend>Package (3 maximum)</legend>
 
-<h:panelGroup rendered="#{mbEditProject.pack!=null}">
-<fieldset>
-<legend>Article</legend>
+<span class="col-lg-3">Nom du Package :</span>
+<h:inputText class="col-lg-9" value="#{mbEditProject.packName}" />
+
+<span class="col-lg-3">Choix du Reward :</span>
+<h:selectOneMenu class="col-lg-9" style="height:2em;" value="#{mbEditProject.reward}">
+<f:selectItem itemValue="true" itemLabel="Investissement"/>
+<f:selectItem itemValue="false" itemLabel="Don"/>
+</h:selectOneMenu>
+<span class="col-lg-3">Décrire le reward octroyé :</span>
+<h:inputText class="col-lg-9" value="#{mbEditProject.description}" />
+
+<span class="col-lg-3">Montant à régler par package :</span>
+<h:inputText class="col-lg-9" value="#{mbEditProject.packAmount}" />
+
+<span class="col-lg-3">Quantité de package :</span>
+<h:inputText class="col-lg-9" value="#{mbEditProject.stock}" />
+
+<h:commandButton class="col-lg-push-3 col-lg-9" type="submit" action="#{mbEditProject.addPackToProject()}" value="Enregistrer"/>
+
 </fieldset>
 </h:panelGroup>
 

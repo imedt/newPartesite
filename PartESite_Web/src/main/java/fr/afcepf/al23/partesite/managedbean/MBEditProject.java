@@ -119,6 +119,33 @@ public class MBEditProject {
 	public void resetP() {
 
 		p = new Project();
+		pack = new Pack();
+		cP = new ProjectContent();
+		i = new Item();
+
+		aimingAmount= null;
+		projectName= null;
+		idProjectCategory= null;
+		projectCategory= null;
+		categories= null;
+		projectContents = null;
+		idContentProject= null;
+		cPContentImage= null;
+		cPContentVideo= null;
+		cPContentAuthor= null;
+		cPContentConcept= null;
+		idPack= null;
+		packAmount= null;
+		description= null;
+		packName= null;
+		reward= null;
+		stock= null;
+		items= null;
+		nbSale= null;
+		idItem= null;
+		idOrderRow= null;
+		iAmount= 0.00;
+		itemState= null;
 	}
 
 	public void addPackToProject() {
