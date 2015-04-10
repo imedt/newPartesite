@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="TemplateUserProjects.xhtml">
+
+<ui:define name="header-title">Nouveau Projet</ui:define>
+<ui:define name="sous-logo">#{mbConnexion.id.firstName}</ui:define>
+
+<ui:define name="content">
+
+<div class="row">
+<div class="col-lg-push-1 col-lg-10">
+
+<fieldset class="col-lg-12">
+<legend>Création du projet</legend>
+
+<span class="col-lg-3">Nom du projet :</span>
+<h:inputText class="col-lg-9" value="#{mbEditProject.projectName}"/>
+<span class="col-lg-3">Capital sollicité :</span>
+<h:inputText class="col-lg-9" value="#{mbEditProject.aimingAmount}"/>
+<span class="col-lg-3">Catégorie :</span>
+<h:selectOneMenu value="#{mbEditProject.idProjectCategory}" class="col-lg-9" style="height:2em;">
+<f:selectItems value="#{mbEditProject.categories}" var="c" itemValue="#{c.idProjectCategory}" itemLabel="#{c.category}"/>
+</h:selectOneMenu>
+
+<h:commandButton class="col-lg-push-3 col-lg-9" type="submit" action="#{mbEditProject.createProject()}" value="Enregistrer"/>
+<h:commandButton class="col-lg-push-3 col-lg-9" type="submit" action="#{mbEditProject.resetP()}" value="Reset"/>
+</fieldset>
+
+
+<h:panelGroup rendered="#{mbEditProject.p!=null}">
+<fieldset>
+<legend>Contenu</legend>
+<span class="col-lg-3">Image :</span>
+<h:inputText class="col-lg-9" value="#{mbEditProject.cPContentImage}" />
+<span class="col-lg-3">Vidéo :</span>
+<h:inputText class="col-lg-9" value="#{mbEditProject.cPContentVideo}" />
+<span class="col-lg-3">Présentation auteur :</span>
+<h:inputText class="col-lg-9" value="#{mbEditProject.cPContentAuthor}" />
+<span class="col-lg-3">Description concept :</span>
+<h:inputText class="col-lg-9" value="#{mbEditProject.cPContentConcept}" />
+<h:commandButton class="col-lg-push-3 col-lg-9" type="submit" action="#{mbEditProject.addContentsToProject()}" value="Enregistrer"/>
+</fieldset>
+</h:panelGroup>
+
+<h:panelGroup rendered="#{mbEditProject.cP!=null}">
+<fieldset>
+<legend>Package</legend>
+</fieldset>
+</h:panelGroup>
+
+<h:panelGroup rendered="#{mbEditProject.pack!=null}">
+<fieldset>
+<legend>Article</legend>
+</fieldset>
+</h:panelGroup>
+
+</div>
+</div>
+
+</ui:define>
+
+</ui:composition>
+</html>

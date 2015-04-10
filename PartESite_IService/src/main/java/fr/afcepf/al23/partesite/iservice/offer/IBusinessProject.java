@@ -13,14 +13,9 @@ import fr.afcepf.al23.model.entities.ProjectCategory;
 public interface IBusinessProject {
  
 	public Project save(Project project);
-	
-	public Project get(int idProject);
-		
-	
+	public Project get(Integer idProject);
 	public Project publishProject(Project project);
-		
 	public Project disableProject(Project project);
-	
 	public List<Project> getAll();
 	public List<Project> getAllWithItems();
 	public List<Project> getAllFinancedProjects();
@@ -35,7 +30,6 @@ public interface IBusinessProject {
 			ProjectCategory projectCategory,
 			Identity identity
 			);
-	
 	public List<Project> getAllPublish();
 	public List<Project> getByIdentity(Identity identity);
 }

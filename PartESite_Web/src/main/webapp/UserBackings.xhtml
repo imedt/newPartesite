@@ -18,72 +18,89 @@
 
 				<h:panelGroup
 					rendered="#{mbDashboard.listBackingsWithReward.size()!=0}">
-					<fieldset class="col-lg-10">
+					<center>
+						<h3 class="col-lg-push-1 col-lg-10" style="color:navy;font-weight:bold;">Mes Participations</h3></center>
+<h:dataTable class="col-lg-push-1 col-lg-10"
+				value="#{mbDashboard.listBackingsWithReward}" var="p" styleClass="table"
+				headerClass="table-header"
+				rowClasses="table-odd-row, table-even-row">
+			
+				<h:column>
+					<f:facet name="header">Référence</f:facet>   			
+    				#{p.idUserOrder}
+    			</h:column>
+				<h:column>
+					<f:facet name="header">Création</f:facet>   			
+    				#{p.createdDate}
+    			</h:column>
+				<h:column>
+					<f:facet name="header">Nom Projet(s)</f:facet>
+					<ui:repeat var="row" value="#{p.orderRows}">
+						<span class="col-lg-3">#{row.pack.project.projectName}</span>
+					</ui:repeat>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Participation Globale</f:facet>   			
+    				#{p.totalAmount}
+    			</h:column>
 
-						<legend>Mes Participations</legend>
-
-						<div class="header">
-							<span class="col-lg-3">Référence</span> <span class="col-lg-3">Création</span>
-							<span class="col-lg-3">Nom Projet(s)</span> <span
-								class="col-lg-3">Participation Globale</span>
-						</div>
-
-						<ui:repeat var="p" value="#{mbDashboard.listBackingsWithReward}">
-
-							<span class="col-lg-3">#{p.idUserOrder}</span>
-							<span class="col-lg-3">#{p.createdDate}</span>
-
-							<ui:repeat var="row" value="#{p.orderRows}">
-								<span class="col-lg-3">#{row.item.pack.project.projectName}</span>
-							</ui:repeat>
-
-							<span class="col-lg-3">#{p.totalAmount}</span>
-						</ui:repeat>
-					</fieldset>
-				</h:panelGroup>
+				<h:column>
+					<f:facet name="header">Consultation</f:facet>
+					<span class="col-lg-2" id="details"><a
+						href="projectDetails.xhtml">Détails</a></span>
+				</h:column>
+			</h:dataTable>			
+			</h:panelGroup>
 
 				<h:panelGroup
 					rendered="#{mbDashboard.listBackingsWithReward.size()==0}">
-					<span class="col-lg-3">Aucun projet enregistré</span>
+					<center>
+					<span class="col-lg-push-1 col-lg-10" style="color:navy;font-weight:bold;">Aucun investissement enregistré</span></center>
 				</h:panelGroup>
 
 			</div>
 		</div>
 
-		<div class="row">
-			<div class="col-lg-12">
 
-				<h:panelGroup rendered="#{mbDashboard.listGivings.size()!=0}">
-					<fieldset class="col-lg-10">
+		<h:panelGroup rendered="#{mbDashboard.listGivings.size()!=0}">
+		<center>
+			<h3 class="col-lg-push-1 col-lg-10" style="color:navy;font-weight:bold;">Mes Dons</h3></center>
+			<h:dataTable class="col-lg-push-1 col-lg-10"
+				value="#{mbDashboard.listGivings}" var="p" styleClass="table"
+				headerClass="table-header"
+				rowClasses="table-odd-row, table-even-row">
+			
+				<h:column>
+					<f:facet name="header">Référence</f:facet>   			
+    				#{p.idUserOrder}
+    			</h:column>
+				<h:column>
+					<f:facet name="header">Création</f:facet>   			
+    				#{p.createdDate}
+    			</h:column>
+				<h:column>
+					<f:facet name="header">Nom Projet(s)</f:facet>
+					<ui:repeat var="row" value="#{p.orderRows}">
+						<span class="col-lg-3">#{row.pack.project.projectName}</span>
+					</ui:repeat>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Participation Globale</f:facet>   			
+    				#{p.totalAmount}
+    			</h:column>
 
-						<legend>Mes Dons</legend>
-
-						<div class="header">
-							<span class="col-lg-3">Référence</span> <span class="col-lg-3">Création</span>
-							<span class="col-lg-3">Nom Projet(s)</span> <span
-								class="col-lg-3">Participation Globale</span>
-						</div>
-
-						<ui:repeat var="p" value="#{mbDashboard.listGivings}">
-
-							<span class="col-lg-3">#{p.idUserOrder}</span>
-							<span class="col-lg-3">#{p.createdDate}</span>
-
-							<ui:repeat var="row" value="#{p.orderRows}">
-								<span class="col-lg-3">#{row.item.pack.project.projectName}</span>
-							</ui:repeat>
-
-							<span class="col-lg-3">#{p.totalAmount}</span>
-						</ui:repeat>
-					</fieldset>
+				<h:column>
+					<f:facet name="header">Consultation</f:facet>
+					<span class="col-lg-2" id="details"><a
+						href="projectDetails.xhtml">Détails</a></span>
+				</h:column>
+			</h:dataTable>
+		</h:panelGroup>
+		<h:panelGroup
+					rendered="#{mbDashboard.listGivings.size()==0}">
+					<center>
+					<span class="col-lg-push-1 col-lg-10" style="color:navy;font-weight:bold;">Aucun don enregistré</span></center>
 				</h:panelGroup>
-
-				<h:panelGroup rendered="#{mbDashboard.listGivings.size()==0}">
-					<span class="col-lg-3">Aucun projet enregistré</span>
-				</h:panelGroup>
-
-			</div>
-		</div>
 
 	</ui:define>
 

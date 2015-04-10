@@ -23,12 +23,8 @@ public class BusinessItemImpl implements IBusinessItem {
 	
 	
 	@Override
-	public Item createItem(Double amount) {
-		
-		Item item = new Item();
-		item.setAmount(amount);
+	public Item createItem(Item item) {
 		dao.add(item);
-		
 		return item;
 	}
 

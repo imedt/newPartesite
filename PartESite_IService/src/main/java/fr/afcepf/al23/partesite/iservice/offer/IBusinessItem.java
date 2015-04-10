@@ -10,7 +10,7 @@ import fr.afcepf.al23.model.entities.Pack;
 @Remote
 public interface IBusinessItem {
 
-	public Item createItem(Double amount);
+	public Item createItem(Item item);
 	public void updateItem(Item item);
 	public void enableItem(Item item);
 	public void disableItem(Item item);

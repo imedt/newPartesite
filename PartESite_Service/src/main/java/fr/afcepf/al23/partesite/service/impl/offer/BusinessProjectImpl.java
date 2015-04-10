@@ -51,8 +51,7 @@ public class BusinessProjectImpl implements IBusinessProject {
 	}
 
 	@Override
-	public Project get(int idProject) {
-		
+	public Project get(Integer idProject) {
 		return daoProj.get(idProject);
 	}
 

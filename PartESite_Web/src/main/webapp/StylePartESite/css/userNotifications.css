@@ -43,6 +43,54 @@ body {font-family: 'Source Sans Pro';font-weight:300;text-transform: uppercase;b
 
 .footerTitre strong {color:#47b8af;}
 
+#details {
+	margin-top:0;
+	padding-left:1em;
+}
 
+#details a {
+	color: navy;
+	font-weight: bold;
+}
+
+#details:hover a {
+	color: #47b8af;
+	font-weight: bold;
+}
+
+
+.table {
+	border-collapse: collapse;
+	color: navy;
+}
+
+.table-header {
+	text-align: center;
+	background: none repeat scroll 0 0 #47b8af;
+	border-bottom: 2px solid navy;
+	padding: 16px;
+	color: navy;
+	font-weight: bold;
+}
+
+.table-odd-row {
+	text-align: center;
+	background: none repeat scroll 0 0 #FFFFFFF;
+	border-top: 2px solid navy;
+}
+
+.table-even-row {
+	text-align: center;
+	background: none repeat scroll 0 0 #F9F9F9;
+	border-top: 2px solid navy;
+}
+
+.table-odd-row td {
+	color: navy;
+}
+
+.table-even-row td {
+	color: navy;
+}
 
 	
