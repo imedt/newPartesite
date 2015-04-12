@@ -3,39 +3,30 @@ package fr.afcepf.al23.partesite.managedbean;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.ArrayBlockingQueue;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 
 import org.apache.log4j.Logger;
 
 import fr.afcepf.al23.model.entities.Identity;
 import fr.afcepf.al23.model.entities.Item;
 import fr.afcepf.al23.model.entities.ItemState;
+import fr.afcepf.al23.model.entities.Notification;
 import fr.afcepf.al23.model.entities.Pack;
 import fr.afcepf.al23.model.entities.Project;
 import fr.afcepf.al23.model.entities.ProjectCategory;
 import fr.afcepf.al23.model.entities.ProjectContent;
+import fr.afcepf.al23.partesite.iservice.notification.IBusinessNotification;
 import fr.afcepf.al23.partesite.iservice.offer.IBusinessItem;
 import fr.afcepf.al23.partesite.iservice.offer.IBusinessItemState;
 import fr.afcepf.al23.partesite.iservice.offer.IBusinessPack;
 import fr.afcepf.al23.partesite.iservice.offer.IBusinessProject;
 import fr.afcepf.al23.partesite.iservice.offer.IBusinessProjectCategory;
 import fr.afcepf.al23.partesite.iservice.offer.IBusinessProjectContent;
+import fr.afcepf.al23.partesite.iservice.user.IBusinessIdentity;
 
 @ManagedBean(name = "mbEditProject")
 @SessionScoped
@@ -46,6 +37,8 @@ public class MBEditProject {
 	@ManagedProperty(value = "#{mbConnexion}")
 	MBConnexion cnx;
 
+	@EJB
+	IBusinessIdentity buIdentity;
 	@EJB
 	IBusinessProject buProject;
 	@EJB
@@ -58,6 +51,8 @@ public class MBEditProject {
 	IBusinessItem buItem;
 	@EJB
 	IBusinessItemState buItemState;
+	@EJB
+	IBusinessNotification buNotification;
 
 	// Creation Projet à rattacher à l'Utilisateur
 	private Project p;
@@ -105,7 +100,7 @@ public class MBEditProject {
 		p.setCreatedDate(new Date());
 
 		// Seront modifiés par le modérateur à la publication
-		p.setDisabled(true);
+		p.setDisabled(false);
 		p.setPublish(false);
 
 		p.setIdentity(cnx.getId());
@@ -114,6 +109,26 @@ public class MBEditProject {
 		p.setProjectCategory(projectCategory);
 
 		p = buProject.save(p);
+
+		Notification n = new Notification();
+		n.setCreatedBy(1);
+		n.setCreatedDate(new Date());
+		n.setContentNotification("Nouveau projet à publier : "+p.getProjectName());
+		n.setIdentity(cnx.getId());
+		n.setIdTarget(1);
+		n.setDisabled(false);
+		buNotification.save(n);
+
+		Notification n1 = new Notification();
+		n1.setCreatedBy(1);
+		n1.setCreatedDate(new Date());
+		n1.setContentNotification("Votre demande de publication du projet : "+p.getProjectName()+" a bien été recue.");
+		Identity moderator = buIdentity.get(1);
+		n1.setIdentity(moderator);
+		n1.setIdTarget(cnx.getId().getIdIdentity());
+		n1.setDisabled(false);
+		buNotification.save(n1);
+
 	}
 
 	public void resetP() {

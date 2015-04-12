@@ -1,0 +1,51 @@
+.projects {margin-top:5em;}
+
+#details {
+	margin-top:0;
+	padding-left:1em;
+}
+
+#details a {
+	color: navy;
+	font-weight: bold;
+}
+
+#details:hover a {
+	color: silver;
+	font-weight: bold;
+}
+
+
+.table {
+	border-collapse: collapse;
+	color: navy;
+}
+
+.table-header {
+	text-align: center;
+	background: none repeat scroll 0 0 silver;
+	border-bottom: 2px solid navy;
+	padding: 16px;
+	color: navy;
+	font-weight: bold;
+}
+
+.table-odd-row {
+	text-align: center;
+	background: none repeat scroll 0 0 #FFFFFFF;
+	border-top: 2px solid navy;
+}
+
+.table-even-row {
+	text-align: center;
+	background: none repeat scroll 0 0 #F9F9F9;
+	border-top: 2px solid navy;
+}
+
+.table-odd-row td {
+	color: navy;
+}
+
+.table-even-row td {
+	color: navy;
+}

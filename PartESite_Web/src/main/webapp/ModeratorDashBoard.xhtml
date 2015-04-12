@@ -5,7 +5,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <ui:composition template="TemplateModeratorDashboard.xhtml">
-
+<ui:define name="header-title">Tableau de bord</ui:define>
 
 <ui:define name="montantFinanced">#{mbModerator.projectsFinancedMontant}</ui:define>
 <ui:define name="sous-logo"><h:form>#{mbConnexion.id.firstName}</h:form></ui:define>

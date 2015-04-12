@@ -53,7 +53,7 @@ public class DaoPackImpl implements IDaoPack {
 	@Override
 	public List<Pack> getAll() {
 
-		Query hql = em.createQuery("SELECT * FROM Pack");
+		Query hql = em.createQuery("SELECT* FROM Pack");
 
 		List<Pack> packs = null;
 

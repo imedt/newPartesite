@@ -169,4 +169,15 @@ log.info("getAllWithItems");
 		return projects;
 	}
 
+	@Override
+	public List<Project> getAllProjectsToPublish() {
+		List<Project> projects = new ArrayList<>();
+		try {
+			projects = daoProj.getAllProjectsToPublish();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return projects;
+	}
+
 }

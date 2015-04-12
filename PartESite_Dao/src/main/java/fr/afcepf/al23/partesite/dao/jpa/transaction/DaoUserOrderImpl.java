@@ -3,6 +3,7 @@
  */
 package fr.afcepf.al23.partesite.dao.jpa.transaction;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -141,10 +142,15 @@ public class DaoUserOrderImpl implements IDaoUserOrder {
 
 	@Override
 	public List<UserOrder> getByIdentity(Identity identity) {
-		Query hql = em.createQuery("SELECT DISTINCT uo FROM UserOrder uo inner join fetch uo.orderRows "
-				+ "WHERE uo.identity = :identity");
-		hql.setParameter("identity", identity);
-		List<UserOrder> list = hql.getResultList();
+		List<UserOrder> list = new ArrayList<>();
+		try {
+			Query hql = em.createQuery("SELECT DISTINCT uo FROM UserOrder uo inner join fetch uo.orderRows "
+					+ "WHERE uo.identity = :identity");
+			hql.setParameter("identity", identity);
+			list = hql.getResultList();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return list;
 	}
 

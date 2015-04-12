@@ -31,5 +31,6 @@ public interface IBusinessProject {
 			Identity identity
 			);
 	public List<Project> getAllPublish();
+	public List<Project> getAllProjectsToPublish();
 	public List<Project> getByIdentity(Identity identity);
 }

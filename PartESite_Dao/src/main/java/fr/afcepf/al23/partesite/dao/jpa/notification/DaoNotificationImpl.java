@@ -3,6 +3,7 @@
  */
 package fr.afcepf.al23.partesite.dao.jpa.notification;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -84,10 +85,15 @@ public class DaoNotificationImpl implements IDaoNotification {
 	 */
 	@Override
 	public List<Notification> getByCreatedBy(Integer idIdentity) {
-		Query hql = em.createQuery("SELECT n FROM Notification n "
-				+ "WHERE n.createdBy = :idIdentity")
-				.setParameter("createdBy", idIdentity);
-		List<Notification> list = hql.getResultList();
+		List<Notification> list = new ArrayList<>();
+		try {
+			Query hql = em.createQuery("SELECT n FROM Notification n "
+					+ "WHERE n.createdBy =:idIdentity")
+					.setParameter("idIdentity", idIdentity);
+			list = hql.getResultList();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return list;
 	}
 
@@ -109,7 +115,7 @@ public class DaoNotificationImpl implements IDaoNotification {
 	@Override
 	public List<Notification> getByDisabled(Boolean disabled) {
 		Query hql = em.createQuery("SELECT n FROM Notification n "
-				+ "WHERE n.disabled = :disabled")
+				+ "WHERE n.disabled =:disabled")
 				.setParameter("disabled", disabled);
 		List<Notification> list = hql.getResultList();
 		return list;
@@ -121,7 +127,7 @@ public class DaoNotificationImpl implements IDaoNotification {
 	@Override
 	public List<Notification> getByTarget(Integer idTarget) {
 		Query hql = em.createQuery("SELECT n FROM Notification n "
-				+ "WHERE n.idTarget = :idTarget")
+				+ "WHERE n.idTarget =:idTarget")
 				.setParameter("idTarget", idTarget);
 		List<Notification> list = hql.getResultList();
 		return list;
@@ -133,7 +139,7 @@ public class DaoNotificationImpl implements IDaoNotification {
 	@Override
 	public List<Notification> getByTargetType(TargetType targetType) {
 		Query hql = em.createQuery("SELECT n FROM Notification n "
-				+ "WHERE n.targetType = :targetType")
+				+ "WHERE n.targetType =:targetType")
 				.setParameter("targetType", targetType);
 		List<Notification> list = hql.getResultList();
 		return list;
@@ -144,10 +150,15 @@ public class DaoNotificationImpl implements IDaoNotification {
 	 */
 	@Override
 	public List<Notification> getByUpdatedBy(Integer idIdentity) {
-		Query hql = em.createQuery("SELECT n FROM Notification n "
-				+ "WHERE n.updatedBy = :updatedBy")
-				.setParameter("updatedBy", idIdentity);
-		List<Notification> list = hql.getResultList();
+		List<Notification> list = new ArrayList<>();
+		try {
+			Query hql = em.createQuery("SELECT n FROM Notification n "
+					+ "WHERE n.updatedBy =:updatedBy")
+					.setParameter("updatedBy", idIdentity);
+			list = hql.getResultList();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return list;
 	}
 
@@ -157,7 +168,7 @@ public class DaoNotificationImpl implements IDaoNotification {
 	@Override
 	public List<Notification> getByUpdatedDate(Date updatedDate) {
 		Query hql = em.createQuery("SELECT n FROM Notification n "
-				+ "WHERE n.updatedDate = :updatedDate")
+				+ "WHERE n.updatedDate =:updatedDate")
 				.setParameter("updatedDate", updatedDate);
 		List<Notification> list = hql.getResultList();
 		return list;

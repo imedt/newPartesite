@@ -1,13 +1,8 @@
 package fr.afcepf.al23.partesite.managedbean;
 
-import java.lang.annotation.Annotation;
-
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-
-import org.apache.log4j.Logger;
 
 import fr.afcepf.al23.model.entities.Identity;
 import fr.afcepf.al23.partesite.iservice.user.IBusinessIdentity;
@@ -16,8 +11,6 @@ import fr.afcepf.al23.partesite.iservice.user.IBusinessIdentity;
 @SessionScoped
 public class MBConnexion {
 
-	
-	Logger log = Logger.getLogger(getClass());
 
 	@EJB
 	IBusinessIdentity buIdentity;

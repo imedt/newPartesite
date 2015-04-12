@@ -1,8 +1,5 @@
 package fr.afcepf.al23.partesite.managedbean;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -12,6 +9,7 @@ import javax.faces.bean.SessionScoped;
 import org.apache.log4j.Logger;
 
 import fr.afcepf.al23.model.entities.Identity;
+import fr.afcepf.al23.model.entities.Pack;
 import fr.afcepf.al23.model.entities.Project;
 import fr.afcepf.al23.model.entities.ProjectCategory;
 import fr.afcepf.al23.partesite.iservice.offer.IBusinessProject;
@@ -32,10 +30,16 @@ public class MBProjet {
 	private ProjectCategory projectCategory;
 	private String publishingDate;
 	private Double aimingAmount;
-	private List<Project>liste;
 	private List<Project>allProjects;
+	private Integer financedAmount;
+
 	
-	
+	public Integer getFinancedAmount() {
+		return financedAmount;
+	}
+	public void setFinancedAmount(Integer financedAmount) {
+		this.financedAmount = financedAmount;
+	}
 	public List<Project> getAllProjects() {
 		allProjects=null;
 		allProjects=buProject.getAllWithItems();
@@ -81,46 +85,5 @@ public class MBProjet {
 		this.aimingAmount = aimingAmount;
 	}
 
-	public List<Project> getListe() {
-		
-		return liste;
-	}
-	public void setListe(List<Project> liste) {
-		this.liste = liste;
-	}
-	
-	public String search(){
-		liste=null;
-		
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		Date date=null;
-		try {
-			date = sdf.parse(publishingDate);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		
-		liste=buProject.searchProjectsBy(projectName, new java.sql.Date(date.getTime()), aimingAmount, projectCategory, identity);
-		
-		log.info(liste.size());
-		return "";
-	}
-	
 
-	
-	public String create(){
-		liste=null;
-		
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		Date date=null;
-		try {
-			date = sdf.parse(publishingDate);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		
-
-		log.info(liste.size());
-		return "";
-	}
 }

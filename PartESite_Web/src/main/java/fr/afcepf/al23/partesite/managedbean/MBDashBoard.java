@@ -60,7 +60,7 @@ public class MBDashBoard {
 	private IBusinessProject buProjects;
 	@EJB
 	private IBusinessPack buPacks;
-	
+
 	@ManagedProperty(value="#{mbConnexion}")
 	private MBConnexion cnx;
 	public Integer getAllMyProjectsCount() {
@@ -171,15 +171,15 @@ public class MBDashBoard {
 		try {
 			list = buProjects.getByIdentity(cnx.getId());
 			listFinanced = new ArrayList<>();
-		
+
 			for (Project p : list) {
-				
+
 				// on recupere le montant a financer
 				aimingAmount = p.getAimingAmount();
-				
+
 				List<Pack> packs = buPacks.getByidProject(p.getIdProject());
 				System.out.println("id projet : "+p.getIdProject());
-				
+
 				for (Pack pack : packs) {
 					backings += (double) (pack.getAmount()*pack.getNbSale()); 
 				}
@@ -192,7 +192,7 @@ public class MBDashBoard {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return listFinanced;
 	}
 	public void setListFinanced(List<Project> listFinanced) {
@@ -215,11 +215,11 @@ public class MBDashBoard {
 		List<UserOrder> list = buUserOrder.getByIdentity(cnx.getId());
 		listBackingsWithReward = new ArrayList<>();
 		for (UserOrder uo : list) {
-		for (OrderRow or : uo.getOrderRows()) {
-			if (or.getPack().getReward()==true) {
-				listBackingsWithReward.add(uo);
-			}
-		}		
+			for (OrderRow or : uo.getOrderRows()) {
+				if (or.getPack().getReward()==true) {
+					listBackingsWithReward.add(uo);
+				}
+			}		
 		}
 		return listBackingsWithReward;
 	}
@@ -230,11 +230,11 @@ public class MBDashBoard {
 		List<UserOrder> list = buUserOrder.getByIdentity(cnx.getId());
 		listGivings = new ArrayList<>();
 		for (UserOrder uo : list) {
-		for (OrderRow or : uo.getOrderRows()) {
-			if (or.getPack().getReward()==false) {
-				listGivings.add(uo);
-			}
-		}		
+			for (OrderRow or : uo.getOrderRows()) {
+				if (or.getPack().getReward()==false) {
+					listGivings.add(uo);
+				}
+			}		
 		}
 		return listGivings;
 	}
@@ -242,23 +242,29 @@ public class MBDashBoard {
 		this.listGivings = listGivings;
 	}
 	public List<Notification> getListNotifications() {
+		try {
+			listNotifications = buNotification.getByCreatedBy(cnx.getId().getIdIdentity());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return listNotifications;
 	}
 	public void setListNotifications(List<Notification> listNotifications) {
 		this.listNotifications = listNotifications;
 	}
 	public IBusinessNotification getBuNotification() {
-		listNotifications = buNotification.getByTarget(cnx.getId().getIdIdentity());
 		return buNotification;
 	}
 	public void setBuNotification(IBusinessNotification buNotification) {
 		this.buNotification = buNotification;
 	}
-		
+
 	//Méthodes
 	public Integer allMyProjects() {
 		projects = buProjects.getByIdentity(cnx.getId());
+		if (projects.size()!=0)
 		return allMyProjectsCount = projects.size();
+		else return 0;
 	}
 	public Integer allMyProjectsOnline() {
 		List<Project> list = buProjects.getByIdentity(cnx.getId());
@@ -268,7 +274,9 @@ public class MBDashBoard {
 				listOnline.add(p);
 			}
 		}
+		if (listOnline.size()!=0)
 		return allMyProjectsOnlineCount = listOnline.size();
+		else return 0;
 	}
 	public Integer allMyProjectsDisabled() {
 		List<Project> list = buProjects.getByIdentity(cnx.getId());
@@ -278,27 +286,29 @@ public class MBDashBoard {
 				listDisabled.add(p);
 			}
 		}
+		if (listDisabled.size()!=0)
 		return allMyProjectsDisabledCount = listDisabled.size();
+		else return 0;
 	}
 
 	// on initialise les montants à comparer pour chaque projet
 	private Double aimingAmount = 0.00;
 	private Double backings = 0.00;
-	
+
 	public Integer allMyProjectsFinanced() {
 		List<Project> list;
 		try {
 			list = buProjects.getByIdentity(cnx.getId());
 			listFinanced = new ArrayList<>();
-		
+
 			for (Project p : list) {
-				
+
 				// on recupere le montant a financer
 				aimingAmount = p.getAimingAmount();
-				
+
 				List<Pack> packs = buPacks.getByidProject(p.getIdProject());
 				System.out.println("id projet : "+p.getIdProject());
-				
+
 				for (Pack pack : packs) {
 					backings += (double) (pack.getAmount()*pack.getNbSale()); 
 				}
@@ -315,35 +325,41 @@ public class MBDashBoard {
 			return allMyProjectsFinancedCount = listFinanced.size();
 		else return 0;
 	}
-	
+
 	public Integer allMyBackingsWithReward() {
 		List<UserOrder> list = buUserOrder.getByIdentity(cnx.getId());
 		listBackingsWithReward = new ArrayList<>();
 		for (UserOrder uo : list) {
-		for (OrderRow or : uo.getOrderRows()) {
-			if (or.getPack().getReward()==true) {
-				listBackingsWithReward.add(uo);
-			}
-		}		
+			for (OrderRow or : uo.getOrderRows()) {
+				if (or.getPack().getReward()==true) {
+					listBackingsWithReward.add(uo);
+				}
+			}		
 		}
-		return allMyBackingsWithRewardCount = listBackingsWithReward.size();
+		if (listBackingsWithReward.size()!=0)
+			return allMyBackingsWithRewardCount = listBackingsWithReward.size();
+		else return 0;
 	}
-	
+
 	public Integer allMyGivings() {
 		List<UserOrder> list = buUserOrder.getByIdentity(cnx.getId());
 		listGivings = new ArrayList<>();
 		for (UserOrder uo : list) {
-		for (OrderRow or : uo.getOrderRows()) {
-			if (or.getPack().getReward()==false) {
-				listGivings.add(uo);
-			}
-		}		
+			for (OrderRow or : uo.getOrderRows()) {
+				if (or.getPack().getReward()==false) {
+					listGivings.add(uo);
+				}
+			}		
 		}
-		return allMyGivingsCount = listGivings.size();
+		if (listGivings.size()!=0)
+			return allMyGivingsCount = listGivings.size();
+		else return 0;
 	}
-	
+
 	public Integer allMyNotifications() {
 		listNotifications = buNotification.getByTarget(cnx.getId().getIdIdentity());
-		return allMyNotificationsCount = listNotifications.size();
+		if (listNotifications.size()!=0)
+			return allMyNotificationsCount = listNotifications.size();
+		else return 0;
 	}
 }

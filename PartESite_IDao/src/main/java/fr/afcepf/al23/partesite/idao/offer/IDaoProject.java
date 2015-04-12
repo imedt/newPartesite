@@ -25,5 +25,6 @@ public interface IDaoProject {
 	public List<Project> searchProjectsBy(String name,
 			Date publishingDate, Double aimingAmount, ProjectCategory projectCategory,
 			Identity identity);
+	public List<Project> getAllProjectsToPublish();
 	
 }
