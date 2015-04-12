@@ -242,12 +242,7 @@ public class MBDashBoard {
 		this.listGivings = listGivings;
 	}
 	public List<Notification> getListNotifications() {
-		try {
-			listNotifications = buNotification.getByCreatedBy(cnx.getId().getIdIdentity());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return listNotifications;
+		return listNotifications = buNotification.getByTarget(cnx.getId().getIdIdentity());
 	}
 	public void setListNotifications(List<Notification> listNotifications) {
 		this.listNotifications = listNotifications;

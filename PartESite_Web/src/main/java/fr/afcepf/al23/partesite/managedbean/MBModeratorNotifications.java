@@ -1,3 +1,4 @@
+package fr.afcepf.al23.partesite.managedbean;
 import java.util.ArrayList;
 import java.util.List;
 
