@@ -47,21 +47,21 @@
 														<h3 class="subtitle col-lg-12">Capital :
 															#{projet.aimingAmount}0 €</h3>
 													</div>
-<ui:repeat var="pack" value="#{projet.packs}">
-													<h3 class="subtitle col-lg-8" style="font-weight: 20px;">Financement
-														: #{pack.nbSale * pack.amount}</h3>
-														</ui:repeat>
-													
+													<ui:repeat var="pack" value="#{projet.packs}" size="0">
 
-
-														<ui:repeat var="pack" value="#{projet.packs}" size="0">
-													<div class="row">
+														<h3 class="subtitle col-lg-8" style="font-weight: 20px;">Financement
+																		: #{((pack.amount * pack.nbSale) /
+																		projet.aimingAmount) * 100} %</h3>
+																	<h3 class="subtitle col-lg-8" style="font-weight: 20px;">
+																		#{pack.amount * pack.nbSale}0 /
+																		#{projet.aimingAmount}0 €</h3>
+															
+														<div class="row">
 															<h3 class="subtitle col-lg-12">
-
 																<p class="col-lg-8">#{pack.description}</p>
 															</h3>
-													</div>
-														</ui:repeat>
+														</div>
+													</ui:repeat>
 
 												</div>
 											</div>
