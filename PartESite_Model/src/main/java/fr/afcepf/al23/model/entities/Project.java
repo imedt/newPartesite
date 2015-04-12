@@ -1,7 +1,9 @@
 package fr.afcepf.al23.model.entities;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.util.Date;
 import java.util.List;
 
@@ -23,6 +25,17 @@ public class Project implements Serializable {
 
 	@Column(name="aiming_amount")
 	private Double aimingAmount;
+	
+	@Transient
+	private Double financedAmount;
+
+	public Double getFinancedAmount() {
+		return financedAmount;
+	}
+
+	public void setFinancedAmount(Double financedAmount) {
+		this.financedAmount = financedAmount;
+	}
 
 	@Column(name="created_by")
 	private Integer createdBy;

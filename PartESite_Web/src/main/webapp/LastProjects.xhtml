@@ -48,14 +48,15 @@
 																€
 														</h3>
 													</div>
-													<ui:repeat var="pack" value="#{projet.packs}" size="0">
-
-														<h3 class="subtitle col-lg-8" style="font-weight: 20px;">Financement
-																		: #{((pack.amount * pack.nbSale) /
+													<h3 class="subtitle col-lg-8" style="font-weight: 20px;">Financement
+																		: #{(projet.financedAmount /
 																		projet.aimingAmount) * 100} %</h3>
 																	<h3 class="subtitle col-lg-8" style="font-weight: 20px;">
-																		#{pack.amount * pack.nbSale}0 /
+																		#{projet.financedAmount}0 /
 																		#{projet.aimingAmount}0 €</h3>
+													<ui:repeat var="pack" value="#{projet.packs}" size="0">
+
+														
 															
 														<div class="row">
 															<h3 class="subtitle col-lg-12">

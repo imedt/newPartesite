@@ -97,9 +97,11 @@ log.info("getAllWithItems");
 		log.info("nombre de projets : "+projects.size());
 		if (projects != null)
 			for (Project project : projects) {
+				project.setFinancedAmount(0d);
 				if (project.getPacks() != null)
 					for (Pack pack : project.getPacks()) {
 						pack.setNbSale(daoPack.getNbSale(pack));
+						project.setFinancedAmount(project.getFinancedAmount() + pack.getNbSale() * pack.getAmount());
 					}
 
 			}
@@ -113,11 +115,13 @@ log.info("getAllWithItems");
 		List<Project> projects = daoProj.getAll();
 		if (projects != null)
 			for (Project project : projects) {
+				project.setFinancedAmount(0d);
 				Double amountTemp = (double)0;
 				if (project.getPacks() != null) {
 					for (Pack pack : project.getPacks()) {
 						pack.setNbSale(daoPack.getNbSale(pack));
 						amountTemp += pack.getNbSale() * pack.getAmount();
+						project.setFinancedAmount(project.getFinancedAmount() + pack.getNbSale() * pack.getAmount());
 					}
 				}
 				
