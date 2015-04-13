@@ -24,6 +24,7 @@ public class MBOrder {
 	@ManagedProperty(value = "#{mbConnexion}")
 	private MBConnexion MBCnx;
 
+	private UserOrder backing;
 	List<UserOrder> orders;
 	double totalAmount;
 
@@ -51,6 +52,22 @@ public class MBOrder {
 		this.orders = orders;
 	}
 
+	public IBusinessOrderRow getBuOrderRow() {
+		return buOrderRow;
+	}
+
+	public void setBuOrderRow(IBusinessOrderRow buOrderRow) {
+		this.buOrderRow = buOrderRow;
+	}
+
+	public UserOrder getBacking() {
+		return backing;
+	}
+
+	public void setBacking(UserOrder backing) {
+		this.backing = backing;
+	}
+
 	public double getTotalAmount() {
 		double total = 0;
 		List<UserOrder> orders = this.getOrders();
@@ -64,4 +81,10 @@ public class MBOrder {
 		this.totalAmount = totalAmount;
 	}
 
+	public String updateBacking(UserOrder uO){
+		backing = new UserOrder();
+		setBacking(uO);
+		return "";
+	}
+	
 }

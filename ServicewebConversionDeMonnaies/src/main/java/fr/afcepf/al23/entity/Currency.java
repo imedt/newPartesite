@@ -15,37 +15,39 @@ public class Currency implements Serializable {
 
 	@Id
 	@Column(name="id_currency")
-	private int idCurrency;
+	private Integer idCurrency;
 
 	private String name;
 
-	private double rate;
+	private Double rate;
 
 	public Currency() {
 	}
 
-	public int getIdCurrency() {
-		return this.idCurrency;
+	public Integer getIdCurrency() {
+		return idCurrency;
 	}
 
-	public void setIdCurrency(int idCurrency) {
+	public void setIdCurrency(Integer idCurrency) {
 		this.idCurrency = idCurrency;
 	}
 
 	public String getName() {
-		return this.name;
+		return name;
 	}
 
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	public double getRate() {
-		return this.rate;
+	public Double getRate() {
+		return rate;
 	}
 
-	public void setRate(double rate) {
+	public void setRate(Double rate) {
 		this.rate = rate;
 	}
+
+
 
 }

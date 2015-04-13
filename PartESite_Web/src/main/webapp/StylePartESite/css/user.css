@@ -38,7 +38,7 @@ body {font-family: 'Source Sans Pro';font-weight:300;text-transform: uppercase;b
 .footerTitre {color:#47b8af;}
 
 .footerTitre strong {color:#47b8af;}
-
+.button {height: 3em;}
 
 #details {
 	margin-top:0;

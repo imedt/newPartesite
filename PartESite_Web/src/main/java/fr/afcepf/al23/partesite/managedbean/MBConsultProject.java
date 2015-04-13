@@ -1,6 +1,5 @@
 package fr.afcepf.al23.partesite.managedbean;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +19,8 @@ import fr.afcepf.al23.partesite.iservice.offer.IBusinessProjectContent;
 @SessionScoped
 public class MBConsultProject {
 
+
+	
 	@EJB
 	private IBusinessProject buProjects;
 	@EJB
@@ -28,18 +29,39 @@ public class MBConsultProject {
 	private IBusinessPack buPacks;
 
 	private Project p = new Project();
+	private Project projetARecuperer;
 	private String name, image, video, author, concept;
 
-	//pour les packages
+	// pour les packages
 	private List<Pack> packs = new ArrayList<>();
-	private Pack pack = new Pack();
-	private Integer packAmount, packStock, availableItemsToBuy;
-	private ProjectContent contentProjectAuthor, contentProjectImage, contentProjectVideo, contentProjectConcept;
-	private ArrayList<Integer> listOfAvailableItemsToBuy = new ArrayList<>();
+	private Pack pack1 = new Pack();
+	private Pack pack2 = new Pack();
+	private Pack pack3 = new Pack();
+	private ProjectContent aucunContenu = new ProjectContent();
+	private ProjectContent contentProjectAuthor = new ProjectContent();
+	private ProjectContent contentProjectImage  = new ProjectContent();
+	private ProjectContent contentProjectVideo  = new ProjectContent();
+	private ProjectContent contentProjectConcept = new ProjectContent();
+	private ArrayList<Integer> listOfAvailableItemsToBuyPack1 = new ArrayList<>();
+	private ArrayList<Integer> listOfAvailableItemsToBuyPack2 = new ArrayList<>();
+	private ArrayList<Integer> listOfAvailableItemsToBuyPack3 = new ArrayList<>();
+	private Integer availableItemsToBuyPack1, availableItemsToBuyPack2,
+			availableItemsToBuyPack3;
+	private int i = 0;
+
+	// pour le panier : nbCommandé
+	private Integer nbPackToOrder;
 
 	public Project getP() {
-		p= buProjects.get(26);
 		return p;
+	}
+
+	public Project getProjetARecuperer() {
+		return projetARecuperer;
+	}
+
+	public void setProjetARecuperer(Project projetARecuperer) {
+		this.projetARecuperer = projetARecuperer;
 	}
 
 	public void setP(Project p) {
@@ -50,159 +72,118 @@ public class MBConsultProject {
 		return name = p.getProjectName();
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getImage() {
-		return image;
-	}
-
-	public void setImage(String image) {
-		this.image = image;
-	}
-
-	public String getVideo() {
-		return video;
-	}
-
-	public void setVideo(String video) {
-		this.video = video;
-	}
-
-	public String getAuthor() {
-		return author;
-	}
-
-	public void setAuthor(String author) {
-		this.author = author;
-	}
-
-	public String getConcept() {
-		return concept;
-	}
-
-	public void setConcept(String concept) {
-		this.concept = concept;
-	}
-
-	public Integer getPackAmount() {
-		return packAmount;
-	}
-
-	public void setPackAmount(Integer packAmount) {
-		this.packAmount = packAmount;
-	}
-
-	public Integer getPackStock() {
-		return packStock;
-	}
-
-	public void setPackStock(Integer packStock) {
-		this.packStock = packStock;
-	}
-
-	public Integer getAvailableItemsToBuy() {
-		availableItemsToBuy = pack.getStock() - pack.getNbSale();
-		if (availableItemsToBuy!=null)
-			return availableItemsToBuy;
-		else return 0;
-	}
-
-	public void setAvailableItemsToBuy(Integer availableItemsToBuy) {
-		this.availableItemsToBuy = availableItemsToBuy;
-	}
-
-	public Pack getPack() {
+	public void getPack() {
 		List<Pack> packs = buPacks.getByidProject(p.getIdProject());
-		pack = packs.get(0);
-		return pack;
+			pack1 = packs.get(0);
+			pack2 = packs.get(1);
+			pack3 = packs.get(2);
 	}
 
-	public void setPack(Pack pack) {
-		this.pack = pack;
-	}
-
-	public ArrayList<Integer> getListOfAvailableItemsToBuy() {
-		for (int i = 1; i==getAvailableItemsToBuy();i++)  {
-			listOfAvailableItemsToBuy.add(i);
+	public ArrayList<Integer> getListOfAvailableItemsToBuyPack1() {
+		for (Integer i = 1; i <= getAvailableItemsToBuyPack1(); i++) {
+			listOfAvailableItemsToBuyPack1.add(i);
 		}
-		return listOfAvailableItemsToBuy;
+		return listOfAvailableItemsToBuyPack1;
+	}
+	
+	public ArrayList<Integer> getListOfAvailableItemsToBuyPack2() {
+		for (Integer i = 1; i <= getAvailableItemsToBuyPack2(); i++) {
+			listOfAvailableItemsToBuyPack2.add(i);
+		}
+		return listOfAvailableItemsToBuyPack2;
 	}
 
-	public void setListOfAvailableItemsToBuy(
-			ArrayList<Integer> listOfAvailableItemsToBuy) {
-		this.listOfAvailableItemsToBuy = listOfAvailableItemsToBuy;
-	}
-
-	public IBusinessProject getBuProjects() {
-		return buProjects;
-	}
-
-	public void setBuProjects(IBusinessProject buProjects) {
-		this.buProjects = buProjects;
-	}
-
-	public IBusinessPack getBuPacks() {
-		return buPacks;
-	}
-
-	public void setBuPacks(IBusinessPack buPacks) {
-		this.buPacks = buPacks;
-	}
-
-	public IBusinessProjectContent getBuProjectContent() {
-		return buProjectContent;
-	}
-
-	public void setBuProjectContent(IBusinessProjectContent buProjectContent) {
-		this.buProjectContent = buProjectContent;
+	public ArrayList<Integer> getListOfAvailableItemsToBuyPack3() {
+		for (Integer i = 1; i <= getAvailableItemsToBuyPack3(); i++) {
+			listOfAvailableItemsToBuyPack3.add(i);
+		}
+		return listOfAvailableItemsToBuyPack3;
 	}
 
 	public ProjectContent getContentProjectAuthor() {
-		List<ProjectContent> contents = buProjectContent.getByidProject(p.getIdProject());
+		List<ProjectContent> contents = buProjectContent.getByidProject(p
+				.getIdProject());
+		if ( contents.get(2)!=null)
 		return contentProjectAuthor = contents.get(2);
-	}
-
-	public void setContentProjectAuthor(ProjectContent contentProjectAuthor) {
-		this.contentProjectAuthor = contentProjectAuthor;
+		else return getAucunContenu();
 	}
 
 	public ProjectContent getContentProjectImage() {
-		List<ProjectContent> contents = buProjectContent.getByidProject(p.getIdProject());
+		List<ProjectContent> contents = buProjectContent.getByidProject(p
+				.getIdProject());
+		if ( contents.get(0)!=null)
 		return contentProjectImage = contents.get(0);
-	}
-
-	public void setContentProjectImage(ProjectContent contentProjectImage) {
-		this.contentProjectImage = contentProjectImage;
+		else return getAucunContenu();
 	}
 
 	public ProjectContent getContentProjectVideo() {
-		List<ProjectContent> contents = buProjectContent.getByidProject(p.getIdProject());
-		return contentProjectVideo  = contents.get(1);
-	}
-
-	public void setContentProjectVideo(ProjectContent contentProjectVideo) {
-		this.contentProjectVideo = contentProjectVideo;
+		List<ProjectContent> contents = buProjectContent.getByidProject(p
+				.getIdProject());
+		if ( contents.get(1)!=null)
+		return contentProjectVideo = contents.get(1);
+		else return getAucunContenu();
 	}
 
 	public ProjectContent getContentProjectConcept() {
-		List<ProjectContent> contents = buProjectContent.getByidProject(p.getIdProject());
+		List<ProjectContent> contents = buProjectContent.getByidProject(p
+				.getIdProject());
+		if ( contents.get(3)!=null)
 		return contentProjectConcept = contents.get(3);
-	}
-
-	public void setContentProjectConcept(ProjectContent contentProjectConcept) {
-		this.contentProjectConcept = contentProjectConcept;
+		else return getAucunContenu();
 	}
 
 	public List<Pack> getPacks() {
 		return packs = buPacks.getByidProject(p.getIdProject());
 	}
 
-	public void setPacks(List<Pack> packs) {
-		this.packs = packs;
+
+	public Pack getPack1() {
+		return pack1 = getPacks().get(0);
 	}
 
+	public Pack getPack2() {
+		return pack2 = getPacks().get(1);
+	}
 
+	public Pack getPack3() {
+		return pack3 = getPacks().get(2);
+	}
+
+	public Integer getAvailableItemsToBuyPack1() {
+		if ( getPack1()!=null)
+		return availableItemsToBuyPack1 = packs.get(0).getStock() - packs.get(0).getNbSale();
+		else return 0;
+
+	}
+
+	public Integer getAvailableItemsToBuyPack2() {
+		if (  getPack2()!=null)
+		return availableItemsToBuyPack2 = packs.get(1).getStock() - packs.get(1).getNbSale();
+		else return 0;
+	}
+
+	public Integer getAvailableItemsToBuyPack3() {
+		if (  getPack3()!=null)
+		return availableItemsToBuyPack3 = packs.get(2).getStock() - packs.get(2).getNbSale();
+		else return 0;
+	}
+
+	public Integer getNbPackToOrder() {
+		return nbPackToOrder;
+	}
+
+	public void setNbPackToOrder(Integer nbPackToOrder) {
+		this.nbPackToOrder = nbPackToOrder;
+	}
+	
+	public String detailProject(Project project){
+		setP(project);
+		return "/projectDetails.xhtml?faces-redirect=true";	
+	}
+
+	public ProjectContent getAucunContenu() {
+		aucunContenu.setContent("aucun contenu disponible");
+		return aucunContenu;
+	}
 
 }

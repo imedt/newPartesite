@@ -42,7 +42,7 @@ public class DaoProjectContentImpl implements IDaoProjectContent {
 		Query hql = em
 				.createQuery(
 						"SELECT p FROM ProjectContent p WHERE p.idContentProject=:pidContentProject")
-				.setParameter(":pidContentProject", idProjectContent);
+				.setParameter("pidContentProject", idProjectContent);
 		ProjectContent cp = null;
 
 		cp = (ProjectContent) hql.getSingleResult();

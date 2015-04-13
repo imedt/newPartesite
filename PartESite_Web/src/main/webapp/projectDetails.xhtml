@@ -18,75 +18,141 @@
 
 
 	<ui:define name="content">
-		<div class="col-lg-12">
-			<div class="textBox col-lg-push-1 col-lg-5"
-				style="margin-left: -20px;">
-				<center>
-					<p class="col-lg-12">
-						<h1>#{mbConsultProject.p.projectName}</h1>
-					</p>
-					<p class="col-lg-12">
-						<h3>#{mbConsultProject.contentProjectAuthor.content}</h3>
-					</p>
-				</center>
-			</div>
-			<div class="frameBox col-lg-5 col-lg-push-1">
-				<center style="padding-left: 4em;">
-					<iframe class="col-lg-12" frameborder="0" allowfullscreen="false"
-						width="auto" height="400px" src="#{mbConsultProject.contentProjectImage.content}">
-					</iframe>
-				</center>
+		<div class="bloc">
+			<div class="col-lg-12">
+				<div class="textBox col-lg-6 col-xs-12 col-sm-12 col-md-12" >
+					<center>
+						<p class="col-lg-12">
+							<h1>#{mbConsultProject.p.projectName}</h1>
+						</p>
+						<p class="col-lg-12">
+							<h3>#{mbConsultProject.contentProjectAuthor.content}</h3>
+						</p>
+					</center>
+				</div>
+				<div class="frameBox col-lg-6 col-xs-12 col-sm-12 col-md-12">
+					<center style="padding-left: 4em;">
+						<iframe class="col-lg-12" frameborder="0" allowfullscreen="false"
+							width="auto" height="400px"
+							src="#{mbConsultProject.contentProjectImage.content}"> </iframe>
+					</center>
+				</div>
+
+				<div class="frameBox col-lg-6 col-xs-12 col-sm-12 col-md-12" >
+					<center>
+						<iframe class="col-lg-12" width="auto" height="400px"
+							src="#{mbConsultProject.contentProjectVideo.content}"
+							frameborder="0" allowfullscreen="false"></iframe>
+					</center>
+				</div>
+
+				<div class="textBox col-lg-6 col-xs-12 col-sm-12 col-md-12">
+					<center>
+						<p>
+							<h3>#{mbConsultProject.contentProjectConcept.content}</h3>
+						</p>
+					</center>
+				</div>
 			</div>
 
-			<div class="frameBox col-lg-push-1 col-lg-5"
-				style="margin-left: -20px;">
-				<center>
-					<iframe class="col-lg-12" width="auto" height="400px"
-						src="#{mbConsultProject.contentProjectVideo.content}"
-						frameborder="0" allowfullscreen="false"></iframe>
-				</center>
-			</div>
 
-			<div class="textBox col-lg-5 col-lg-push-1">
-				<center>
-					<p>
-						<h3>#{mbConsultProject.contentProjectConcept.content}</h3>
-					</p>
-				</center>
-			</div>
-		</div>
+				<div class="packBox1 col-lg-12 col-xs-12 col-sm-12 col-md-12" rendered="#{mbConsultProject.pack1!=null}">
+					<center>
+						<p>
+							<h1>#{mbConsultProject.pack1.packName}</h1>
+						</p>
+						<p>
+							<h3>#{mbConsultProject.pack1.description}</h3>
+						</p>
+						<p>
+							<h3>Prix du package : #{mbConsultProject.pack1.amount}
+								&euro;</h3>
+						</p>
+						<p>
+							<h3>Quantité disponible :
+								#{mbConsultProject.pack1.stock-mbConsultProject.pack1.nbSale}</h3>
+						</p>
+						<p>
+							<h3 class="col-lg-5">Quantité souhaitée :</h3>
+							<h:selectOneMenu class="col-lg-6"
+								value="#{mbConsultProject.nbPackToOrder}">
+								<f:selectItems
+									value="#{mbConsultProject.listOfAvailableItemsToBuyPack1}"
+									var="i" itemLabel="#{i.intValue()}" itemValue="#{i.intValue()}" />
+							</h:selectOneMenu>
+						</p>
+						<p>
+							<h:commandButton type="submit" value="Commander"
+								class="button lg-btn-default col-lg-12 col-xs-12 col-sm-12 col-md-12" />
+						</p>
+					</center>
+				</div>
 
-<ui:repeat value="#{mbConsultProject.p.packs}" var="pack">
-		<div class="col-lg-10">
-			<div class="packBox col-lg-12">
-				<center>
-					<p>
-						<h1>#{pack.packName}</h1>
-					</p>
-					<p>
-						<h3>#{pack.description}</h3>
-					</p>
-					<p>
-						<h3>Prix du package : #{pack.amount} &euro;</h3>
-					</p>
-					<p>
-						<h3>Quantité disponible : #{mbConsultProject.availableItemsToBuy}</h3>
-					</p>
-					<p>
-						<h3 class="col-lg-5">Quantité souhaitée :</h3>
-						<h:selectOneListbox class="col-lg-6">
-						<f:selectItems value="#{mbConsultProject.listOfAvailableItemsToBuy}"/>
-						</h:selectOneListbox>
-					</p>
-					<p>
-						<h:commandButton type="submit" value="Commander"
-							class="button lg-btn-default col-lg-12" />
-					</p>
-				</center>
-			</div>
+				<div class="packBox2 col-lg-12 col-xs-12 col-sm-12 col-md-12" rendered="#{mbConsultProject.pack2!=null}">
+					<center>
+						<p>
+							<h1>#{mbConsultProject.pack2.packName}</h1>
+						</p>
+						<p>
+							<h3>#{mbConsultProject.pack2.description}</h3>
+						</p>
+						<p>
+							<h3>Prix du package : #{mbConsultProject.pack2.amount}
+								&euro;</h3>
+						</p>
+						<p>
+							<h3>Quantité disponible :
+								#{mbConsultProject.pack2.stock-mbConsultProject.pack2.nbSale}</h3>
+						</p>
+						<p>
+							<h3 class="col-lg-5">Quantité souhaitée :</h3>
+							<h:selectOneMenu class="col-lg-6"
+								value="#{mbConsultProject.nbPackToOrder}">
+								<f:selectItems
+									value="#{mbConsultProject.listOfAvailableItemsToBuyPack2}"
+									var="i" itemLabel="#{i.intValue()}" itemValue="#{i.intValue()}" />
+							</h:selectOneMenu>
+						</p>
+						<p>
+							<h:commandButton type="submit" value="Commander"
+								class="button lg-btn-default col-lg-12 col-xs-12 col-sm-12 col-md-12" />
+						</p>
+					</center>
+				</div>
 
-		</div>
-</ui:repeat>
+				<div class="packBox3 col-lg-12 col-xs-12 col-sm-12 col-md-12" rendered="#{mbConsultProject.pack3!=null}">
+					<center>
+						<p>
+							<h1>#{mbConsultProject.pack3.packName}</h1>
+						</p>
+						<p>
+							<h3>#{mbConsultProject.pack3.description}</h3>
+						</p>
+						<p>
+							<h3>Prix du package : #{mbConsultProject.pack3.amount}
+								&euro;</h3>
+						</p>
+						<p>
+							<h3>Quantité disponible :
+								#{mbConsultProject.pack3.stock-mbConsultProject.pack3.nbSale}</h3>
+						</p>
+						<p>
+							<h3 class="col-lg-5">Quantité souhaitée :</h3>
+							<h:selectOneMenu class="col-lg-6"
+								value="#{mbConsultProject.nbPackToOrder}">
+								<f:selectItems
+									value="#{mbConsultProject.listOfAvailableItemsToBuyPack3}"
+									var="i" itemLabel="#{i.intValue()}" itemValue="#{i.intValue()}" />
+							</h:selectOneMenu>
+						</p>
+						<p>
+							<h:commandButton type="submit" value="Commander"
+								class="button lg-btn-default col-lg-12 col-xs-12 col-sm-12 col-md-12" />
+						</p>
+					</center>
+				</div>
+
+			</div>
 
 	</ui:define>
 

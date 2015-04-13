@@ -35,7 +35,7 @@ public class MBDashBoard {
 	@ManagedProperty(value = "#{mbConnexion}")
 	private MBConnexion cnx;
 
-	private Project p;
+
 	private Integer allMyProjectsCount;
 	private Integer allMyProjectsDisabledCount;
 	private Integer allMyProjectsOnlineCount;
@@ -55,9 +55,6 @@ public class MBDashBoard {
 	private Double aimingAmount = 0.00;
 	private Double backings = 0.00;
 
-	public void select(){
-		setP(p);
-	}
 
 	public Integer getAllMyProjectsCount() {
 		return allMyProjectsCount = this.allMyProjects();
@@ -293,14 +290,6 @@ public class MBDashBoard {
 
 	public void setBuNotification(IBusinessNotification buNotification) {
 		this.buNotification = buNotification;
-	}
-
-	public Project getP() {
-		return p;
-	}
-
-	public void setP(Project p) {
-		this.p = p;
 	}
 
 	public Double getBackingsAmount() {

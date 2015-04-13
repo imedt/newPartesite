@@ -45,10 +45,11 @@
     			</h:column>
 
 				<h:column>
-					<f:facet name="header">Consultation</f:facet>
-					<span class="col-lg-2" id="details"><a
-						href="projectDetails.xhtml">Détails</a></span>
-				</h:column>
+							<f:facet name="header">Consultation</f:facet>
+							<h:commandButton class="col-lg-2 lg-btn-default" style="width:auto;"
+								value="Détails" action="#{mbOrder.updateBacking(p)}">
+							</h:commandButton>
+						</h:column>
 			</h:dataTable>			
 			</h:panelGroup>
 
@@ -90,10 +91,11 @@
     			</h:column>
 
 				<h:column>
-					<f:facet name="header">Consultation</f:facet>
-					<span class="col-lg-2" id="details"><a
-						href="projectDetails.xhtml">Détails</a></span>
-				</h:column>
+							<f:facet name="header">Consultation</f:facet>
+							<h:commandButton class="col-lg-2 lg-btn-default" style="width:auto;"
+								value="Détails" action="#{mbOrder.updateBacking(p)}">
+							</h:commandButton>
+						</h:column>
 			</h:dataTable>
 		</h:panelGroup>
 		<h:panelGroup
@@ -102,7 +104,37 @@
 					<span class="col-lg-push-1 col-lg-10" style="color:navy;font-weight:bold;">Aucun don enregistré</span></center>
 				</h:panelGroup>
 
+
+<h:panelGroup rendered="#{mbOrder.backing!=null}">
+<h:dataTable class="col-lg-push-1 col-lg-10"
+				value="#{mbOrder.backing.orderRows}" var="p" styleClass="table"
+				headerClass="table-header"
+				rowClasses="table-odd-row, table-even-row">
+<h:column>
+					<f:facet name="header">Référence</f:facet>   			
+    				#{p.idOrderRow}
+    			</h:column>
+    			<h:column>
+					<f:facet name="header">Date</f:facet>   			
+    				#{p.createdDate}
+    			</h:column>
+    			<h:column>
+    			<f:facet name="header">Pack</f:facet>   			
+    				#{p.pack.packName}
+    			</h:column>
+    			<h:column>
+    			<f:facet name="header">Pack Description</f:facet>   			
+    				#{p.pack.description}
+    			</h:column>
+    			<h:column>
+    			<f:facet name="header">Montant</f:facet>   			
+    				#{p.amount}
+    			</h:column>
+</h:dataTable>
+</h:panelGroup>
+
 	</ui:define>
+
 
 	<ui:define name="totalAmount">#{mbDashboard.backingsAmount}</ui:define>
 

@@ -7,6 +7,7 @@ import javax.jws.WebService;
 public interface IConversion {
 	
 	@WebMethod
-	public double conversion(double montant, String monnaieSource,
+	public double conversion
+	(double montant, String monnaieSource,
 			String monnaieCible);
 }

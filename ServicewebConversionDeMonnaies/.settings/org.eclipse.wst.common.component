@@ -2,6 +2,7 @@
     <wb-module deploy-name="ServicewebConversionDeMonnaies">
         <wb-resource deploy-path="/" source-path="/src/main/resources" tag="defaultRootSource"/>
         <wb-resource deploy-path="/" source-path="/src/main/java"/>
+        <wb-resource deploy-path="/" source-path="/src"/>
         <property name="java-output-path" value="/ServicewebConversionDeMonnaies/target/classes"/>
     </wb-module>
 </project-modules>
