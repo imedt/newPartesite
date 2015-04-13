@@ -76,23 +76,29 @@
 					<!-- Logo -->
 
 					<h1 id="logo" class="row">
-						<a href="Home.xhtml" class="col-lg-12"> B<span
-							style="font-size: 30px; color: navy;">usiness </span>P<span
-							style="font-size: 30px; color: navy;">artner's</span>C<span
-							style="font-size: 30px; color: navy;">ommunity</span>
-						</a>
-
+						<ui:insert name="logo">
+							<a href="Home.xhtml" class="col-lg-12"> B<span
+								style="font-size: 30px; color: navy;">usiness </span>P<span
+								style="font-size: 30px; color: navy;">artner's</span>C<span
+								style="font-size: 30px; color: navy;">ommunity</span>
+							</a>
+						</ui:insert>
 					</h1>
 					<ui:insert name="sous-logo">
 						<div class="col-lg-push-3 col-lg-6">
 							<div class="scroll">
 								<div class="mask">
 									<ul id="sous-logo">
-										<li><span> <a> ******Plateforme européenne de
-													financement participatif // </a>
+										<li><span> <a>******
+										<ui:insert name="sous-logo-1">
+										 Plateforme européenne de
+													financement participatif // </ui:insert></a>
 										</span></li>
-										<li><span> <a> ******Plateforme européenne de
-													financement participatif // </a>
+										<li><span> <a>******
+										<ui:insert name="sous-logo-2">
+										Plateforme européenne de
+													financement participatif // </ui:insert>
+													</a>
 										</span></li>
 									</ul>
 								</div>

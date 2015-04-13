@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="TemplateHome.xhtml">
+
+	<ui:define name="style">
+		<link rel="stylesheet" href="StylePartESite/css/projectDetails.css" />
+	</ui:define>
+
+	<ui:define name="header-title">Consultation Projet</ui:define>
+	<ui:define name="sous-logo-1">#{mbConsultProject.p.projectName}
+	</ui:define>
+	<ui:define name="sous-logo-2">#{mbConsultProject.p.projectName}
+	</ui:define>
+
+
+	<ui:define name="content">
+		<div class="col-lg-12">
+			<div class="textBox col-lg-push-1 col-lg-5"
+				style="margin-left: -20px;">
+				<center>
+					<p class="col-lg-12">
+						<h1>#{mbConsultProject.p.projectName}</h1>
+					</p>
+					<p class="col-lg-12">
+						<h3>#{mbConsultProject.contentProjectAuthor.content}</h3>
+					</p>
+				</center>
+			</div>
+			<div class="frameBox col-lg-5 col-lg-push-1">
+				<center style="padding-left: 4em;">
+					<iframe class="col-lg-12" frameborder="0" allowfullscreen="false"
+						width="auto" height="400px" src="#{mbConsultProject.contentProjectImage.content}">
+					</iframe>
+				</center>
+			</div>
+
+			<div class="frameBox col-lg-push-1 col-lg-5"
+				style="margin-left: -20px;">
+				<center>
+					<iframe class="col-lg-12" width="auto" height="400px"
+						src="#{mbConsultProject.contentProjectVideo.content}"
+						frameborder="0" allowfullscreen="false"></iframe>
+				</center>
+			</div>
+
+			<div class="textBox col-lg-5 col-lg-push-1">
+				<center>
+					<p>
+						<h3>#{mbConsultProject.contentProjectConcept.content}</h3>
+					</p>
+				</center>
+			</div>
+		</div>
+
+<ui:repeat value="#{mbConsultProject.p.packs}" var="pack">
+		<div class="col-lg-10">
+			<div class="packBox col-lg-12">
+				<center>
+					<p>
+						<h1>#{pack.packName}</h1>
+					</p>
+					<p>
+						<h3>#{pack.description}</h3>
+					</p>
+					<p>
+						<h3>Prix du package : #{pack.amount} &euro;</h3>
+					</p>
+					<p>
+						<h3>Quantité disponible : #{mbConsultProject.availableItemsToBuy}</h3>
+					</p>
+					<p>
+						<h3 class="col-lg-5">Quantité souhaitée :</h3>
+						<h:selectOneListbox class="col-lg-6">
+						<f:selectItems value="#{mbConsultProject.listOfAvailableItemsToBuy}"/>
+						</h:selectOneListbox>
+					</p>
+					<p>
+						<h:commandButton type="submit" value="Commander"
+							class="button lg-btn-default col-lg-12" />
+					</p>
+				</center>
+			</div>
+
+		</div>
+</ui:repeat>
+
+	</ui:define>
+
+	<ui:define name="image-centre"></ui:define>
+	<ui:define name="text-home"></ui:define>
+</ui:composition>
+</html>

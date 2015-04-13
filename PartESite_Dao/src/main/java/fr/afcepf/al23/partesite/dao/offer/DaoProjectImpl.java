@@ -44,7 +44,7 @@ public class DaoProjectImpl implements IDaoProject {
 	public Project get(Integer idProject) {
 
 		Query hql = em.createQuery(
-				"SELECT DISTINCT p FROM Project p WHERE p.idProject=:pidProject")
+				"SELECT DISTINCT p FROM Project p inner join fetch p.packs WHERE p.idProject=:pidProject")
 				.setParameter("pidProject", idProject);
 		Project p = null;
 

@@ -1,5 +1,6 @@
 package fr.afcepf.al23.partesite.service.impl.offer;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -47,9 +48,13 @@ public class BusinessProjectContentImpl implements IBusinessProjectContent {
 
 
 	@Override
-	public List<ProjectContent> getByidProject(int idProject) {
-		List<ProjectContent> projectContents = daoPC.getByidProject(idProject);
-		
+	public List<ProjectContent> getByidProject(Integer idProject) {
+		List<ProjectContent> projectContents=new ArrayList<>();
+		try {
+			projectContents = daoPC.getByidProject(idProject);
+		} catch (Exception e) {
+		e.printStackTrace();
+		}
 		return projectContents;
 	}
 	

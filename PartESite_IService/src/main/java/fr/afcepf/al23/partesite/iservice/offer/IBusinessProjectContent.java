@@ -13,5 +13,5 @@ public interface IBusinessProjectContent {
 	public ProjectContent save(ProjectContent projectContent);
 	public ProjectContent disable(ProjectContent projectContent);
 	public ProjectContent get(Integer idProjectContent);
-	public List<ProjectContent> getByidProject(int idProject);	
+	public List<ProjectContent> getByidProject(Integer idProject);	
 }
