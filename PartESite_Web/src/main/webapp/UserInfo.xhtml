@@ -107,23 +107,23 @@
 
 							<div class="info col-lg-12" rendered="#{mbConnexion.id!=null}">
 
-								<fieldset class="col-lg-12"
+								<fieldset class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
 									style="margin: 0 0 0 0; padding: 0 0 0 0; border: none;">
 									<div style="text-align:center">
-										<strong> <h:outputText class="col-lg-12"
+										<strong> <h:outputText class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
 												value="#{mbConnexion.id.civility.civility}&nbsp;#{mbConnexion.id.firstName}&nbsp;#{mbConnexion.id.lastName}" />
 										</strong>
-										<h:outputText class="col-lg-12"
+										<h:outputText class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
 											value="Email :&nbsp;#{mbConnexion.id.email}" />
-										<h:outputText class="col-lg-12"
+										<h:outputText class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
 											value="Mot de passe :&nbsp;#{mbConnexion.id.mdp}" />
 
-										<h:outputText class="col-lg-12"
+										<h:outputText class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
 											value="Né le :&nbsp;#{mbConnexion.id.birthdate}">
 											<f:convertDateTime pattern="dd/MM/yyyy" />
 										</h:outputText>
 									</div>
-									<h:outputText class="col-lg-12"
+									<h:outputText class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
 										value="Inscrit depuis le :&nbsp;#{mbConnexion.id.createdDate}">
 										<f:convertDateTime pattern="dd/MM/yyyy" />
 									</h:outputText>
@@ -138,25 +138,26 @@
 
 							<div class="col-lg-12">
 
-								<h:panelGroup class="col-lg-6"
+								<h:panelGroup class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
 									rendered="#{mbConnexion.id!=null}">
-									<strong><span class="col-lg-12">Telephone</span></strong>
-									<span class="col-lg-6">Type :</span>
-									<h:inputText class="col-lg-6" value="#{mbUser.typePhoneNumber}" />
-									<span class="col-lg-6">Numéro :</span>
-									<h:inputText class="col-lg-6" value="#{mbUser.phoneNumber}" />
-									<h:commandButton class="col-lg-push-6 col-lg-6"
+									<strong><span class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Telephone</span></strong>
+									<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12">Type :</span>
+									<h:inputText class="col-lg-6 col-md-12 col-sm-12 col-xs-12" value="#{mbUser.typePhoneNumber}" />
+									<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12">Numéro :</span>
+									<h:inputText class="col-lg-6 col-md-12 col-sm-12 col-xs-12" value="#{mbUser.phoneNumber}" />
+									<h:commandButton class="col-lg-push-6 col-lg-6 col-md-12 col-sm-12 col-xs-12"
 										action="#{mbUser.addPhoneToUser()}" value="Ajouter" />
 								</h:panelGroup>
 
-								<h:panelGroup class="col-lg-6"
+								<h:panelGroup class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
 									rendered="#{mbConnexion.id.phones!=null}">
-									<fieldset class="col-lg-12"
+									<fieldset class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
 										style="margin: 0 0 0 0; padding: 0 0 0 0; border: none;">
 										<legend>Téléphones</legend>
 										<ui:repeat value="#{mbUser.phones}" var="phone">
-											<h:outputText class="col-lg-6" value="#{phone.type}" />
-											<h:outputText class="col-lg-6" value="#{phone.phoneNumber}" />
+										<strong>
+											<h:outputText class="col-lg-6 col-md-12 col-sm-12 col-xs-12" value="#{phone.type}" /></strong>
+											<h:outputText class="col-lg-6 col-md-12 col-sm-12 col-xs-12" value="#{phone.phoneNumber}" />
 										</ui:repeat>
 
 
@@ -166,41 +167,41 @@
 
 							<div class="col-lg-12">
 
-								<h:panelGroup class="col-lg-6"
+								<h:panelGroup class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
 									rendered="#{mbConnexion.id!=null}">
-									<strong><span class="col-lg-12">Adresse</span></strong>
-									<span class="col-lg-6">Rue :</span>
-									<h:inputText class="col-lg-6" value="#{mbUser.street}" />
-									<span class="col-lg-6">Code Postal :</span>
-									<h:inputText class="col-lg-6" value="#{mbUser.zipcode}" />
-									<span class="col-lg-6">Ville :</span>
-									<h:inputText class="col-lg-6" value="#{mbUser.city}" />
-									<span class="col-lg-6">Pays :</span>
-									<h:inputText class="col-lg-6" value="#{mbUser.country}" />
-									<span class="col-lg-6"> Type :</span>
-									<h:selectOneMenu class="col-lg-6"
+									<strong><span class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Adresse</span></strong>
+									<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12">Rue :</span>
+									<h:inputText class="col-lg-6 col-md-12 col-sm-12 col-xs-12" value="#{mbUser.street}" />
+									<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12">Code Postal :</span>
+									<h:inputText class="col-lg-6 col-md-12 col-sm-12 col-xs-12" value="#{mbUser.zipcode}" />
+									<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12">Ville :</span>
+									<h:inputText class="col-lg-6 col-md-12 col-sm-12 col-xs-12" value="#{mbUser.city}" />
+									<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12">Pays :</span>
+									<h:inputText class="col-lg-6 col-md-12 col-sm-12 col-xs-12" value="#{mbUser.country}" />
+									<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12"> Type :</span>
+									<h:selectOneMenu class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
 										value="#{mbUser.idAddressType}">
 										<f:selectItems value="#{mbUser.addressTypes}" var="a"
 											itemValue="#{a.idAddressType}" itemLabel="#{a.addressType}" />
 									</h:selectOneMenu>
 
-									<h:commandButton class="col-lg-6"
+									<h:commandButton class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
 										action="#{mbUser.addAddressToUser()}" value="Ajouter" />
 								</h:panelGroup>
 
-								<h:panelGroup class="col-lg-6"
+								<h:panelGroup class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
 									rendered="#{mbUser.addresses!=null}">
-									<fieldset class="col-lg-12"
-										style="margin: 0 0 0 0; padding: 0 0 0 0; border: none;">
-										<legend>Adresses</legend>
+									<fieldset class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+										style="margin: 0 0 0 0; padding: 0 0 0 0; border: none;"><strong>
+										<legend>Adresses</legend></strong>
 										<ui:repeat value="#{mbUser.addresses}" var="address">
-											<h:outputText class="col-lg-12"
+											<h:outputText class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
 												value="#{address.addressType.addressType}"
 												style="font-weight:bold;" />
-											<h:outputText class="col-lg-12" value="#{address.street}" />
-											<h:outputText class="col-lg-12" value="#{address.zipcode}" />
-											<h:outputText class="col-lg-12" value="#{address.city}" />
-											<h:outputText class="col-lg-12" value="#{address.country}" />
+											<h:outputText class="col-lg-12 col-md-12 col-sm-12 col-xs-12" value="#{address.street}" />
+											<h:outputText class="col-lg-12 col-md-12 col-sm-12 col-xs-12" value="#{address.zipcode}" />
+											<h:outputText class="col-lg-12 col-md-12 col-sm-12 col-xs-12" value="#{address.city}" />
+											<h:outputText class="col-lg-12 col-md-12 col-sm-12 col-xs-12" value="#{address.country}" />
 
 										</ui:repeat>
 									</fieldset>
@@ -228,35 +229,35 @@
 					</header>
 
 					<div class="row">
-						<div class="col-lg-12">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
-							<section class="col-lg-6">
+							<section class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
 
-							<div class="col-lg-6">
+							<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
 								<h:inputText name="name" placeholder="Name" type="text"
-									value="Nom" style="width:110%;" />
+									value="Nom" style="width:100%;" />
 							</div>
-							<div class="col-lg-6">
+							<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12" >
 								<h:inputText name="email" placeholder="Email" type="text"
 									value="Email" style="width:100%;" />
 							</div>
 
-							<div class="col-lg-12">
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 								<h:inputTextarea name="message" placeholder="Message"
 									style="width:100%;height:200px;" value="Message" />
 							</div>
 
 
-							<div class="col-lg-12">
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 								<h:commandButton type="submit"
-									class="button lg-btn-default col-lg-12 icon fa-envelope"
+									class="button lg-btn-default col-lg-12 col-md-12 col-sm-12 col-xs-12 icon fa-envelope"
 									value="Envoyer" />
 							</div>
 
 							</section>
 
 
-							<section class="col-lg-6">
+							<section class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
 							<p>
 								<ui:insert name="footer-sous-titre">Part E-Site : nouvelle plateforme participative.</ui:insert>
 							</p>

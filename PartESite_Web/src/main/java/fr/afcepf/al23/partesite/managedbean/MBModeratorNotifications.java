@@ -30,8 +30,10 @@ public class MBModeratorNotifications {
 		this.listNotifications = listNotifications;
 	}
 	
-	public void disable(Notification n){
+	public String disabled(Notification n){
 		n.setDisabled(true);
 		buNotification.save(n);
+		getListNotifications();
+		return "";
 	}
 }

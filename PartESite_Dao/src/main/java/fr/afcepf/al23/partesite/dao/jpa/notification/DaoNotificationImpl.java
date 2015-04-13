@@ -127,8 +127,8 @@ public class DaoNotificationImpl implements IDaoNotification {
 	@Override
 	public List<Notification> getByTarget(Integer idTarget) {
 		Query hql = em.createQuery("SELECT n FROM Notification n "
-				+ "WHERE n.idTarget =:idTarget")
-				.setParameter("idTarget", idTarget);
+				+ "WHERE n.idTarget =:idTarget AND n.disabled=:pdisabled")
+				.setParameter("idTarget", idTarget).setParameter("pdisabled", false);
 		List<Notification> list = hql.getResultList();
 		return list;
 	}

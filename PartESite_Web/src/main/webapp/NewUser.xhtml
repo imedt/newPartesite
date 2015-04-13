@@ -92,33 +92,33 @@
 					<fieldset class="col-lg-11">
 						<legend>Informations personnelles</legend>
 
-						<div class="col-lg-5">
+						<div class="col-lg-5 col-md-12 col-sm-12 col-xs-12">
 
-							<span class="col-lg-6"> Civilité :</span>
-							<h:selectOneMenu class="col-lg-6" value="#{mbUser.idCivility}">
+							<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12"> Civilité :</span>
+							<h:selectOneMenu class="col-lg-6 col-md-12 col-sm-12 col-xs-12" value="#{mbUser.idCivility}">
 								<f:selectItems value="#{mbUser.civilities}" var="c"
 									itemValue="#{c.idCivility}" itemLabel="#{c.civility}" />
 							</h:selectOneMenu>
-							<br /> <span class="col-lg-6"> Prénom :</span>
-							<h:inputText class="col-lg-6" value="#{mbUser.firstName}" />
+							<br /> <span class="col-lg-6 col-md-12 col-sm-12 col-xs-12"> Prénom :</span>
+							<h:inputText class="col-lg-6 col-md-12 col-sm-12 col-xs-12" value="#{mbUser.firstName}" />
 
-							<span class="col-lg-6"> Nom :</span>
-							<h:inputText class="col-lg-6" value="#{mbUser.lastName}" />
+							<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12"> Nom :</span>
+							<h:inputText class="col-lg-6 col-md-12 col-sm-12 col-xs-12" value="#{mbUser.lastName}" />
 
-							<span class="col-lg-6"> Email :</span>
-							<h:inputText class="col-lg-6" value="#{mbUser.email}" />
+							<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12"> Email :</span>
+							<h:inputText class="col-lg-6 col-md-12 col-sm-12 col-xs-12" value="#{mbUser.email}" />
 
-							<span class="col-lg-6"> Mot de passe :</span>
-							<h:inputText class="col-lg-6" value="#{mbUser.password}" />
+							<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12"> Mot de passe :</span>
+							<h:inputText class="col-lg-6 col-md-12 col-sm-12 col-xs-12" value="#{mbUser.password}" />
 
-							<span class="col-lg-6"> Date de naissance :</span>
-							<h:inputText id="datepicker" class="col-lg-6"
+							<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12"> Date de naissance :</span>
+							<h:inputText id="datepicker" class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
 								value="#{mbUser.birthdate}" />
 
 							<h:selectBooleanCheckbox value="true" />
 							&nbsp; <span id="cgu">J'accepte les conditions générales
 								d'utilisation de la plateforme.</span>
-							<h:commandButton type="submit" class="lg-btn-default col-lg-12"
+							<h:commandButton type="submit" class="lg-btn-default col-lg-12 col-md-12 col-sm-12 col-xs-12"
 								value="Valider" action="#{mbUser.inscription()}" />
 						</div>
 						

@@ -37,10 +37,11 @@
     			#{p.aimingAmount}
     			</h:column>
     			<h:column>
-								<f:facet name="header">Consultation</f:facet>
-								<span class="col-lg-2" id="details"><a
-									href="projectDetails.xhtml">Détails</a></span>
-							</h:column>
+							<f:facet name="header">Consultation</f:facet>
+							<h:commandButton class="col-lg-2 lg-btn-default" style="width:auto;"
+								value="Publier" action="#{mbPublishProjects.publish(p)}">
+							</h:commandButton>
+						</h:column>
 						</h:dataTable>
 </h:panelGroup>
 

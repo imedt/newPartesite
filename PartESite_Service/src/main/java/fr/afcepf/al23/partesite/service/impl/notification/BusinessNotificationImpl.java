@@ -35,7 +35,7 @@ public class BusinessNotificationImpl implements IBusinessNotification {
 	@Override
 	public void save(Notification notification) {
 		log.info("BusinessNotificationImpl, save");
-		if (daoNotification.get(notification.getIdTarget()) != null){
+		if (daoNotification.get(notification.getIdNotification()) != null){
 			daoNotification.update(notification);
 		} else {
 			daoNotification.add(notification);
