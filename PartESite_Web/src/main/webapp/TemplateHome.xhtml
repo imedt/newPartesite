@@ -56,7 +56,13 @@
 			return true;
 		});
 
-		$('#modaltrigger').leanModal({
+		$("a[rel*=login]").leanModal({
+			top : 110,
+			overlay : 0.45,
+			closeButton : ".hidemodal"
+		});
+
+		$("a[rel*=cart]").leanModal({
 			top : 110,
 			overlay : 0.45,
 			closeButton : ".hidemodal"
@@ -74,32 +80,33 @@
 				<div id="header" class="container">
 
 					<!-- Logo -->
-<div id="logo">
-					<h1 class="row">
-						<ui:insert name="logo">
-							<a href="Home.xhtml" class="col-lg-12 col-xs-12 col-sm-12 col-md-12"> B<span
-								style="font-size: 30px; color: navy;">usiness </span>P<span
-								style="font-size: 30px; color: navy;">artner's</span>C<span
-								style="font-size: 30px; color: navy;">ommunity</span>
-							</a>
-						</ui:insert>
-					</h1>
+					<div id="logo">
+						<h1 class="row">
+							<ui:insert name="logo">
+								<a href="Home.xhtml"
+									class="col-lg-12 col-xs-12 col-sm-12 col-md-12"> B<span
+									style="font-size: 30px; color: navy;">usiness </span>P<span
+									style="font-size: 30px; color: navy;">artner's</span>C<span
+									style="font-size: 30px; color: navy;">ommunity</span>
+								</a>
+							</ui:insert>
+						</h1>
 					</div>
 					<ui:insert name="sous-logo">
 						<div class="col-lg-push-3 col-lg-6 col-md-12 col-sm-12 col-xs-12">
 							<div class="scroll">
 								<div class="mask">
 									<ul id="sous-logo">
-										<li><span> <a>******
-										<ui:insert name="sous-logo-1">
+										<li><span> <a>****** <ui:insert
+														name="sous-logo-1">
 										 Plateforme européenne de
 													financement participatif // </ui:insert></a>
 										</span></li>
-										<li><span> <a>******
-										<ui:insert name="sous-logo-2">
+										<li><span> <a>****** <ui:insert
+														name="sous-logo-2">
 										Plateforme européenne de
 													financement participatif // </ui:insert>
-													</a>
+											</a>
 										</span></li>
 									</ul>
 								</div>
@@ -129,7 +136,7 @@
 					</h:panelGroup>
 					<h:panelGroup rendered="#{mbConnexion.statut==null}">
 						<li class="col-lg-3"><ui:insert name="icone-menu-4">
-								<a href="#loginmodal" id="modaltrigger" class="icon fa-sign-in"><span>S'identifier</span></a>
+								<a href="#loginmodal" id="modaltrigger" rel="login" class="icon fa-sign-in"><span>S'identifier</span></a>
 							</ui:insert></li>
 					</h:panelGroup>
 					<h:panelGroup rendered="#{mbConnexion.statut!=null}">
@@ -148,7 +155,7 @@
 						</h:panelGroup>
 					</h:panelGroup>
 					<li class="col-lg-3"><ui:insert name="icone-menu-5">
-							<a href="#loginmodal" id="modaltrigger"
+							<a href="#Cartmodal" id="modaltrigger" rel="cart"
 								class="icon fa-shopping-cart"><span>Panier</span></a>
 						</ui:insert></li>
 					<h:panelGroup rendered="#{mbConnexion.statut!=null}">
@@ -168,9 +175,10 @@
 						<ui:insert name="content">
 							<article class="box post">
 							<h3 class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-								<a class="col-lg-6 col-md-12 col-sm-12 col-xs-12" href="Concept.xhtml">Comment déposer un
-									projet ?</a> <a class="col-lg-6 col-md-12 col-sm-12 col-xs-12" href="Concept.xhtml">Comment
-									participer à un projet ?</a>
+								<a class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
+									href="Concept.xhtml">Comment déposer un projet ?</a> <a
+									class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
+									href="Concept.xhtml">Comment participer à un projet ?</a>
 							</h3>
 
 							</article>
@@ -180,10 +188,12 @@
 				</div>
 			</div>
 			<ui:insert name="image-centre">
-				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="width: 100%; background-color: black;">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+					style="width: 100%; background-color: black;">
 					<div class="col-lg-push-1 col-lg-10">
 						<center>
-							<iframe class="col-lg-12 col-md-12 col-sm-12 col-xs-12" width="auto" height="500"
+							<iframe class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+								width="auto" height="500"
 								src="https://www.youtube.com/embed/OI-bTpbkH4Y?feature=player_detailpage"
 								frameborder="0" allowfullscreen="false"></iframe>
 						</center>
@@ -226,7 +236,7 @@
 								<h:inputText name="name" placeholder="Name" type="text"
 									value="Nom" style="width:100%;" />
 							</div>
-							
+
 							<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
 								<h:inputText name="email" placeholder="Email" type="text"
 									value="Email" style="width:100%;" />
@@ -291,18 +301,66 @@
 				</ul>
 			</div>
 
-			<!-- PopUp -->
+			<!-- PopUp connexion -->
 			<div id="loginmodal" style="display: none;"
 				class="col-lg-push-4 col-lg-4 col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				<h1 class="bold col-lg-12 ">Identification</h1>
 
 				<span class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Login</span>
-				<h:inputText class="col-lg-12 col-md-12 col-sm-12 col-xs-12" value="#{mbConnexion.login}" />
+				<h:inputText class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+					value="#{mbConnexion.login}" />
 				<span class="col-lg-12">Password</span>
-				<h:inputSecret class="password col-lg-12 col-md-12 col-sm-12 col-xs-12"
+				<h:inputSecret
+					class="password col-lg-12 col-md-12 col-sm-12 col-xs-12"
 					value="#{mbConnexion.password}" />
-				<h:commandButton class="button lg-btn-default col-lg-12 col-md-12 col-sm-12 col-xs-12"
+				<h:commandButton
+					class="button lg-btn-default col-lg-12 col-md-12 col-sm-12 col-xs-12"
 					action="#{mbConnexion.connexion}" value="Connexion"></h:commandButton>
+
+			</div>
+			
+			<!-- PopUp panier -->
+			<div id="Cartmodal" style="display: none;"
+				class="col-lg-push-4 col-lg-4 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				
+				<h:dataTable class="col-lg-push-1 col-lg-10"
+				 var="c" styleClass="table" value="#{mbOrder.cart.orderRows}"
+				headerClass="table-header"
+				rowClasses="table-odd-row, table-even-row">
+				<h:column>
+					<f:facet name="header">Pack</f:facet>   			
+    				#{c.pack.packName}
+    			</h:column>
+    			<h:column>
+					<f:facet name="header">Montant</f:facet>   			
+    				#{c.pack.amount}
+    			</h:column>
+				<h:column>
+				<h:selectOneMenu class="col-lg-6"
+								value="#{mbOrder.getNbByPack(c.pack)}">
+							</h:selectOneMenu>
+					<f:facet name="header">Quantité</f:facet>   			
+    				
+    			</h:column>
+    			<h:column>
+					<f:facet name="header">total</f:facet>   			
+    				#{c.amount}
+    			</h:column>
+    			<h:column>
+					<f:facet name="header">modifier</f:facet>   			
+    				<h:commandButton class="col-lg-2 lg-btn-default" style="width:auto;"
+								value="modifier" >
+							</h:commandButton>
+    			</h:column>
+    			<h:column>
+					<f:facet name="header">supprimer</f:facet>   			
+    				#{packName}
+    			</h:column>
+    			
+    			
+    			
+				</h:dataTable>
+				
 
 			</div>
 

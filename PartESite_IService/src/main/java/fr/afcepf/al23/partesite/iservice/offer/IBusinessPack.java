@@ -13,4 +13,5 @@ public interface IBusinessPack {
 	public Pack disablePackage(Pack p);
 	public List<Pack>  getByidProject(Integer idProject);
 	public List<Pack>  getAllWithItemDispo();
+	public Pack get(int idPack);
 }

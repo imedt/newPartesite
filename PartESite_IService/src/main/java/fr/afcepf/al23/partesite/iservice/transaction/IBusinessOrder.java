@@ -21,7 +21,7 @@ public interface IBusinessOrder {
 	public List<UserOrder> getByDisabled(Boolean disabled);	
 	public List<UserOrder> getByUpdatedBy(Identity identity);
 	public List<UserOrder> getByUpdatedDate(Date updatedDate);	
-	public UserOrder addOrderRow(Identity identity, UserOrder oldOrder, int nb, Pack pack);
-	public UserOrder modifyOrderRow(UserOrder oldOrder, int nb, Pack pack);
+	public UserOrder addOrderRow(Identity identity, UserOrder oldOrder, Integer nb, Pack pack);
+	public UserOrder modifyOrderRow(UserOrder oldOrder, Integer nb, Pack pack);
 	public UserOrder ReleaseOrder(UserOrder OrderToRelease);
 }

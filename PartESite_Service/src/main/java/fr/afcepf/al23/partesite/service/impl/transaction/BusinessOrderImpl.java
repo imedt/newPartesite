@@ -48,9 +48,9 @@ public class BusinessOrderImpl implements IBusinessOrder {
 	@Override
 	public void save(UserOrder userOrder) {
 		log.info("BusinessOrderImpl, save");
-		if (daoUserOrder.get(userOrder.getIdUserOrder()) != null) {
+		if (userOrder.getIdUserOrder()!= null){
 			daoUserOrder.update(userOrder);
-		} else {
+		} else{
 			daoUserOrder.add(userOrder);
 		}
 	}
@@ -159,29 +159,38 @@ public class BusinessOrderImpl implements IBusinessOrder {
 	}
 
 	@Override
-	public UserOrder addOrderRow(Identity identity, UserOrder oldOrder, int nb,
+	public UserOrder addOrderRow(Identity identity, UserOrder oldOrder, Integer nb,
 			Pack pack) {
+		
+		log.info("addOrderRow in BusinessOrderImpl ");
+		log.info(pack.getIdPack());
 		UserOrder newOrder = oldOrder;
 		// si commande/panier inexistant => creation
 		if (newOrder == null) {
 			newOrder = new UserOrder(null, 1, new Date(), null, null, 1,
 					new Date(), null, null, identity, new UserOrderState(1,
 							null, null, null, null, null, "EN COURS", null));
+			log.info("0");
 			newOrder.setIdUserOrder(daoUserOrder.add(newOrder));
 		}
+		log.info("1");
 		if (newOrder.getIdUserOrder() == null)
 			return null;
+		log.info("2");
 		// creation de la ligne de commande
 		OrderRow newOR = new OrderRow(null, pack.getAmount() * nb, 1,
 				new Date(), null, 1, new Date(), pack, newOrder);
+		log.info("3");
 		newOR = daoOrderRow.add(newOR);
+		log.info("4");
 		// reservation des items.
 		newOR.setItems(daoItem.holdItemByNbByPack(nb, pack));
+		log.info("5");
 		return newOrder;
 	}
 
 	@Override
-	public UserOrder modifyOrderRow(UserOrder oldOrder, int nb, Pack pack) {
+	public UserOrder modifyOrderRow(UserOrder oldOrder, Integer nb, Pack pack) {
 		for (OrderRow or : oldOrder.getOrderRows()) {
 			if (or.getPack().getIdPack() == pack.getIdPack()) {
 				if (nb == 0) {

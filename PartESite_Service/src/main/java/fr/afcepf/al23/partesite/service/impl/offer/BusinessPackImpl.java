@@ -70,6 +70,11 @@ public class BusinessPackImpl implements IBusinessPack {
 		}
 		return packs;
 	}
+
+	@Override
+	public Pack get(int idPack) {
+		return daoPack.get(idPack);
+	}
 	
 
 

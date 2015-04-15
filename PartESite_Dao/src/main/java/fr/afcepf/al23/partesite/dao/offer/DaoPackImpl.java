@@ -67,7 +67,7 @@ public class DaoPackImpl implements IDaoPack {
 
 	@Override
 	public List<Pack> getByidProject(Integer idProject) {
-		log.info("getByidProject = " + idProject);
+		//log.info("getByidProject = " + idProject);
 
 		Query hql = em.createQuery(
 
@@ -87,7 +87,7 @@ public class DaoPackImpl implements IDaoPack {
 	@Override
 	public Integer getNbSale(Pack pack) {
 		Integer nbSale = 0;
-		log.info("getNbSale");
+		//log.info("getNbSale");
 		Query hql = em
 				.createQuery(
 						"SELECT count(*) FROM Item i WHERE i.pack = :ppack and i.itemState.idItemState = 3")
@@ -95,7 +95,7 @@ public class DaoPackImpl implements IDaoPack {
 		long nbTemp = 0;
 		nbTemp = (long) hql.getSingleResult();
 		nbSale = (Integer) (int) (long) nbTemp;
-		log.info(nbSale);
+		//log.info(nbSale);
 		return nbSale;
 	}
 

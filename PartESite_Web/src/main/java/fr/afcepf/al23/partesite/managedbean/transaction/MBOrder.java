@@ -7,26 +7,41 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
+import org.apache.log4j.Logger;
+
+import fr.afcepf.al23.model.entities.OrderRow;
+import fr.afcepf.al23.model.entities.Pack;
 import fr.afcepf.al23.model.entities.UserOrder;
 import fr.afcepf.al23.partesite.iservice.transaction.IBusinessOrder;
 import fr.afcepf.al23.partesite.iservice.transaction.IBusinessOrderRow;
 import fr.afcepf.al23.partesite.managedbean.MBConnexion;
 
-@ManagedBean(name="mbOrder")
+@ManagedBean(name = "mbOrder")
 @SessionScoped
 public class MBOrder {
+
+	private static Logger log = Logger.getLogger(MBOrder.class);
 	
 	@EJB
 	IBusinessOrder buOrder;
 	@EJB
 	IBusinessOrderRow buOrderRow;
-	
+
 	@ManagedProperty(value = "#{mbConnexion}")
 	private MBConnexion MBCnx;
 
 	private UserOrder backing;
 	List<UserOrder> orders;
 	double totalAmount;
+	private UserOrder cart;
+
+	public UserOrder getCart() {
+		return cart;
+	}
+
+	public void setCart(UserOrder cart) {
+		cart = cart;
+	}
 
 	public IBusinessOrder getBuOrder() {
 		return buOrder;
@@ -81,10 +96,36 @@ public class MBOrder {
 		this.totalAmount = totalAmount;
 	}
 
-	public String updateBacking(UserOrder uO){
+	public String updateBacking(UserOrder uO) {
 		backing = new UserOrder();
 		setBacking(uO);
 		return "";
 	}
+
+	public int getNbByPack(Pack pack){
+		int nb = 0;
+		for (OrderRow ordR : cart.getOrderRows()) {
+			if(ordR.getPack() == pack)
+				nb= ordR.getItems().size();
+		}
+		return nb;
+	}
 	
+	public UserOrder addToCart(Integer nb, Pack pack) {
+		log.info("nb =" + nb + " ,pack = " + pack.getIdPack());
+		cart = buOrder.addOrderRow(MBCnx.getId(), cart, nb, pack);
+		return cart;
+	}
+
+	public UserOrder modifyToCart(Integer nb, Pack pack) {
+
+		cart = buOrder.modifyOrderRow(cart, nb, pack);
+		return cart;
+	}
+
+	public UserOrder releaseCart() {
+		buOrder.ReleaseOrder(cart);
+		return cart;
+	}
+
 }
