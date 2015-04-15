@@ -88,8 +88,8 @@ public class MBConnexion {
 
 	public String connexion() {
 		id = new Identity();
+		id = buIdentity.connexion(login, password);
 		if ( id!= null){
-			id = buIdentity.connexion(login, password);
 			if (id.getIdentityRole().getIdIdentityRole() == 3) {
 				setDirection("/UserDashBoard.xhtml?faces-redirect=true");
 				setStatut("Utilisateur");

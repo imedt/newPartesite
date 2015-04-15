@@ -123,5 +123,70 @@ public class MBConsultProject {
 	public void setAvailableItemsToBuyPack(Integer availableItemsToBuyPack) {
 		this.availableItemsToBuyPack = availableItemsToBuyPack;
 	}
+
+	public IBusinessProject getBuProjects() {
+		return buProjects;
+	}
+
+	public void setBuProjects(IBusinessProject buProjects) {
+		this.buProjects = buProjects;
+	}
+
+	public IBusinessProjectContent getBuProjectContent() {
+		return buProjectContent;
+	}
+
+	public void setBuProjectContent(IBusinessProjectContent buProjectContent) {
+		this.buProjectContent = buProjectContent;
+	}
+
+	public IBusinessPack getBuPacks() {
+		return buPacks;
+	}
+
+	public void setBuPacks(IBusinessPack buPacks) {
+		this.buPacks = buPacks;
+	}
+
+	public int getI() {
+		return i;
+	}
+
+	public void setI(int i) {
+		this.i = i;
+	}
+
+	public void setPacks(List<Pack> packs) {
+		this.packs = packs;
+	}
+
+	public void setAucunContenu(ProjectContent aucunContenu) {
+		this.aucunContenu = aucunContenu;
+	}
+
+	public void setContentProjectAuthor(ProjectContent contentProjectAuthor) {
+		this.contentProjectAuthor = contentProjectAuthor;
+	}
+
+	public void setContentProjectImage(ProjectContent contentProjectImage) {
+		this.contentProjectImage = contentProjectImage;
+	}
+
+	public void setContentProjectVideo(ProjectContent contentProjectVideo) {
+		this.contentProjectVideo = contentProjectVideo;
+	}
+
+	public void setContentProjectConcept(ProjectContent contentProjectConcept) {
+		this.contentProjectConcept = contentProjectConcept;
+	}
+
+	public void setListOfAvailableItemsToBuyPack(
+			ArrayList<Integer> listOfAvailableItemsToBuyPack) {
+		this.listOfAvailableItemsToBuyPack = listOfAvailableItemsToBuyPack;
+	}
+
+	public void setNbPackToOrder(Integer nbPackToOrder) {
+		this.nbPackToOrder = nbPackToOrder;
+	}
 	
 }
