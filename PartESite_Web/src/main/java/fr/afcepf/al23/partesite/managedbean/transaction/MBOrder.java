@@ -29,6 +29,16 @@ public class MBOrder {
 
 	@ManagedProperty(value = "#{mbConnexion}")
 	private MBConnexion MBCnx;
+	
+	private int nbPackToOrder;
+
+	public int getNbPackToOrder() {
+		return nbPackToOrder;
+	}
+
+	public void setNbPackToOrder(int nbPackToOrder) {
+		this.nbPackToOrder = nbPackToOrder;
+	}
 
 	private UserOrder backing;
 	List<UserOrder> orders;
@@ -111,7 +121,7 @@ public class MBOrder {
 		return nb;
 	}
 	
-	public UserOrder addToCart(Integer nb, Pack pack) {
+	public UserOrder addToCart(int nb, Pack pack) {
 		log.info("nb =" + nb + " ,pack = " + pack.getIdPack());
 		
 		cart = buOrder.addOrderRow(MBCnx.getId(), cart, nb, pack);
