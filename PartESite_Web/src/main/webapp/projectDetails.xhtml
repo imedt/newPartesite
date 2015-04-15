@@ -62,7 +62,8 @@
 						headerClass="table-header"
 						rowClasses="table-odd-row, table-even-row">
 					
-							<h:column class="col-lg-12 col-xs-12 col-sm-12 col-md-12">
+							<h:column class="col-lg-12 col-xs-12 col-sm-12 col-md-12" >
+							<h:panelGroup rendered="#{(pack.stock-pack.nbSale)!=0}">
     				<h1 style="padding-top:1em;">#{project.projectName}</h1>
     			
 							<h1>#{pack.packName}</h1>
@@ -75,10 +76,10 @@
 							<h3>Quantité disponible :
 								#{pack.stock-pack.nbSale}</h3>
 						
-							<h3>Quantité souhaitée :</h3>
+							<h3 class="col-lg-4 col-xs-12 col-sm-12 col-md-12">Quantité souhaitée :</h3>
 							
-							<h:selectOneMenu class="col-lg-12 col-xs-12 col-sm-12 col-md-12"
-								value="#{mbOrder.nbPackToOrder}">
+							<h:selectOneMenu class="col-lg-8 col-xs-12 col-sm-12 col-md-12"
+								value="#{mbOrder.nbPackToOrder}" >
 								<f:selectItems
 									value="#{mbConsultProject.remplirList(pack)}"
 									var="i" itemLabel="#{i}" itemValue="#{null}" />
@@ -86,8 +87,8 @@
 							
 							<h:commandButton type="submit" value="Commander" action="#{mbOrder.addToCart(mbOrder.nbPackToOrder,pack)}"
 								class="button lg-btn-default col-lg-12 col-xs-12 col-sm-12 col-md-12" />
+					</h:panelGroup>
 						</h:column>
-					
 					</h:dataTable>
 				</h:panelGroup>
 

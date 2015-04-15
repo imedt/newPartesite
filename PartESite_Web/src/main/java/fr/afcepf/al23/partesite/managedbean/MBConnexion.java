@@ -4,6 +4,8 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 
 import fr.afcepf.al23.model.entities.Identity;
 import fr.afcepf.al23.model.entities.UserOrder;
@@ -110,6 +112,15 @@ public class MBConnexion {
 			setStatut(null);
 			setId(null);
 			setDirection("/Home.xhtml?faces-redirect=true");
+			
+			HttpServletRequest request = 
+					(HttpServletRequest)FacesContext
+					.getCurrentInstance()
+					.getExternalContext().getRequest();
+			
+			MBOrder mbOrder = (MBOrder)request.getAttribute("mbOrder");
+			mbOrder = null;
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

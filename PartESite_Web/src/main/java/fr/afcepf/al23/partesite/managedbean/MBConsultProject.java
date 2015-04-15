@@ -41,7 +41,7 @@ public class MBConsultProject {
 	private int i = 0;
 
 	// pour le panier : nbCommandé
-	private int nbPackToOrder;
+	private Integer nbPackToOrder;
 
 	public Project getP() {
 		return p;
@@ -97,7 +97,7 @@ public class MBConsultProject {
 		return packs = buPacks.getByidProject(getP().getIdProject());
 	}
 
-	public int getNbPackToOrder() {
+	public Integer getNbPackToOrder() {
 		return nbPackToOrder;
 	}
 	
@@ -185,7 +185,7 @@ public class MBConsultProject {
 		this.listOfAvailableItemsToBuyPack = listOfAvailableItemsToBuyPack;
 	}
 
-	public void setNbPackToOrder(int nbPackToOrder) {
+	public void setNbPackToOrder(Integer nbPackToOrder) {
 		this.nbPackToOrder = nbPackToOrder;
 	}
 	
