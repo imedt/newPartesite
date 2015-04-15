@@ -41,7 +41,7 @@ public class MBConnexion {
 
 	public void setId(Identity id) {
 
-			id = buIdentity.connexion(login, password);	
+		id = buIdentity.connexion(login, password);	
 
 		this.id = id;
 	}
@@ -88,7 +88,7 @@ public class MBConnexion {
 
 	public String connexion() {
 		id = new Identity();
-		try {
+		if ( id!= null){
 			id = buIdentity.connexion(login, password);
 			if (id.getIdentityRole().getIdIdentityRole() == 3) {
 				setDirection("/UserDashBoard.xhtml?faces-redirect=true");
@@ -98,21 +98,19 @@ public class MBConnexion {
 				setDirection("/ModeratorDashBoard.xhtml?faces-redirect=true");
 				setStatut("Moderateur");
 			}
+		}
+		return direction;
+	}
+
+	public String deconnexion() {
+		try {
+			setStatut(null);
+			setId(null);
+			setDirection("/Home.xhtml?faces-redirect=true");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	return direction;
-}
-
-public String deconnexion() {
-	try {
-		setStatut(null);
-		setId(null);
 		setDirection("/Home.xhtml?faces-redirect=true");
-	} catch (Exception e) {
-		e.printStackTrace();
+		return direction;
 	}
-	setDirection("/Home.xhtml?faces-redirect=true");
-	return direction;
-}
 }

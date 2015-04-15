@@ -86,7 +86,10 @@ public class DaoIdentityImpl implements IDaoIdentity {
 				.createQuery(
 						"SELECT ident FROM Identity ident WHERE ident.email = :email AND ident.mdp = :mdp")
 				.setParameter("email", email).setParameter("mdp", mdp);
+		if ( hql.getResultList().size()==1 )
+		{
 		identity = (Identity) hql.getSingleResult();
+		}
 		return identity;
 	}
 
