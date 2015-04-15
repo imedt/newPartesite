@@ -82,7 +82,7 @@ public class DaoItemImpl implements IDaoItem {
 	}
 
 	@Override
-	public List<Item> holdItemByNbByPack(int nb, Pack pack) {
+	public List<Item> holdItemByNbByPack(int nb, Pack pack,int idOrderRow) {
 		
 		log.info("holdItemByNbByPack");
 		Query hql = em.createQuery(
@@ -99,6 +99,7 @@ public class DaoItemImpl implements IDaoItem {
 			itemS.setIdItemState(2);
 			itemS.setItemStateName("RESERVE");
 			for (Item item : is) {
+				item.setIdOrderRow(idOrderRow);
 				item.setItemState(itemS);
 				item = em.merge(item);
 				em.flush();

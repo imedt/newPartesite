@@ -187,7 +187,7 @@ public class BusinessOrderImpl implements IBusinessOrder {
 		newOrder = daoUserOrder.update(newOrder);
 		log.info("4");
 		// reservation des items.
-		newOR.setItems(daoItem.holdItemByNbByPack(nb, pack));
+		newOR.setItems(daoItem.holdItemByNbByPack(nb, pack, newOR.getIdOrderRow()));
 		log.info("5");
 		return newOrder;
 	}
@@ -204,7 +204,7 @@ public class BusinessOrderImpl implements IBusinessOrder {
 				} else {
 					daoItem.ClearItemByNbByPack(or.getItems());
 					or.setAmount(nb * pack.getAmount());
-					or.setItems(daoItem.holdItemByNbByPack(nb, pack));
+					or.setItems(daoItem.holdItemByNbByPack(nb, pack, or.getIdOrderRow()));
 				}
 				return oldOrder;
 			}
