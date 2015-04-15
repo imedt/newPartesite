@@ -5,6 +5,7 @@ import javax.jws.WebService;
 
 @WebService
 public interface IGestionDevises {
+
 	@WebMethod
-	double getCurrency (String nomDevise);
+	public double returnChangeByDevises(String deviseSource, String deviseCible);
 }
