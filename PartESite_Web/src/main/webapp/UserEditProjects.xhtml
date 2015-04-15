@@ -70,12 +70,22 @@
 								<span class="col-lg-3">Quantité de package :</span>
 								<h:inputText class="col-lg-9" value="#{pack.stock}" />
 							</div>
-
+							<h:panelGroup rendered="#{mbEditProject.nbTotalPack &gt; 1}">
+							<h:commandButton value="delete" action="#{mbEditProject.onButtonRemoveFieldClick(pack)}">  
+								<f:ajax execute="@form" render=":j_idt8:packageList" />
+							</h:commandButton> 
+							
+							</h:panelGroup> 
+ 
 						</ui:repeat>
+						<h:panelGroup rendered="#{mbEditProject.packs.size() &lt; 3}">
+							<h:commandButton value="Add">
+								<f:ajax listener="#{mbEditProject.onButtonAddFieldClick}"
+									execute="@form" render="packageList" />
+							</h:commandButton>
+
+						</h:panelGroup>
 					</h:panelGroup>
-					<h:commandButton value="Add">
-						<f:ajax listener="#{mbEditProject.onButtonAddFieldClick}" execute="@form" render="packageList" />
-					</h:commandButton>
 				</fieldset>
 
 			</div>

@@ -201,10 +201,22 @@ public class MBEditProject {
 		this.addContentToProject(cPContentConcept);
 	}
 	
+    public void onButtonRemoveFieldClick(final Pack p_oField)
+    {
+    	log.info("ref to destroy : "+p_oField);
+        for(Pack p : packs){
+        	log.info("ref before : "+p);
+        }
+        packs.remove(p_oField);
+        for(Pack p : packs){
+        	log.info("ref after : "+p);
+        }
+  }
+    
     public void onButtonAddFieldClick(AjaxBehaviorEvent p_oEvent)
     {
     	log.info("In event listener");
-    	if(this.packs.size() < 3){
+    	if(this.packs.size() < 3){ 
     		this.packs.add(new Pack());
     	}
     }
@@ -398,5 +410,8 @@ public class MBEditProject {
 	public void setBuNotification(IBusinessNotification buNotification) {
 		this.buNotification = buNotification;
 	}
-
+	
+	public int getNbTotalPack(){
+		return packs.size();
+	}
 }
