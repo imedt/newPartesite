@@ -341,11 +341,14 @@
     				#{c.pack.amount}
     			</h:column>
 				<h:column>
+				<f:facet name="header">Quantité</f:facet> 
 				<h:selectOneMenu class="col-lg-6"
-								value="#{mbOrder.getNbByPack(c.pack)}">
+								value="#{c.items.size()}">
+								
+								<f:selectItems value="#{ mbConsultProject.remplirList( c.pack)}" var="i" itemLabel="#{i}" itemValue="#{i}"/>
+								
 							</h:selectOneMenu>
-					<f:facet name="header">Quantité</f:facet>   			
-    				
+					  			
     			</h:column>
     			<h:column>
 					<f:facet name="header">total</f:facet>   			

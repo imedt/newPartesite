@@ -3,6 +3,7 @@
  */
 package fr.afcepf.al23.partesite.service.impl.transaction;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -20,7 +21,6 @@ import fr.afcepf.al23.partesite.idao.offer.IDaoItem;
 import fr.afcepf.al23.partesite.idao.transaction.IDaoOrderRow;
 import fr.afcepf.al23.partesite.idao.transaction.IDaoUserOrder;
 import fr.afcepf.al23.partesite.iservice.transaction.IBusinessOrder;
-
 
 /**
  * @author awagu_000
@@ -48,9 +48,9 @@ public class BusinessOrderImpl implements IBusinessOrder {
 	@Override
 	public void save(UserOrder userOrder) {
 		log.info("BusinessOrderImpl, save");
-		if (userOrder.getIdUserOrder()!= null){
+		if (userOrder.getIdUserOrder() != null) {
 			daoUserOrder.update(userOrder);
-		} else{
+		} else {
 			daoUserOrder.add(userOrder);
 		}
 	}
@@ -159,9 +159,9 @@ public class BusinessOrderImpl implements IBusinessOrder {
 	}
 
 	@Override
-	public UserOrder addOrderRow(Identity identity, UserOrder oldOrder, Integer nb,
-			Pack pack) {
-		
+	public UserOrder addOrderRow(Identity identity, UserOrder oldOrder,
+			Integer nb, Pack pack) {
+
 		log.info("addOrderRow in BusinessOrderImpl ");
 		log.info(pack.getIdPack());
 		UserOrder newOrder = oldOrder;
@@ -187,8 +187,18 @@ public class BusinessOrderImpl implements IBusinessOrder {
 		newOrder = daoUserOrder.update(newOrder);
 		log.info("4");
 		// reservation des items.
-		newOR.setItems(daoItem.holdItemByNbByPack(nb, pack, newOR.getIdOrderRow()));
+		newOR.setItems(daoItem.holdItemByNbByPack(nb, pack,
+				newOR.getIdOrderRow()));
+		log.info("idOrderRow = " + newOR.getIdOrderRow());
+		List<OrderRow> orList = new ArrayList<OrderRow>();
+		if (newOrder.getOrderRows() != null)
+			orList = newOrder.getOrderRows();
+		
+		orList.add(newOR);
+
+		newOrder.setOrderRows(orList);
 		log.info("5");
+		log.info(newOrder.getOrderRows().size());
 		return newOrder;
 	}
 
@@ -204,7 +214,8 @@ public class BusinessOrderImpl implements IBusinessOrder {
 				} else {
 					daoItem.ClearItemByNbByPack(or.getItems());
 					or.setAmount(nb * pack.getAmount());
-					or.setItems(daoItem.holdItemByNbByPack(nb, pack, or.getIdOrderRow()));
+					or.setItems(daoItem.holdItemByNbByPack(nb, pack,
+							or.getIdOrderRow()));
 				}
 				return oldOrder;
 			}
