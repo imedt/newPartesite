@@ -177,6 +177,7 @@ public class BusinessOrderImpl implements IBusinessOrder {
 		if (newOrder.getIdUserOrder() == null)
 			return null;
 		log.info("2");
+		log.info("idOrder = " + newOrder.getIdUserOrder());
 		// creation de la ligne de commande
 		OrderRow newOR = new OrderRow(null, pack.getAmount() * nb, 1,
 				new Date(), null, 1, new Date(), pack, newOrder);
