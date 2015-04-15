@@ -125,9 +125,12 @@
 							</span></a>
 						</ui:insert></li>
 					<li class="col-lg-3"><ui:insert name="icone-menu-2">
-							<a class="icon fa-newspaper-o" href="NewProjects.xhtml"><span>Consulter
-									les nouveautés</span></a>
+							<a class="icon fa-newspaper-o" href="NewProjects.xhtml"><span>Nouveautés</span></a>
 						</ui:insert></li>
+					<h:panelGroup>
+					<li class="col-lg-3">
+					<a href="SearchProject.xhtml" class="icon fa-exclamation-triangle">Recherche</a></li>
+					</h:panelGroup>
 					<h:panelGroup rendered="#{mbConnexion.statut==null}">
 						<li class="col-lg-3"><ui:insert name="icone-menu-3">
 								<a href="NewUser.xhtml" class="icon fa-edit"><span>Devenir
@@ -154,10 +157,12 @@
 								</ui:insert></li>
 						</h:panelGroup>
 					</h:panelGroup>
+					<h:panelGroup rendered="#{mbOrder.cart!=null}">
 					<li class="col-lg-3"><ui:insert name="icone-menu-5">
 							<a href="#Cartmodal" id="modaltrigger" rel="cart"
-								class="icon fa-shopping-cart"><span>Panier</span></a>
+								class="icon fa-shopping-cart"><span>Mon Panier</span></a>
 						</ui:insert></li>
+						</h:panelGroup>
 					<h:panelGroup rendered="#{mbConnexion.statut!=null}">
 						<li class="col-3"><h:commandLink class="icon fa-sign-out"
 								action="#{mbConnexion.deconnexion}">

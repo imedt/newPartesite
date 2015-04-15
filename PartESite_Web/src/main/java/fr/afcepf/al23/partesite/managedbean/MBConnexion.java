@@ -2,15 +2,19 @@ package fr.afcepf.al23.partesite.managedbean;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
 import fr.afcepf.al23.model.entities.Identity;
 import fr.afcepf.al23.partesite.iservice.user.IBusinessIdentity;
+import fr.afcepf.al23.partesite.managedbean.transaction.MBOrder;
 
 @ManagedBean(name = "mbConnexion")
 @SessionScoped
 public class MBConnexion {
 
+	@ManagedProperty(value="mbOrder")
+	private MBOrder cart;
 
 	@EJB
 	IBusinessIdentity buIdentity;
@@ -106,6 +110,7 @@ public class MBConnexion {
 		try {
 			setStatut(null);
 			setId(null);
+			cart.setCart(null);
 			setDirection("/Home.xhtml?faces-redirect=true");
 		} catch (Exception e) {
 			e.printStackTrace();
