@@ -25,16 +25,19 @@ public interface IGestionDevises {
 
     /**
      * 
+     * @param arg1
      * @param arg0
      * @return
      *     returns double
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getCurrency", targetNamespace = "http://service.gestiondevises.al23.afcepf.fr/", className = "fr.afcepf.al23.gestiondevises.service.GetCurrency")
-    @ResponseWrapper(localName = "getCurrencyResponse", targetNamespace = "http://service.gestiondevises.al23.afcepf.fr/", className = "fr.afcepf.al23.gestiondevises.service.GetCurrencyResponse")
-    public double getCurrency(
+    @RequestWrapper(localName = "returnChangeByDevises", targetNamespace = "http://service.gestiondevises.al23.afcepf.fr/", className = "fr.afcepf.al23.gestiondevises.service.ReturnChangeByDevises")
+    @ResponseWrapper(localName = "returnChangeByDevisesResponse", targetNamespace = "http://service.gestiondevises.al23.afcepf.fr/", className = "fr.afcepf.al23.gestiondevises.service.ReturnChangeByDevisesResponse")
+    public double returnChangeByDevises(
         @WebParam(name = "arg0", targetNamespace = "")
-        String arg0);
+        String arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        String arg1);
 
 }

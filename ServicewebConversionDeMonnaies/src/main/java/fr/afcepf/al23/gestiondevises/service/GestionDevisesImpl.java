@@ -1,24 +1,22 @@
 package fr.afcepf.al23.gestiondevises.service;
 
-import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.jws.WebService;
 
-import fr.afcepf.al23.entity.Currency;
-import fr.afcepf.al23.gestiondevises.dao.IDaoGestionDevises;
+import fr.afcepf.al23.conversion.service.IConversion;
+import net.webservicex.Currency;
+import net.webservicex.CurrencyConvertor;
+import net.webservicex.CurrencyConvertorSoap;
+
 @Remote(IGestionDevises.class)
 @Stateless
 @WebService
 public class GestionDevisesImpl implements IGestionDevises {
-
-	@EJB
-	private IDaoGestionDevises dao;
-	
-	@Override
-	public double getCurrency(String nomDevise) {
-		Currency c = dao.getCurrency(nomDevise);
-		return c.getRate();
+	public double returnChangeByDevises(String deviseSource, String deviseCible){
+		CurrencyConvertor service = new CurrencyConvertor();
+		CurrencyConvertorSoap proxy = service.getCurrencyConvertorSoap();
+			
+		return proxy.conversionRate(Currency.fromValue(deviseSource), Currency.fromValue(deviseCible));
 	}
-
 }

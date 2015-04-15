@@ -24,8 +24,8 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _GetCurrencyResponse_QNAME = new QName("http://service.gestiondevises.al23.afcepf.fr/", "getCurrencyResponse");
-    private final static QName _GetCurrency_QNAME = new QName("http://service.gestiondevises.al23.afcepf.fr/", "getCurrency");
+    private final static QName _ReturnChangeByDevises_QNAME = new QName("http://service.gestiondevises.al23.afcepf.fr/", "returnChangeByDevises");
+    private final static QName _ReturnChangeByDevisesResponse_QNAME = new QName("http://service.gestiondevises.al23.afcepf.fr/", "returnChangeByDevisesResponse");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: fr.afcepf.al23.gestiondevises.service
@@ -35,37 +35,37 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetCurrency }
+     * Create an instance of {@link ReturnChangeByDevisesResponse }
      * 
      */
-    public GetCurrency createGetCurrency() {
-        return new GetCurrency();
+    public ReturnChangeByDevisesResponse createReturnChangeByDevisesResponse() {
+        return new ReturnChangeByDevisesResponse();
     }
 
     /**
-     * Create an instance of {@link GetCurrencyResponse }
+     * Create an instance of {@link ReturnChangeByDevises }
      * 
      */
-    public GetCurrencyResponse createGetCurrencyResponse() {
-        return new GetCurrencyResponse();
+    public ReturnChangeByDevises createReturnChangeByDevises() {
+        return new ReturnChangeByDevises();
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetCurrencyResponse }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ReturnChangeByDevises }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://service.gestiondevises.al23.afcepf.fr/", name = "getCurrencyResponse")
-    public JAXBElement<GetCurrencyResponse> createGetCurrencyResponse(GetCurrencyResponse value) {
-        return new JAXBElement<GetCurrencyResponse>(_GetCurrencyResponse_QNAME, GetCurrencyResponse.class, null, value);
+    @XmlElementDecl(namespace = "http://service.gestiondevises.al23.afcepf.fr/", name = "returnChangeByDevises")
+    public JAXBElement<ReturnChangeByDevises> createReturnChangeByDevises(ReturnChangeByDevises value) {
+        return new JAXBElement<ReturnChangeByDevises>(_ReturnChangeByDevises_QNAME, ReturnChangeByDevises.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetCurrency }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ReturnChangeByDevisesResponse }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://service.gestiondevises.al23.afcepf.fr/", name = "getCurrency")
-    public JAXBElement<GetCurrency> createGetCurrency(GetCurrency value) {
-        return new JAXBElement<GetCurrency>(_GetCurrency_QNAME, GetCurrency.class, null, value);
+    @XmlElementDecl(namespace = "http://service.gestiondevises.al23.afcepf.fr/", name = "returnChangeByDevisesResponse")
+    public JAXBElement<ReturnChangeByDevisesResponse> createReturnChangeByDevisesResponse(ReturnChangeByDevisesResponse value) {
+        return new JAXBElement<ReturnChangeByDevisesResponse>(_ReturnChangeByDevisesResponse_QNAME, ReturnChangeByDevisesResponse.class, null, value);
     }
 
 }

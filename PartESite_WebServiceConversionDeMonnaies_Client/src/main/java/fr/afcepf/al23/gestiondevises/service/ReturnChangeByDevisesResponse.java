@@ -8,12 +8,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for getCurrencyResponse complex type.
+ * <p>Java class for returnChangeByDevisesResponse complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="getCurrencyResponse">
+ * &lt;complexType name="returnChangeByDevisesResponse">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
@@ -27,10 +27,10 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "getCurrencyResponse", propOrder = {
+@XmlType(name = "returnChangeByDevisesResponse", propOrder = {
     "_return"
 })
-public class GetCurrencyResponse {
+public class ReturnChangeByDevisesResponse {
 
     @XmlElement(name = "return")
     protected double _return;
