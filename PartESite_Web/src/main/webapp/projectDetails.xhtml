@@ -79,13 +79,12 @@
 							<h3 class="col-lg-4 col-xs-12 col-sm-12 col-md-12">Quantité souhaitée :</h3>
 							
 							<h:selectOneMenu class="col-lg-8 col-xs-12 col-sm-12 col-md-12"
-								value="#{mbOrder.nbPackToOrder}" >
+								value="#{pack.}" >
 								<f:selectItems
-									value="#{mbConsultProject.remplirList(pack)}"
-									var="i" itemLabel="#{i}" itemValue="#{i}" />
+									value="#{mbConsultProject.remplirList(pack)}"/>
 							</h:selectOneMenu>
 							
-							<h:commandButton type="submit" value="Commander" action="#{mbOrder.addToCart(mbOrder.nbPackToOrder,pack)}"
+							<h:commandButton type="submit" value="Commander" action="#{mbOrder.addToCart(pack)}"
 								class="button lg-btn-default col-lg-12 col-xs-12 col-sm-12 col-md-12" />
 					</h:panelGroup>
 						</h:column>

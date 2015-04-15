@@ -25,6 +25,17 @@ public class Pack implements Serializable {
 
 	private Double amount;
 
+	@Transient
+	int nbPackToOrder;
+	
+	public int getNbPackToOrder() {
+		return nbPackToOrder;
+	}
+
+	public void setNbPackToOrder(int nbPackToOrder) {
+		this.nbPackToOrder = nbPackToOrder;
+	}
+
 	@Column(name="created_by")
 	private Integer  createdBy;
 

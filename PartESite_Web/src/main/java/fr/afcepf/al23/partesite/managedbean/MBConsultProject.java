@@ -6,6 +6,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.model.SelectItem;
 
 import fr.afcepf.al23.model.entities.Pack;
 import fr.afcepf.al23.model.entities.Project;
@@ -36,7 +37,7 @@ public class MBConsultProject {
 	private ProjectContent contentProjectImage  = new ProjectContent();
 	private ProjectContent contentProjectVideo  = new ProjectContent();
 	private ProjectContent contentProjectConcept = new ProjectContent();
-	private ArrayList<Integer> listOfAvailableItemsToBuyPack = new ArrayList<>();
+	private ArrayList<SelectItem> listOfAvailableItemsToBuyPack = new ArrayList<>();
 	private Integer availableItemsToBuyPack;
 	private int i = 0;
 
@@ -51,7 +52,7 @@ public class MBConsultProject {
 		this.p = p;
 	}
 
-	public ArrayList<Integer> getListOfAvailableItemsToBuyPack() {
+	public ArrayList<SelectItem> getListOfAvailableItemsToBuyPack() {
 		return listOfAvailableItemsToBuyPack;
 	}
 	
@@ -111,11 +112,17 @@ public class MBConsultProject {
 		return aucunContenu;
 	}
 
-	public ArrayList<Integer> remplirList(Pack p){
+	public ArrayList<SelectItem> remplirList(Pack p){
+	
+		
+		
 		listOfAvailableItemsToBuyPack = new ArrayList<>();
 		setAvailableItemsToBuyPack((p.getStock()-p.getNbSale()));
-		for (Integer i = 1; i <=availableItemsToBuyPack; i++) {
-			listOfAvailableItemsToBuyPack.add(i);
+		for (int i = 1; i <=availableItemsToBuyPack; i++) {
+			SelectItem si = new SelectItem();
+			si.setValue(i);
+			si.setLabel(String.valueOf(i));
+			listOfAvailableItemsToBuyPack.add(si);
 		}
 		return listOfAvailableItemsToBuyPack;
 	}
@@ -181,7 +188,7 @@ public class MBConsultProject {
 	}
 
 	public void setListOfAvailableItemsToBuyPack(
-			ArrayList<Integer> listOfAvailableItemsToBuyPack) {
+			ArrayList<SelectItem> listOfAvailableItemsToBuyPack) {
 		this.listOfAvailableItemsToBuyPack = listOfAvailableItemsToBuyPack;
 	}
 
