@@ -25,3 +25,42 @@ center.text-home h1{color:#47b8af !important;}
 @media only screen and (min-width: 321px) and (max-width: 480px) and
 	(orientation: landscape) {
 }
+
+#Cartmodal {
+	color: navy;
+}
+
+
+#Cartmodal.table {
+	border-collapse: collapse;
+	color: navy;
+}
+
+#Cartmodal.table-header {
+	text-align: center;
+	background: none repeat scroll 0 0 #47b8af;
+	border-bottom: 2px solid navy;
+	padding: 16px;
+	color: navy;
+	font-weight: bold;
+}
+
+#Cartmodal.table-odd-row {
+	text-align: center;
+	background: none repeat scroll 0 0 #FFFFFFF;
+	border-top: 2px solid navy;
+}
+
+#Cartmodal.table-even-row {
+	text-align: center;
+	background: none repeat scroll 0 0 #F9F9F9;
+	border-top: 2px solid navy;
+}
+
+#Cartmodal.table-odd-row td {
+	color: navy;
+}
+
+#Cartmodal.table-even-row td {
+	color: navy;
+}
