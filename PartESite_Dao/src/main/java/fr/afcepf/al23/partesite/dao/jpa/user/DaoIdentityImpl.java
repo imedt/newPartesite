@@ -51,7 +51,7 @@ public class DaoIdentityImpl implements IDaoIdentity {
 		try {
 			Query hql = em
 				.createQuery(
-						"SELECT ident FROM Identity ident WHERE ident.idIentity = :id_identity")
+						"SELECT ident FROM Identity ident WHERE ident.idIdentity = :id_identity")
 				.setParameter("id_identity", idIdentity);
 		identity = (Identity) hql.getSingleResult();
 		} catch (Exception e) {

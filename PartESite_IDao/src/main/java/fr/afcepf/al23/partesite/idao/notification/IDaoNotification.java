@@ -12,7 +12,7 @@ import fr.afcepf.al23.model.entities.TargetType;
 @Remote
 public interface IDaoNotification {
 	public Integer add(Notification notification);
-	public void update(Notification notification);
+	public Notification update(Notification notification);
 	public Notification get(Integer idNotification);
 	public List<Notification> getAll();
 	public List<Notification> getByContent(String contentNotification);

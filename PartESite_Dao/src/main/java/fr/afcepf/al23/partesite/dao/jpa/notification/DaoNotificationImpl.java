@@ -45,9 +45,10 @@ public class DaoNotificationImpl implements IDaoNotification {
 	 * @see fr.afcepf.al23.partesite.idao.notification.IDaoNotification#update(fr.afcepf.al23.partesite.model.entities.Notification)
 	 */
 	@Override
-	public void update(Notification notification) {
+	public Notification update(Notification notification) {
 		em.merge(notification);
 		em.flush();
+		return notification;
 	}
 
 	/* (non-Javadoc)

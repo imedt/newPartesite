@@ -35,8 +35,8 @@ public class BusinessNotificationImpl implements IBusinessNotification {
 	@Override
 	public void save(Notification notification) {
 		log.info("BusinessNotificationImpl, save");
-		if (daoNotification.get(notification.getIdNotification()) != null){
-			daoNotification.update(notification);
+		if (notification.getIdNotification() != null){
+			notification = daoNotification.update(notification);
 		} else {
 			daoNotification.add(notification);
 		}
@@ -101,7 +101,7 @@ public class BusinessNotificationImpl implements IBusinessNotification {
 	 */
 	@Override
 	public List<Notification> getByTarget(Integer idTarget) {
-		log.info("BusinessNotificationImpl, getByTarget");
+		log.info("BusinessNotificationImpl, getByTarget "+idTarget);
 		return daoNotification.getByTarget(idTarget);
 	}
 

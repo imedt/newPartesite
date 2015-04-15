@@ -8,12 +8,11 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.event.AjaxBehaviorEvent;
 
 import org.apache.log4j.Logger;
 
 import fr.afcepf.al23.model.entities.Identity;
-import fr.afcepf.al23.model.entities.Item;
-import fr.afcepf.al23.model.entities.ItemState;
 import fr.afcepf.al23.model.entities.Notification;
 import fr.afcepf.al23.model.entities.Pack;
 import fr.afcepf.al23.model.entities.Project;
@@ -53,8 +52,9 @@ public class MBEditProject {
 	IBusinessItemState buItemState;
 	@EJB
 	IBusinessNotification buNotification;
+	
 
-	// Creation Projet à rattacher à l'Utilisateur
+	// Creation Projet ï¿½ rattacher ï¿½ l'Utilisateur
 	private Project p;
 	private Double aimingAmount;
 	private String projectName;
@@ -64,79 +64,98 @@ public class MBEditProject {
 	private List<ProjectCategory> categories;
 	private List<ProjectContent> projectContents = new ArrayList<>();
 
-	// Creation Content à ajouter au Projet
+	// Creation Content ï¿½ ajouter au Projet
 	private ProjectContent cP;
 	private Integer idContentProject;
 	private String cPContentImage;
 	private String cPContentVideo;
 	private String cPContentAuthor;
-	private String cPContentConcept;
-
-	// Creation Pack à ajouter au Projet
-	private Pack pack;
-	private Integer idPack;
-	private Double packAmount;
-	private String description;
-	private String packName;
-	private Boolean reward;
-	private Integer stock;
-	private List<Item> items = new ArrayList<>();
-	private Integer nbSale;
-
-	// Creation Item à ajouter au Pack
-	private Item i;
-	private Integer idItem;
-	private Integer idOrderRow;
-	private double iAmount;
-	private ItemState itemState;
-
-	// Méthodes de création de Projet / Content / Pack / Item
+	private String cPContentConcept;	
+	public MBEditProject(){
+		packs = new ArrayList<Pack>();
+		packs.add(new Pack()); 
+	}
+	// Methodes de creation de Projet / Content / Pack / Item
 	public void createProject() {
-
+		log.info("Creating new project");
 		p = new Project();
+		projectCategory = new ProjectCategory();
+		
 		p.setProjectName(projectName);
 		p.setAimingAmount(aimingAmount);
 		p.setCreatedBy(cnx.getId().getIdIdentity());
 		p.setCreatedDate(new Date());
-
-		// Seront modifiés par le modérateur à la publication
+		// Seront modifiï¿½s par le modï¿½rateur ï¿½ la publication
 		p.setDisabled(false);
 		p.setPublish(false);
-
 		p.setIdentity(cnx.getId());
-		projectCategory = new ProjectCategory();
 		projectCategory = buProjectCategory.get(getIdProjectCategory());
 		p.setProjectCategory(projectCategory);
-
-		p = buProject.save(p);
-
+	}
+	private void sendNotifications(){
+		log.info("creating notification 1");
 		Notification n = new Notification();
 		n.setCreatedBy(1);
 		n.setCreatedDate(new Date());
-		n.setContentNotification("Nouveau projet à publier : "+p.getProjectName());
+		n.setContentNotification("Nouveau projet Ã  publier : "+p.getProjectName());
 		n.setIdentity(cnx.getId());
 		n.setIdTarget(1);
 		n.setDisabled(false);
+		log.info("save notification");
+
 		buNotification.save(n);
+		log.info("creating notification 2");
 
 		Notification n1 = new Notification();
 		n1.setCreatedBy(1);
 		n1.setCreatedDate(new Date());
-		n1.setContentNotification("Votre demande de publication du projet : "+p.getProjectName()+" a bien été recue.");
+		n1.setContentNotification("Votre demande de publication du projet : "+p.getProjectName()+" a bien Ã©tÃ© recue.");
 		Identity moderator = buIdentity.get(1);
 		n1.setIdentity(moderator);
 		n1.setIdTarget(cnx.getId().getIdIdentity());
 		n1.setDisabled(false);
+		log.info("save notification 2");
 		buNotification.save(n1);
-
+	}
+	
+	public String validateProject(){
+		log.info("Validating project");
+		this.createProject(); 
+		log.info("Create project's content");
+		this.addContentsToProject();
+		log.info("add packs to project");
+		this.addPacksToProject();
+		log.info("save whole project");
+		this.saveProject();
+		return "UserNotifications.xhtml";
+	}
+	public void saveProject(){
+		log.info("save project");
+		p = buProject.save(p);
+		log.info("save project content");
+		for(ProjectContent pc : p.getProjectContents()){
+			log.info("setting project to content");
+			pc.setProject(p);
+			log.info("saving content");
+			buProjectContent.save(pc);
+		}
+		log.info("there is : "+packs.size() +" packs");
+		for(Pack pp : packs){
+			log.info("pack info : "+pp);
+			if(pp != null && !pp.getPackName().equals("")){
+				log.info("pack existing and gonna be created");  
+				pp.setProject(p);
+				buPack.save(pp);				
+			}
+		}
+		sendNotifications();
+		resetP();
 	}
 
 	public void resetP() {
 
 		p = new Project();
-		pack = new Pack();
 		cP = new ProjectContent();
-		i = new Item();
 
 		aimingAmount= null;
 		projectName= null;
@@ -149,153 +168,46 @@ public class MBEditProject {
 		cPContentVideo= null;
 		cPContentAuthor= null;
 		cPContentConcept= null;
-		idPack= null;
-		packAmount= null;
-		description= null;
-		packName= null;
-		reward= null;
-		stock= null;
-		items= null;
-		nbSale= null;
-		idItem= null;
-		idOrderRow= null;
-		iAmount= 0.00;
-		itemState= null;
 	}
 
-	public void addPackToProject() {
-
-		pack = new Pack();
-		pack.setAmount(packAmount);
-		pack.setCreatedBy(cnx.getId().getIdIdentity());
-		pack.setCreatedDate(new Date());
-		pack.setDescription(description);
-		pack.setPackName(packName);
-		pack.setReward(reward);
-		pack.setStock(stock);
-
-		// Seront modifiés par le modérateur à la publication
-		pack.setDisabled(true);
-
-		pack.setProject(p);
-		// Enregistre le pack
-		pack = buPack.save(pack);
-		// Ajoute le pack au projet
-		packs.add(pack);
-		p.setPacks(packs);
-		// Enregistre le projet après ajout du pack
-		p = buProject.save(p);
+	public Project addPacksToProject() {
+		for(Pack pack : packs){
+			pack.setProject(p);
+			p.setPacks(packs);
+		}
+		return p;
+		// Enregistre le projet apres ajout du pack
 	}
 
-	public void addContentImageToProject() {
-
+	public Project addContentToProject(String value){
 		cP = new ProjectContent();
-		cP.setContent(cPContentImage);
+		cP.setContent(value);
 		cP.setCreatedBy(cnx.getId().getIdIdentity());
 		cP.setCreatedDate(new Date());
 
-		// Seront modifiés par le modérateur à la publication
+		// Seront modifies par le moderateur a la publication
 		cP.setDisabled(true);
-
-		cP.setProject(p);
-		// Enregistre le content
-		cP = buProjectContent.save(cP);
 		// Ajoute le content au projet
 		projectContents.add(cP);
 		p.setProjectContents(projectContents);
-		// Enregistre le projet après ajout du content
-		p = buProject.save(p);
-	}
-
-	public void addContentVideoToProject() {
-
-		cP = new ProjectContent();
-		cP.setContent(cPContentVideo);
-		cP.setCreatedBy(cnx.getId().getIdIdentity());
-		cP.setCreatedDate(new Date());
-
-		// Seront modifiés par le modérateur à la publication
-		cP.setDisabled(true);
-
-		cP.setProject(p);
-		// Enregistre le content
-		cP = buProjectContent.save(cP);
-		// Ajoute le content au projet
-		projectContents.add(cP);
-		p.setProjectContents(projectContents);
-		// Enregistre le projet après ajout du content
-		p = buProject.save(p);
-	}
-
-	public void addContentAuthorToProject() {
-
-		cP = new ProjectContent();
-		cP.setContent(cPContentAuthor);
-		cP.setCreatedBy(cnx.getId().getIdIdentity());
-		cP.setCreatedDate(new Date());
-
-		// Seront modifiés par le modérateur à la publication
-		cP.setDisabled(true);
-
-		cP.setProject(p);
-		// Enregistre le content
-		cP = buProjectContent.save(cP);
-		// Ajoute le content au projet
-		projectContents.add(cP);
-		p.setProjectContents(projectContents);
-		// Enregistre le projet après ajout du content
-		p = buProject.save(p);
-	}
-
-	public void addContentConceptToProject() {
-
-		cP = new ProjectContent();
-		cP.setContent(cPContentConcept);
-		cP.setCreatedBy(cnx.getId().getIdIdentity());
-		cP.setCreatedDate(new Date());
-
-		// Seront modifiés par le modérateur à la publication
-		cP.setDisabled(true);
-
-		cP.setProject(p);
-		// Enregistre le content
-		cP = buProjectContent.save(cP);
-		// Ajoute le content au projet
-		projectContents.add(cP);
-		p.setProjectContents(projectContents);
-		// Enregistre le projet après ajout du content
-		p = buProject.save(p);
+		return p; 
 	}
 
 	public void addContentsToProject() {
 
-		this.addContentImageToProject();
-		this.addContentVideoToProject();
-		this.addContentAuthorToProject();
-		this.addContentConceptToProject();
+		this.addContentToProject(cPContentImage);
+		this.addContentToProject(cPContentVideo);
+		this.addContentToProject(cPContentAuthor);
+		this.addContentToProject(cPContentConcept);
 	}
-
-	public void addItemToProject() {
-
-		i = new Item();
-		i.setAmount(iAmount);
-		i.setCreatedBy(cnx.getId().getIdIdentity());
-		i.setCreatedDate(new Date());
-
-		// Seront modifiés par le modérateur à la publication
-		i.setDisabled(true);
-		// Sera modifié à la commande
-		i.setItemState(itemState);
-
-		i.setPack(pack);
-		// Enregistre l'item
-		i = buItem.createItem(i);
-		// Ajoute l'item au pack
-		items.add(i);
-		pack.setItems(items);
-		// Enregistre le pack après ajout de l'item
-		pack = buPack.save(pack);
-	}
+	
+    public void onButtonAddFieldClick(AjaxBehaviorEvent p_oEvent)
+    {
+    	log.info("In event listener");
+    	if(this.packs.size() < 3){
+    		this.packs.add(new Pack());
+    	}
+    }
 
 	// GET & SET
 	public Logger getLog() {
@@ -474,115 +386,17 @@ public class MBEditProject {
 		this.cPContentConcept = cPContentConcept;
 	}
 
-	public Pack getPack() {
-		return pack;
+	public IBusinessIdentity getBuIdentity() {
+		return buIdentity;
+	}
+	public void setBuIdentity(IBusinessIdentity buIdentity) {
+		this.buIdentity = buIdentity;
+	}
+	public IBusinessNotification getBuNotification() {
+		return buNotification;
+	}
+	public void setBuNotification(IBusinessNotification buNotification) {
+		this.buNotification = buNotification;
 	}
 
-	public void setPack(Pack pack) {
-		this.pack = pack;
-	}
-
-	public Integer getIdPack() {
-		return idPack;
-	}
-
-	public void setIdPack(Integer idPack) {
-		this.idPack = idPack;
-	}
-
-	public Double getPackAmount() {
-		return packAmount;
-	}
-
-	public void setPackAmount(Double packAmount) {
-		this.packAmount = packAmount;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public String getPackName() {
-		return packName;
-	}
-
-	public void setPackName(String packName) {
-		this.packName = packName;
-	}
-
-	public Boolean getReward() {
-		return reward;
-	}
-
-	public void setReward(Boolean reward) {
-		this.reward = reward;
-	}
-
-	public Integer getStock() {
-		return stock;
-	}
-
-	public void setStock(Integer stock) {
-		this.stock = stock;
-	}
-
-	public List<Item> getItems() {
-		return items;
-	}
-
-	public void setItems(List<Item> items) {
-		this.items = items;
-	}
-
-	public Integer getNbSale() {
-		return nbSale;
-	}
-
-	public void setNbSale(Integer nbSale) {
-		this.nbSale = nbSale;
-	}
-
-	public Item getI() {
-		return i;
-	}
-
-	public void setI(Item i) {
-		this.i = i;
-	}
-
-	public Integer getIdItem() {
-		return idItem;
-	}
-
-	public void setIdItem(Integer idItem) {
-		this.idItem = idItem;
-	}
-
-	public Integer getIdOrderRow() {
-		return idOrderRow;
-	}
-
-	public void setIdOrderRow(Integer idOrderRow) {
-		this.idOrderRow = idOrderRow;
-	}
-
-	public double getiAmount() {
-		return iAmount;
-	}
-
-	public void setiAmount(double iAmount) {
-		this.iAmount = iAmount;
-	}
-
-	public ItemState getItemState() {
-		return itemState = buItemState.getByName("Disponible");
-	}
-
-	public void setItemState(ItemState itemState) {
-		this.itemState = itemState;
-	}
 }

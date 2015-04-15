@@ -51,7 +51,7 @@ public class MBDashBoard {
 	private List<UserOrder> listGivings = new ArrayList<>();
 	private List<Notification> listNotifications = new ArrayList<>();
 	private Double backingsAmount;
-	// on initialise les montants à comparer pour chaque projet
+	// on initialise les montants ï¿½ comparer pour chaque projet
 	private Double aimingAmount = 0.00;
 	private Double backings = 0.00;
 
@@ -204,7 +204,7 @@ public class MBDashBoard {
 				aimingAmount = p.getAimingAmount();
 
 				List<Pack> packs = buPacks.getByidProject(p.getIdProject());
-				System.out.println("id projet : " + p.getIdProject());
+				System.out.println("id projet from get list financed : " + p.getIdProject());
 
 				for (Pack pack : packs) {
 					backings += (double) (pack.getAmount() * pack.getNbSale());
@@ -300,7 +300,7 @@ public class MBDashBoard {
 		this.backingsAmount = backingsAmount;
 	}
 
-	// Méthodes
+	// Mï¿½thodes
 	public Integer allMyProjects() {
 		projects = buProjects.getByIdentity(cnx.getId());
 		if (projects.size() != 0)
@@ -349,7 +349,7 @@ public class MBDashBoard {
 				aimingAmount = p.getAimingAmount();
 
 				List<Pack> packs = buPacks.getByidProject(p.getIdProject());
-				System.out.println("id projet : " + p.getIdProject());
+				System.out.println("id projet from all my projects : " + p.getIdProject());
 
 				for (Pack pack : packs) {
 					backings += (double) (pack.getAmount() * pack.getNbSale());
