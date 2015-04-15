@@ -32,13 +32,13 @@ public class BusinessIdentityImpl implements IBusinessIdentity {
 		return identity;
 	}
 
-	//Verifier que l'identity n'existe pas déjà dans la base
+	//Verifier que l'identity n'existe pas dï¿½jï¿½ dans la base
 	@Override
 	public String saveWithControlsBefore(Identity identity) {
 
 		String message="";
 
-			//On vérifie que les champs sont bien remplis
+			//On vï¿½rifie que les champs sont bien remplis
 			if ( identity.getCivility() != null
 					&& identity.getFirstName()!= null
 					&& identity.getLastName() != null
@@ -48,12 +48,12 @@ public class BusinessIdentityImpl implements IBusinessIdentity {
 				if ( daoIdent.emailExist(identity.getEmail())==false)
 				{
 					save(identity);
-					message ="Inscription validée !";
+					message ="Inscription validï¿½e !";
 				}
 			}
 			else 
 			{
-				message = "Email déjà existant, veuillez vous connecter !";
+				message = "Email dï¿½jï¿½ existant, veuillez vous connecter !";
 			}
 
 		return message;
@@ -98,7 +98,7 @@ public class BusinessIdentityImpl implements IBusinessIdentity {
 	public List<Identity> getBlackList() {
 		List<Identity> identities = daoIdent.getBlackList();
 		return identities;
-	}
+	} 
 
 	@Override
 	public List<Identity> getAll() {

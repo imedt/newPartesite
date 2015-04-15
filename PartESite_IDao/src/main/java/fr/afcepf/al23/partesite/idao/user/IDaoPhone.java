@@ -6,7 +6,7 @@ import javax.ejb.Remote;
 
 import fr.afcepf.al23.model.entities.Phone;
 
-
+ 
 @Remote
 public interface IDaoPhone {
 	public Phone add(Phone phone);

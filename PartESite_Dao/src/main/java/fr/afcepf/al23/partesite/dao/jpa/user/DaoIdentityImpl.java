@@ -31,6 +31,8 @@ public class DaoIdentityImpl implements IDaoIdentity {
 
 	@Override
 	public Identity add(Identity identity) {
+		//Civility civ = em.find(Civility.class, identity.getCivility());
+		//identity.setCivility(civ);
 		em.persist(identity);
 		em.flush();
 		return identity;

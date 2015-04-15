@@ -41,7 +41,7 @@ public class BusinessAddressTypeImpl implements IBusinessAddressType {
 		List<AddressType> addressTypes = null;
 
 			addressTypes = daoAddT.getall();
-
+ 
 		return addressTypes;
 	}
 

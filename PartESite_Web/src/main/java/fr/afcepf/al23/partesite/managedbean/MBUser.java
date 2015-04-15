@@ -189,7 +189,7 @@ public class MBUser {
 		{
 			try {
 				phones = buPhone.getByIdIdentity(cnx.getId().getIdIdentity());
-			} catch (Exception e) {
+			} catch (Exception e) { 
 				e.printStackTrace();
 			}
 		}
@@ -283,7 +283,7 @@ public class MBUser {
 
 	//METHODES
 
-	//Méhode inscription
+	//Mï¿½hode inscription
 	public String inscription()
 	{
 		identity = new Identity();
@@ -321,7 +321,7 @@ public class MBUser {
 		return direction;
 	}
 
-	//Enregistrement d'un nouveau téléphone
+	//Enregistrement d'un nouveau tï¿½lï¿½phone
 	public void addPhoneToUser(){
 
 
@@ -339,7 +339,7 @@ public class MBUser {
 
 	}
 
-	//Enregistrement d'un nouveau téléphone
+	//Enregistrement d'un nouveau tï¿½lï¿½phone
 	public void addAddressToUser(){
 
 		Address address = new Address();
