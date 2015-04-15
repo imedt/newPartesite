@@ -56,101 +56,40 @@
 			</div>
 
 
-				<div class="packBox1 col-lg-12 col-xs-12 col-sm-12 col-md-12" rendered="#{mbConsultProject.pack1!=null}">
-					<center>
-						<p>
-							<h1>#{mbConsultProject.pack1.packName}</h1>
-						</p>
-						<p>
-							<h3>#{mbConsultProject.pack1.description}</h3>
-						</p>
-						<p>
-							<h3>Prix du package : #{mbConsultProject.pack1.amount}
+				<h:panelGroup class="packBox3 col-lg-12 col-xs-12 col-sm-12 col-md-12" rendered="#{mbConsultProject.packs.size()!=0}">
+				<h:dataTable  class="col-lg-push-1 col-lg-10 col-md-12 col-sm-12 col-xs-12"
+						value="#{mbConsultProject.packs}" var="pack" styleClass="table"
+						headerClass="table-header"
+						rowClasses="table-odd-row, table-even-row">
+					
+							<h:column class="col-lg-12 col-xs-12 col-sm-12 col-md-12">
+    				<h1 style="padding-top:1em;">#{project.projectName}</h1>
+    			
+							<h1>#{pack.packName}</h1>
+							
+							<h3>#{pack.description}</h3>
+							
+							<h3>Prix du package : #{pack.amount}
 								&euro;</h3>
-						</p>
-						<p>
+						
 							<h3>Quantité disponible :
-								#{mbConsultProject.pack1.stock-mbConsultProject.pack1.nbSale}</h3>
-						</p>
-						<p>
-							<h3 class="col-lg-5">Quantité souhaitée :</h3>
-							<h:selectOneMenu class="col-lg-6"
+								#{pack.stock-pack.nbSale}</h3>
+						
+							<h3>Quantité souhaitée :</h3>
+							
+							<h:selectOneMenu class="col-lg-12 col-xs-12 col-sm-12 col-md-12"
 								value="#{mbConsultProject.nbPackToOrder}">
 								<f:selectItems
-									value="#{mbConsultProject.listOfAvailableItemsToBuyPack1}"
+									value="#{mbConsultProject.remplirList(pack)}"
 									var="i" itemLabel="#{i.intValue()}" itemValue="#{i.intValue()}" />
 							</h:selectOneMenu>
-						</p>
-						<p>
-							<h:commandButton type="submit" value="Commander" action="#{mbOrder.addToCart(mbConsultProject.nbPackToOrder, mbConsultProject.pack1)}"
+							
+							<h:commandButton type="submit" value="#{mbOrder.addToCart(mbConsultProject.nbPackToOrder,pack)}"
 								class="button lg-btn-default col-lg-12 col-xs-12 col-sm-12 col-md-12" />
-						</p>
-					</center>
-				</div>
-
-				<div class="packBox2 col-lg-12 col-xs-12 col-sm-12 col-md-12" rendered="#{mbConsultProject.pack2!=null}">
-					<center>
-						<p>
-							<h1>#{mbConsultProject.pack2.packName}</h1>
-						</p>
-						<p>
-							<h3>#{mbConsultProject.pack2.description}</h3>
-						</p>
-						<p>
-							<h3>Prix du package : #{mbConsultProject.pack2.amount}
-								&euro;</h3>
-						</p>
-						<p>
-							<h3>Quantité disponible :
-								#{mbConsultProject.pack2.stock-mbConsultProject.pack2.nbSale}</h3>
-						</p>
-						<p>
-							<h3 class="col-lg-5">Quantité souhaitée :</h3>
-							<h:selectOneMenu class="col-lg-6"
-								value="#{mbConsultProject.nbPackToOrder}">
-								<f:selectItems
-									value="#{mbConsultProject.listOfAvailableItemsToBuyPack2}"
-									var="i" itemLabel="#{i.intValue()}" itemValue="#{i.intValue()}" />
-							</h:selectOneMenu>
-						</p>
-						<p>
-							<h:commandButton type="submit" value="Commander"
-								class="button lg-btn-default col-lg-12 col-xs-12 col-sm-12 col-md-12" />
-						</p>
-					</center>
-				</div>
-
-				<div class="packBox3 col-lg-12 col-xs-12 col-sm-12 col-md-12" rendered="#{mbConsultProject.pack3!=null}">
-					<center>
-						<p>
-							<h1>#{mbConsultProject.pack3.packName}</h1>
-						</p>
-						<p>
-							<h3>#{mbConsultProject.pack3.description}</h3>
-						</p>
-						<p>
-							<h3>Prix du package : #{mbConsultProject.pack3.amount}
-								&euro;</h3>
-						</p>
-						<p>
-							<h3>Quantité disponible :
-								#{mbConsultProject.pack3.stock-mbConsultProject.pack3.nbSale}</h3>
-						</p>
-						<p>
-							<h3 class="col-lg-5">Quantité souhaitée :</h3>
-							<h:selectOneMenu class="col-lg-6"
-								value="#{mbConsultProject.nbPackToOrder}">
-								<f:selectItems
-									value="#{mbConsultProject.listOfAvailableItemsToBuyPack3}"
-									var="i" itemLabel="#{i.intValue()}" itemValue="#{i.intValue()}" />
-							</h:selectOneMenu>
-						</p>
-						<p>
-							<h:commandButton type="submit" value="Commander"
-								class="button lg-btn-default col-lg-12 col-xs-12 col-sm-12 col-md-12" />
-						</p>
-					</center>
-				</div>
+						</h:column>
+					
+					</h:dataTable>
+				</h:panelGroup>
 
 			</div>
 
