@@ -84,13 +84,15 @@ public class DaoItemImpl implements IDaoItem {
 	@Override
 	public List<Item> holdItemByNbByPack(int nb, Pack pack) {
 		
+		log.info("holdItemByNbByPack");
 		Query hql = em.createQuery(
-				"SELECT i FROM Item i WHERE i.pack=:pPack AND i.itemState = 1 and i.disabled != true")
+				"SELECT i FROM Item i WHERE i.pack=:pPack AND i.itemState = 1")
 				.setParameter("pPack", pack);
 
 		List<Item> is = null;
 		hql.setMaxResults(nb);
 		is = hql.getResultList();
+		log.info("nb item = "+ is.size());
 		if(is.size() == nb)
 		{
 			ItemState itemS = new ItemState();
@@ -98,7 +100,7 @@ public class DaoItemImpl implements IDaoItem {
 			itemS.setItemStateName("RESERVE");
 			for (Item item : is) {
 				item.setItemState(itemS);
-				em.merge(item);
+				item = em.merge(item);
 				em.flush();
 			}
 		}

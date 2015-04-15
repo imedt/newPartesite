@@ -167,7 +167,7 @@ public class BusinessOrderImpl implements IBusinessOrder {
 		UserOrder newOrder = oldOrder;
 		// si commande/panier inexistant => creation
 		if (newOrder == null) {
-			newOrder = new UserOrder(null, 1, new Date(), null, null, 1,
+			newOrder = new UserOrder(null, 1, new Date(), null, 0d, 1,
 					new Date(), null, null, identity, new UserOrderState(1,
 							null, null, null, null, null, "EN COURS", null));
 			log.info("0");
@@ -183,6 +183,8 @@ public class BusinessOrderImpl implements IBusinessOrder {
 				new Date(), null, 1, new Date(), pack, newOrder);
 		log.info("3");
 		newOR = daoOrderRow.add(newOR);
+		newOrder.setTotalAmount(newOrder.getTotalAmount() + newOR.getAmount());
+		newOrder = daoUserOrder.update(newOrder);
 		log.info("4");
 		// reservation des items.
 		newOR.setItems(daoItem.holdItemByNbByPack(nb, pack));

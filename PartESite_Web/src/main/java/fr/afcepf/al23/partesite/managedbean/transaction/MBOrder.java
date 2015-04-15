@@ -113,6 +113,7 @@ public class MBOrder {
 	
 	public UserOrder addToCart(Integer nb, Pack pack) {
 		log.info("nb =" + nb + " ,pack = " + pack.getIdPack());
+		
 		cart = buOrder.addOrderRow(MBCnx.getId(), cart, nb, pack);
 		return cart;
 	}

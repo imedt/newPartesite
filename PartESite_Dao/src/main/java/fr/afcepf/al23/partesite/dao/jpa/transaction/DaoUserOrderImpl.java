@@ -45,9 +45,10 @@ public class DaoUserOrderImpl implements IDaoUserOrder {
 	 * @see fr.afcepf.al23.partesite.idao.transaction.IDaoUserOrder#update(fr.afcepf.al23.partesite.model.entities.UserOrder)
 	 */
 	@Override
-	public void update(UserOrder userOrder) {
-		em.merge(userOrder);
+	public UserOrder update(UserOrder userOrder) {
+		userOrder = em.merge(userOrder);
 		em.flush();
+		return userOrder;
 	}
 
 	/* (non-Javadoc)

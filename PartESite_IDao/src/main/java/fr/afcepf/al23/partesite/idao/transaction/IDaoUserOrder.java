@@ -11,7 +11,7 @@ import fr.afcepf.al23.model.entities.UserOrder;
 @Remote
 public interface IDaoUserOrder {
 	public Integer add(UserOrder userOrder);
-	public void update(UserOrder userOrder);
+	public UserOrder update(UserOrder userOrder);
 	public UserOrder get(Integer idUserOrder);
 	public List<UserOrder> getAll();
 	public List<UserOrder> getByIdentity(Identity identity);
