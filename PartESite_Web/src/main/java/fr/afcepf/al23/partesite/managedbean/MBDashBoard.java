@@ -2,10 +2,14 @@ package fr.afcepf.al23.partesite.managedbean;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+
+import org.apache.log4j.Logger;
+
 import fr.afcepf.al23.model.entities.Notification;
 import fr.afcepf.al23.model.entities.OrderRow;
 import fr.afcepf.al23.model.entities.Pack;
@@ -20,7 +24,7 @@ import fr.afcepf.al23.partesite.iservice.user.IBusinessIdentity;
 @ManagedBean(name = "mbDashboard")
 @SessionScoped
 public class MBDashBoard {
-
+	private Logger log = Logger.getLogger(MBDashBoard.class);
 	@EJB
 	private IBusinessIdentity buIdentity;
 	@EJB
@@ -372,10 +376,17 @@ public class MBDashBoard {
 	public Integer allMyBackingsWithReward() {
 		List<UserOrder> list = buUserOrder.getByIdentity(cnx.getId());
 		listBackingsWithReward = new ArrayList<>();
+		log.info("there is "+list.size()+" user order");
 		for (UserOrder uo : list) {
+			log.info("there is "+uo.getOrderRows().size()+" user order row");
 			for (OrderRow or : uo.getOrderRows()) {
-				if (or.getPack().getReward() == true) {
-					listBackingsWithReward.add(uo);
+				log.info("the pack inside : "+or.getPack());
+				if(or.getPack() == null){
+					continue;
+				}
+				log.info("has reward : "+(or.getPack().getReward()));
+				if (or.getPack().getReward() != null && or.getPack().getReward() == true) { 
+					listBackingsWithReward.add(uo); 
 				}
 			}
 		}
@@ -388,14 +399,20 @@ public class MBDashBoard {
 	public Integer allMyGivings() {
 		List<UserOrder> list = buUserOrder.getByIdentity(cnx.getId());
 		listGivings = new ArrayList<>();
+		log.info("there is "+list.size()+" user order");
 		for (UserOrder uo : list) {
+			log.info("there is "+uo.getOrderRows().size()+" user order row");
 			for (OrderRow or : uo.getOrderRows()) {
-				if (or.getPack().getReward() == false) {
-					listGivings.add(uo);
+				log.info("the pack inside : "+or.getPack());
+				if(or.getPack() == null){
+					continue;
+				}
+				log.info("has reward : "+(or.getPack().getReward()));
+				if (or.getPack().getReward() != null && or.getPack().getReward() == false) {
+					listGivings.add(uo); 
 				}
 			}
-		}
-		if (listGivings.size() != 0)
+		}		if (listGivings.size() != 0)
 			return allMyGivingsCount = listGivings.size();
 		else
 			return 0;

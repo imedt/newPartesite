@@ -31,36 +31,43 @@ center.text-home h1{color:#47b8af !important;}
 }
 
 
-#Cartmodal.table {
-	border-collapse: collapse;
-	color: navy;
+#cartModal {
+
+  padding: 15px 20px;
+  background: white;
+  border-radius: 6px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+}
+#cartModal input{
+border:none; 
+height:3em;
+border-radius: 6px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+}
+#cartModal h1{
+color:navy;
+text-align:center;
+}
+#cartModal h1.bold{
+font-weight: bold;
 }
 
-#Cartmodal.table-header {
-	text-align: center;
-	background: none repeat scroll 0 0 #47b8af;
-	border-bottom: 2px solid navy;
-	padding: 16px;
-	color: navy;
-	font-weight: bold;
+#cartModal span{
+	margin-top:0.5em;
+color:#47b8af;
+font-weight: bold;
+font-weight: 200;
+}
+#cartModal button{
+margin-top:1em;
+}
+#cartModal button span{
+color:navy;
+width: 100%;
+}
+#cartModal button:hover span{
+color:#47b8af;
 }
 
-#Cartmodal.table-odd-row {
-	text-align: center;
-	background: none repeat scroll 0 0 #FFFFFFF;
-	border-top: 2px solid navy;
-}
 
-#Cartmodal.table-even-row {
-	text-align: center;
-	background: none repeat scroll 0 0 #F9F9F9;
-	border-top: 2px solid navy;
-}
 
-#Cartmodal.table-odd-row td {
-	color: navy;
-}
-
-#Cartmodal.table-even-row td {
-	color: navy;
-}

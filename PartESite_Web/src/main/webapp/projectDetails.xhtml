@@ -15,9 +15,8 @@
 	</ui:define>
 	<ui:define name="sous-logo-2">#{mbConsultProject.p.projectName}
 	</ui:define>
-
-
 	<ui:define name="content">
+	<f:event listener="#{mbConsultProject.init()}" type="preRenderView"></f:event>
 		<div class="bloc">
 			<div class="col-lg-12">
 				<div class="textBox col-lg-6 col-xs-12 col-sm-12 col-md-12" >
@@ -56,35 +55,35 @@
 			</div>
 
 
-				<h:panelGroup class="packBox3 col-lg-12 col-xs-12 col-sm-12 col-md-12" rendered="#{mbConsultProject.packs.size()!=0}">
+				<h:panelGroup class="packBox3 col-lg-12 col-xs-12 col-sm-12 col-md-12" rendered="#{mbConsultProject.wrappedPack.size()!=0}">
 				<h:dataTable  class="col-lg-push-1 col-lg-10 col-md-12 col-sm-12 col-xs-12"
-						value="#{mbConsultProject.packs}" var="pack" styleClass="table"
+						value="#{mbConsultProject.wrappedPack}" var="wrappedPack" styleClass="table"
 						headerClass="table-header"
 						rowClasses="table-odd-row, table-even-row">
-					
+					 
 							<h:column class="col-lg-12 col-xs-12 col-sm-12 col-md-12" >
-							<h:panelGroup rendered="#{(pack.stock-pack.nbSale)!=0}">
+							<h:panelGroup rendered="#{(wrappedPack.pack.stock-wrappedPack.pack.nbSale)!=0}">
     				<h1 style="padding-top:1em;">#{project.projectName}</h1>
     			
-							<h1>#{pack.packName}</h1>
+							<h1>#{wrappedPack.pack.packName}</h1>
 							
-							<h3>#{pack.description}</h3>
+							<h3>#{wrappedPack.pack.description}</h3>
 							
-							<h3>Prix du package : #{pack.amount}
+							<h3>Prix du package : #{wrappedPack.pack.amount}
 								&euro;</h3>
 						
 							<h3>Quantité disponible :
-								#{pack.stock-pack.nbSale}</h3>
+								#{wrappedPack.pack.stock-wrappedPack.pack.nbSale}</h3>
 						
 							<h3 class="col-lg-4 col-xs-12 col-sm-12 col-md-12">Quantité souhaitée :</h3>
 							
 							<h:selectOneMenu class="col-lg-8 col-xs-12 col-sm-12 col-md-12"
-								value="#{pack.}" >
+								value="#{wrappedPack.quantity}" >
 								<f:selectItems
-									value="#{mbConsultProject.remplirList(pack)}"/>
+									value="#{mbConsultProject.remplirList(wrappedPack.pack)}"/>
 							</h:selectOneMenu>
 							
-							<h:commandButton type="submit" value="Commander" action="#{mbOrder.addToCart(pack)}"
+							<h:commandButton type="submit" value="Commander" action="#{mbOrder.addToCart(wrappedPack)}"
 								class="button lg-btn-default col-lg-12 col-xs-12 col-sm-12 col-md-12" />
 					</h:panelGroup>
 						</h:column>

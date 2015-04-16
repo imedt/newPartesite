@@ -15,6 +15,7 @@ import fr.afcepf.al23.model.entities.UserOrder;
 import fr.afcepf.al23.partesite.iservice.transaction.IBusinessOrder;
 import fr.afcepf.al23.partesite.iservice.transaction.IBusinessOrderRow;
 import fr.afcepf.al23.partesite.managedbean.MBConnexion;
+import fr.afcepf.al23.partesite.webutil.PackWrap;
 
 @ManagedBean(name = "mbOrder")
 @SessionScoped
@@ -113,10 +114,9 @@ public class MBOrder {
 		return nb;
 	}
 	
-	public UserOrder addToCart( Pack pack) {
-		
-		log.info("nb order = "+pack.getNbPackToOrder());
-		cart = buOrder.addOrderRow(MBCnx.getId(), cart, pack.getNbPackToOrder(), pack);
+	public UserOrder addToCart( PackWrap wrappedPack) {
+		log.info("wanted quantity = "+wrappedPack.getQuantity());
+		cart = buOrder.addOrderRow(MBCnx.getId(), cart, wrappedPack.getQuantity(), wrappedPack.getPack());
 		return cart;
 	}
 

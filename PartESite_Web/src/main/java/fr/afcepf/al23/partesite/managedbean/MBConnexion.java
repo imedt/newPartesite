@@ -2,20 +2,20 @@ package fr.afcepf.al23.partesite.managedbean;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.log4j.Logger;
+
 import fr.afcepf.al23.model.entities.Identity;
-import fr.afcepf.al23.model.entities.UserOrder;
 import fr.afcepf.al23.partesite.iservice.user.IBusinessIdentity;
 import fr.afcepf.al23.partesite.managedbean.transaction.MBOrder;
 
 @ManagedBean(name = "mbConnexion")
 @SessionScoped
 public class MBConnexion {
-
+	private Logger log = Logger.getLogger(MBConnexion.class);
 
 	@EJB
 	IBusinessIdentity buIdentity;
@@ -92,14 +92,18 @@ public class MBConnexion {
 	}
 
 	public String connexion() {
+		log.info("In connexion");
 		id = new Identity();
 		id = buIdentity.connexion(login, password);
 		if ( id!= null){
+			log.info("User found");
 			if (id.getIdentityRole().getIdIdentityRole() == 3) {
+				log.info("Account user");
 				setDirection("/UserDashBoard.xhtml?faces-redirect=true");
 				setStatut("Utilisateur");
 			}
 			if (id.getIdentityRole().getIdIdentityRole() == 2) {
+				log.info("Account Moderator");
 				setDirection("/ModeratorDashBoard.xhtml?faces-redirect=true");
 				setStatut("Moderateur");
 			}

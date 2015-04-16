@@ -8,18 +8,20 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.model.SelectItem;
 
+import org.apache.log4j.Logger;
+
 import fr.afcepf.al23.model.entities.Pack;
 import fr.afcepf.al23.model.entities.Project;
 import fr.afcepf.al23.model.entities.ProjectContent;
 import fr.afcepf.al23.partesite.iservice.offer.IBusinessPack;
 import fr.afcepf.al23.partesite.iservice.offer.IBusinessProject;
 import fr.afcepf.al23.partesite.iservice.offer.IBusinessProjectContent;
+import fr.afcepf.al23.partesite.webutil.PackWrap;
 
 @ManagedBean(name = "mbConsultProject")
 @SessionScoped
 public class MBConsultProject {
-
-
+	private Logger log = Logger.getLogger(MBConsultProject.class);
 	
 	@EJB
 	private IBusinessProject buProjects;
@@ -39,10 +41,22 @@ public class MBConsultProject {
 	private ProjectContent contentProjectConcept = new ProjectContent();
 	private ArrayList<SelectItem> listOfAvailableItemsToBuyPack = new ArrayList<>();
 	private Integer availableItemsToBuyPack;
+	private List<PackWrap> wrappedPack;
 	private int i = 0;
-
-	// pour le panier : nbCommandé
-	private Integer nbPackToOrder;
+	
+	public void init(){
+		log.info("in preRenderView");
+		packs = getPacks();
+		wrappedPack = new ArrayList<PackWrap>();
+		for(Pack pack : packs){
+			PackWrap pw = new PackWrap(pack);
+			wrappedPack.add(pw); 
+		}
+		log.info("there is : "+wrappedPack.size()+" packs");
+	}
+	
+	// pour le panier : nbCommandï¿½
+	private int nbPackToOrder;
 
 	public Project getP() {
 		return p;
@@ -63,6 +77,7 @@ public class MBConsultProject {
 
 
 	public ProjectContent getContentProjectAuthor() {
+		log.info("Getting author : "+p.getIdProject());
 		List<ProjectContent> contents = buProjectContent.getByidProject(p
 				.getIdProject());
 		if (contents.size() >= 3 && contents.get(2)!=null)
@@ -95,7 +110,10 @@ public class MBConsultProject {
 	}
 
 	public List<Pack> getPacks() {
-		return packs = buPacks.getByidProject(getP().getIdProject());
+		log.info("in get Packs method");
+		packs = buPacks.getByidProject(getP().getIdProject());
+
+		return packs;
 	}
 
 	public Integer getNbPackToOrder() {
@@ -113,9 +131,6 @@ public class MBConsultProject {
 	}
 
 	public ArrayList<SelectItem> remplirList(Pack p){
-	
-		
-		
 		listOfAvailableItemsToBuyPack = new ArrayList<>();
 		setAvailableItemsToBuyPack((p.getStock()-p.getNbSale()));
 		for (int i = 1; i <=availableItemsToBuyPack; i++) {
@@ -194,6 +209,14 @@ public class MBConsultProject {
 
 	public void setNbPackToOrder(Integer nbPackToOrder) {
 		this.nbPackToOrder = nbPackToOrder;
+	}
+
+	public List<PackWrap> getWrappedPack() {
+		return wrappedPack;
+	}
+
+	public void setWrappedPack(List<PackWrap> wrappedPack) {
+		this.wrappedPack = wrappedPack;
 	}
 	
 }
