@@ -7,5 +7,5 @@ import javax.jws.WebService;
 public interface IGestionDevises {
 
 	@WebMethod
-	public double returnChangeByDevises(String deviseSource, String deviseCible);
+	public double returnChangeByDevise(String deviseSource, String deviseCible);
 }

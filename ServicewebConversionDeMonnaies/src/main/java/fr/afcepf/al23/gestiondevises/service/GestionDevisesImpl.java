@@ -4,7 +4,6 @@ import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.jws.WebService;
 
-import fr.afcepf.al23.conversion.service.IConversion;
 import net.webservicex.Currency;
 import net.webservicex.CurrencyConvertor;
 import net.webservicex.CurrencyConvertorSoap;
@@ -13,7 +12,7 @@ import net.webservicex.CurrencyConvertorSoap;
 @Stateless
 @WebService
 public class GestionDevisesImpl implements IGestionDevises {
-	public double returnChangeByDevises(String deviseSource, String deviseCible){
+	public double returnChangeByDevise(String deviseSource, String deviseCible){
 		CurrencyConvertor service = new CurrencyConvertor();
 		CurrencyConvertorSoap proxy = service.getCurrencyConvertorSoap();
 			

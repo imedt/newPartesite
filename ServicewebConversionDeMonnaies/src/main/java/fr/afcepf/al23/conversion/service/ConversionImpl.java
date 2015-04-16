@@ -14,6 +14,6 @@ public class ConversionImpl implements IConversion {
 	@Override
 	public double conversion(double montant, String monnaieSource, String monnaieCible) {
 		GestionDevisesImpl s = new GestionDevisesImpl();
-		return montant * s.returnChangeByDevises(monnaieSource, monnaieCible);
+		return montant * s.returnChangeByDevise(monnaieSource, monnaieCible);
 	}
 }
