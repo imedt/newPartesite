@@ -8,7 +8,7 @@
       <service name="fr.afcepf.al23.partesite.bpel.gestiontaxesfrais:GestionTaxesFraisService" port="GestionTaxesFraisPort"/>
     </provide>
     <invoke partnerLink="client">
-      <service name="fr.afcepf.al23.partesite.bpel.gestiontaxesfrais:GestionTaxesFraisService" port="GestionTaxesFraisPort"/>
+      <service name="fr.afcepf.al23.partesite.bpel.gestiontaxesfrais:GestionTaxesFraisServiceCallback" port="GestionTaxesFraisPortCallbackPort"/>
     </invoke>
   </process>
 </deploy>
