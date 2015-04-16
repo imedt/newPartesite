@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="fr.afcepf.al23.bpel.process" xmlns:vprop="http://docs.oasis-open.org/wsbpel/2.0/varprop" xmlns:wsdl="http://service.servicetaxes_frais.al23.afcepf.fr/" xmlns:wsdl1="http://service.gestiondevises.al23.afcepf.fr/" name="Process" targetNamespace="fr.afcepf.al23.bpel.process">
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     TYPE DEFINITION - List of services participating in this BPEL process 
+     The default output of the BPEL designer uses strings as input and 
+     output to the BPEL Process. But you can define or import any XML 
+     Schema type and us them as part of the message types.
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->    
+    <plnk:partnerLinkType name="TvaByCountry">
+    <plnk:role name="TvaByCountryRole" portType="wsdl:IServiceTaxes_Frais"/>
+  </plnk:partnerLinkType>
+    <plnk:partnerLinkType name="ChangeByDeviseLink">
+    <plnk:role name="ChangeByDeviseRole" portType="wsdl1:IGestionDevises"/>
+  </plnk:partnerLinkType>
+    <import location="ServiceTaxesFraisImpl.wsdl" namespace="http://service.servicetaxes_frais.al23.afcepf.fr/"/>
+    <import location="GestionDevisesImpl.wsdl" namespace="http://service.gestiondevises.al23.afcepf.fr/"/>
+    <types>  
+        <schema xmlns="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="fr.afcepf.al23.bpel.process">
+                
+            <element name="ProcessRequest">
+                <complexType>
+                    <sequence>
+                        <element name="input" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+                  
+            <element name="ProcessResponse">
+                <complexType>
+                    <sequence>
+                        <element name="result" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            
+        </schema>
+    </types>
+  
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     MESSAGE TYPE DEFINITION - Definition of the message types used as 
+     part of the port type defintions
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->    
+    <message name="ProcessRequestMessage">
+        <part element="tns:ProcessRequest" name="payload"/>
+    </message>
+    
+    <message name="ProcessResponseMessage">
+        <part element="tns:ProcessResponse" name="payload"/>
+    </message>
+
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     PORT TYPE DEFINITION - A port type groups a set of operations into
+     a logical service unit.
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <!-- portType implemented by the Process BPEL process -->
+    <portType name="Process">
+        <operation name="initiate">
+            <input message="tns:ProcessRequestMessage"/>
+        </operation>
+    </portType>
+
+    <!-- portType implemented by the requester of Process BPEL process 
+         for asynchronous callback purposes
+         -->
+    <portType name="ProcessCallback">
+        <operation name="onResult">
+            <input message="tns:ProcessResponseMessage"/>
+        </operation>
+    </portType>
+
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     PARTNER LINK TYPE DEFINITION
+         the Process partnerLinkType binds the provider and
+         requester portType into an asynchronous conversation.
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->    
+    <plnk:partnerLinkType name="Process">
+        <plnk:role name="ProcessProvider" portType="tns:Process"/>
+        <plnk:role name="ProcessRequester" portType="tns:ProcessCallback"/>
+    </plnk:partnerLinkType>   
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     BINDING DEFINITION - Defines the message format and protocol details
+     for a web service.
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <binding name="ProcessBinding" type="tns:Process">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="initiate">
+            <soap:operation soapAction="fr.afcepf.al23.bpel.process/initiate"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+        </operation>
+    </binding>
+
+    <binding name="ProcessCallbackBinding" type="tns:ProcessCallback">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="onResult">
+            <soap:operation soapAction="fr.afcepf.al23.bpel.process/onResult"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+        </operation>
+    </binding>
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     SERVICE DEFINITION - A service groups a set of ports into
+     a service unit.
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <service name="ProcessService">
+        <port binding="tns:ProcessBinding" name="ProcessPort">
+    		<soap:address location="http://localhost:8282/ode/processes/Process"/>
+        </port>
+    </service>
+
+</definitions>
