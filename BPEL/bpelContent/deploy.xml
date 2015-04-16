@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deploy xmlns="http://www.apache.org/ode/schemas/dd/2007/03" xmlns:fr.afcepf.al23.partesite.bpel.gestiontaxesfrais="fr.afcepf.al23.partesite.bpel.gestiontaxesfrais" xmlns:service.conversion.al23.afcepf.fr="http://service.conversion.al23.afcepf.fr/">
+  <process name="fr.afcepf.al23.partesite.bpel.gestiontaxesfrais:GestionTaxesFrais">
+    <active>true</active>
+    <retired>false</retired>
+    <process-events generate="all"/>
+    <provide partnerLink="client">
+      <service name="fr.afcepf.al23.partesite.bpel.gestiontaxesfrais:GestionTaxesFraisService" port="GestionTaxesFraisPort"/>
+    </provide>
+    <invoke partnerLink="client">
+      <service name="fr.afcepf.al23.partesite.bpel.gestiontaxesfrais:GestionTaxesFraisService" port="GestionTaxesFraisPort"/>
+    </invoke>
+  </process>
+</deploy>

@@ -1,0 +1,48 @@
+<wsdl:definitions xmlns:ns1="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://service.gestiondevises.al23.afcepf.fr/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="GestionDevisesImplService" targetNamespace="http://service.gestiondevises.al23.afcepf.fr/">
+<wsdl:types>
+<xs:schema xmlns:tns="http://service.gestiondevises.al23.afcepf.fr/" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified" targetNamespace="http://service.gestiondevises.al23.afcepf.fr/" version="1.0">
+<xs:element name="returnChangeByDevise" type="tns:returnChangeByDevise"/>
+<xs:element name="returnChangeByDeviseResponse" type="tns:returnChangeByDeviseResponse"/>
+<xs:complexType name="returnChangeByDevise">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+<xs:element minOccurs="0" name="arg1" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="returnChangeByDeviseResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:double"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
+</wsdl:types>
+<wsdl:message name="returnChangeByDevise">
+<wsdl:part element="tns:returnChangeByDevise" name="parameters"></wsdl:part>
+</wsdl:message>
+<wsdl:message name="returnChangeByDeviseResponse">
+<wsdl:part element="tns:returnChangeByDeviseResponse" name="parameters"></wsdl:part>
+</wsdl:message>
+<wsdl:portType name="IGestionDevises">
+<wsdl:operation name="returnChangeByDevise">
+<wsdl:input message="tns:returnChangeByDevise" name="returnChangeByDevise"></wsdl:input>
+<wsdl:output message="tns:returnChangeByDeviseResponse" name="returnChangeByDeviseResponse"></wsdl:output>
+</wsdl:operation>
+</wsdl:portType>
+<wsdl:binding name="GestionDevisesImplServiceSoapBinding" type="tns:IGestionDevises">
+<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+<wsdl:operation name="returnChangeByDevise">
+<soap:operation soapAction="" style="document"/>
+<wsdl:input name="returnChangeByDevise">
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="returnChangeByDeviseResponse">
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:service name="GestionDevisesImplService">
+<wsdl:port binding="tns:GestionDevisesImplServiceSoapBinding" name="GestionDevisesImplPort">
+<soap:address location="http://localhost:8484/Serviceweb/GestionDevisesImpl"/>
+</wsdl:port>
+</wsdl:service>
+</wsdl:definitions>
