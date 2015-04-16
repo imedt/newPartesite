@@ -1,4 +1,4 @@
-package fr.afcepf.al23.entity;
+package entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
@@ -14,40 +14,39 @@ public class Currency implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_currency")
-	private Integer idCurrency;
+	private int idCurrency;
 
 	private String name;
 
-	private Double rate;
+	private double rate;
 
 	public Currency() {
 	}
 
-	public Integer getIdCurrency() {
-		return idCurrency;
+	public int getIdCurrency() {
+		return this.idCurrency;
 	}
 
-	public void setIdCurrency(Integer idCurrency) {
+	public void setIdCurrency(int idCurrency) {
 		this.idCurrency = idCurrency;
 	}
 
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	public Double getRate() {
-		return rate;
+	public double getRate() {
+		return this.rate;
 	}
 
-	public void setRate(Double rate) {
+	public void setRate(double rate) {
 		this.rate = rate;
 	}
-
-
 
 }
