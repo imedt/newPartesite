@@ -10,29 +10,35 @@
 		<f:view>
 			<div class="row" id="formulaire">
 				<h:form>
-					<fieldset class="col-lg-11">
+					<div class="col-md-10 col-md-offset-1">
+						<fieldset class="black-label large-label">
+							<div class="col-md-6 col-md-offset-3">
+								<div class="row unmarged">
+									<label> Titulaire : </label>
+									<h:inputText value="#{mbPayment.m_titulaireCarte}" />
 
-						<div class="col-lg-5 col-md-12 col-sm-12 col-xs-12">
+								</div> 
+								<div class="row unmarged">
+									<label> Numéro carte :</label>
+									<h:inputText value="#{mbPayment.m_numeroCarte}" />
+								</div>
+								<div class="row unmarged">
+									<label> Date expiration :</label>
+									<h:inputText value="#{mbPayment.m_dateExpiration}" />
+								</div>
+								<div class="row unmarged">
+									<label> Cryptogramme : </label>
+									<h:inputText value="#{mbPayment.m_cryptogramme}" />
+								</div>
+							</div>
+						</fieldset>
+					</div>
 
-							<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-								Titulaire :</span>
-							<h:inputText class="col-lg-6 col-md-12 col-sm-12 col-xs-12"  value="#{mbPayment.m_titulaireCarte}" />
+					<div class="col-md-12" style="text-align: center">
+						<h:commandButton action="#{mbPayment.validatePayment()}"
+							value="Payer" />
+					</div>
 
-							<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-								Numéro carte :</span>
-							<h:inputText class="col-lg-6 col-md-12 col-sm-12 col-xs-12" value="#{mbPayment.m_numeroCarte}" />
-							
-							<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12"> Date expiration :</span>
-							<h:inputText class="col-lg-6 col-md-12 col-sm-12 col-xs-12" value="#{mbPayment.m_dateExpiration}" />
-							
-							<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12"> cryptogramme :</span>
-							<h:inputText class="col-lg-6 col-md-12 col-sm-12 col-xs-12" value="#{mbPayment.m_cryptogramme}" />
-							
-							<center><h:commandButton  class="lg-btn-default col-lg-12 col-md-12 col-sm-12 col-xs-12" action="#{mbPayment.validatePayment()}"
-								value="Payer" />
-								</center>
-						</div>
-					</fieldset>
 				</h:form>
 			</div>
 		</f:view>

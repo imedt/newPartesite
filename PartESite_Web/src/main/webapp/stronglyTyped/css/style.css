@@ -726,6 +726,15 @@ input[type="button"].alt:active, input[type="submit"].alt:active, input[type="re
 	border-top: solid 2px #e5e5e5;
 	text-align: center;
 }
-vertiscaled td{
+.vertiscaled td{
 	vertical-align: middle !important;
+} 
+.black-label * {
+	color:black !important; 
 }
+.unmarged, .unmarged *{
+	padding:0 !important;  
+	margin:5px 0 5px 10px !important;
+}
+ 
+.large-label label{min-width:150px !important}
