@@ -338,7 +338,7 @@
     			</h:column>
     			<h:column>
 					<f:facet name="header">Montant</f:facet>   			
-    				#{c.pack.amount}
+    				#{mbConversion.getConvertedAmount(c.pack.amount)}
     			</h:column>
 				<h:column>
 				<f:facet name="header">Quantité</f:facet> 
@@ -352,7 +352,7 @@
     			</h:column>
     			<h:column>
 					<f:facet name="header">total</f:facet>   			
-    				#{c.amount}
+    				#{mbConversion.getConvertedAmount(c.amount)}
     			</h:column>
     			<h:column>
 					<f:facet name="header">modifier</f:facet>   			
