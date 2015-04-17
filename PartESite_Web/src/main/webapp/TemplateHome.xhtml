@@ -170,8 +170,9 @@
 							</h:commandLink></li>
 					</h:panelGroup>  
 					<li class="col-lg-3">
-						<h:selectOneMenu value="#{mbConnexion.devise}">
-						<f:selectItem itemLabel="EUR"/> 
+						<h:selectOneMenu onchange="submit()" value="#{mbConnexion.devise}">
+						<f:selectItems value="#{mbDevise.listDevise}" />
+						
 						</h:selectOneMenu>
 					</li> 
 				</ul>
