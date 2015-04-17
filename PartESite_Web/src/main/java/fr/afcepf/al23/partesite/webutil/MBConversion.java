@@ -34,11 +34,14 @@ public class MBConversion {
 	
 	public String getConvertedAmount(double amount){
 		
-
+log.info("getConvertedAmount , amount =  " + amount + "  currency =  " + MBCnx.getDevise() );
 		String currency = "EUR";
 		String amountToReturn = "";
-		if(MBCnx!=null)
+		if(MBCnx!=null && MBCnx.getDevise() != null)
 		currency = MBCnx.getDevise();
+		
+		if(currency == "")
+			currency = "EUR";
 		
 		amountToReturn = formatDecimal(amount);
 		tab = new Hashtable<String, String>();
@@ -49,7 +52,6 @@ public class MBConversion {
 		tab.put("CZK", "Kč");
 		tab.put("DKK", "kr");
 		tab.put("GBP", "£");
-		tab.put("GBP", "&pound;");
 		tab.put("HUF", "Ft");
 		tab.put("MKD", "ден");
 		tab.put("NOK", "kr");
@@ -58,7 +60,7 @@ public class MBConversion {
 		tab.put("RSD", "Дин.");
 		tab.put("SEK", "kr");
 		tab.put("CHF", "CHF");
-		tab.put("TRY", "&curren;");
+		tab.put("TRY", "TRY");
 		
 		return amountToReturn+" "+ tab.get(currency);
 	}

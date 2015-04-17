@@ -58,7 +58,18 @@ public class MBModerator {
 	}
 
 	public String getRentabiliteString() {		
+		List<Project> temp = buProject.getAllFinancedProjects();
+		projectsFinancedMontant = (double) 0;
+		for (Project project : temp) {
+			for (Pack pack : project.getPacks()) {
+				projectsFinancedMontant += pack.getAmount() * pack.getNbSale();
+			}
+		}
+		rentabilite = projectsFinancedMontant / 10;
+		temp.clear();
+		log.info("double = "+rentabilite);
 		rentabiliteString = conversion.getConvertedAmount(rentabilite);
+		log.info("string = "+rentabiliteString);
 		return rentabiliteString ;
 	}
 
@@ -67,7 +78,19 @@ public class MBModerator {
 	}
 
 	public String getProjectsFinancedMontantString() {
+		List<Project> temp = buProject.getAllFinancedProjects();
+		projectsFinancedMontant = (double) 0;
+		for (Project project : temp) {
+			for (Pack pack : project.getPacks()) {
+				projectsEnCoursMontant += pack.getAmount() * pack.getNbSale();
+			}
+		}
+		log.info(temp);
+		log.info(temp.size());
+		temp.clear();
+		log.info("double = "+projectsFinancedMontant);
 		projectsFinancedMontantString = conversion.getConvertedAmount(projectsFinancedMontant);
+		log.info("string = "+projectsFinancedMontantString);
 		return projectsFinancedMontantString;
 	}
 
@@ -77,7 +100,19 @@ public class MBModerator {
 	}
 
 	public String getProjectsEnCoursMontantString() {
+		List<Project> temp = buProject.getAllWithItems();
+		projectsEnCoursMontant = (double) 0;
+		for (Project project : temp) {
+			for (Pack pack : project.getPacks()) {
+				projectsEnCoursMontant += pack.getAmount() * pack.getNbSale();
+			}
+		}
+		log.info(temp);
+		log.info(temp.size());
+		temp.clear();
+		log.info("double = "+projectsEnCoursMontant);
 		projectsEnCoursMontantString = conversion.getConvertedAmount(projectsEnCoursMontant);
+		log.info("string = "+projectsEnCoursMontantString);
 		return projectsEnCoursMontantString;
 	}
 
