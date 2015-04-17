@@ -1,11 +1,18 @@
 package fr.afcepf.al23.gestiondevises.service;
 
 import javax.jws.WebMethod;
+import javax.jws.WebParam;
+import javax.jws.WebResult;
 import javax.jws.WebService;
 
 @WebService
 public interface IGestionDevises {
 
 	@WebMethod
-	public double returnChangeByDevise(String deviseSource, String deviseCible);
+	@WebResult(name = "tauxDeChange", targetNamespace = "")
+	public double returnChangeByDevise(
+			@WebParam(name = "deviseSource", targetNamespace = "")
+			String deviseSource, 
+			@WebParam(name = "deviseSource", targetNamespace = "")
+			String deviseCible);
 }

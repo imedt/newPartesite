@@ -7,11 +7,11 @@
 <ui:composition template="TemplateModeratorDashboard.xhtml">
 <ui:define name="header-title">Tableau de bord</ui:define>
 
-<ui:define name="montantFinanced">#{mbModerator.projectsFinancedMontant}</ui:define>
+<ui:define name="montantFinanced">#{mbModerator.projectsFinancedMontantString}</ui:define>
 <ui:define name="sous-logo"><h:form>#{mbConnexion.id.firstName}</h:form></ui:define>
 <ui:define name="nbEnCours">#{mbModerator.projectsEnCours}</ui:define>
-<ui:define name="montantEnCours">#{mbModerator.projectsEnCoursMontant}</ui:define>
+<ui:define name="montantEnCours">#{mbModerator.projectsEnCoursMontantString}</ui:define>
 <ui:define name="nbFinanced">#{mbModerator.projectsFinanced}</ui:define>
-<ui:define name="montantRentabilite">#{mbModerator.rentabilite}</ui:define>
+<ui:define name="montantRentabilite">#{mbModerator.rentabiliteString}</ui:define>
 </ui:composition>
 </html>

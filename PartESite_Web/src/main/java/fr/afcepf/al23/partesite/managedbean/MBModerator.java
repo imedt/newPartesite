@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
 import org.apache.log4j.Logger;
@@ -14,6 +15,7 @@ import fr.afcepf.al23.model.entities.Pack;
 import fr.afcepf.al23.model.entities.Project;
 import fr.afcepf.al23.partesite.iservice.offer.IBusinessProject;
 import fr.afcepf.al23.partesite.iservice.user.IBusinessIdentity;
+import fr.afcepf.al23.partesite.webutil.MBConversion;
 
 @ManagedBean(name = "mbModerator")
 @SessionScoped
@@ -38,6 +40,85 @@ public class MBModerator {
 	private Double projectsFinancedMontant;
 	private int userBlackList;
 	private Double rentabilite;
+	
+	private String rentabiliteString;
+	private String projectsFinancedMontantString;
+	private String projectsEnCoursMontantString;
+	
+	@ManagedProperty(value = "#{mbConversion}")
+	private MBConversion conversion;
+	
+
+	public MBConversion getConversion() {
+		return conversion;
+	}
+
+	public void setConversion(MBConversion conversion) {
+		this.conversion = conversion;
+	}
+
+	public String getRentabiliteString() {		
+		List<Project> temp = buProject.getAllFinancedProjects();
+		projectsFinancedMontant = (double) 0;
+		for (Project project : temp) {
+			for (Pack pack : project.getPacks()) {
+				projectsFinancedMontant += pack.getAmount() * pack.getNbSale();
+			}
+		}
+		rentabilite = projectsFinancedMontant / 10;
+		temp.clear();
+		log.info("double = "+rentabilite);
+		rentabiliteString = conversion.getConvertedAmount(rentabilite);
+		log.info("string = "+rentabiliteString);
+		return rentabiliteString ;
+	}
+
+	public void setRentabiliteString(String rentabiliteString) {
+		this.rentabiliteString = rentabiliteString;
+	}
+
+	public String getProjectsFinancedMontantString() {
+		List<Project> temp = buProject.getAllFinancedProjects();
+		projectsFinancedMontant = (double) 0;
+		for (Project project : temp) {
+			for (Pack pack : project.getPacks()) {
+				projectsEnCoursMontant += pack.getAmount() * pack.getNbSale();
+			}
+		}
+		log.info(temp);
+		log.info(temp.size());
+		temp.clear();
+		log.info("double = "+projectsFinancedMontant);
+		projectsFinancedMontantString = conversion.getConvertedAmount(projectsFinancedMontant);
+		log.info("string = "+projectsFinancedMontantString);
+		return projectsFinancedMontantString;
+	}
+
+	public void setProjectsFinancedMontantString(
+			String projectsFinancedMontantString) {
+		this.projectsFinancedMontantString = projectsFinancedMontantString;
+	}
+
+	public String getProjectsEnCoursMontantString() {
+		List<Project> temp = buProject.getAllWithItems();
+		projectsEnCoursMontant = (double) 0;
+		for (Project project : temp) {
+			for (Pack pack : project.getPacks()) {
+				projectsEnCoursMontant += pack.getAmount() * pack.getNbSale();
+			}
+		}
+		log.info(temp);
+		log.info(temp.size());
+		temp.clear();
+		log.info("double = "+projectsEnCoursMontant);
+		projectsEnCoursMontantString = conversion.getConvertedAmount(projectsEnCoursMontant);
+		log.info("string = "+projectsEnCoursMontantString);
+		return projectsEnCoursMontantString;
+	}
+
+	public void setProjectsEnCoursMontantString(String projectsEnCoursMontantString) {
+		this.projectsEnCoursMontantString = projectsEnCoursMontantString;
+	}
 
 	public Logger getLog() {
 		return log;

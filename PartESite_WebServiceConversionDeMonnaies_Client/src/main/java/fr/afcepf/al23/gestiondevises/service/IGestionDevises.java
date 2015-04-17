@@ -31,13 +31,13 @@ public interface IGestionDevises {
      *     returns double
      */
     @WebMethod
-    @WebResult(targetNamespace = "")
+    @WebResult(name = "tauxDeChange", targetNamespace = "")
     @RequestWrapper(localName = "returnChangeByDevises", targetNamespace = "http://service.gestiondevises.al23.afcepf.fr/", className = "fr.afcepf.al23.gestiondevises.service.ReturnChangeByDevises")
     @ResponseWrapper(localName = "returnChangeByDevisesResponse", targetNamespace = "http://service.gestiondevises.al23.afcepf.fr/", className = "fr.afcepf.al23.gestiondevises.service.ReturnChangeByDevisesResponse")
     public double returnChangeByDevises(
-        @WebParam(name = "arg0", targetNamespace = "")
+        @WebParam(name = "DeviseSource", targetNamespace = "")
         String arg0,
-        @WebParam(name = "arg1", targetNamespace = "")
+        @WebParam(name = "DeviseCible", targetNamespace = "")
         String arg1);
 
 }
