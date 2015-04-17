@@ -1,9 +1,9 @@
 
 package process.bpel.al23.afcepf.fr;
 
-import javax.jws.Oneway;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
+import javax.jws.WebResult;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 import javax.xml.bind.annotation.XmlSeeAlso;
@@ -28,10 +28,12 @@ public interface ProcessPortType {
     /**
      * 
      * @param payload
+     * @return
+     *     returns process.bpel.al23.afcepf.fr.ProcessResponse
      */
-    @WebMethod(action = "fr.afcepf.al23.bpel.process/initiate")
-    @Oneway
-    public void initiate(
+    @WebMethod(action = "fr.afcepf.al23.bpel.process/process")
+    @WebResult(name = "ProcessResponse", targetNamespace = "fr.afcepf.al23.bpel.process", partName = "payload")
+    public ProcessResponse process(
         @WebParam(name = "ProcessRequest", targetNamespace = "fr.afcepf.al23.bpel.process", partName = "payload")
         ProcessRequest payload);
 
