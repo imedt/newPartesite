@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<deploy xmlns="http://www.apache.org/ode/schemas/dd/2007/03" xmlns:fr.afcepf.al23.partesite.bpel.gestiontaxesfrais="fr.afcepf.al23.partesite.bpel.gestiontaxesfrais" xmlns:service.conversion.al23.afcepf.fr="http://service.conversion.al23.afcepf.fr/">
-  <process name="fr.afcepf.al23.partesite.bpel.gestiontaxesfrais:GestionTaxesFrais">
+<deploy xmlns="http://www.apache.org/ode/schemas/dd/2007/03" xmlns:fr.afcepf.al23.bpel.process="fr.afcepf.al23.bpel.process" xmlns:service.conversion.al23.afcepf.fr="http://service.conversion.al23.afcepf.fr/" xmlns:service.servicetaxes_frais.al23.afcepf.fr="http://service.servicetaxes_frais.al23.afcepf.fr/">
+  <process name="fr.afcepf.al23.bpel.process:Process">
     <active>true</active>
     <retired>false</retired>
     <process-events generate="all"/>
     <provide partnerLink="client">
-      <service name="fr.afcepf.al23.partesite.bpel.gestiontaxesfrais:GestionTaxesFraisService" port="GestionTaxesFraisPort"/>
+      <service name="fr.afcepf.al23.bpel.process:ProcessService" port="ProcessPort"/>
     </provide>
     <invoke partnerLink="client">
-      <service name="fr.afcepf.al23.partesite.bpel.gestiontaxesfrais:GestionTaxesFraisServiceCallback" port="GestionTaxesFraisPortCallbackPort"/>
+      <service name="fr.afcepf.al23.bpel.process:ProcessServiceCallback" port="ProcessPortCallbackPort"/>
+    </invoke>
+    <invoke partnerLink="Conversion">
+      <service name="service.conversion.al23.afcepf.fr:ConversionImplService" port="ConversionImplPort"/>
+    </invoke>
+    <invoke partnerLink="AppliquerTaxes">
+      <service name="service.servicetaxes_frais.al23.afcepf.fr:ServiceTaxes_FraisImplService" port="ServiceTaxes_FraisImplPort"/>
     </invoke>
   </process>
 </deploy>

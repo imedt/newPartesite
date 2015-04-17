@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="fr.afcepf.al23.bpel.process" xmlns:vprop="http://docs.oasis-open.org/wsbpel/2.0/varprop" xmlns:wsdl="http://service.servicetaxes_frais.al23.afcepf.fr/" xmlns:wsdl1="http://service.gestiondevises.al23.afcepf.fr/" name="Process" targetNamespace="fr.afcepf.al23.bpel.process">
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="fr.afcepf.al23.bpel.process" xmlns:vprop="http://docs.oasis-open.org/wsbpel/2.0/varprop" xmlns:wsdl="http://service.conversion.al23.afcepf.fr/" xmlns:wsdl1="http://service.servicetaxes_frais.al23.afcepf.fr/" name="Process" targetNamespace="fr.afcepf.al23.bpel.process">
 
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
      TYPE DEFINITION - List of services participating in this BPEL process 
@@ -7,14 +7,14 @@
      output to the BPEL Process. But you can define or import any XML 
      Schema type and us them as part of the message types.
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->    
-    <plnk:partnerLinkType name="TvaByCountry">
-    <plnk:role name="TvaByCountryRole" portType="wsdl:IServiceTaxes_Frais"/>
+    <plnk:partnerLinkType name="ConversionLink">
+    <plnk:role name="ConversionRole" portType="wsdl:IConversion"/>
   </plnk:partnerLinkType>
-    <plnk:partnerLinkType name="ChangeByDeviseLink">
-    <plnk:role name="ChangeByDeviseRole" portType="wsdl1:IGestionDevises"/>
+    <plnk:partnerLinkType name="AppliquerTaxes">
+    <plnk:role name="AppliquerTaxes" portType="wsdl1:IServiceTaxes_Frais"/>
   </plnk:partnerLinkType>
+    <import location="ConversionImpl.wsdl" namespace="http://service.conversion.al23.afcepf.fr/"/>
     <import location="ServiceTaxesFraisImpl.wsdl" namespace="http://service.servicetaxes_frais.al23.afcepf.fr/"/>
-    <import location="GestionDevisesImpl.wsdl" namespace="http://service.gestiondevises.al23.afcepf.fr/"/>
     <types>  
         <schema xmlns="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="fr.afcepf.al23.bpel.process">
                 
@@ -115,4 +115,9 @@
         </port>
     </service>
 
+    <service name="ProcessServiceCallback">
+        <port binding="tns:ProcessCallbackBinding" name="ProcessPortCallbackPort">
+    		<soap:address location="http://localhost:8282/ode/processes/ProcessCallback"/>
+        </port>
+    </service>
 </definitions>

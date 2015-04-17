@@ -5,14 +5,14 @@
 <xs:element name="conversionResponse" type="tns:conversionResponse"/>
 <xs:complexType name="conversion">
 <xs:sequence>
-<xs:element name="arg0" type="xs:double"/>
-<xs:element minOccurs="0" name="arg1" type="xs:string"/>
-<xs:element minOccurs="0" name="arg2" type="xs:string"/>
+<xs:element name="montantHTAvantConversion" type="xs:double"/>
+<xs:element minOccurs="0" name="deviseSource" type="xs:string"/>
+<xs:element minOccurs="0" name="deviseCible" type="xs:string"/>
 </xs:sequence>
 </xs:complexType>
 <xs:complexType name="conversionResponse">
 <xs:sequence>
-<xs:element name="return" type="xs:double"/>
+<xs:element name="montantHTApresConversion" type="xs:double"/>
 </xs:sequence>
 </xs:complexType>
 </xs:schema>
