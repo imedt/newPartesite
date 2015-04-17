@@ -26,6 +26,15 @@ public class MBConnexion {
 	String bienvenue;
 	String direction;
 	Identity id;
+	String devise = "EUR";
+
+	public String getDevise() {
+		return devise;
+	}
+
+	public void setDevise(String devise) {
+		this.devise = devise;
+	}
 
 	public MBConnexion() {
 		super();
