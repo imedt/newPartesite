@@ -7,15 +7,35 @@
 	<ui:define name="title">
 	</ui:define>
 	<ui:define name="content">
-	<f:view>
-		<h:form>
-			<h:inputText value="#{mbPayment.m_titulaireCarte}" />
-			<h:inputText value="#{mbPayment.m_numeroCarte}" />
-			<h:inputText value="#{mbPayment.m_dateExpiration}" />
-			<h:inputText value="#{mbPayment.m_cryptogramme}" />
-			<h:commandButton action="#{mbPayment.validatePayment()}" value="Payer" />
-		</h:form>
-	</f:view>
+		<f:view>
+			<div class="row" id="formulaire">
+				<h:form>
+					<fieldset class="col-lg-11">
+
+						<div class="col-lg-5 col-md-12 col-sm-12 col-xs-12">
+
+							<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+								Titulaire :</span>
+							<h:inputText class="col-lg-6 col-md-12 col-sm-12 col-xs-12"  value="#{mbPayment.m_titulaireCarte}" />
+
+							<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+								Numéro carte :</span>
+							<h:inputText class="col-lg-6 col-md-12 col-sm-12 col-xs-12" value="#{mbPayment.m_numeroCarte}" />
+							
+							<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12"> Date expiration :</span>
+							<h:inputText class="col-lg-6 col-md-12 col-sm-12 col-xs-12" value="#{mbPayment.m_dateExpiration}" />
+							
+							<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12"> cryptogramme :</span>
+							<h:inputText class="col-lg-6 col-md-12 col-sm-12 col-xs-12" value="#{mbPayment.m_cryptogramme}" />
+							
+							<center><h:commandButton  class="lg-btn-default col-lg-12 col-md-12 col-sm-12 col-xs-12" action="#{mbPayment.validatePayment()}"
+								value="Payer" />
+								</center>
+						</div>
+					</fieldset>
+				</h:form>
+			</div>
+		</f:view>
 	</ui:define>
 
 </ui:composition>
