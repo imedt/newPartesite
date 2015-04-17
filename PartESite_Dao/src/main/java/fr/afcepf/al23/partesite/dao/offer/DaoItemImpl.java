@@ -86,10 +86,10 @@ public class DaoItemImpl implements IDaoItem {
 		
 		log.info("holdItemByNbByPack");
 		Query hql = em.createQuery(
-				"SELECT i FROM Item i WHERE i.pack=:pPack AND i.itemState = 1")
+				"SELECT i FROM Item i WHERE i.pack = :pPack AND i.itemState = 1")
 				.setParameter("pPack", pack);
-
-		List<Item> is = null;
+		log.info("Query : "+hql.toString());
+		List<Item> is = null; 
 		hql.setMaxResults(nb);
 		is = hql.getResultList();
 		log.info("nb item = "+ is.size());

@@ -34,7 +34,7 @@ public class BusinessPaymentImpl implements IBusinessPayment {
 	@Override
 	public void save(Payment payment) {
 		log.info("BusinessPaymentImpl, save");
-		if (daoPayment.get(payment.getIdPayment()) != null){
+		if (payment.getIdPayment() != null){
 			daoPayment.update(payment);
 		} else {
 			daoPayment.add(payment);

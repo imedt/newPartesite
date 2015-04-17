@@ -185,7 +185,7 @@ public class BusinessOrderImpl implements IBusinessOrder {
 		newOR = daoOrderRow.add(newOR);
 		newOrder.setTotalAmount(newOrder.getTotalAmount() + newOR.getAmount());
 		newOrder = daoUserOrder.update(newOrder);
-		log.info("4");
+		log.info("pre blocage item : "+nb+" "+pack+" "+newOR.getIdOrderRow());
 		// reservation des items.
 		newOR.setItems(daoItem.holdItemByNbByPack(nb, pack,
 				newOR.getIdOrderRow()));
