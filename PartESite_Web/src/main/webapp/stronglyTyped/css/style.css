@@ -726,3 +726,6 @@ input[type="button"].alt:active, input[type="submit"].alt:active, input[type="re
 	border-top: solid 2px #e5e5e5;
 	text-align: center;
 }
+vertiscaled td{
+	vertical-align: middle !important;
+}
