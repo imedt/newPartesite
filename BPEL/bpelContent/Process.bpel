@@ -122,7 +122,7 @@
             </bpel:copy>
         </bpel:assign>
         <bpel:invoke name="InvokeGetChange" partnerLink="Conversion" operation="returnChangeByDevise" portType="ns1:IGestionDevises" inputVariable="ConversionRequest" outputVariable="ConversionResponse"></bpel:invoke>
-        <bpel:assign validate="no" name="AssignGetAmount">
+        <bpel:assign validate="no" name="AssignGetAmountHT">
             <bpel:copy>
                 <bpel:from><bpel:literal><tns:returnTvaCountry xmlns:tns="http://service.servicetaxes_frais.al23.afcepf.fr/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <arg0>0</arg0>
@@ -149,7 +149,7 @@
              Note: the callback location and correlation id is transparently handled 
              using WS-addressing.
              -->
-        <bpel:assign validate="no" name="AssignGetTva">
+        <bpel:assign validate="no" name="AssignGetTvaRate">
             <bpel:copy>
                 <bpel:from><bpel:literal><tns:ProcessResponse xmlns:tns="fr.afcepf.al23.bpel.process" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <tns:result>tns:result</tns:result>
