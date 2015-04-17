@@ -40,7 +40,7 @@ public class MBConversion {
 		tab.put("SEK", "kr");
 		tab.put("CHF", "CHF");
 		tab.put("TRY", "TRY");
-	}
+	} 
 
 	public String getConvertedAmount(double amount){
 
