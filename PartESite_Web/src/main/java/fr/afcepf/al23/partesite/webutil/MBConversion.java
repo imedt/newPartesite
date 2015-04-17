@@ -20,6 +20,7 @@ public class MBConversion {
 	
 	@ManagedProperty(value = "#{mbConnexion}")
 	private MBConnexion MBCnx;
+
 	public MBConnexion getMBCnx() {
 		return MBCnx;
 	}
@@ -28,10 +29,12 @@ public class MBConversion {
 		MBCnx = mBCnx;
 	}
 
+
 	private Hashtable<String, String> tab;
 	
 	public String getConvertedAmount(double amount){
 		
+
 		String currency = "EUR";
 		String amountToReturn = "";
 		if(MBCnx!=null)
@@ -46,6 +49,7 @@ public class MBConversion {
 		tab.put("CZK", "Kč");
 		tab.put("DKK", "kr");
 		tab.put("GBP", "£");
+		tab.put("GBP", "&pound;");
 		tab.put("HUF", "Ft");
 		tab.put("MKD", "ден");
 		tab.put("NOK", "kr");
@@ -67,5 +71,4 @@ public class MBConversion {
 		     return String.format("%10.2f", number); // dj_segfault
 		  }
 		}
-	
 }
