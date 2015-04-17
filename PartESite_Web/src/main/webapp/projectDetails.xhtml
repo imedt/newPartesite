@@ -69,8 +69,8 @@
 							
 							<h3>#{wrappedPack.pack.description}</h3>
 							
-							<h3>Prix du package : #{wrappedPack.pack.amount}
-								&euro;</h3>
+							<h3>Prix du package : #{mbConversion.getConvertedAmount(wrappedPack.pack.amount)}
+								</h3>
 						
 							<h3>Quantité disponible :
 								#{wrappedPack.pack.stock-wrappedPack.pack.nbSale}</h3>
