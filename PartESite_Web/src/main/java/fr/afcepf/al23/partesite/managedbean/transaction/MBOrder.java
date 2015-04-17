@@ -134,17 +134,8 @@ public class MBOrder {
 	}
 
 	public void validateCart() {		
-		ItemState itemState = new ItemState();
-		itemState.setIdItemState(3);
-		itemState.setItemStateName("VENDUE");
-		for(OrderRow orderRow : this.getCart().getOrderRows()){
-			for(Item item : orderRow.getItems()){
-				item.setUpdatedBy(MBCnx.getId().getIdIdentity());
-				item.setUpdatedDate(new Date());
-				item.setItemState(itemState);  
-			};
-		}
-		buOrder.save(getCart());
+		buOrder.finalizeCart(cart);
+		this.cart = new UserOrder();
 	}
 
 }

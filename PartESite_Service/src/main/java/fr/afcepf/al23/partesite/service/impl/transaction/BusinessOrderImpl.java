@@ -13,11 +13,14 @@ import javax.ejb.Stateless;
 import org.apache.log4j.Logger;
 
 import fr.afcepf.al23.model.entities.Identity;
+import fr.afcepf.al23.model.entities.Item;
+import fr.afcepf.al23.model.entities.ItemState;
 import fr.afcepf.al23.model.entities.OrderRow;
 import fr.afcepf.al23.model.entities.Pack;
 import fr.afcepf.al23.model.entities.UserOrder;
 import fr.afcepf.al23.model.entities.UserOrderState;
 import fr.afcepf.al23.partesite.idao.offer.IDaoItem;
+import fr.afcepf.al23.partesite.idao.offer.IDaoPack;
 import fr.afcepf.al23.partesite.idao.transaction.IDaoOrderRow;
 import fr.afcepf.al23.partesite.idao.transaction.IDaoUserOrder;
 import fr.afcepf.al23.partesite.iservice.transaction.IBusinessOrder;
@@ -37,6 +40,9 @@ public class BusinessOrderImpl implements IBusinessOrder {
 	private IDaoOrderRow daoOrderRow;
 	@EJB
 	private IDaoItem daoItem;
+	
+	@EJB
+	private IDaoPack daoPack;
 
 	/*
 	 * (non-Javadoc)
@@ -233,6 +239,28 @@ public class BusinessOrderImpl implements IBusinessOrder {
 		OrderToRelease.setDisabled(true);
 		daoUserOrder.update(OrderToRelease);
 		return OrderToRelease;
+	}
+
+	@Override
+	public UserOrder finalizeCart(UserOrder cart) {
+		ItemState itemState = new ItemState();
+		itemState.setIdItemState(3);
+		itemState.setItemStateName("VENDU");
+		UserOrderState userOrderState = new UserOrderState();
+		userOrderState.setIdUserOrderState(2);
+		userOrderState.setUserOrderStateName("PAYE");
+		
+		for(OrderRow row : cart.getOrderRows()){
+			log.info("there is "+row.getItems().size()+" item in this row");
+			for(Item item : row.getItems()){
+				item.setItemState(itemState);
+			}
+			Pack pack = row.getPack();
+			pack.setStock(pack.getStock() - row.getItems().size());
+			daoPack.update(pack);
+		} 
+		cart = daoUserOrder.update(cart);
+		return cart;
 	}
 
 }
