@@ -24,4 +24,5 @@ public interface IBusinessOrder {
 	public UserOrder addOrderRow(Identity identity, UserOrder oldOrder, Integer nb, Pack pack);
 	public UserOrder modifyOrderRow(UserOrder oldOrder, Integer nb, Pack pack);
 	public UserOrder ReleaseOrder(UserOrder OrderToRelease);
+	public UserOrder finalizeCart(UserOrder cart);
 }

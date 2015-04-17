@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<ui:composition template="TemplateProjectsList.xhtml">
+	<ui:define name="title"></ui:define>
+<ui:define name="content">
+		<div class="row">
+			<div id="Cartmodal"
+				class="col-md-12">
+
+				<h:dataTable class="col-lg-push-1 col-lg-10" var="c"
+					styleClass="table" value="#{mbOrder.cart.orderRows}"
+					headerClass="table-header"
+					rowClasses="table-odd-row, table-even-row">
+					<h:column> 
+						<f:facet name="header">Pack</f:facet>   			 
+    				#{c.pack.packName}
+    			</h:column>
+					<h:column>
+						<f:facet name="header">Montant</f:facet>   			
+    				#{c.pack.amount} 
+    			</h:column>
+					<h:column>
+						<f:facet name="header">Quantité</f:facet>
+						<h:outputText value="#{c.amount / c.pack.amount}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Total</f:facet>   			
+    				#{c.amount}
+    			</h:column>
+					<h:column>
+						<f:facet name="header">modifier</f:facet>
+						<h:commandButton class="col-lg-2 lg-btn-default"
+							style="width:auto;" value="modifier">
+						</h:commandButton>
+					</h:column>
+					<h:column>
+						<f:facet name="header">supprimer</f:facet>   			
+    				#{packName}
+    			</h:column>
+
+
+
+				</h:dataTable>
+
+			</div>
+		</div>
+		<h:commandButton action="#{mbPayment.accessPaymentForm()}" value="Proceder au paiement" />
+	</ui:define>
+
+</ui:composition>
+</html>

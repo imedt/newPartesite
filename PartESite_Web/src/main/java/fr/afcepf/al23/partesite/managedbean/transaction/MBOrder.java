@@ -1,5 +1,6 @@
 package fr.afcepf.al23.partesite.managedbean.transaction;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -9,6 +10,8 @@ import javax.faces.bean.SessionScoped;
 
 import org.apache.log4j.Logger;
 
+import fr.afcepf.al23.model.entities.Item;
+import fr.afcepf.al23.model.entities.ItemState;
 import fr.afcepf.al23.model.entities.OrderRow;
 import fr.afcepf.al23.model.entities.Pack;
 import fr.afcepf.al23.model.entities.UserOrder;
@@ -121,7 +124,6 @@ public class MBOrder {
 	}
 
 	public UserOrder modifyToCart(Integer nb, Pack pack) {
-
 		cart = buOrder.modifyOrderRow(cart, nb, pack);
 		return cart;
 	}
@@ -129,6 +131,11 @@ public class MBOrder {
 	public UserOrder releaseCart() {
 		buOrder.ReleaseOrder(cart);
 		return cart;
+	}
+
+	public void validateCart() {		
+		buOrder.finalizeCart(cart);
+		this.cart = new UserOrder();
 	}
 
 }

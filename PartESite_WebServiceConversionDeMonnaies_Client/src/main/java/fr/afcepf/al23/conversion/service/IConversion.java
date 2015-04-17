@@ -32,15 +32,15 @@ public interface IConversion {
      *     returns double
      */
     @WebMethod
-    @WebResult(targetNamespace = "")
+    @WebResult(name = "montantHTApresConversion", targetNamespace = "")
     @RequestWrapper(localName = "conversion", targetNamespace = "http://service.conversion.al23.afcepf.fr/", className = "fr.afcepf.al23.conversion.service.Conversion")
     @ResponseWrapper(localName = "conversionResponse", targetNamespace = "http://service.conversion.al23.afcepf.fr/", className = "fr.afcepf.al23.conversion.service.ConversionResponse")
     public double conversion(
-        @WebParam(name = "arg0", targetNamespace = "")
+        @WebParam(name = "montantHTAvantConversion", targetNamespace = "")
         double arg0,
-        @WebParam(name = "arg1", targetNamespace = "")
+        @WebParam(name = "DeviseSource", targetNamespace = "")
         String arg1,
-        @WebParam(name = "arg2", targetNamespace = "")
+        @WebParam(name = "DeviseCible", targetNamespace = "")
         String arg2);
 
 }

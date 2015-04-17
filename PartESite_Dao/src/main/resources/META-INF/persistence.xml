@@ -21,6 +21,7 @@
 		<class>fr.afcepf.al23.model.entities.UserOrder</class>
 		<class>fr.afcepf.al23.model.entities.UserOrderState</class>
 		<properties>
+			<property name="hibernate.show_sql" value="true"/>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
 		</properties>
 		

@@ -61,7 +61,7 @@ public class UserOrder implements Serializable {
 	private Date updatedDate;
 
 	//bi-directional many-to-one association to OrderRow
-	@OneToMany(mappedBy="userOrder")
+	@OneToMany(mappedBy="userOrder",fetch=FetchType.EAGER)
 	private List<OrderRow> orderRows;
 
 	//bi-directional many-to-one association to Payment
