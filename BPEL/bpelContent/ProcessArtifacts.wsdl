@@ -21,7 +21,11 @@
             <element name="ProcessRequest">
                 <complexType>
                     <sequence>
-                        <element name="input" type="string"/>
+                        <element name="montant" type="double"/>
+                         <element name="tauxTva" type="double"/>
+                          <element name="tauxCommission" type="double"/>
+                           <element name="deviseSource" type="string"/>
+                           <element name="deviseCible" type="string"/>
                     </sequence>
                 </complexType>
             </element>

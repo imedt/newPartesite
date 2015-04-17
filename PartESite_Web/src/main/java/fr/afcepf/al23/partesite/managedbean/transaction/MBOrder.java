@@ -46,7 +46,7 @@ public class MBOrder {
 
 	private UserOrder backing;
 	List<UserOrder> orders;
-	double totalAmount;
+	double totalAmount; 
 	private UserOrder cart;
 
 	public UserOrder getCart() {
@@ -172,7 +172,11 @@ public class MBOrder {
 		buNotification.save(n1);	
 		this.cart = new UserOrder();
 	}
-
+	
+	public String removePack(OrderRow or){
+		this.cart.getOrderRows().remove(or); 
+		return "";
+	}
 	public static Logger getLog() {
 		return log;
 	}
