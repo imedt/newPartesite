@@ -10,13 +10,17 @@ import javax.faces.bean.SessionScoped;
 
 import org.apache.log4j.Logger;
 
+import fr.afcepf.al23.model.entities.Identity;
 import fr.afcepf.al23.model.entities.Item;
 import fr.afcepf.al23.model.entities.ItemState;
+import fr.afcepf.al23.model.entities.Notification;
 import fr.afcepf.al23.model.entities.OrderRow;
 import fr.afcepf.al23.model.entities.Pack;
 import fr.afcepf.al23.model.entities.UserOrder;
+import fr.afcepf.al23.partesite.iservice.notification.IBusinessNotification;
 import fr.afcepf.al23.partesite.iservice.transaction.IBusinessOrder;
 import fr.afcepf.al23.partesite.iservice.transaction.IBusinessOrderRow;
+import fr.afcepf.al23.partesite.iservice.user.IBusinessIdentity;
 import fr.afcepf.al23.partesite.managedbean.MBConnexion;
 import fr.afcepf.al23.partesite.webutil.PackWrap;
 
@@ -30,7 +34,11 @@ public class MBOrder {
 	IBusinessOrder buOrder;
 	@EJB
 	IBusinessOrderRow buOrderRow;
-
+	@EJB
+	IBusinessNotification buNotification;
+	@EJB
+	IBusinessIdentity buIdentity;
+	
 	@ManagedProperty(value = "#{mbConnexion}")
 	private MBConnexion MBCnx;
 	
@@ -117,10 +125,10 @@ public class MBOrder {
 		return nb;
 	}
 	
-	public UserOrder addToCart( PackWrap wrappedPack) {
+	public String addToCart( PackWrap wrappedPack) {
 		log.info("wanted quantity = "+wrappedPack.getQuantity());
 		cart = buOrder.addOrderRow(MBCnx.getId(), cart, wrappedPack.getQuantity(), wrappedPack.getPack());
-		return cart;
+		return "consulterPanier.xhtml"; 
 	}
 
 	public UserOrder modifyToCart(Integer nb, Pack pack) {
@@ -133,9 +141,60 @@ public class MBOrder {
 		return cart;
 	}
 
-	public void validateCart() {		
+	public void validateCart() {
 		buOrder.finalizeCart(cart);
+		
+		log.info("creating notification");
+		for(OrderRow orderRow : cart.getOrderRows()){
+			Notification n = new Notification();
+			n.setCreatedBy(1);
+			n.setCreatedDate(new Date());
+			n.setContentNotification("vous avez vendu "+orderRow.getItems().size()+" package : "+orderRow.getPack().getPackName());
+			n.setIdentity(buIdentity.get(1));
+			log.info("createur du package : "+orderRow.getPack().getCreatedBy());
+			log.info("ORder parck : "+orderRow.getPack()); 
+			n.setIdTarget(buIdentity.get(orderRow.getPack().getCreatedBy()).getIdIdentity());
+			n.setDisabled(false); 
+			log.info("save notification");
+			
+			buNotification.save(n);
+			log.info("creating notification 2");
+		}
+
+		Notification n1 = new Notification();
+		n1.setCreatedBy(1);
+		n1.setCreatedDate(new Date());
+		n1.setContentNotification("Votre achat a bien été pris en compte.");
+		n1.setIdentity(buIdentity.get(1));
+		n1.setIdTarget(MBCnx.getId().getIdIdentity());
+		n1.setDisabled(false);
+		log.info("save notification 2");
+		buNotification.save(n1);	
 		this.cart = new UserOrder();
+	}
+
+	public static Logger getLog() {
+		return log;
+	}
+
+	public static void setLog(Logger log) {
+		MBOrder.log = log;
+	}
+
+	public IBusinessNotification getBuNotification() {
+		return buNotification;
+	}
+
+	public void setBuNotification(IBusinessNotification buNotification) {
+		this.buNotification = buNotification;
+	}
+
+	public IBusinessIdentity getBuIdentity() {
+		return buIdentity;
+	}
+
+	public void setBuIdentity(IBusinessIdentity buIdentity) {
+		this.buIdentity = buIdentity;
 	}
 
 }

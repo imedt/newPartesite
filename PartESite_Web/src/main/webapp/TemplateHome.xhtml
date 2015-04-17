@@ -45,7 +45,7 @@
 <!-- PopUp Login -->
 <link rel="shortcut icon" href="http://designshack.net/favicon.ico" />
 <link rel="icon" href="http://designshack.net/favicon.ico" />
-<link rel="stylesheet" type="text/css" media="all"
+<link rel="stylesheet" type="text/css" media="all" 
 	href="popupLogin/css/style.css" />
 <script type="text/javascript" charset="utf-8"
 	src="popupLogin/js/jquery.leanModal.min.js"></script>
@@ -159,9 +159,13 @@
 						</h:panelGroup>
 					</h:panelGroup>
 					<h:panelGroup rendered="#{mbOrder.cart!=null}">
-						<li class="col-lg-3"><a href="#Cartmodal" id="modaltrigger"
-							rel="cart" class="icon fa-shopping-cart"><span>Mon
-									Panier</span></a></li>
+						<li class="col-lg-3">
+							<a href="consulterPanier.xhtml" class="icon fa-shopping-cart">
+								<span> 
+									Mon Panier
+								</span> 
+							</a>
+						</li>
 					</h:panelGroup>
 					<h:panelGroup rendered="#{mbConnexion.statut!=null}">
 						<li class="col-lg-3"><h:commandLink class="icon fa-sign-out"
@@ -293,7 +297,7 @@
 									<li class="icon fa-facebook"><a href="#">facebook.com/partE-Site.fr</a>
 									</li>
 								</ul>
-
+ 
 							</div>
 
 							</section>

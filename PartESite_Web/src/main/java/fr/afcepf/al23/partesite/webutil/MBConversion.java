@@ -15,35 +15,14 @@ import fr.afcepf.al23.partesite.managedbean.MBConnexion;
 @ManagedBean(name = "mbConversion")
 @SessionScoped
 public class MBConversion {
-	
+
 	private Logger log = Logger.getLogger(MBConversion.class);
-	
+
 	@ManagedProperty(value = "#{mbConnexion}")
 	private MBConnexion MBCnx;
+	private static Hashtable<String, String> tab;
 
-	public MBConnexion getMBCnx() {
-		return MBCnx;
-	}
-
-	public void setMBCnx(MBConnexion mBCnx) {
-		MBCnx = mBCnx;
-	}
-
-
-	private Hashtable<String, String> tab;
-	
-	public String getConvertedAmount(double amount){
-		
-log.info("getConvertedAmount , amount =  " + amount + "  currency =  " + MBCnx.getDevise() );
-		String currency = "EUR";
-		String amountToReturn = "";
-		if(MBCnx!=null && MBCnx.getDevise() != null)
-		currency = MBCnx.getDevise();
-		
-		if(currency == "")
-			currency = "EUR";
-		
-		amountToReturn = formatDecimal(amount);
+	static{
 		tab = new Hashtable<String, String>();
 		tab.put("EUR", "€");
 		tab.put("BAM", "KM");
@@ -61,16 +40,39 @@ log.info("getConvertedAmount , amount =  " + amount + "  currency =  " + MBCnx.g
 		tab.put("SEK", "kr");
 		tab.put("CHF", "CHF");
 		tab.put("TRY", "TRY");
-		
+	}
+
+	public String getConvertedAmount(double amount){
+
+		log.info("getConvertedAmount , amount =  " + amount + "  currency =  " + MBCnx.getDevise() );
+		String currency = "EUR";
+		String amountToReturn = "";
+		if(MBCnx!=null && MBCnx.getDevise() != null)
+			currency = MBCnx.getDevise();
+
+		if(currency == "")
+			currency = "EUR";
+
+		amountToReturn = formatDecimal(amount);
+
 		return amountToReturn+" "+ tab.get(currency);
 	}
 
 	public String formatDecimal(double number) {
-		  double epsilon = 0.004d; // 4 tenths of a cent
-		  if (Math.abs(Math.round(number) - number) < epsilon) {
-		     return String.format("%10.0f", number); // sdb
-		  } else {
-		     return String.format("%10.2f", number); // dj_segfault
-		  }
+		double epsilon = 0.004d; // 4 tenths of a cent
+		if (Math.abs(Math.round(number) - number) < epsilon) {
+			return String.format("%10.0f", number); // sdb
+		} else {
+			return String.format("%10.2f", number); // dj_segfault
 		}
+	}
+
+	public MBConnexion getMBCnx() {
+		return MBCnx;
+	}
+
+	public void setMBCnx(MBConnexion mBCnx) {
+		MBCnx = mBCnx;
+	}
+
 }
