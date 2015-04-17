@@ -20,23 +20,32 @@ public class MBConversion {
 	
 	@ManagedProperty(value = "#{mbConnexion}")
 	private MBConnexion MBCnx;
+	public MBConnexion getMBCnx() {
+		return MBCnx;
+	}
+
+	public void setMBCnx(MBConnexion mBCnx) {
+		MBCnx = mBCnx;
+	}
+
 	private Hashtable<String, String> tab;
 	
 	public String getConvertedAmount(double amount){
 		
-		
+		String currency = "EUR";
 		String amountToReturn = "";
-		String currency = MBCnx.getDevise();
+		if(MBCnx!=null)
+		currency = MBCnx.getDevise();
 		
-		amountToReturn = String.valueOf(amount);
+		amountToReturn = formatDecimal(amount);
 		tab = new Hashtable<String, String>();
-		tab.put("EUR", "&euro;");
+		tab.put("EUR", "€");
 		tab.put("BAM", "KM");
 		tab.put("BGN", "лв");
 		tab.put("HRK", "kn");
 		tab.put("CZK", "Kč");
 		tab.put("DKK", "kr");
-		tab.put("GBP", "&pound;");
+		tab.put("GBP", "£");
 		tab.put("HUF", "Ft");
 		tab.put("MKD", "ден");
 		tab.put("NOK", "kr");
@@ -50,4 +59,13 @@ public class MBConversion {
 		return amountToReturn+" "+ tab.get(currency);
 	}
 
+	public String formatDecimal(double number) {
+		  double epsilon = 0.004d; // 4 tenths of a cent
+		  if (Math.abs(Math.round(number) - number) < epsilon) {
+		     return String.format("%10.0f", number); // sdb
+		  } else {
+		     return String.format("%10.2f", number); // dj_segfault
+		  }
+		}
+	
 }
