@@ -46,6 +46,20 @@ public interface IServiceTaxesFrais {
 
     /**
      * 
+     * @param arg0
+     * @return
+     *     returns fr.afcepf.al23.servicetaxes_frais.service.Country
+     */
+    @WebMethod
+    @WebResult(name = "country", targetNamespace = "")
+    @RequestWrapper(localName = "findCountry", targetNamespace = "http://service.servicetaxes_frais.al23.afcepf.fr/", className = "fr.afcepf.al23.servicetaxes_frais.service.FindCountry")
+    @ResponseWrapper(localName = "findCountryResponse", targetNamespace = "http://service.servicetaxes_frais.al23.afcepf.fr/", className = "fr.afcepf.al23.servicetaxes_frais.service.FindCountryResponse")
+    public Country findCountry(
+        @WebParam(name = "arg0", targetNamespace = "")
+        int arg0);
+
+    /**
+     * 
      * @return
      *     returns java.util.List<fr.afcepf.al23.servicetaxes_frais.service.Country>
      */

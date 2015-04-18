@@ -81,7 +81,8 @@
 									class="icon fa-dashboard"> <span>Tableau de bord</span>
 								</a></li>
 								<li class="col-3"><a href="UserInfo.xhtml"
-									class="icon fa-credit-card"  id="selected"> <span>Mes Informations</span>
+									class="icon fa-credit-card" id="selected"> <span>Mes
+											Informations</span>
 								</a></li>
 								<li class="col-3"><a href="UserProjects.xhtml"
 									class="icon fa-briefcase"> <span>Mes Projets</span>
@@ -109,8 +110,9 @@
 
 								<fieldset class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
 									style="margin: 0 0 0 0; padding: 0 0 0 0; border: none;">
-									<div style="text-align:center">
-										<strong> <h:outputText class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+									<div style="text-align: center">
+										<strong> <h:outputText
+												class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
 												value="#{mbConnexion.id.civility.civility}&nbsp;#{mbConnexion.id.firstName}&nbsp;#{mbConnexion.id.lastName}" />
 										</strong>
 										<h:outputText class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
@@ -140,12 +142,18 @@
 
 								<h:panelGroup class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
 									rendered="#{mbConnexion.id!=null}">
-									<strong><span class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Telephone</span></strong>
-									<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12">Type :</span>
-									<h:inputText class="col-lg-6 col-md-12 col-sm-12 col-xs-12" value="#{mbUser.typePhoneNumber}" />
-									<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12">Numéro :</span>
-									<h:inputText class="col-lg-6 col-md-12 col-sm-12 col-xs-12" value="#{mbUser.phoneNumber}" />
-									<h:commandButton class="col-lg-push-6 col-lg-6 col-md-12 col-sm-12 col-xs-12"
+									<strong><span
+										class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Telephone</span></strong>
+									<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12">Type
+										:</span>
+									<h:inputText class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
+										value="#{mbUser.typePhoneNumber}" />
+									<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12">Numéro
+										:</span>
+									<h:inputText class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
+										value="#{mbUser.phoneNumber}" />
+									<h:commandButton
+										class="col-lg-push-6 col-lg-6 col-md-12 col-sm-12 col-xs-12"
 										action="#{mbUser.addPhoneToUser()}" value="Ajouter" />
 								</h:panelGroup>
 
@@ -155,9 +163,11 @@
 										style="margin: 0 0 0 0; padding: 0 0 0 0; border: none;">
 										<legend>Téléphones</legend>
 										<ui:repeat value="#{mbUser.phones}" var="phone">
-										<strong>
-											<h:outputText class="col-lg-6 col-md-12 col-sm-12 col-xs-12" value="#{phone.type}" /></strong>
-											<h:outputText class="col-lg-6 col-md-12 col-sm-12 col-xs-12" value="#{phone.phoneNumber}" />
+											<strong> <h:outputText
+													class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
+													value="#{phone.type}" /></strong>
+											<h:outputText class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
+												value="#{phone.phoneNumber}" />
 										</ui:repeat>
 
 
@@ -169,39 +179,71 @@
 
 								<h:panelGroup class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
 									rendered="#{mbConnexion.id!=null}">
-									<strong><span class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Adresse</span></strong>
-									<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12">Rue :</span>
-									<h:inputText class="col-lg-6 col-md-12 col-sm-12 col-xs-12" value="#{mbUser.street}" />
-									<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12">Code Postal :</span>
-									<h:inputText class="col-lg-6 col-md-12 col-sm-12 col-xs-12" value="#{mbUser.zipcode}" />
-									<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12">Ville :</span>
-									<h:inputText class="col-lg-6 col-md-12 col-sm-12 col-xs-12" value="#{mbUser.city}" />
-									<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12">Pays :</span>
-									<h:inputText class="col-lg-6 col-md-12 col-sm-12 col-xs-12" value="#{mbUser.country}" />
-									<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12"> Type :</span>
-									<h:selectOneMenu class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
-										value="#{mbUser.idAddressType}">
-										<f:selectItems value="#{mbUser.addressTypes}" var="a"
-											itemValue="#{a.idAddressType}" itemLabel="#{a.addressType}" />
-									</h:selectOneMenu>
+									<strong><span
+										class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Adresse</span></strong>
 
-									<h:commandButton class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
+									<div class="col-md-12">
+										<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12">Rue
+											:</span>
+
+										<h:inputText class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
+											value="#{mbUser.street}" />
+									</div>
+									<div class="col-md-12">
+										<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12">Code
+											Postal :</span>
+										<h:inputText class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
+											value="#{mbUser.zipcode}" />
+									</div>
+									<div class="col-md-12">
+										<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12">Ville
+											:</span>
+										<h:inputText class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
+											value="#{mbUser.city}" />
+									</div>
+									<div class="col-md-12">
+										<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+											Pays :</span>
+										<h:selectOneMenu
+											class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
+											value="#{mbUser.country}">
+											<f:selectItems value="#{mbUser.countries}" var="pays"
+												itemLabel="#{pays.name}" itemValue="#{pays.idCountry}" />
+										</h:selectOneMenu>
+									</div>
+									<div class="col-md-12">
+										<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+											Type :</span>
+										<h:selectOneMenu
+											class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
+											value="#{mbUser.idAddressType}">
+											<f:selectItems value="#{mbUser.addressTypes}" var="a"
+												itemValue="#{a.idAddressType}" itemLabel="#{a.addressType}" />
+										</h:selectOneMenu>
+									</div>
+									<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12"></span>
+									<h:commandButton
+										class="col-lg-6 col-md-12 col-sm-12 col-xs-12 "
 										action="#{mbUser.addAddressToUser()}" value="Ajouter" />
 								</h:panelGroup>
 
 								<h:panelGroup class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
 									rendered="#{mbUser.addresses!=null}">
 									<fieldset class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
-										style="margin: 0 0 0 0; padding: 0 0 0 0; border: none;"><strong>
-										<legend>Adresses</legend></strong>
+										style="margin: 0 0 0 0; padding: 0 0 0 0; border: none;">
+										<strong> <legend>Adresses</legend></strong>
 										<ui:repeat value="#{mbUser.addresses}" var="address">
 											<h:outputText class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
 												value="#{address.addressType.addressType}"
 												style="font-weight:bold;" />
-											<h:outputText class="col-lg-12 col-md-12 col-sm-12 col-xs-12" value="#{address.street}" />
-											<h:outputText class="col-lg-12 col-md-12 col-sm-12 col-xs-12" value="#{address.zipcode}" />
-											<h:outputText class="col-lg-12 col-md-12 col-sm-12 col-xs-12" value="#{address.city}" />
-											<h:outputText class="col-lg-12 col-md-12 col-sm-12 col-xs-12" value="#{address.country}" />
+											<h:outputText class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+												value="#{address.street}" />
+											<h:outputText class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+												value="#{address.zipcode}" />
+											<h:outputText class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+												value="#{address.city}" />
+											<h:outputText class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+												value="#{mbCountry.findCountry(address.country).name}" />
 
 										</ui:repeat>
 									</fieldset>
@@ -237,7 +279,7 @@
 								<h:inputText name="name" placeholder="Name" type="text"
 									value="Nom" style="width:100%;" />
 							</div>
-							<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12" >
+							<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
 								<h:inputText name="email" placeholder="Email" type="text"
 									value="Email" style="width:100%;" />
 							</div>

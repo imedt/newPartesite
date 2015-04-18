@@ -24,8 +24,10 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
+    private final static QName _FindCountry_QNAME = new QName("http://service.servicetaxes_frais.al23.afcepf.fr/", "findCountry");
     private final static QName _ApplyTva_QNAME = new QName("http://service.servicetaxes_frais.al23.afcepf.fr/", "applyTva");
     private final static QName _GetAllCountries_QNAME = new QName("http://service.servicetaxes_frais.al23.afcepf.fr/", "getAllCountries");
+    private final static QName _FindCountryResponse_QNAME = new QName("http://service.servicetaxes_frais.al23.afcepf.fr/", "findCountryResponse");
     private final static QName _ReturnTvaCountryResponse_QNAME = new QName("http://service.servicetaxes_frais.al23.afcepf.fr/", "returnTvaCountryResponse");
     private final static QName _ApplyTvaResponse_QNAME = new QName("http://service.servicetaxes_frais.al23.afcepf.fr/", "applyTvaResponse");
     private final static QName _ReturnTvaCountry_QNAME = new QName("http://service.servicetaxes_frais.al23.afcepf.fr/", "returnTvaCountry");
@@ -36,6 +38,14 @@ public class ObjectFactory {
      * 
      */
     public ObjectFactory() {
+    }
+
+    /**
+     * Create an instance of {@link FindCountryResponse }
+     * 
+     */
+    public FindCountryResponse createFindCountryResponse() {
+        return new FindCountryResponse();
     }
 
     /**
@@ -60,6 +70,14 @@ public class ObjectFactory {
      */
     public ApplyTva createApplyTva() {
         return new ApplyTva();
+    }
+
+    /**
+     * Create an instance of {@link FindCountry }
+     * 
+     */
+    public FindCountry createFindCountry() {
+        return new FindCountry();
     }
 
     /**
@@ -95,6 +113,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link FindCountry }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.servicetaxes_frais.al23.afcepf.fr/", name = "findCountry")
+    public JAXBElement<FindCountry> createFindCountry(FindCountry value) {
+        return new JAXBElement<FindCountry>(_FindCountry_QNAME, FindCountry.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link ApplyTva }{@code >}}
      * 
      */
@@ -110,6 +137,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://service.servicetaxes_frais.al23.afcepf.fr/", name = "getAllCountries")
     public JAXBElement<GetAllCountries> createGetAllCountries(GetAllCountries value) {
         return new JAXBElement<GetAllCountries>(_GetAllCountries_QNAME, GetAllCountries.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link FindCountryResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.servicetaxes_frais.al23.afcepf.fr/", name = "findCountryResponse")
+    public JAXBElement<FindCountryResponse> createFindCountryResponse(FindCountryResponse value) {
+        return new JAXBElement<FindCountryResponse>(_FindCountryResponse_QNAME, FindCountryResponse.class, null, value);
     }
 
     /**
