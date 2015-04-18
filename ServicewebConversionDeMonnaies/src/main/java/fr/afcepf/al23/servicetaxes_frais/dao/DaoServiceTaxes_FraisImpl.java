@@ -19,7 +19,7 @@ public class DaoServiceTaxes_FraisImpl implements IDaoServiceTaxes_Frais {
 
 	@Override
 	public Country getCountryById(Integer id) {
-		Query hql = em.createQuery("SELECT c FROM Country c WHERE c.id_country = :pId").setParameter("pId", id);
+		Query hql = em.createQuery("SELECT c FROM Country c WHERE c.idCountry = :pId").setParameter("pId", id);
 		Country c = null;
 		c = (Country) hql.getSingleResult();
 		return c;
