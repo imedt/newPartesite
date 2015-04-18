@@ -1,12 +1,14 @@
 package fr.afcepf.al23.partesite.managedbean.transaction;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 
+import fr.afcepf.al23.model.entities.OrderRow;
 import fr.afcepf.al23.model.entities.Payment;
 import fr.afcepf.al23.model.entities.UserOrder;
 import fr.afcepf.al23.partesite.iservice.transaction.IBusinessPayment;
@@ -46,6 +48,17 @@ public class MBPayment {
 		return "congratulation.xhtml";
 	}
 	
+	public double computeTotal(){
+		double total = 0;
+		for(OrderRow or : mbOrder.getCart().getOrderRows()){
+			total+=or.getAmount();
+		}
+		return total;
+	}
+	
+	public List<OrderRow> getCurrentCartOrderRows(){
+		return mbOrder.getCart().getOrderRows();
+	}
 	public String validatePayment(){
 		return "paymentResume.xhtml";
 	}

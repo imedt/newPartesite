@@ -7,15 +7,58 @@
 	<ui:define name="title">
 	</ui:define>
 	<ui:define name="content">
-	<h1>Recapitulatif de la commande</h1>
-	<div class="row">
-		
-	</div>
-	<f:view>
-		<h:form>
-			<h:commandButton action="#{mbPayment.finalizePayment()}" value="Valider" />
-		</h:form>
-	</f:view>
+		<div class="row">
+			<h1>Recapitulatif de la commande</h1>
+			<div class="col-md-12 black-label">
+				<p>
+					Vous vous appretez à réaliser une commande d'un montant de :
+					<h:outputText
+						value="#{mbConversion.getConvertedAmount(mbPayment.computeTotal())}" />
+				</p>  
+				<h1 style="font-size:1.5em;margin-top:15px;margin-bottom:15px;">Contenu de votre commande</h1>
+				<div class="col-md-12" style="margin-bottom:30px">
+				<ui:repeat var="orderrow" value="#{mbPayment.currentCartOrderRows}">
+					<div class="col-md-12"> 
+						<h:outputText value="#{orderrow.amount/orderrow.pack.amount}">
+							<f:convertNumber maxFractionDigits="0" />
+						</h:outputText>
+
+						package : #{orderrow.pack.packName} du projet
+						#{orderrow.pack.project.projectName}
+					</div>
+				</ui:repeat>   
+				</div>  
+				<h1 style="font-size:1.5em;margin-top:30px;margin-bottom:15px;">Adresse de livraison</h1>   
+				<div class="col-md-12 black-label reset-margin">
+				<ui:repeat value="#{mbUser.addresses[0]}" var="address" size="1">
+					<h:outputText class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+						value="#{address.addressType.addressType}"
+						style="font-weight:bold;" />
+					<h:outputText class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+						value="#{address.street}" />
+					<h:outputText class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+						value="#{address.zipcode}" />
+					<h:outputText class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+						value="#{address.city}" />
+					<h:outputText class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+						value="#{mbCountry.findCountry(address.country).name}" />
+				</ui:repeat>
+				</div>
+			</div>
+		</div>
+		<f:view>
+			<h:form>
+				<h:commandButton action="#{mbPayment.finalizePayment()}"
+					value="Valider" />
+			</h:form>
+		</f:view>
+		<style> 
+			.reset-margin * {
+				margin:0;
+				padding:0; 
+				text-align:left;
+			}
+		</style>
 	</ui:define>
 
 </ui:composition>
