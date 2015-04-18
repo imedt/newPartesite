@@ -1,5 +1,7 @@
 package fr.afcepf.al23.servicetaxes_frais.dao;
 
+import java.util.List;
+
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -29,5 +31,12 @@ public class DaoServiceTaxes_FraisImpl implements IDaoServiceTaxes_Frais {
 		Country c = null;
 		c = (Country) hql.getSingleResult();
 		return c;
+	}
+
+	@Override
+	public List<Country> getAllCountries() {
+		Query hql = em.createQuery("SELECT c FROM Country c");
+		List<Country> list = hql.getResultList();
+		return list;
 	}
 }

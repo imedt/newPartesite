@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -24,6 +25,9 @@ import fr.afcepf.al23.partesite.iservice.user.IBusinessIdentity;
 import fr.afcepf.al23.partesite.iservice.user.IBusinessIdentityRole;
 import fr.afcepf.al23.partesite.iservice.user.IBusinessPhone;
 // import fr.afcepf.al23.partesite.model.entities.Civility;
+import fr.afcepf.al23.servicetaxes_frais.service.Country;
+import fr.afcepf.al23.servicetaxes_frais.service.IServiceTaxesFrais;
+import fr.afcepf.al23.servicetaxes_frais.service.ServiceTaxesFraisImplService;
 
 @ManagedBean(name="mbUser")
 @SessionScoped
@@ -68,15 +72,22 @@ public class MBUser {
 	private String street;
 	private String zipcode;
 	private String city;
-	private String country;
+	private int country;
 	private Integer idAddressType;
 	private List<AddressType> addressTypes;
 	private List<Address> addresses=new ArrayList<>();;
-
+	private List<Country> countries;
 
 	//Message de validation de l'inscription
 	private String message;
-
+	public MBUser(){
+		
+	}
+	@PostConstruct
+	public void init(){
+		IServiceTaxesFrais service = new ServiceTaxesFraisImplService().getPort(IServiceTaxesFrais.class);
+		setCountries(service.getAllCountries());
+	}
 	//GET-SET EJBs
 	public IBusinessIdentity getBuIdentity() {
 		return buIdentity;
@@ -231,10 +242,10 @@ public class MBUser {
 	public void setCity(String city) {
 		this.city = city;
 	}
-	public String getCountry() {
+	public int getCountry() {
 		return country;
 	}
-	public void setCountry(String country) {
+	public void setCountry(int country) {
 		this.country = country;
 	}
 	public List<Address> getAddresses() {
@@ -311,9 +322,8 @@ public class MBUser {
 		}
 
 		identity.setBirthdate(date);
-
 		setIdentity(buIdentity.save(identity));
-	
+		addAddressToUser();
 		setDirection("/Home.xhtml?faces-redirect=true");
 
 		
@@ -348,8 +358,7 @@ public class MBUser {
 		address.setZipcode(zipcode);
 		address.setCity(city);
 		address.setCountry(country);
-
-		AddressType addressType = buAddressType.get(idAddressType);
+		AddressType addressType = buAddressType.get(2);
 		address.setAddressType(addressType);
 
 		address.setIdentity(getIdentity());
@@ -361,6 +370,12 @@ public class MBUser {
 		identity.setAddresses(addresses);
 		buIdentity.save(getIdentity());
 
+	}
+	public List<Country> getCountries() {
+		return countries;
+	}
+	public void setCountries(List<Country> countries) {
+		this.countries = countries;
 	}
 
 

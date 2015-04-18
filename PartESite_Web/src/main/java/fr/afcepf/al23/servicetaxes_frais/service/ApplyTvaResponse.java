@@ -7,9 +7,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for applyTvaResponse complex type.
+ * <p>Classe Java pour applyTvaResponse complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
  * &lt;complexType name="applyTvaResponse">
@@ -34,7 +34,7 @@ public class ApplyTvaResponse {
     protected double montantTTC;
 
     /**
-     * Gets the value of the montantTTC property.
+     * Obtient la valeur de la propriété montantTTC.
      * 
      */
     public double getMontantTTC() {
@@ -42,7 +42,7 @@ public class ApplyTvaResponse {
     }
 
     /**
-     * Sets the value of the montantTTC property.
+     * Définit la valeur de la propriété montantTTC.
      * 
      */
     public void setMontantTTC(double value) {

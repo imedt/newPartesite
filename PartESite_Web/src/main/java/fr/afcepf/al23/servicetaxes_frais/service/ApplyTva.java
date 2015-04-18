@@ -7,9 +7,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for applyTva complex type.
+ * <p>Classe Java pour applyTva complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
  * &lt;complexType name="applyTva">
@@ -40,7 +40,7 @@ public class ApplyTva {
     protected double tauxCommission;
 
     /**
-     * Gets the value of the montantHT property.
+     * Obtient la valeur de la propriété montantHT.
      * 
      */
     public double getMontantHT() {
@@ -48,7 +48,7 @@ public class ApplyTva {
     }
 
     /**
-     * Sets the value of the montantHT property.
+     * Définit la valeur de la propriété montantHT.
      * 
      */
     public void setMontantHT(double value) {
@@ -56,7 +56,7 @@ public class ApplyTva {
     }
 
     /**
-     * Gets the value of the tauxTVA property.
+     * Obtient la valeur de la propriété tauxTVA.
      * 
      */
     public double getTauxTVA() {
@@ -64,7 +64,7 @@ public class ApplyTva {
     }
 
     /**
-     * Sets the value of the tauxTVA property.
+     * Définit la valeur de la propriété tauxTVA.
      * 
      */
     public void setTauxTVA(double value) {
@@ -72,7 +72,7 @@ public class ApplyTva {
     }
 
     /**
-     * Gets the value of the tauxCommission property.
+     * Obtient la valeur de la propriété tauxCommission.
      * 
      */
     public double getTauxCommission() {
@@ -80,7 +80,7 @@ public class ApplyTva {
     }
 
     /**
-     * Sets the value of the tauxCommission property.
+     * Définit la valeur de la propriété tauxCommission.
      * 
      */
     public void setTauxCommission(double value) {

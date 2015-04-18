@@ -1,9 +1,13 @@
 package fr.afcepf.al23.servicetaxes_frais.service;
 
+import java.util.List;
+
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
+
+import entity.Country;
 
 @WebService
 public interface IServiceTaxes_Frais {
@@ -23,4 +27,8 @@ public interface IServiceTaxes_Frais {
 			double tva, 
 			@WebParam(name = "tauxCommission", targetNamespace = "")
 			double commission);
+	
+	@WebMethod
+	@WebResult(name="coutryList",targetNamespace="")
+	public List<Country> getAllCountries();
 }

@@ -7,9 +7,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for returnTvaCountry complex type.
+ * <p>Classe Java pour returnTvaCountry complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
  * &lt;complexType name="returnTvaCountry">
@@ -34,7 +34,7 @@ public class ReturnTvaCountry {
     protected Integer idCountry;
 
     /**
-     * Gets the value of the idCountry property.
+     * Obtient la valeur de la propriété idCountry.
      * 
      * @return
      *     possible object is
@@ -46,7 +46,7 @@ public class ReturnTvaCountry {
     }
 
     /**
-     * Sets the value of the idCountry property.
+     * Définit la valeur de la propriété idCountry.
      * 
      * @param value
      *     allowed object is

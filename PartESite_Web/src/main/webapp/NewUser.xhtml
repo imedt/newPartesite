@@ -109,7 +109,7 @@
 							<h:inputText class="col-lg-6 col-md-12 col-sm-12 col-xs-12" value="#{mbUser.email}" />
 
 							<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12"> Mot de passe :</span>
-							<h:inputText class="col-lg-6 col-md-12 col-sm-12 col-xs-12" value="#{mbUser.password}" />
+							<h:inputSecret class="col-lg-6 col-md-12 col-sm-12 col-xs-12" value="#{mbUser.password}" />
 
 							<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12"> Date de naissance :</span>
 							<h:inputText id="datepicker" class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
@@ -120,6 +120,21 @@
 								d'utilisation de la plateforme.</span>
 							<h:commandButton type="submit" class="lg-btn-default col-lg-12 col-md-12 col-sm-12 col-xs-12"
 								value="Valider" action="#{mbUser.inscription()}" />
+						</div>
+						<div class="col-lg-5 col-md-12 col-sm-12 col-xs-12">
+							<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12"> Rue :</span>
+							<h:inputText class="col-lg-6 col-md-12 col-sm-12 col-xs-12" value="#{mbUser.street}" />
+							<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12"> Code postal :</span>
+							<h:inputText class="col-lg-6 col-md-12 col-sm-12 col-xs-12" value="#{mbUser.zipcode}" />
+
+							<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12"> Ville :</span>
+							<h:inputText class="col-lg-6 col-md-12 col-sm-12 col-xs-12" value="#{mbUser.city}" />
+							
+							<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12"> Pays :</span>
+							<h:selectOneMenu class="col-lg-6 col-md-12 col-sm-12 col-xs-12" value="#{mbUser.country}" >
+								<f:selectItems value="#{mbUser.countries}" var="pays" itemLabel="#{pays.name}" itemValue="#{pays.idCountry}"/>
+							</h:selectOneMenu>
+
 						</div>
 						
 					</fieldset>

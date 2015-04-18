@@ -1,6 +1,7 @@
 package entity;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
 
 
@@ -10,6 +11,7 @@ import javax.persistence.*;
  */
 @Entity
 @NamedQuery(name="Currency.findAll", query="SELECT c FROM Currency c")
+@Table(name="currency")
 public class Currency implements Serializable {
 	private static final long serialVersionUID = 1L;
 

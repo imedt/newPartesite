@@ -1,5 +1,7 @@
 package fr.afcepf.al23.servicetaxes_frais.service;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
@@ -27,4 +29,9 @@ public class ServiceTaxes_FraisImpl implements IServiceTaxes_Frais {
 		return (montant + (montant * tva) + (montant *commission));
 	}
 
+	@Override
+	public List<Country> getAllCountries() {
+		return dao.getAllCountries();
+	}
+	
 }

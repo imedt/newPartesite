@@ -7,9 +7,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for returnTvaCountryResponse complex type.
+ * <p>Classe Java pour returnTvaCountryResponse complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
  * &lt;complexType name="returnTvaCountryResponse">
@@ -34,7 +34,7 @@ public class ReturnTvaCountryResponse {
     protected double tauxTva;
 
     /**
-     * Gets the value of the tauxTva property.
+     * Obtient la valeur de la propriété tauxTva.
      * 
      */
     public double getTauxTva() {
@@ -42,7 +42,7 @@ public class ReturnTvaCountryResponse {
     }
 
     /**
-     * Sets the value of the tauxTva property.
+     * Définit la valeur de la propriété tauxTva.
      * 
      */
     public void setTauxTva(double value) {

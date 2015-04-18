@@ -24,7 +24,7 @@ public class Address implements Serializable {
 
 	private String city;
 
-	private String country;
+	private int country;
 
 	@Column(name="created_by")
 	private Integer  createdBy;
@@ -75,11 +75,11 @@ public class Address implements Serializable {
 		this.city = city;
 	}
 
-	public String getCountry() {
+	public int getCountry() {
 		return this.country;
 	}
 
-	public void setCountry(String country) {
+	public void setCountry(int country) {
 		this.country = country;
 	}
 
