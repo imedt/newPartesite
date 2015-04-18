@@ -33,5 +33,10 @@ public class ServiceTaxes_FraisImpl implements IServiceTaxes_Frais {
 	public List<Country> getAllCountries() {
 		return dao.getAllCountries();
 	}
+
+	@Override
+	public Country findCountry(int id) {
+		return dao.getCountryById(id);
+	}
 	
 }
