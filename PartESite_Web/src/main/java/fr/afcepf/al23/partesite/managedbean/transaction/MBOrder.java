@@ -18,6 +18,7 @@ import fr.afcepf.al23.model.entities.OrderRow;
 import fr.afcepf.al23.model.entities.Pack;
 import fr.afcepf.al23.model.entities.UserOrder;
 import fr.afcepf.al23.partesite.iservice.notification.IBusinessNotification;
+import fr.afcepf.al23.partesite.iservice.offer.IBusinessItem;
 import fr.afcepf.al23.partesite.iservice.transaction.IBusinessOrder;
 import fr.afcepf.al23.partesite.iservice.transaction.IBusinessOrderRow;
 import fr.afcepf.al23.partesite.iservice.user.IBusinessIdentity;
@@ -34,6 +35,8 @@ public class MBOrder {
 	IBusinessOrder buOrder;
 	@EJB
 	IBusinessOrderRow buOrderRow;
+	@EJB
+	IBusinessItem buItem;
 	@EJB
 	IBusinessNotification buNotification;
 	@EJB
@@ -142,14 +145,15 @@ public class MBOrder {
 	}
 
 	public void validateCart() {
-		buOrder.finalizeCart(cart);
+		log.info("info cart : "+cart);
+		buOrder.finalizeCart(cart); 
 		
 		log.info("creating notification");
 		for(OrderRow orderRow : cart.getOrderRows()){
 			Notification n = new Notification();
 			n.setCreatedBy(1);
 			n.setCreatedDate(new Date());
-			n.setContentNotification("vous avez vendu "+orderRow.getItems().size()+" package : "+orderRow.getPack().getPackName());
+			n.setContentNotification("vous avez vendu "+buItem.getByOrderRowId(orderRow.getIdOrderRow()).size()+" package : "+orderRow.getPack().getPackName());
 			n.setIdentity(buIdentity.get(1));
 			log.info("createur du package : "+orderRow.getPack().getCreatedBy());
 			log.info("ORder parck : "+orderRow.getPack()); 
@@ -159,7 +163,7 @@ public class MBOrder {
 			
 			buNotification.save(n);
 			log.info("creating notification 2");
-		}
+		} 
 
 		Notification n1 = new Notification();
 		n1.setCreatedBy(1);

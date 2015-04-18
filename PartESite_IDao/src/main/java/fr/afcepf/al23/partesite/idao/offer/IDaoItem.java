@@ -19,5 +19,6 @@ public interface IDaoItem {
 	public List<Item> holdItemByNbByPack(int nb, Pack pack,int idOrderRow);
 	public List<Item> SaleItemByNbByPack(List<Item> items);
 	public List<Item> ClearItemByNbByPack(List<Item> items);
+	public List<Item> getItemsByOrderRow(Integer idOrderRow);
 
 }

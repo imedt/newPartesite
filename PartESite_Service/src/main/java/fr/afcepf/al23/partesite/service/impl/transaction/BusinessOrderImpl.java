@@ -243,20 +243,29 @@ public class BusinessOrderImpl implements IBusinessOrder {
 
 	@Override
 	public UserOrder finalizeCart(UserOrder cart) {
-		ItemState itemState = new ItemState();
+		log.info("prepare item state");
+		ItemState itemState = new ItemState(); 
 		itemState.setIdItemState(3);
 		itemState.setItemStateName("VENDU");
+		log.info("prepare order state");
+
 		UserOrderState userOrderState = new UserOrderState();
 		userOrderState.setIdUserOrderState(2);
 		userOrderState.setUserOrderStateName("PAYE");
-		
+		log.info("there is "+cart.getOrderRows()+" order rows");
 		for(OrderRow row : cart.getOrderRows()){
-			log.info("there is "+row.getItems().size()+" item in this row");
-			for(Item item : row.getItems()){
-				item.setItemState(itemState);
+			List<Item> itemToEdit = row.getItems();
+			log.info("state item : "+itemToEdit);
+			if(itemToEdit == null){
+				itemToEdit = daoItem.getItemsByOrderRow(row.getIdOrderRow());
 			}
-			Pack pack = row.getPack();
-			pack.setStock(pack.getStock() - row.getItems().size());
+			log.info("begin loop"); 
+			for(Item item : itemToEdit){
+				log.info("item state : "+item); 
+				item.setItemState(itemState); 
+			}
+			Pack pack = row.getPack(); 
+			pack.setStock(pack.getStock() - itemToEdit.size());
 			daoPack.update(pack);
 		} 
 		cart = daoUserOrder.update(cart);

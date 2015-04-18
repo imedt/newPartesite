@@ -136,4 +136,10 @@ public class DaoItemImpl implements IDaoItem {
 		return items;
 	}
 
+	@Override
+	public List<Item> getItemsByOrderRow(Integer idOrderRow) { 
+		Query hql = em.createQuery("SELECT i FROM Item i WHERE i.idOrderRow = :idOrderRow").setParameter("idOrderRow", idOrderRow);
+		return hql.getResultList();
+	}
+
 }

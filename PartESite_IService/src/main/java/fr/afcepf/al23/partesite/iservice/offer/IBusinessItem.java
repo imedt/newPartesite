@@ -17,5 +17,6 @@ public interface IBusinessItem {
 	public List<Item> searchItem(Integer idItem, Double amount);
 	public List<Item> getSaleByPack(Pack pack);
 	public List<Item> getDispoByPack(Pack pack);	
+	public List<Item> getByOrderRowId(int id);
 
 }

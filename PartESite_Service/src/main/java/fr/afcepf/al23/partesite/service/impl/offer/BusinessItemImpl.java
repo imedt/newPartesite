@@ -62,4 +62,9 @@ public class BusinessItemImpl implements IBusinessItem {
 		return dao.getDispoByPack(pack);
 	}
 
+	@Override
+	public List<Item> getByOrderRowId(int id) {
+		return dao.getItemsByOrderRow(id);
+	}
+
 }
