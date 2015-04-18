@@ -18,7 +18,7 @@
 	<ui:define name="content">
 	<f:event listener="#{mbConsultProject.init()}" type="preRenderView"></f:event>
 		<div class="bloc">
-			<div class="col-lg-12">
+			<div class="col-lg-9">
 				<div class="textBox col-lg-6 col-xs-12 col-sm-12 col-md-12" >
 					<center>
 						<p class="col-lg-12">
@@ -30,8 +30,8 @@
 					</center>
 				</div>
 				<div class="frameBox col-lg-6 col-xs-12 col-sm-12 col-md-12">
-					<center style="padding-left: 4em;">
-						<img src="#{mbConsultProject.contentProjectImage.content}"/>
+					<center style="padding-left: 2em;padding-right:2em">
+						<img src="#{mbConsultProject.contentProjectImage.content}" class="col-md-12"/>
 					</center>
 				</div>
 
@@ -53,7 +53,7 @@
 			</div>
 
 
-				<h:panelGroup class="packBox3 col-lg-12 col-xs-12 col-sm-12 col-md-12" rendered="#{mbConsultProject.wrappedPack.size()!=0}">
+				<h:panelGroup class="packBox3 col-lg-3 col-xs-12 col-sm-12 col-md-12" rendered="#{mbConsultProject.wrappedPack.size()!=0}">
 				<h:dataTable  class="col-lg-push-1 col-lg-10 col-md-12 col-sm-12 col-xs-12"
 						value="#{mbConsultProject.wrappedPack}" var="wrappedPack" styleClass="table"
 						headerClass="table-header"
@@ -73,9 +73,9 @@
 							<h3>Quantité disponible :
 								#{wrappedPack.pack.stock-wrappedPack.pack.nbSale}</h3>
 						
-							<h3 class="col-lg-4 col-xs-12 col-sm-12 col-md-12">Quantité souhaitée :</h3>
+							<h3 class="col-lg-12 col-xs-12 col-sm-12 col-md-12">Quantité souhaitée :</h3>
 							
-							<h:selectOneMenu class="col-lg-8 col-xs-12 col-sm-12 col-md-12"
+							<h:selectOneMenu class="col-lg-offset-2 col-lg-8 col-xs-12 col-sm-12 col-md-12"
 								value="#{wrappedPack.quantity}" >
 								<f:selectItems
 									value="#{mbConsultProject.remplirList(wrappedPack.pack)}"/>
