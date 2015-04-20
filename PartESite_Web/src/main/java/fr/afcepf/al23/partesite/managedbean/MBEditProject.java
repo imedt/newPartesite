@@ -9,6 +9,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.event.AjaxBehaviorEvent;
+import javax.xml.ws.BindingProvider;
 
 import localhost._8080.ode.processes.conversionprocess.ConversionProcess;
 import localhost._8080.ode.processes.conversionprocess.ConversionProcessPortType;
@@ -29,6 +30,7 @@ import fr.afcepf.al23.partesite.iservice.offer.IBusinessPack;
 import fr.afcepf.al23.partesite.iservice.offer.IBusinessProject;
 import fr.afcepf.al23.partesite.iservice.offer.IBusinessProjectCategory;
 import fr.afcepf.al23.partesite.iservice.offer.IBusinessProjectContent;
+import fr.afcepf.al23.partesite.iservice.user.IBusinessAddress;
 import fr.afcepf.al23.partesite.iservice.user.IBusinessIdentity;
 
 @ManagedBean(name = "mbEditProject")
@@ -56,9 +58,11 @@ public class MBEditProject {
 	private IBusinessItemState buItemState;
 	@EJB
 	private IBusinessNotification buNotification;
+	@EJB
+	private IBusinessAddress buAddress;
 	
-
-	// Creation Projet � rattacher � l'Utilisateur
+ 
+	// Creation Projet a rattacher a l'Utilisateur
 	private Project p;
 	private Double aimingAmount;
 	private String projectName;
@@ -68,7 +72,7 @@ public class MBEditProject {
 	private List<ProjectCategory> categories;
 	private List<ProjectContent> projectContents = new ArrayList<>();
 
-	// Creation Content � ajouter au Projet
+	// Creation Content a ajouter au Projet
 	private ProjectContent cP;
 	private Integer idContentProject;
 	private String cPContentImage;
@@ -78,23 +82,13 @@ public class MBEditProject {
 	
 	//BPEL
 	private static ConversionProcessPortType cpt;
-	private static ConversionProcessRequest cpr;
 
 	public MBEditProject(){
 		packs = new ArrayList<Pack>();
 		packs.add(new Pack()); 
 		cpt = new ConversionProcess().getPort(ConversionProcessPortType.class);
-		cpr = new ConversionProcessRequest();  
-		cpr.setDeviseCible("EUR");
-		log.info("MAnaged bean cnx : "+cnx);
-		if(cnx == null){
-			cpr.setDeviseCible("EUR");
-		}else{
-			cpr.setDeviseCible(cnx.getDevise());
-		}
-		cpr.setCommission(10);
-		cpr.setIsHT(true);
-	
+		BindingProvider pb = (BindingProvider) cpt;
+		pb.getRequestContext().put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, "http://localhost:8080/ode/processes/ConversionProcess.ConversionProcessPort/");
 	}
 	// Methodes de creation de Projet / Content / Pack / Item
 	public void createProject() {
@@ -152,8 +146,7 @@ public class MBEditProject {
 	}
 	public void saveProject(){
 		log.info("save project");
-		cpr.setMontantHT(p.getAimingAmount());
-		p.setAimingAmount(cpt.process(cpr).getMontantTTC());
+		p.setAimingAmount(cpt.process(createPayload(p.getAimingAmount())).getMontantTTC());
 		p = buProject.save(p);
 		log.info("save project content");
 		for(ProjectContent pc : p.getProjectContents()){
@@ -168,15 +161,23 @@ public class MBEditProject {
 			if(pp != null && !pp.getPackName().equals("")){
 				log.info("pack existing and gonna be created");  
 				pp.setProject(p);
-				cpr.setMontantHT(pp.getAmount());
-				pp.setAmount(cpt.process(cpr).getMontantTTC());
+				pp.setAmount(cpt.process(createPayload(pp.getAmount())).getMontantTTC());
 				buPack.save(pp);
 			}
 		}
 		sendNotifications();
 		resetP();
 	}
-
+	private ConversionProcessRequest createPayload(double montant){
+		ConversionProcessRequest cpr = new ConversionProcessRequest();
+		cpr.setCommission(10);
+		cpr.setDeviseCible("EUR");
+		cpr.setDeviseSource(cnx.getDevise());
+		cpr.setIdPays(buAddress.getByIdIdentity(cnx.getId().getIdIdentity()).get(0).getCountry());
+		cpr.setIsHT(true); 
+		cpr.setMontantHT(montant);
+		return cpr;
+	}
 	public void resetP() {
 
 		p = new Project();
@@ -447,12 +448,7 @@ public class MBEditProject {
 	public static void setCpt(ConversionProcessPortType cpt) {
 		MBEditProject.cpt = cpt;
 	}
-	public static ConversionProcessRequest getCpr() {
-		return cpr;
-	}
-	public static void setCpr(ConversionProcessRequest cpr) {
-		MBEditProject.cpr = cpr;
-	}
+
 	
 	
 }
