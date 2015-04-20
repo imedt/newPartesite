@@ -8,7 +8,7 @@ import javax.jws.WebService;
 @WebService
 public interface IGestionDevises {
 
-	@WebMethod
+	@WebMethod 
 	@WebResult(name = "tauxDeChange", targetNamespace = "")
 	public double returnChangeByDevise(
 			@WebParam(name = "deviseSource", targetNamespace = "")

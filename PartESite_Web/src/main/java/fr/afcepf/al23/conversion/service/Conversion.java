@@ -7,9 +7,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for conversion complex type.
+ * <p>Classe Java pour conversion complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
  * &lt;complexType name="conversion">
@@ -40,7 +40,7 @@ public class Conversion {
     protected String deviseCible;
 
     /**
-     * Gets the value of the montantHTAvantConversion property.
+     * Obtient la valeur de la propriété montantHTAvantConversion.
      * 
      */
     public double getMontantHTAvantConversion() {
@@ -48,7 +48,7 @@ public class Conversion {
     }
 
     /**
-     * Sets the value of the montantHTAvantConversion property.
+     * Définit la valeur de la propriété montantHTAvantConversion.
      * 
      */
     public void setMontantHTAvantConversion(double value) {
@@ -56,7 +56,7 @@ public class Conversion {
     }
 
     /**
-     * Gets the value of the deviseSource property.
+     * Obtient la valeur de la propriété deviseSource.
      * 
      * @return
      *     possible object is
@@ -68,7 +68,7 @@ public class Conversion {
     }
 
     /**
-     * Sets the value of the deviseSource property.
+     * Définit la valeur de la propriété deviseSource.
      * 
      * @param value
      *     allowed object is
@@ -80,7 +80,7 @@ public class Conversion {
     }
 
     /**
-     * Gets the value of the deviseCible property.
+     * Obtient la valeur de la propriété deviseCible.
      * 
      * @return
      *     possible object is
@@ -92,7 +92,7 @@ public class Conversion {
     }
 
     /**
-     * Sets the value of the deviseCible property.
+     * Définit la valeur de la propriété deviseCible.
      * 
      * @param value
      *     allowed object is

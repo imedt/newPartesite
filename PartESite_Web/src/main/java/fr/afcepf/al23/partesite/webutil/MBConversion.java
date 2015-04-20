@@ -7,6 +7,11 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
+import localhost._8080.ode.processes.conversionprocess.ConversionProcess;
+import localhost._8080.ode.processes.conversionprocess.ConversionProcessPortType;
+import localhost._8080.ode.processes.conversionprocess.ConversionProcessRequest;
+import localhost._8080.ode.processes.conversionprocess.ConversionProcessResponse;
+
 import org.apache.log4j.Logger;
 
 import fr.afcepf.al23.partesite.managedbean.MBConnexion;
@@ -52,10 +57,23 @@ public class MBConversion {
 
 		if(currency == "")
 			currency = "EUR";
-
-		amountToReturn = formatDecimal(amount);
-
-		return amountToReturn+" "+ tab.get(currency);
+		//Definition BPEL
+		ConversionProcessPortType cp = new ConversionProcess().getConversionProcessPort();
+		ConversionProcessRequest cpr = new ConversionProcessRequest(); 
+		cpr.setDeviseCible("EUR");
+		cpr.setDeviseSource(MBCnx.getDevise()); 
+		cpr.setMontantHT(amount);
+		cpr.setCommission(10);
+		if(MBCnx.getId() != null){
+			cpr.setIdPays(MBCnx.getId().getAddresses().get(0).getCountry());
+		}else{
+			cpr.setIdPays(1);
+		}
+		cpr.setIsHT(true);
+		ConversionProcessResponse cpresponse  = cp.process(cpr);
+		double convertedAmount = cpresponse.getMontantTTC();
+		
+		return formatDecimal(convertedAmount)+" "+ tab.get(currency);
 	}
 
 	public String formatDecimal(double number) {

@@ -32,7 +32,7 @@ public interface IServiceTaxes_Frais {
 	@WebResult(name="coutryList",targetNamespace="")
 	public List<Country> getAllCountries();
 	
-	@WebMethod
+	@WebMethod 
 	@WebResult(name="country",targetNamespace="")
 	public Country findCountry(int id); 
 }

@@ -5,7 +5,7 @@ import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
 
-@WebService
+@WebService 
 public interface IConversion {
 	
 	@WebMethod
@@ -18,3 +18,4 @@ public interface IConversion {
 			@WebParam(name = "deviseCible", targetNamespace = "")
 			String monnaieCible);
 }
+ 

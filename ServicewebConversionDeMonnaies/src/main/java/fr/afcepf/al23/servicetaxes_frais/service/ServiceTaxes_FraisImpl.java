@@ -26,7 +26,12 @@ public class ServiceTaxes_FraisImpl implements IServiceTaxes_Frais {
 
 	@Override
 	public double applyTva(double montant, double tva, double commission) {
-		return (montant + (montant * tva) + (montant *commission));
+		double montantTTC;
+		//Application de la tva
+		montantTTC = montant+(montant*(tva/100));
+		//Application de la commission
+		montantTTC = montantTTC+(montantTTC*(commission/100));
+		return montantTTC;
 	}
 
 	@Override

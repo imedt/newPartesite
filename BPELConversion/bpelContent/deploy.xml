@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deploy xmlns="http://www.apache.org/ode/schemas/dd/2007/03" xmlns:ConversionProcess="http://localhost:8080/ode/processes/ConversionProcess" xmlns:service.conversion.al23.afcepf.fr="http://service.conversion.al23.afcepf.fr/" xmlns:service.servicetaxes_frais.al23.afcepf.fr="http://service.servicetaxes_frais.al23.afcepf.fr/">
+  <process name="ConversionProcess:ConversionProcess">
+    <active>true</active>
+    <retired>false</retired>
+    <process-events generate="all"/>
+    <provide partnerLink="client">
+      <service name="ConversionProcess:ConversionProcessService" port="ConversionProcessPort"/>
+    </provide>
+    <invoke partnerLink="ConversionImpl">
+      <service name="service.conversion.al23.afcepf.fr:ConversionImplService" port="ConversionImplPort"/>
+    </invoke>
+    <invoke partnerLink="ServiceTaxeFraisImpl">
+      <service name="service.servicetaxes_frais.al23.afcepf.fr:ServiceTaxes_FraisImplService" port="ServiceTaxes_FraisImplPort"/>
+    </invoke>
+  </process>
+</deploy>
