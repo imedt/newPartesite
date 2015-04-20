@@ -23,8 +23,6 @@ public class MBDevise {
 		log.info("devise : "+MBCnx.getDevise());
 		list = new ArrayList<String>();
 		list.add("EUR");
-		list.add("BAM");
-		list.add("BGN");
 		list.add("HRK");
 		list.add("CZK");
 		list.add("DKK");
@@ -33,8 +31,6 @@ public class MBDevise {
 		list.add("MKD");
 		list.add("NOK");
 		list.add("PLN");
-		list.add("RON");
-		list.add("RSD");
 		list.add("SEK");
 		list.add("CHF");
 		list.add("TRY");
