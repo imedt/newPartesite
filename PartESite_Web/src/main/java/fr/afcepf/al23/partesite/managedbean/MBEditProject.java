@@ -90,6 +90,7 @@ public class MBEditProject {
 		BindingProvider pb = (BindingProvider) cpt;
 		pb.getRequestContext().put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, "http://localhost:8080/ode/processes/ConversionProcess.ConversionProcessPort/");
 	}
+	
 	// Methodes de creation de Projet / Content / Pack / Item
 	public void createProject() {
 		log.info("Creating new project");
