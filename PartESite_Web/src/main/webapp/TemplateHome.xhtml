@@ -145,13 +145,13 @@
 					</h:panelGroup>
 					<h:panelGroup rendered="#{mbConnexion.statut!=null}">
 
-						<h:panelGroup rendered="#{mbConnexion.statut=='Utilisateur'}">
+						<h:panelGroup rendered="#{mbConnexion.id.getIdentityRole().getIdIdentityRole()==3}">
 							<li class="col-lg-3"><ui:insert name="icone-menu-4">
 									<a href="UserDashBoard.xhtml" class="icon fa-user"><span>Mon
 											Compte</span></a>
 								</ui:insert></li>
 						</h:panelGroup>
-						<h:panelGroup rendered="#{mbConnexion.statut=='Moderateur'}">
+						<h:panelGroup rendered="#{mbConnexion.id.getIdentityRole().getIdIdentityRole()==2}">
 							<li class="col-lg-3"><ui:insert name="icone-menu-4">
 									<a href="ModeratorDashBoard.xhtml" class="icon fa-user"><span>Mon
 											Compte</span></a>

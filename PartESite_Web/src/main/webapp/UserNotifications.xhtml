@@ -33,10 +33,6 @@
     				#{p.createdDate}
     			</h:column>
 				<h:column>
-					<f:facet name="header">Projet/Utilisateur</f:facet>
-					#{p.targetType.targetTypeName}
-				</h:column>
-				<h:column>
 					<f:facet name="header">Notification</f:facet>   			
     				#{p.contentNotification}
     			</h:column>
@@ -44,7 +40,7 @@
 				<h:column>
 							<f:facet name="header">Consultation</f:facet>
 							<h:commandButton class="col-lg-2 lg-btn-default" style="width:auto;"
-								value="Archiver" action="#{mbModeratorNotifications.disabled(p)}">
+								value="Archiver" action="#{mbUserNotifications.disabled(p)}">
 							</h:commandButton>
 							</h:column>
 			</h:dataTable>	

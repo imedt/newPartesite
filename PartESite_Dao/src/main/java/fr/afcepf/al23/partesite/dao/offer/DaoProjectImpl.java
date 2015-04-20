@@ -140,7 +140,7 @@ public class DaoProjectImpl implements IDaoProject {
 	public List<Project> getAllPublish() {
 		List<Project> projects = null;
 		Query hql = em.createQuery(
-				"SELECT DISTINCT p FROM Project p WHERE p.publish=:ppublish")
+				"SELECT DISTINCT p FROM Project p inner join fetch p.projectContents WHERE p.publish=:ppublish")
 				.setParameter("ppublish", true);
 		projects = hql.getResultList();
 		return projects;
