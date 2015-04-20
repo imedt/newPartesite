@@ -19,6 +19,7 @@ import fr.afcepf.al23.model.entities.Pack;
 import fr.afcepf.al23.model.entities.UserOrder;
 import fr.afcepf.al23.partesite.iservice.notification.IBusinessNotification;
 import fr.afcepf.al23.partesite.iservice.offer.IBusinessItem;
+import fr.afcepf.al23.partesite.iservice.offer.IBusinessPack;
 import fr.afcepf.al23.partesite.iservice.transaction.IBusinessOrder;
 import fr.afcepf.al23.partesite.iservice.transaction.IBusinessOrderRow;
 import fr.afcepf.al23.partesite.iservice.user.IBusinessIdentity;
@@ -41,6 +42,8 @@ public class MBOrder {
 	IBusinessNotification buNotification;
 	@EJB
 	IBusinessIdentity buIdentity;
+	@EJB
+	IBusinessPack buPack;
 	
 	@ManagedProperty(value = "#{mbConnexion}")
 	private MBConnexion MBCnx;
@@ -156,9 +159,9 @@ public class MBOrder {
 			n.setContentNotification("vous avez vendu "+buItem.getByOrderRowId(orderRow.getIdOrderRow()).size()+" package : "+orderRow.getPack().getPackName());
 			n.setIdentity(buIdentity.get(1));
 			log.info("createur du package : "+orderRow.getPack().getCreatedBy());
-			log.info("ORder parck : "+orderRow.getPack()); 
-			n.setIdTarget(buIdentity.get(orderRow.getPack().getCreatedBy()).getIdIdentity());
-			n.setDisabled(false); 
+			log.info("ORder parck : "+orderRow.getPack());
+			n.setIdTarget(buIdentity.get(buPack.get(orderRow.getPack().getIdPack()).getCreatedBy()).getIdIdentity());
+			n.setDisabled(false);
 			log.info("save notification");
 			
 			buNotification.save(n);
@@ -203,6 +206,22 @@ public class MBOrder {
 
 	public void setBuIdentity(IBusinessIdentity buIdentity) {
 		this.buIdentity = buIdentity;
+	}
+
+	public IBusinessItem getBuItem() {
+		return buItem;
+	}
+
+	public void setBuItem(IBusinessItem buItem) {
+		this.buItem = buItem;
+	}
+
+	public IBusinessPack getBuPack() {
+		return buPack;
+	}
+
+	public void setBuPack(IBusinessPack buPack) {
+		this.buPack = buPack;
 	}
 
 }
