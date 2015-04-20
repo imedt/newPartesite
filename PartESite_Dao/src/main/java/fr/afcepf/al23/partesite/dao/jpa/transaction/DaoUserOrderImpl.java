@@ -146,7 +146,7 @@ public class DaoUserOrderImpl implements IDaoUserOrder {
 		List<UserOrder> list = new ArrayList<>();
 		try {
 			Query hql = em.createQuery("SELECT DISTINCT uo FROM UserOrder uo inner join fetch uo.orderRows "
-					+ "WHERE uo.identity = :identity");
+					+ "WHERE uo.identity=:identity");
 			hql.setParameter("identity", identity);
 			list = hql.getResultList();
 		} catch (Exception e) {

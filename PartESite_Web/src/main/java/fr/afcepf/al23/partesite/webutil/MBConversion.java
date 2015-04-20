@@ -31,8 +31,6 @@ public class MBConversion {
 	static{
 		tab = new Hashtable<String, String>();
 		tab.put("EUR", "€");
-		tab.put("BAM", "KM");
-		tab.put("BGN", "лв");
 		tab.put("HRK", "kn");
 		tab.put("CZK", "Kč");
 		tab.put("DKK", "kr");
@@ -41,8 +39,6 @@ public class MBConversion {
 		tab.put("MKD", "ден");
 		tab.put("NOK", "kr");
 		tab.put("PLN", "zł");
-		tab.put("RON", "lei");
-		tab.put("RSD", "Дин.");
 		tab.put("SEK", "kr");
 		tab.put("CHF", "CHF");
 		tab.put("TRY", "TRY");

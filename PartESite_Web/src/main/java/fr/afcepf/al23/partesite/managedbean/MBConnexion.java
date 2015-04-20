@@ -132,7 +132,8 @@ public class MBConnexion {
 					.getExternalContext().getRequest();
 			
 			MBOrder mbOrder = (MBOrder)request.getAttribute("mbOrder");
-			mbOrder = null;
+			mbOrder = new MBOrder();
+			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
