@@ -1,16 +1,10 @@
 package fr.afcepf.al23.partesite.webutil;
 
-import java.util.HashMap;
 import java.util.Hashtable;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-
-import localhost._8080.ode.processes.conversionprocess.ConversionProcess;
-import localhost._8080.ode.processes.conversionprocess.ConversionProcessPortType;
-import localhost._8080.ode.processes.conversionprocess.ConversionProcessRequest;
-import localhost._8080.ode.processes.conversionprocess.ConversionProcessResponse;
 
 import org.apache.log4j.Logger;
 
@@ -27,7 +21,7 @@ public class MBConversion {
 	private static IConversion conversionService;
 	
 	@ManagedProperty(value = "#{mbConnexion}")
-	private MBConnexion MBCnx;
+	private MBConnexion MBCnx; 
 	private static Hashtable<String, String> tab;
 	static{
 		tab = new Hashtable<String, String>();
