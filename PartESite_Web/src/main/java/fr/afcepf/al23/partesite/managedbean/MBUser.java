@@ -75,7 +75,7 @@ public class MBUser {
 	private int country;
 	private Integer idAddressType;
 	private List<AddressType> addressTypes;
-	private List<Address> addresses=new ArrayList<>();;
+	private List<Address> addresses=new ArrayList<>();
 	private List<Country> countries;
 
 	//Message de validation de l'inscription
@@ -200,6 +200,7 @@ public class MBUser {
 		{
 			try {
 				phones = buPhone.getByIdIdentity(cnx.getId().getIdIdentity());
+				cnx.getId().setPhones(phones);
 			} catch (Exception e) { 
 				e.printStackTrace();
 			}
@@ -252,6 +253,7 @@ public class MBUser {
 		if ( cnx.getId()!=null) {
 			try {
 				addresses = buAddress.getByIdIdentity(cnx.getId().getIdIdentity());
+				cnx.getId().setAddresses(addresses);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

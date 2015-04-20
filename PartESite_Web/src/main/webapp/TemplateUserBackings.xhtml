@@ -108,7 +108,9 @@
 							</fieldset>
 						</div>
 					</div>
-					<ui:insert name="contentBackings"></ui:insert>
+					<div class="row">
+					<div class="col-lg-12">
+					<ui:insert name="contentBackings"></ui:insert></div></div>
 				</div>
 			</div>
 
@@ -127,28 +129,29 @@
 					</header>
 
 					<div class="row">
-						<div class="col-lg-12">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
-							<section class="col-lg-6">
+							<section class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
 
-							<div class="col-lg-6">
+							<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
 								<h:inputText name="name" placeholder="Name" type="text"
-									value="Nom" style="width:110%;" />
+									value="Nom" style="width:100%;" />
 							</div>
-							<div class="col-lg-6">
+
+							<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
 								<h:inputText name="email" placeholder="Email" type="text"
 									value="Email" style="width:100%;" />
 							</div>
 
-							<div class="col-lg-12">
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 								<h:inputTextarea name="message" placeholder="Message"
 									style="width:100%;height:200px;" value="Message" />
 							</div>
 
 
-							<div class="col-lg-12">
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 								<h:commandButton type="submit"
-									class="button lg-btn-default col-lg-12 icon fa-envelope"
+									class="button lg-btn-default col-lg-12 col-md-12 col-sm-12 col-xs-12 icon fa-envelope"
 									value="Envoyer" />
 							</div>
 
@@ -180,7 +183,7 @@
 									<li class="icon fa-facebook"><a href="#">facebook.com/partE-Site.fr</a>
 									</li>
 								</ul>
-
+ 
 							</div>
 
 							</section>
@@ -195,7 +198,6 @@
 			<div id="copyright" class="container">
 				<ul class="links">
 					<li>Part E-Site. All rights reserved.</li>
-					<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
 				</ul>
 			</div>
 		</h:form>

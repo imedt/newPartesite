@@ -53,21 +53,15 @@
     			</h:column>
 						<h:column>
 							<f:facet name="header">Consultation</f:facet>
-							<h:commandButton class="col-lg-2 lg-btn-default" style="width:auto;"
-								value="Details" action="#{mbConsultProject.detailProject(p)}">
+							<h:commandButton class="col-lg-2 lg-btn-default"
+								style="width:auto;" value="Details"
+								action="#{mbConsultProject.detailProject(p)}">
 							</h:commandButton>
 						</h:column>
 
 					</h:dataTable>
 				</h:panelGroup>
 
-				<h:panelGroup rendered="#{mbDashboard.projects.size()==0}">
-					<center>
-						<span class="col-lg-push-1 col-lg-10"
-							style="color: navy; font-weight: bold;">Aucun projet
-							enregistré</span>
-					</center>
-				</h:panelGroup>
 
 			</div>
 		</div>
@@ -99,19 +93,16 @@
     			</h:column>
 						<h:column>
 							<f:facet name="header">Capital Soutenu</f:facet>   			
-    			#{p.aimingAmount}
+    			#{mbConversion.getConvertedAmount(p.aimingAmount)}
     			</h:column>
 						<h:column>
 							<f:facet name="header">Consultation</f:facet>
-							<h:commandButton class="col-lg-2 lg-btn-default" style="width:auto;"
-								value="Details" action="#{mbConsultProject.detailProject(p)}">
+							<h:commandButton class="col-lg-2 lg-btn-default"
+								style="width:auto;" value="Details"
+								action="#{mbConsultProject.detailProject(p)}">
 							</h:commandButton>
-							</h:column>
+						</h:column>
 					</h:dataTable>
-				</h:panelGroup>
-
-				<h:panelGroup rendered="#{mbDashboard.listOnline.size()==0}">
-					<span class="col-lg-3">Aucun projet enregistré</span>
 				</h:panelGroup>
 
 			</div>
@@ -144,20 +135,18 @@
     			</h:column>
 						<h:column>
 							<f:facet name="header">Capital Soutenu</f:facet>   			
-    			#{p.aimingAmount}
+    			#{mbConversion.getConvertedAmount(p.aimingAmount)}
     			</h:column>
 						<h:column>
 							<f:facet name="header">Consultation</f:facet>
-							<h:commandButton class="col-lg-2 lg-btn-default" style="width:auto;"
-								value="Details" action="#{mbConsultProject.detailProject(p)}">
+							<h:commandButton class="col-lg-2 lg-btn-default"
+								style="width:auto;" value="Details"
+								action="#{mbConsultProject.detailProject(p)}">
 							</h:commandButton>
-							</h:column>
+						</h:column>
 					</h:dataTable>
 				</h:panelGroup>
 
-				<h:panelGroup rendered="#{mbDashboard.listFinanced.size()==0}">
-					<span class="col-lg-3">Aucun projet enregistré</span>
-				</h:panelGroup>
 
 			</div>
 		</div>
@@ -191,20 +180,18 @@
     			</h:column>
 						<h:column>
 							<f:facet name="header">Capital Soutenu</f:facet>   			
-    			#{p.aimingAmount}
+    		#{mbConversion.getConvertedAmount(p.aimingAmount)}
     			</h:column>
 						<h:column>
 							<f:facet name="header">Consultation</f:facet>
-							<h:commandButton class="col-lg-2 lg-btn-default" style="width:auto;"
-								value="Details" action="#{mbConsultProject.detailProject(p)}">
+							<h:commandButton class="col-lg-2 lg-btn-default"
+								style="width:auto;" value="Details"
+								action="#{mbConsultProject.detailProject(p)}">
 							</h:commandButton>
-							</h:column>
+						</h:column>
 					</h:dataTable>
 				</h:panelGroup>
 
-				<h:panelGroup rendered="#{mbDashboard.listDisabled.size()==0}">
-					<span class="col-lg-3">Aucun projet enregistré</span>
-				</h:panelGroup>
 
 			</div>
 		</div>
