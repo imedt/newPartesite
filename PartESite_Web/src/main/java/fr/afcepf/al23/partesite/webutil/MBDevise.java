@@ -34,7 +34,7 @@ public class MBDevise {
 		list.add("SEK");
 		list.add("CHF");
 		list.add("TRY");
-		return list;
+		return list; 
 	}
 
 	public MBConnexion getMBCnx() {

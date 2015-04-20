@@ -26,7 +26,8 @@ public class MBConversion {
 	@ManagedProperty(value = "#{mbConnexion}")
 	private MBConnexion MBCnx;
 	private static Hashtable<String, String> tab;
-
+	private static ConversionProcessPortType cpt;
+	private static ConversionProcessRequest cpr;
 	static{
 		tab = new Hashtable<String, String>();
 		tab.put("EUR", "€");
@@ -45,7 +46,9 @@ public class MBConversion {
 		tab.put("SEK", "kr");
 		tab.put("CHF", "CHF");
 		tab.put("TRY", "TRY");
-	} 
+		cpt = new ConversionProcess().getPort(ConversionProcessPortType.class);
+		cpr = new ConversionProcessRequest();  
+} 
 
 	public String getConvertedAmount(double amount){
 
@@ -58,8 +61,6 @@ public class MBConversion {
 		if(currency == "")
 			currency = "EUR";
 		//Definition BPEL
-		ConversionProcessPortType cp = new ConversionProcess().getConversionProcessPort();
-		ConversionProcessRequest cpr = new ConversionProcessRequest(); 
 		cpr.setDeviseCible("EUR");
 		cpr.setDeviseSource(MBCnx.getDevise()); 
 		cpr.setMontantHT(amount);
@@ -70,7 +71,7 @@ public class MBConversion {
 			cpr.setIdPays(1);
 		}
 		cpr.setIsHT(true);
-		ConversionProcessResponse cpresponse  = cp.process(cpr);
+		ConversionProcessResponse cpresponse  = cpt.process(cpr);
 		double convertedAmount = cpresponse.getMontantTTC();
 		
 		return formatDecimal(convertedAmount)+" "+ tab.get(currency);
