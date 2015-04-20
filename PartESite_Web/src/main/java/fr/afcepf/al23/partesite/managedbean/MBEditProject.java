@@ -10,6 +10,10 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.event.AjaxBehaviorEvent;
 
+import localhost._8080.ode.processes.conversionprocess.ConversionProcess;
+import localhost._8080.ode.processes.conversionprocess.ConversionProcessPortType;
+import localhost._8080.ode.processes.conversionprocess.ConversionProcessRequest;
+
 import org.apache.log4j.Logger;
 
 import fr.afcepf.al23.model.entities.Identity;
@@ -33,25 +37,25 @@ public class MBEditProject {
 
 	private Logger log = Logger.getLogger(getClass());
 
-	@ManagedProperty(value = "#{mbConnexion}")
-	MBConnexion cnx;
+	@ManagedProperty(value="#{mbConnexion}")
+	private MBConnexion cnx; 
 
 	@EJB
-	IBusinessIdentity buIdentity;
+	private IBusinessIdentity buIdentity;
 	@EJB
-	IBusinessProject buProject;
+	private IBusinessProject buProject;
 	@EJB
-	IBusinessPack buPack;
+	private IBusinessPack buPack;
 	@EJB
-	IBusinessProjectCategory buProjectCategory;
+	private IBusinessProjectCategory buProjectCategory;
 	@EJB
-	IBusinessProjectContent buProjectContent;
+	private IBusinessProjectContent buProjectContent;
 	@EJB
-	IBusinessItem buItem;
+	private IBusinessItem buItem;
 	@EJB
-	IBusinessItemState buItemState;
+	private IBusinessItemState buItemState;
 	@EJB
-	IBusinessNotification buNotification;
+	private IBusinessNotification buNotification;
 	
 
 	// Creation Projet � rattacher � l'Utilisateur
@@ -70,10 +74,27 @@ public class MBEditProject {
 	private String cPContentImage;
 	private String cPContentVideo;
 	private String cPContentAuthor;
-	private String cPContentConcept;	
+	private String cPContentConcept;
+	
+	//BPEL
+	private static ConversionProcessPortType cpt;
+	private static ConversionProcessRequest cpr;
+
 	public MBEditProject(){
 		packs = new ArrayList<Pack>();
 		packs.add(new Pack()); 
+		cpt = new ConversionProcess().getPort(ConversionProcessPortType.class);
+		cpr = new ConversionProcessRequest();  
+		cpr.setDeviseCible("EUR");
+		log.info("MAnaged bean cnx : "+cnx);
+		if(cnx == null){
+			cpr.setDeviseCible("EUR");
+		}else{
+			cpr.setDeviseCible(cnx.getDevise());
+		}
+		cpr.setCommission(10);
+		cpr.setIsHT(true);
+	
 	}
 	// Methodes de creation de Projet / Content / Pack / Item
 	public void createProject() {
@@ -131,10 +152,12 @@ public class MBEditProject {
 	}
 	public void saveProject(){
 		log.info("save project");
+		cpr.setMontantHT(p.getAimingAmount());
+		p.setAimingAmount(cpt.process(cpr).getMontantTTC());
 		p = buProject.save(p);
 		log.info("save project content");
 		for(ProjectContent pc : p.getProjectContents()){
-			log.info("setting project to content");
+			log.info("setting project to content"); 
 			pc.setProject(p);
 			log.info("saving content");
 			buProjectContent.save(pc);
@@ -145,7 +168,9 @@ public class MBEditProject {
 			if(pp != null && !pp.getPackName().equals("")){
 				log.info("pack existing and gonna be created");  
 				pp.setProject(p);
-				buPack.save(pp);				
+				cpr.setMontantHT(pp.getAmount());
+				pp.setAmount(cpt.process(cpr).getMontantTTC());
+				buPack.save(pp);
 			}
 		}
 		sendNotifications();
@@ -416,4 +441,18 @@ public class MBEditProject {
 	public int getNbTotalPack(){
 		return packs.size();
 	}
+	public static ConversionProcessPortType getCpt() {
+		return cpt;
+	}
+	public static void setCpt(ConversionProcessPortType cpt) {
+		MBEditProject.cpt = cpt;
+	}
+	public static ConversionProcessRequest getCpr() {
+		return cpr;
+	}
+	public static void setCpr(ConversionProcessRequest cpr) {
+		MBEditProject.cpr = cpr;
+	}
+	
+	
 }

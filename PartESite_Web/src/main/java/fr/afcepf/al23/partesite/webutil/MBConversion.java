@@ -14,6 +14,8 @@ import localhost._8080.ode.processes.conversionprocess.ConversionProcessResponse
 
 import org.apache.log4j.Logger;
 
+import fr.afcepf.al23.conversion.service.ConversionImplService;
+import fr.afcepf.al23.conversion.service.IConversion;
 import fr.afcepf.al23.partesite.managedbean.MBConnexion;
 
 
@@ -22,17 +24,14 @@ import fr.afcepf.al23.partesite.managedbean.MBConnexion;
 public class MBConversion {
 
 	private Logger log = Logger.getLogger(MBConversion.class);
-
+	private static IConversion conversionService;
+	
 	@ManagedProperty(value = "#{mbConnexion}")
 	private MBConnexion MBCnx;
 	private static Hashtable<String, String> tab;
-	private static ConversionProcessPortType cpt;
-	private static ConversionProcessRequest cpr;
 	static{
 		tab = new Hashtable<String, String>();
 		tab.put("EUR", "€");
-		tab.put("BAM", "KM");
-		tab.put("BGN", "лв");
 		tab.put("HRK", "kn");
 		tab.put("CZK", "Kč");
 		tab.put("DKK", "kr");
@@ -41,13 +40,10 @@ public class MBConversion {
 		tab.put("MKD", "ден");
 		tab.put("NOK", "kr");
 		tab.put("PLN", "zł");
-		tab.put("RON", "lei");
-		tab.put("RSD", "Дин.");
 		tab.put("SEK", "kr");
 		tab.put("CHF", "CHF");
 		tab.put("TRY", "TRY");
-		cpt = new ConversionProcess().getPort(ConversionProcessPortType.class);
-		cpr = new ConversionProcessRequest();  
+		conversionService = new ConversionImplService().getPort(IConversion.class);
 } 
 
 	public String getConvertedAmount(double amount){
@@ -61,18 +57,8 @@ public class MBConversion {
 		if(currency == "")
 			currency = "EUR";
 		//Definition BPEL
-		cpr.setDeviseCible("EUR");
-		cpr.setDeviseSource(MBCnx.getDevise()); 
-		cpr.setMontantHT(amount);
-		cpr.setCommission(10);
-		if(MBCnx.getId() != null){
-			cpr.setIdPays(MBCnx.getId().getAddresses().get(0).getCountry());
-		}else{
-			cpr.setIdPays(1);
-		}
-		cpr.setIsHT(true);
-		ConversionProcessResponse cpresponse  = cpt.process(cpr);
-		double convertedAmount = cpresponse.getMontantTTC();
+
+		double convertedAmount = conversionService.conversion(amount, "EUR", MBCnx.getDevise());
 		
 		return formatDecimal(convertedAmount)+" "+ tab.get(currency);
 	}
