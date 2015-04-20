@@ -4,24 +4,27 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
 import fr.afcepf.al23.model.entities.Notification;
 import fr.afcepf.al23.partesite.iservice.notification.IBusinessNotification;
 
-@ManagedBean(name = "mbModeratorNotifications")
+@ManagedBean(name = "mbUserNotifications")
 @SessionScoped
-public class MBModeratorNotifications {
+public class MBUserNotifications {
 
 	
 	@EJB
 	IBusinessNotification buNotification;
+	@ManagedProperty(value="#{mbConnexion}")
+	private MBConnexion cnx;
 
 	private List<Notification> listNotifications = new ArrayList<>();
 
 
 	public List<Notification> getListNotifications() {
-		return listNotifications= buNotification.getByTarget(1);
+		return listNotifications= buNotification.getByTarget(cnx.getId().getIdIdentity());
 	}
 
 

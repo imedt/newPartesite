@@ -42,7 +42,7 @@ public class MBProjet {
 	}
 	public List<Project> getAllProjects() {
 		allProjects=null;
-		allProjects=buProject.getAllWithItems();
+		allProjects=buProject.getAllPublish();
 		return allProjects;
 	}
 	public void setAllProjects(List<Project> allProjects) {
