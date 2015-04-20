@@ -38,4 +38,16 @@ public class MBUserNotifications {
 		getListNotifications();
 		return "";
 	}
+
+
+	public MBConnexion getCnx() {
+		return cnx;
+	}
+
+
+	public void setCnx(MBConnexion cnx) {
+		this.cnx = cnx;
+	}
+	
+	
 }
