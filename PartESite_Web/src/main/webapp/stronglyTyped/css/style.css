@@ -738,3 +738,7 @@ input[type="button"].alt:active, input[type="submit"].alt:active, input[type="re
 }
  
 .large-label label{min-width:150px !important}
+.dashboardmain{ 
+	padding-top:0;
+	margin-top:40px;
+}

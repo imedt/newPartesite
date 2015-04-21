@@ -149,18 +149,21 @@ public class MBOrder {
 
 	public void validateCart() {
 		log.info("info cart : "+cart);
-		buOrder.finalizeCart(cart); 
-		
+		buOrder.finalizeCart(cart);
 		log.info("creating notification");
 		for(OrderRow orderRow : cart.getOrderRows()){
 			Notification n = new Notification();
 			n.setCreatedBy(1);
 			n.setCreatedDate(new Date());
-			n.setContentNotification("vous avez vendu "+buItem.getByOrderRowId(orderRow.getIdOrderRow()).size()+" package : "+orderRow.getPack().getPackName());
+			n.setContentNotification("vous avez vendu "+"package : "+orderRow.getPack().getPackName());
 			n.setIdentity(buIdentity.get(1));
+			Pack currentPack = orderRow.getPack();
 			log.info("createur du package : "+orderRow.getPack().getCreatedBy());
 			log.info("ORder parck : "+orderRow.getPack());
-			n.setIdTarget(buIdentity.get(buPack.get(orderRow.getPack().getIdPack()).getCreatedBy()).getIdIdentity());
+			log.info("current pack : "+currentPack);
+			Identity userCreator = buIdentity.get(currentPack.getCreatedBy());
+			log.info("user creator : "+userCreator); 
+			n.setIdTarget(userCreator.getIdIdentity());
 			n.setDisabled(false);
 			log.info("save notification");
 			

@@ -2,7 +2,7 @@
     <wb-module deploy-name="ServicewebConversionDeMonnaies_EAR-0.0.1-SNAPSHOT">
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/ear-resources"/>
         <wb-resource deploy-path="/" source-path="/src/main/application" tag="defaultRootSource"/>
-        <dependent-module archiveName="Serviceweb.jar" deploy-path="/" handle="module:/resource/ServicewebConversionDeMonnaies/ServicewebConversionDeMonnaies">
+        <dependent-module archiveName="Serviceweb.jar" deploy-path="/" handle="module:/resource/Serviceweb/Serviceweb">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <dependent-module archiveName="jdom-2.0.2.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/org/jdom/jdom/2.0.2/jdom-2.0.2.jar">

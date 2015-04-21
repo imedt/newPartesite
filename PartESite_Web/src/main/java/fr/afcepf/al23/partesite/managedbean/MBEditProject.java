@@ -90,6 +90,7 @@ public class MBEditProject {
 		BindingProvider pb = (BindingProvider) cpt;
 		pb.getRequestContext().put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, "http://localhost:8080/ode/processes/ConversionProcess.ConversionProcessPort/");
 	}
+	
 	// Methodes de creation de Projet / Content / Pack / Item
 	public void createProject() {
 		log.info("Creating new project");
@@ -210,6 +211,8 @@ public class MBEditProject {
 	public Project addContentToProject(String value){
 		cP = new ProjectContent();
 		cP.setContent(value);
+		log.info("Cnx : "+cnx);
+		log.info("Id : "+cnx.getId());
 		cP.setCreatedBy(cnx.getId().getIdIdentity());
 		cP.setCreatedDate(new Date());
 
