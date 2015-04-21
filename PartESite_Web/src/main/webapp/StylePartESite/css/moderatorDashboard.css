@@ -7,7 +7,7 @@
 .dashboardContent #stats-ligne-1  #stats-ligne-1-c ul li span{color:navy;font-weight: bold;}  
 .dashboardContent #stats-ligne-1 #stats-ligne-1-a ul li{list-style-type: none;padding:1em 1em 1em 1em; margin:0 1em 0 0;}
 .dashboardContent #stats-ligne-1 #stats-ligne-1-b ul li{list-style-type: none;padding:1em 1em 1em 1em; margin:0 1em 0 0;}
-.dashboardContent #stats-ligne-1 #stats-ligne-1-c ul li{list-style-type: none;padding:1em 1em 1em 1em; margin:0 1em 0 0;}
+.dashboardContent #stats-ligne-1 #stats-ligne-1-c ul li{list-style-type: none;padding:1em 1em 1em 1em; m	argin:0 1em 0 0;}
 
 .dashboardContent #stats-ligne-2{margin-left:10em;} 
 .dashboardContent #stats-ligne-2  #stats-ligne-2-a ul{background: linear-gradient(silver,white) ;text-align:center;border:solid 2px #CED8F6;padding:0 1em 0 1em;}
