@@ -35,7 +35,6 @@ body {font-family: 'Source Sans Pro';font-weight:300;text-transform: uppercase;b
 .pack .table-odd-row {
 	text-align: center;
 	background-color : black;
-	height: 610px;
 	border-bottom:2px solid white;
 }
 
@@ -53,5 +52,7 @@ body {font-family: 'Source Sans Pro';font-weight:300;text-transform: uppercase;b
 .pack .table-even-row td {
 	color: navy;
 }
-	
+.marged{
+	margin-bottom:35px;
+}
 	
