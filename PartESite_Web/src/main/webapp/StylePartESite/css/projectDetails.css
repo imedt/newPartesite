@@ -3,8 +3,11 @@ body {font-family: 'Source Sans Pro';font-weight:300;text-transform: uppercase;b
 .bloc {width:auto;height:auto;padding:0;}
 .textBox {background-color:black;opacity:0.7;text-align:center;height:410px;  overflow: auto;text-align:center;}
 
-.frameBox {background-color:black;text-align:center;height:410px;  overflow: auto;}
-.frameBox iframe{overflow: no;}
+.frameBoxImage {background-color:black;text-align:center;height:410px;  overflow: auto;}
+.frameBoxImage iframe{overflow: no;}
+
+.frameBoxVideo {background-color:black;opacity:0.7;text-align:center;height:410px;  overflow: auto;}
+.frameBoxVideo iframe{overflow: no;}
 
  
 .packBox1 {background-color:black;text-align:center; width:100%;color:#47b8af;margin:1em 0 0 0;padding:0 1em 1em 1em;}
@@ -19,5 +22,36 @@ body {font-family: 'Source Sans Pro';font-weight:300;text-transform: uppercase;b
 .packBox3 h1 {color:#47b8af;}
 .packBox3 .button:hover {background-color:navy;color:#47b8af;}
 
+.pack {
+	min-height: 1230px;
+	padding:0;
+	background-color : black;
+}
 
+.table {
+	border-collapse: collapse;
+	color: navy;
+}
+.pack .table-odd-row {
+	text-align: center;
+	background-color : black;
+	height: 610px;
+	border-bottom:2px solid white;
+}
+
+.pack .table-even-row {
+	text-align: center;
+	background-color : black;
+	height: 610px;
+	border-top:2px solid white;
+}
+
+.pack .table-odd-row td {
+	color: navy;
+}
+
+.pack .table-even-row td {
+	color: navy;
+}
+	
 	
