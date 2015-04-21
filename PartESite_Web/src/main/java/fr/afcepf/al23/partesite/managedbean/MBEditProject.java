@@ -211,6 +211,8 @@ public class MBEditProject {
 	public Project addContentToProject(String value){
 		cP = new ProjectContent();
 		cP.setContent(value);
+		log.info("Cnx : "+cnx);
+		log.info("Id : "+cnx.getId());
 		cP.setCreatedBy(cnx.getId().getIdIdentity());
 		cP.setCreatedDate(new Date());
 

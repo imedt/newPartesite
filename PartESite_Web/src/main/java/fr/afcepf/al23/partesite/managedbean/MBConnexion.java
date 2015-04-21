@@ -116,6 +116,8 @@ public class MBConnexion {
 				setDirection("/ModeratorDashBoard.xhtml?faces-redirect=true");
 				setStatut("Moderateur");
 			}
+		}else{
+			direction = "Login.xhtml";
 		}
 		return direction;
 	}

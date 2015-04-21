@@ -70,8 +70,8 @@ public class DaoProjectImpl implements IDaoProject {
 	public List<Project> getByName(String name) {
 
 		Query hql = em
-				.createQuery("SELECT DISTINCT p FROM Project p inner join fetch p.packs WHERE p.projectName LIKE :pprojectName");
-		hql.setParameter("pprojectName", "'%"+name+"%'");
+				.createQuery("SELECT DISTINCT p FROM Project p inner join fetch p.packs WHERE p.projectName LIKE :pprojectName  AND  p.publish = :ppublish");
+		hql.setParameter("pprojectName", "'%"+name+"%'").setParameter("ppublish", true);
 
 		List<Project> liste = null;
 
@@ -85,8 +85,8 @@ public class DaoProjectImpl implements IDaoProject {
 	public List<Project> getByNameWithCategory(String name) {
 
 		Query hql = em
-				.createQuery("SELECT DISTINCT p FROM Project p inner join fetch p.projectCategory WHERE p.projectName LIKE :pName")
-				.setParameter("pName", "%"+name+"%");
+				.createQuery("SELECT DISTINCT p FROM Project p inner join fetch p.projectCategory WHERE p.projectName LIKE :pName AND  p.publish = :ppublish")
+				.setParameter("pName", "%"+name+"%").setParameter("ppublish", true);
 		
 		List<Project> liste = null;
 		liste = hql.getResultList();
@@ -160,12 +160,12 @@ public class DaoProjectImpl implements IDaoProject {
 	public List<Project> getByCategory(Integer idProjectCategory) {
 		Query hql = em
 				.createQuery(
-						"SELECT DISTINCT p FROM Project p WHERE p.projectCategory.idProjectCategory=:pIdProjectCategory")
-				.setParameter("pIdProjectCategory", idProjectCategory);
+						"SELECT DISTINCT p FROM Project p WHERE p.projectCategory.idProjectCategory=:pIdProjectCategory  AND  p.publish = :ppublish")
+				.setParameter("pIdProjectCategory", idProjectCategory).setParameter("ppublish", true);
 
 		List<Project> liste = null;
 
-		liste = hql.getResultList();
+		liste = hql.getResultList(); 
 
 		return liste;
 	}

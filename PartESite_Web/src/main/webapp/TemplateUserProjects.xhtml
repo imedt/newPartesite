@@ -78,7 +78,14 @@
 								</a></li>
 								<li class="col-3"><a href="UserNotifications.xhtml"
 								class="icon fa-comments"> <span>Mes Notifications</span>
-							</a></li>
+							</a></li> 
+												<li class="col-3" style="margin-left:50px">
+						<h:selectOneMenu onchange="submit()" value="#{mbConnexion.devise}">
+						<f:selectItems value="#{mbDevise.listDevise}" />
+						
+						</h:selectOneMenu>
+					</li> 
+							
 							</ul>
 						</ui:insert>
 					</div>
