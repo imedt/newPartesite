@@ -93,7 +93,6 @@ tinymce.init({
 								<h:inputText class="col-lg-9" value="#{pack.stock}" />
 							</div>
 							<h:panelGroup rendered="#{mbEditProject.nbTotalPack &gt; 1}">
-
 								<h:commandButton style="margin-right:50px;" value="Supprimer"
 									action="#{mbEditProject.onButtonRemoveFieldClick(pack)}">
 									<f:ajax execute="@form" render=":j_idt9:packageList" />
@@ -112,6 +111,8 @@ tinymce.init({
 			</div>
 			<h:commandButton class="col-lg-push-2  col-lg-8" type="submit"
 				action="#{mbEditProject.validateProject}" value="Enregistrer" />
+			<h:commandButton class="col-lg-push-2  col-lg-8" type="submit"
+				action="#{mbDemo.demoCreationProjet()}" value="Demonstration" />
 
 		</div>
 	</ui:define>

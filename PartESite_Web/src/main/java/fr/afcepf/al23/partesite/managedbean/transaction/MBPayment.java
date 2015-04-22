@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 
@@ -17,7 +17,7 @@ import fr.afcepf.al23.partesite.managedbean.MBConnexion;
 @ManagedBean(name="mbPayment")
 @SessionScoped
 public class MBPayment {
-	
+
 	@ManagedProperty(value="#{mbOrder}")
 	private MBOrder mbOrder;
 

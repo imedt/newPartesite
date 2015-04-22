@@ -20,13 +20,13 @@
 		<div class="bloc">
 			<div class="col-lg-9">
 				<div class="col-lg-6 col-xs-12 col-sm-12 col-md-12">
-					<div class="textBox">
+					<div class="textBox" style="padding:1em">
 						<center>
+							<p class="col-lg-12" style="text-align:center">
+								<h3>#{mbConsultProject.p.projectName}</h3>
+							</p> 
 							<p class="col-lg-12">
-								<h1>#{mbConsultProject.p.projectName}</h1>
-							</p>
-							<p class="col-lg-12">
-								<h3>#{mbConsultProject.contentProjectAuthor.content}</h3>
+								<h3><h:outputText value="#{mbConsultProject.contentProjectAuthor.content}" escape="false"/></h3> 
 							</p>
 						</center>
 					</div> 
@@ -42,18 +42,15 @@
 					</div>
 					<div class="frameBoxVideo" >
 						<center>
-							<iframe class="col-lg-12" width="auto" height="400px"
-								src="#{mbConsultProject.contentProjectVideo.content}"
-								frameborder="0" allowfullscreen="false"></iframe>
-						</center>
-					</div>
-				</div>
-				<div class="col-lg-6">
+<iframe width="560" height="315" src="#{mbConsultProject.contentProjectVideo.content}" frameborder="0"></iframe> 						</center>
+					</div> 
+				</div> 
+				<div class="col-lg-6"> 
 					<div class="textBox col-lg-12 col-xs-12 col-sm-12 col-md-12"  style="height: 1230px;">
 						<center>
 							<p>
-								<h3>#{mbConsultProject.contentProjectConcept.content}</h3>
-							</p>
+								<h3><h:outputText value="#{mbConsultProject.contentProjectConcept.content}" escape="false"/></h3>
+							</p> 
 						</center>
 					</div>
 				</div>

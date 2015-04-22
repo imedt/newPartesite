@@ -7,8 +7,8 @@ body {font-family: 'Source Sans Pro';font-weight:300;text-transform: uppercase;b
 .frameBoxImage iframe{overflow: no;}
 
 .frameBoxVideo {background-color:black;opacity:0.7;text-align:center;height:410px;  overflow: auto;}
-.frameBoxVideo iframe{overflow: no;}
-
+.frameBoxVideo iframe{overflow: no;opacity:1;}
+ 
  
 .packBox1 {background-color:black;text-align:center; width:100%;color:#47b8af;margin:1em 0 0 0;padding:0 1em 1em 1em;}
 .packBox1 h1 {color:#47b8af;}
@@ -52,6 +52,7 @@ body {font-family: 'Source Sans Pro';font-weight:300;text-transform: uppercase;b
 .pack .table-even-row td {
 	color: navy;
 }
+
 .marged{
 	margin-bottom:35px;
 }

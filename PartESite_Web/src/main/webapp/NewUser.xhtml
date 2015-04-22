@@ -118,8 +118,12 @@
 							<h:selectBooleanCheckbox value="true" />
 							&nbsp; <span id="cgu">J'accepte les conditions générales
 								d'utilisation de la plateforme.</span>
-							<h:commandButton type="submit" class="lg-btn-default col-lg-12 col-md-12 col-sm-12 col-xs-12"
+								<div class="col-md-12"> 
+							<h:commandButton type="submit" class="lg-btn-default col-lg-5 col-md-5 col-sm-5 col-xs-5"
 								value="Valider" action="#{mbUser.inscription()}" />
+												<h:commandButton type="submit" class="lg-btn-default col-md-offset-1 col-lg-5 col-md-5 col-sm-5 col-xs-5"
+								value="Demonstration" action="#{mbDemo.demoInscription()}" /> 
+								</div>
 						</div>
 						<div class="col-lg-5 col-md-12 col-sm-12 col-xs-12">
 							<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12"> Rue :</span>
