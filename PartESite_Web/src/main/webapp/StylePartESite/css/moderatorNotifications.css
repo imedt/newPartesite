@@ -49,3 +49,9 @@
 .table-even-row td {
 	color: navy;
 }
+
+.table-even-row td p {color:navy;}
+.table-odd-row td p {color:navy;}
+
+.table-even-row td h2 {color:navy;}
+.table-odd-row td h2 {color:navy;}
