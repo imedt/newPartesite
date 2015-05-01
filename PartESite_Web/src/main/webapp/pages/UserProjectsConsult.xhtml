@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="../templates/TemplateUserProjects.xhtml">
+<ui:define name="style">
+<link rel="stylesheet" href="StylePartESite/css/userProjectsConsult.css" />
+</ui:define>
+<ui:define name="nav-ul">
+<ul class="col-lg-12">
+							<li class="col-3"><a href="UserDashBoard.xhtml"
+								class="icon fa-dashboard"> <span>Tableau de bord</span>
+							</a></li>
+							<li class="col-3"><a href="UserProjects.xhtml"
+								class="icon fa-briefcase" id="selected"> <span>Mes Projets</span>
+							</a></li>
+							<li class="col-3"><a href="UserBackings.xhtml"
+								class="icon fa-credit-card"> <span>Mes Participations</span>
+							</a></li>
+							<li class="col-3"><h:commandLink class="icon fa-sign-out" action="#{mbConnexion.deconnexion}"><span>Deconnexion</span></h:commandLink></li>
+						</ul>
+</ui:define>
+
+<ui:define name="content">
+<h:form>
+<h2 class="col-lg-12">Mes projets en cours</h2>
+<fieldset class="row">
+
+<table>
+<tr>
+<td>Date de publication</td>
+<td>Nom du projet</td>
+<td>Description</td>
+<td>Capital</td>
+<td>Participations</td>
+</tr>
+<ui:repeat value="#{mbUProjet.allProjects}" var="projet">
+<tr>
+<td>#{projet.publishingDate}</td>
+<td>#{projet.projectName}</td>
+<td>#{projet.description}</td>
+<td>#{projet.aimingAmount}</td>
+<ui:repeat value="#{projet}" var="pack" size="0">
+<ui:repeat value="#{pack.items}" var="item" size="0">
+<td>#{item.amount * pack.items.size}</td>
+</ui:repeat>
+</ui:repeat>
+</tr>
+</ui:repeat>
+</table>
+</fieldset>
+</h:form>
+</ui:define>
+</ui:composition>
+</html>

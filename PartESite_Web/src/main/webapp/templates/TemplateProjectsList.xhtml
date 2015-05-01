@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="TemplateHome.xhtml">
+
+	<ui:define name="header-title">Template Projects</ui:define>
+
+	<ui:define name="style">
+		
+		<!-- Style : PartESite -->
+		<link rel="stylesheet" href="StylePartESite/css/currentProjects.css" />
+		<link rel="stylesheet" href="StylePartESite/css/searchProject.css" />
+		<!-- Style : Sequence & Bootstrap-->
+		<link rel="stylesheet"
+			href="sequence/css/sequencejs-theme.modern-slide-in.css" />
+
+	</ui:define>
+
+	<ui:define name="script">
+	<!-- Pour ajax -->
+		<script type="text/javascript"
+			src="/PartESite_Web/javax.faces.resource/jsf.js.xhtml?ln=javax.faces"></script>
+		<!-- Script : Sequence & Bootstrap-->
+		<script src="sequence/js/jquery.sequence.js"></script>
+		<script src="sequence/js/sequencejs-options.modern-slide-in.js"></script>
+	</ui:define>
+
+
+	<ui:define name="image-centre"></ui:define>
+
+	<ui:define name="content">
+		<ui:insert name="recherche"></ui:insert>
+		<!-- Slider -->
+		<div class="slide">
+			<div class="col-lg-12">
+
+				<h3 class="col-lg-4">
+					<a href="BestProjects.xhtml" alt="bestProjects">MEILLEURES
+						POPULARITES</a>
+				</h3>
+				<h3 class="col-lg-4">
+					<a href="NewProjects.xhtml" alt="newProjects">NOUVEAUTES</a>
+				</h3>
+				<h3 class="col-lg-4">
+					<a href="LastProjects.xhtml" alt="lastProjects">FIN DE
+						PUBLICATION</a>
+				</h3>
+
+			</div>
+
+			<ui:insert name="sequence">
+
+			</ui:insert>
+		</div>
+		<!-- PopUp connexion -->
+		<div id="loginmodal" style="display: none;"
+			class="col-lg-push-4 col-lg-4 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<h1 class="bold col-lg-12 ">Identification</h1>
+
+			<span class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Login</span>
+			<h:inputText class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+				value="#{mbConnexion.login}" />
+			<span class="col-lg-12">Password</span>
+			<h:inputSecret
+				class="password col-lg-12 col-md-12 col-sm-12 col-xs-12"
+				value="#{mbConnexion.password}" />
+			<h:commandButton
+				class="button lg-btn-default col-lg-12 col-md-12 col-sm-12 col-xs-12"
+				action="#{mbConnexion.connexion}" value="Connexion"></h:commandButton>
+
+		</div>
+	</ui:define>
+
+	
+
+</ui:composition>
+
+</html>

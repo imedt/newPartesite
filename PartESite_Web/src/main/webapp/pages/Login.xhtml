@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<ui:composition template="../templates/TemplateHome.xhtml">
+	<ui:define name="title">
+	</ui:define>
+	<ui:define name="content">
+		<f:view>
+			<div class="row" id="formulaire">
+				<h:form>
+					<div class="col-md-4 col-md-offset-4">
+						<h1>Veuillez indiquer vos identifiants de connexion</h1>
+						<fieldset class="black-label large-label">
+							<label> <span style="min-width:120px;display:inline-block">Email :  </span><h:inputText value="#{mbConnexion.login}" />
+							</label> <label> <span style="min-width:120px;display:inline-block">Mot de passe : </span><h:inputSecret value="#{mbConnexion.password}" />
+							</label> 
+							<h:commandButton style="margin-left:80px" action="#{mbConnexion.connexion()}" value="Connexion" />
+						</fieldset>
+					</div>
+
+				</h:form>
+			</div>
+		</f:view>
+	</ui:define>
+
+</ui:composition>
+</html>

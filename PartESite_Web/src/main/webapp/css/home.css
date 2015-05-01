@@ -1,0 +1,50 @@
+.container{background-color:Teal;
+width: auto;height: auto;padding-left:5%;padding-right:5%;
+margin-left:auto;margin-right:auto;padding-bottom:2%;padding-top:2%;
+font-family:CG Omega;}
+
+h1{color:navy;font-weight: bold;text-align: center;}
+#messageSent span {color:Teal;text-transform: uppercase;}
+
+.header {background-color:Beige;padding-top:3em;width: 100%;height: auto;float:left;}
+.body {background-color:Beige;padding-top:3em;padding-bottom:3em;margin-top:2em;width: 100%;height: auto;float:left;}
+
+
+.footer {background-color:Beige;padding-top:3em;padding-bottom:3em;margin-top:2em;float:left;width: 100%;height: auto;}
+.footer .footer-titre{color:navy;font-family:CG Omega;}
+.footer .input-prepend {font-family:'FontAwesome';color:navy;padding-top:1em;padding-bottom:1em;}
+.footer .input-prepend  .add-on i{font-family:'FontAwesome';padding-left:1em;}
+.footer .input-prepend  inputTextarea .span2 {color:navy;min-height: 200px;width:auto;}
+.footer .input-prepend  input .span2 {color:navy;background-color:LightGray;width:auto;margin-bottom:2em;}   
+.footer .input-prepend  .button {color:White;border:solid 2px navy;width:100%;font-family:CG Omega;border-radius:5px;background-color:navy;}
+.footer .input-prepend  .button:hover {background-color:Teal;color:white;border:solid 2px Teal;}
+.footer p {font-family:'CG Omega';color:navy;font-weight: bold;}
+.footer ul li {font-family:'FontAwesome';color:navy;list-style-type: none;display: block;}
+.footer ul li a {font-family:CG Omega;color:navy;padding-left:2em;text-align:center;}
+.footer ul li:hover {font-family:'FontAwesome';color:Teal;}
+.footer ul li:hover a {font-family:CG Omega;color:Teal;}
+.footer p {font-family:'FontAwesome';color:navy;font-weight: inherit;width: 100%;height: auto;}
+.footer p span {font-family:CG Omega;color:navy;font-weight: inherit;text-align:center;}
+
+#menu{color:navy;height: 3em; text-align:center;margin:0;padding:0;}
+#menu a i {color:navy;font-size: large;font-size:xx-large;font-family: 'FontAwesome';}
+#menu a span {color: navy;font-size: large;font-family:CG Omega;}
+#menu:hover a i {color:Teal;font-size: large;font-size:xx-large;}
+#menu:hover a span {color:Teal;font-size: large;}
+
+.separation {border-bottom:solid 2px Teal;width: 100%;float:left;margin-top:3em;}
+
+.cart {border:solid 2px navy;color:White;border-radius:5px;height: 3em;margin-bottom:3em; text-align:center;padding-top:0.5em;}
+.cart:hover {background-color:Teal;border:solid 2px Teal;}
+.cart:hover span{color:White;}
+.cart span {color: navy;font-size: large;}
+
+
+.navbar {width: 100%;height: auto;text-align:center;margin-top:10em;}
+.navbar ul {width: 100%;height: auto;margin:0;padding-left:0;padding-top:1em;}
+.navbar ul li {display: inline-block;text-decoration: none;list-style: none;width: 25%;text-align: center;}
+.navbar i {font-family: 'FontAwesome';color:navy ;padding-right: 1em;font-size: large;}
+.navbar a span {font-family:CG Omega;color:navy ;font-size: large;}
+.navbar li:hover i {font-family: 'FontAwesome';color:Teal ;padding-right: 1em;font-size: large;}
+.navbar li:hover a span {font-family:CG Omega;color:Teal ;font-size: large;}
+

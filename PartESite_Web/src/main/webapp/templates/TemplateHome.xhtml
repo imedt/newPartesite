@@ -1,0 +1,208 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<meta http-equiv="content" content="charset=UTF-8" />
+	<link href="../css/home.css" rel="stylesheet" type="text/css" />
+	<link href="../css/bootstrap.css" rel="stylesheet" type="text/css" />
+	<link href="../css/font-awesome.min.css" rel="stylesheet"
+		type="text/css" />
+		<!-- PopUp Login -->
+		<link rel="shortcut icon" href="http://designshack.net/favicon.ico" />
+		<link rel="icon" href="http://designshack.net/favicon.ico" />
+		<link rel="stylesheet" type="text/css" media="all"
+			href="popupLogin/css/style.css" />
+</h:head>
+
+<h:body>
+	<f:view>
+		<h:form>
+			<div class="container">
+
+				<div class="header">
+					<div class="col-lg-12">
+						<div class="col-lg-2" id="menu">
+							<a href="Home.xhtml"> <i class="fa-home col-lg-12" /> <span>Menu</span>
+							</a>
+						</div>
+						<div class="col-lg-8">
+							<h1>Business Partner's Community</h1>
+						</div>
+						<div class="col-lg-2">
+							<div class="cart col-lg-12">
+								<a href="consulterPanier.xhtml"> <span>Panier</span></a>
+							</div>
+							<h:selectOneMenu class="col-lg-12" onchange="submit()"
+								value="#{mbConnexion.devise}">
+								<f:selectItems value="#{mbDevise.listDevise}" />
+							</h:selectOneMenu>
+						</div>
+					</div>
+					<h:panelGroup ><h:outputText class="col-lg-12" id="messageSent"
+											value="#{mbModeratorNotifications.showMessage()}"
+											escape="false" />
+									</h:panelGroup>
+
+
+
+					<div class="separation" />
+
+					<div class="nav navbar">
+						<ul class="col-lg-12">
+							<li class="col-lg-3"><a href="NewProjects.xhtml"><i
+									class=" fa-newspaper-o" /><span>Nouveautés</span></a></li>
+							<h:panelGroup>
+								<li class="col-lg-3"><a href="SearchProject.xhtml"><i
+										class=" fa-exclamation-triangle" /> <span>Recherche</span></a></li>
+							</h:panelGroup>
+							<h:panelGroup rendered="#{mbConnexion.statut==null}">
+								<li class="col-lg-3"><a href="NewUser.xhtml"><i
+										class=" fa-edit" /><span>Devenir Membre</span></a></li>
+							</h:panelGroup>
+							<h:panelGroup rendered="#{mbConnexion.statut==null}">
+								<li class="col-lg-3"><a href="#loginmodal"
+									id="modaltrigger" rel="login"><i class=" fa-sign-in" /><span>S'identifier</span></a></li>
+							</h:panelGroup>
+							<h:panelGroup rendered="#{mbConnexion.statut!=null}">
+
+								<h:panelGroup
+									rendered="#{mbConnexion.id.getIdentityRole().getIdIdentityRole()==3}">
+									<li class="col-lg-3"><a href="UserDashBoard.xhtml"><i
+											class=" fa-user" /><span>Mon Compte</span></a></li>
+								</h:panelGroup>
+								<h:panelGroup
+									rendered="#{mbConnexion.id.getIdentityRole().getIdIdentityRole()==2}">
+									<li class="col-lg-3"><a href="ModeratorDashBoard.xhtml"><i
+											class=" fa-user" /><span>Mon Compte</span></a></li>
+								</h:panelGroup>
+							</h:panelGroup>
+							<h:panelGroup rendered="#{mbOrder.cart!=null}">
+								<li class="col-lg-3"><a href="consulterPanier.xhtml"><i
+										class=" fa-shopping-cart" /> <span> Mon Panier </span> </a></li>
+							</h:panelGroup>
+							<h:panelGroup rendered="#{mbConnexion.statut!=null}">
+								<li class="col-lg-3"><h:commandLink>
+										<i class=" fa-sign-out" action="#{mbConnexion.deconnexion}" />
+										<span>Deconnexion</span>
+									</h:commandLink></li>
+							</h:panelGroup>
+						</ul>
+					</div>
+				</div>
+
+				<div class="body">
+					<ui:insert name="image-centre">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+							style="width: 100%;">
+							<div class="col-lg-push-1 col-lg-10">
+								<center>
+									<iframe class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+										width="auto" height="500"
+										src="https://www.youtube.com/embed/OI-bTpbkH4Y?feature=player_detailpage"
+										frameborder="0" allowfullscreen="false"></iframe>
+								</center>
+							</div>
+						</div>
+					</ui:insert>
+				</div>
+				<div class="footer">
+					<ui:insert name="footer">
+						<h1>
+							<ui:insert name="footer-titre">
+						Partagez votre expérience sur <strong>Business Partner's
+									Community</strong>!
+					</ui:insert>
+						</h1>
+
+						<div class="col-lg-push-3 col-lg-6">
+							<p class="col-lg-12">
+								<span> 3 rue Danton, 92240 Malakoff FRANCE - 00 33 1 41
+									45 45 45</span>
+							</p>
+						</div>
+						<div class="row">
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+								<section class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+								<div class="input-prepend col-lg-12">
+									<span class="add-on col-lg-2"><i class="fa-user"></i></span>
+									<h:inputText value="#{mbModeratorNotifications.nomMembre}"
+										class="span2 col-lg-10" type="text" placeholder="Nom" />
+
+									<span class="add-on col-lg-2"><i class="fa-envelope-o"></i></span>
+									<h:inputText value="#{mbModeratorNotifications.emailMembre}"
+										class="span2 col-lg-10" type="text" placeholder="Mail" />
+
+									<h:inputTextarea
+										value="#{mbModeratorNotifications.contentMessage}"
+										class="span2 col-lg-12" type="text"
+										placeholder="Votre message" />
+
+
+									<h:commandButton
+										class="button col-lg-12 col-md-12 col-sm-12 col-xs-12"
+										type="submit" value="Envoyer"
+										action="#{mbModeratorNotifications.sendNotification()}"
+										render="messageSent" />
+
+								</div>
+								</section>
+								<section class="col-lg-6">
+
+								<div class="col-lg-12">
+
+									<div class="col-lg-6">
+										<ul class="col-lg-6">
+											<li class="fa-envelope"><a href="#">contact@bpc.fr</a></li>
+											<li class="fa-twitter"><a href="#">@bpc.fr</a></li>
+											<li class="fa-instagram"><a href="#">instagram.com/bpc.fr</a>
+											</li>
+										</ul>
+									</div>
+
+									<ul class="col-lg-6">
+										<li class="fa-dribbble"><a href="#">dribbble.com/bpc.fr</a>
+										</li>
+										<li class="fa-facebook"><a href="#">facebook.com/bpc.fr</a>
+										</li>
+									</ul>
+
+
+								</div>
+
+								</section>
+
+							</div>
+						</div>
+
+
+					</ui:insert>
+					<!-- PopUp connexion -->
+		<div id="loginmodal" style="display: none;"
+			class="col-lg-push-4 col-lg-4 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<h1 class="bold col-lg-12 ">Identification</h1>
+
+			<span class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Login</span>
+			<h:inputText class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+				value="#{mbConnexion.login}" />
+			<span class="col-lg-12">Password</span>
+			<h:inputSecret
+				class="password col-lg-12 col-md-12 col-sm-12 col-xs-12"
+				value="#{mbConnexion.password}" />
+			<h:commandButton
+				class="button lg-btn-default col-lg-12 col-md-12 col-sm-12 col-xs-12"
+				action="#{mbConnexion.connexion}" value="Connexion"></h:commandButton>
+
+		</div>
+				</div>
+			</div>
+		</h:form>
+	</f:view>
+</h:body>
+
+</html>

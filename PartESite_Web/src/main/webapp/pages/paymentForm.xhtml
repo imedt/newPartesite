@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<ui:composition template="../templates/TemplateProjectsList.xhtml">
+	<ui:define name="title">
+	</ui:define>
+	<ui:define name="content">
+		<f:view>
+			<div class="row" id="formulaire">
+				<h:form>
+					<div class="col-md-10 col-md-offset-1">
+									<h1>Veuillez indiquer vos informations de paiement</h1>
+						<fieldset class="black-label large-label">
+							<div class="col-md-6 col-md-offset-3">
+								<div class="row unmarged">
+									<label> Titulaire : </label>
+									<h:inputText value="#{mbPayment.m_titulaireCarte}" />
+
+								</div> 
+								<div class="row unmarged">
+									<label> Numéro carte :</label>
+									<h:inputText value="#{mbPayment.m_numeroCarte}" />
+								</div>
+								<div class="row unmarged">
+									<label> Date expiration :</label>
+									<h:inputText value="#{mbPayment.m_dateExpiration}" />
+								</div>
+								<div class="row unmarged">
+									<label> Cryptogramme : </label>
+									<h:inputText value="#{mbPayment.m_cryptogramme}" />
+								</div>
+							</div>
+						</fieldset>
+					</div>
+
+					<div class="col-md-12" style="text-align: center">
+						<h:commandButton action="#{mbPayment.validatePayment()}"
+							value="Valider le moyen de paiement" />
+						<h:commandButton action="#{mbDemo.demoPaiement()}"
+							value="Demonstration" /> 
+					</div>
+
+				</h:form>
+			</div>
+		</f:view>
+	</ui:define>
+
+</ui:composition>
+</html>
