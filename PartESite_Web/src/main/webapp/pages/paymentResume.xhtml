@@ -3,10 +3,11 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html">
-<ui:composition template="../templates/TemplateProjectsList.xhtml">
-	<ui:define name="title">
-	</ui:define>
+<ui:composition template="../templates/TemplateHome.xhtml">
 	<ui:define name="content">
+	<f:view>
+	<h:form>
+
 		<div class="row">
 			<div class="col-md-10 col-md-offset-1 black-label">
 				<fieldset class="col-xs-12 black-label large-label">
@@ -57,8 +58,7 @@
 				</fieldset>
 			</div>
 		</div>
-		<f:view>
-			<h:form> 
+
 				<h:commandButton styleClass="col-md-offset-5"
 					action="#{mbPayment.finalizePayment()}" value="Valider" />
 			</h:form>
@@ -70,6 +70,8 @@
 	text-align: left;
 }
 </style>
+	</h:form>
+	</f:view>
 	</ui:define>
 
 </ui:composition>

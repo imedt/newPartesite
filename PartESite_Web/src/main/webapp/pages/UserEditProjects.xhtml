@@ -4,10 +4,10 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<ui:composition template="../templates/TemplateUserProjects.xhtml">
+<ui:composition template="../templates/TemplateHome.xhtml">
 
 	<ui:define name="header-title">Nouveau Projet</ui:define>
-	<ui:define name="sous-logo">#{mbConnexion.id.firstName}</ui:define>
+	
 	<ui:define name="script">
 		<script type="text/javascript" src="tinymce/js/tinymce/tinymce.min.js"></script>
 		<script type="text/javascript">
@@ -22,6 +22,8 @@ tinymce.init({
 </script>
 	</ui:define>
 	<ui:define name="content">
+<f:view>
+<h:form>
 
 		<div class="row">
 			<div class="col-lg-push-1 col-lg-10">
@@ -115,6 +117,8 @@ tinymce.init({
 				action="#{mbDemo.demoCreationProjet()}" value="Demonstration" />
 
 		</div>
+		</h:form>
+</f:view>
 	</ui:define>
 
 </ui:composition>

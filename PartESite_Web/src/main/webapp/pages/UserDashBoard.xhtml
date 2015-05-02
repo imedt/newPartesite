@@ -4,17 +4,23 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<ui:composition template="../templates/TemplateUserDashboard.xhtml">
+<ui:composition template="../templates/TemplateHome.xhtml">
 
 <ui:define name="header-title">Tableau de bord</ui:define>
 
-<ui:define name="sous-logo">#{mbConnexion.id.firstName}</ui:define>
+<ui:define name="content">
+<f:view>
+<h:form>
 
-<ui:define name="allMyProjectsCount">Projets : #{mbDashboard.allMyProjectsCount}</ui:define>
-<ui:define name="allMyProjectsOnlineCount">Projets en ligne : #{mbDashboard.allMyProjectsOnlineCount}</ui:define>
-<ui:define name="allMyProjectsFinancedCount">Projets financés : #{mbDashboard.allMyProjectsFinancedCount}</ui:define>
-<ui:define name="allMyBackingsWithRewardCount">Investissements : #{mbDashboard.allMyBackingsWithRewardCount}</ui:define>
-<ui:define name="allMyGivingsCount">Dons : #{mbDashboard.allMyGivingsCount}</ui:define>
-<ui:define name="allMyNotificationsCount">Notifications : #{mbDashboard.allMyNotificationsCount}</ui:define>
+Projets : #{mbDashboard.allMyProjectsCount}
+Projets en ligne : #{mbDashboard.allMyProjectsOnlineCount}
+Projets financés : #{mbDashboard.allMyProjectsFinancedCount}
+Investissements : #{mbDashboard.allMyBackingsWithRewardCount}
+Dons : #{mbDashboard.allMyGivingsCount}
+Notifications : #{mbDashboard.allMyNotificationsCount}
+
+</h:form>
+</f:view>
+</ui:define>
 </ui:composition>
 </html>

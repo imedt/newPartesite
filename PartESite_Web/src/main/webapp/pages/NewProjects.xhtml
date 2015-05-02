@@ -4,14 +4,38 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<ui:composition template="../templates/TemplateProjectsList.xhtml">
+<ui:composition template="../templates/TemplateHome.xhtml">
 
-	<ui:define name="header-title">New Projects</ui:define>
+	<ui:define name="header-title">Nouveautés</ui:define>
 
-	<ui:define name="logo">Nouveautés</ui:define>
+	<ui:define name="style">
+		<link rel="stylesheet"
+			href="../css/sequencejs-theme.modern-slide-in.css" />
+	</ui:define>
 
-	<ui:define name="sequence">
-		<h:form action="#{mbProjet}">
+	<ui:define name="script">
+		<script type="text/javascript" src="../js/jquery.sequence.js" />
+		<script type="text/javascript"
+			src="../js/sequencejs-option.modern.slide-in.js" />
+	</ui:define>
+	<ui:define name="content">
+<f:view>
+<h:form>
+
+
+		<ul class="titleProjectsList col-lg-12">
+			<li class="col-lg-4"><a href="BestProjects.xhtml"
+				class="ProjectsList"> <span>Meilleurs Projets</span>
+			</a></li>
+			<li class="col-lg-4"><a href="NewProjects.xhtml"
+				class="ProjectsList"> <span>Nouveautés</span>
+			</a></li>
+			<li class="col-lg-4"><a href="LastProjects.xhtml"
+				class="ProjectsList"> <span>Fin de publication</span>
+			</a></li>
+		</ul>
+
+
 			<div class="sequence">
 				<div id="sequence">
 
@@ -30,33 +54,43 @@
 										<div class="col-lg-6">
 
 											<img class="model" alt="projectName"
-												src="StylePartESite/images/#{projet.projectCategory.category}.jpg"
+												src="../images/#{projet.projectCategory.category}.jpg"
 												id="centre"></img>
 
 										</div>
 										<div class="col-lg-6">
 											<div class="row">
-												<h2 class="title col-lg-12">#{projet.projectName}</h2>
-											
+												<h2 class="title col-lg-12">
+													<a href="projectDetails.xhtml" alt="projectDetails">
+														#{projet.projectName} </a>
+												</h2>
+											</div>
+											<div class="row">
 												<div class="col-lg-12">
-<h3 class="subtitle col-lg-12" style="margin-top:-2em;">Capital :
-															#{mbConversion.getConvertedAmount(projet.aimingAmount)}</h3>
-													
+
+													<div class="row">
+														<h3 class="subtitle col-lg-12">Capital :
+															#{projet.aimingAmount}0 €</h3>
+													</div>
+
 													<h3 class="subtitle col-lg-8" style="font-weight: 20px;">Financement
 														: #{(projet.financedAmount / projet.aimingAmount) * 100} %</h3>
 													<h3 class="subtitle col-lg-8" style="font-weight: 20px;">
-														#{mbConversion.getConvertedAmount(projet.financedAmount)} / #{mbConversion.getConvertedAmount(projet.aimingAmount)}</h3>
-													
-													<ui:repeat var="pC" value="#{projet.projectContents}" offset="3" >
-															<h3 class="subtitle col-lg-12" style="padding-top:1em;">
-																<p class="col-lg-8">#{pC.content}</p>
-															</h3>
+														#{mbConversion.getConvertedAmount(projet.financedAmount)}0
+														/ #{mbConversion.getConvertedAmount(projet.aimingAmount)}0
+														€</h3>
+
+
+													<ui:repeat var="pC" value="#{projet.projectContents}"
+														offset="3">
+														<h3 class="subtitle col-lg-12" style="padding-top: 1em;">
+															<p class="col-lg-8">#{pC.content}</p>
+														</h3>
 													</ui:repeat>
 
 												</div>
 											</div>
 										</div>
-										
 									</div>
 								</div>
 							</li>
@@ -66,9 +100,10 @@
 				</div>
 			</div>
 
-		</h:form>
+</h:form>
+</f:view>
 	</ui:define>
 
-	<ui:define name="text-home"></ui:define>
+
 </ui:composition>
 </html>

@@ -1,29 +1,25 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:a4j="http://richfaces.org/a4j"
-	xmlns:rich="http://richfaces.org/rich"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<h:head>
-	<meta http-equiv="content" content="charset=UTF-8" />
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<title><ui:insert name="header-title">Template Home</ui:insert></title>
+
 	<link href="../css/home.css" rel="stylesheet" type="text/css" />
 	<link href="../css/bootstrap.css" rel="stylesheet" type="text/css" />
 	<link href="../css/font-awesome.min.css" rel="stylesheet"
 		type="text/css" />
-		<!-- PopUp Login -->
-		<link rel="shortcut icon" href="http://designshack.net/favicon.ico" />
-		<link rel="icon" href="http://designshack.net/favicon.ico" />
-		<link rel="stylesheet" type="text/css" media="all"
-			href="popupLogin/css/style.css" />
-			<ui:insert name="style"></ui:insert>
-			<ui:insert name="script"></ui:insert>
-			<title>
-			<ui:insert name="header-title">Template Home</ui:insert></title>
-</h:head>
+		
+	<ui:insert name="style"></ui:insert>
+	<ui:insert name="script"></ui:insert>
+</head>
 
-<h:body>
+<body>
 	<f:view>
 		<h:form>
 			<div class="container">
@@ -47,10 +43,10 @@
 							</h:selectOneMenu>
 						</div>
 					</div>
-					<h:panelGroup ><h:outputText class="col-lg-12" id="messageSent"
-											value="#{mbModeratorNotifications.showMessage()}"
-											escape="false" />
-									</h:panelGroup>
+					<h:panelGroup>
+						<h:outputText class="col-lg-12" id="messageSent"
+							value="#{mbModeratorNotifications.showMessage()}" escape="false" />
+					</h:panelGroup>
 
 
 
@@ -186,27 +182,13 @@
 
 
 					</ui:insert>
-					<!-- PopUp connexion -->
-		<div id="loginmodal" style="display: none;"
-			class="col-lg-push-4 col-lg-4 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-			<h1 class="bold col-lg-12 ">Identification</h1>
-
-			<span class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Login</span>
-			<h:inputText class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
-				value="#{mbConnexion.login}" />
-			<span class="col-lg-12">Password</span>
-			<h:inputSecret
-				class="password col-lg-12 col-md-12 col-sm-12 col-xs-12"
-				value="#{mbConnexion.password}" />
-			<h:commandButton
-				class="button lg-btn-default col-lg-12 col-md-12 col-sm-12 col-xs-12"
-				action="#{mbConnexion.connexion}" value="Connexion"></h:commandButton>
-
-		</div>
+					
+					<ui:insert name="popup"></ui:insert>
+					
 				</div>
 			</div>
 		</h:form>
 	</f:view>
-</h:body>
+</body>
 
 </html>

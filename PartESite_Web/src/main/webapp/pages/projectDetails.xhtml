@@ -6,16 +6,13 @@
 
 <ui:composition template="../templates/TemplateHome.xhtml">
 
-	<ui:define name="style">
-		<link rel="stylesheet" href="StylePartESite/css/projectDetails.css" />
-	</ui:define>
-
 	<ui:define name="header-title">Consultation Projet</ui:define>
-	<ui:define name="sous-logo-1">#{mbConsultProject.p.projectName}
-	</ui:define>
-	<ui:define name="sous-logo-2">#{mbConsultProject.p.projectName}
-	</ui:define>
+
 	<ui:define name="content">
+	
+	<f:view>
+	<h:form>
+	
 		<f:event listener="#{mbConsultProject.init()}" type="preRenderView"></f:event>
 		<div class="bloc">
 			<div class="col-lg-9">
@@ -100,10 +97,9 @@
 </div>
 
 		</div>
-
+	</h:form>
+	</f:view>
 	</ui:define>
 
-	<ui:define name="image-centre"></ui:define>
-	<ui:define name="text-home"></ui:define>
 </ui:composition>
 </html>

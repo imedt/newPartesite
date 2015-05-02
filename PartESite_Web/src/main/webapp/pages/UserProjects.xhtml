@@ -4,13 +4,13 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<ui:composition template="../templates/TemplateUserProjects.xhtml">
+<ui:composition template="../templates/TemplateHome.xhtml">
 
 	<ui:define name="header-title">Mes Projets</ui:define>
-	<ui:define name="sous-logo">#{mbConnexion.id.firstName}</ui:define>
 
 	<ui:define name="content">
-
+<f:view>
+<h:form>
 
 		<div class="row">
 			<div class="col-lg-12">
@@ -195,7 +195,8 @@
 
 			</div>
 		</div>
-
+</h:form>
+</f:view>
 	</ui:define>
 
 </ui:composition>
