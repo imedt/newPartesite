@@ -122,7 +122,7 @@ public class MBConsultProject {
 	
 	public String detailProject(Project project){
 		setP(project);
-		return "/projectDetails.xhtml?faces-redirect=true";	
+		return "../pages/projectDetails.xhtml?faces-redirect=true";	
 	}
 
 	public ProjectContent getAucunContenu() {
