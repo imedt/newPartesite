@@ -6,71 +6,89 @@
 
 <ui:composition template="../templates/TemplateHome.xhtml">
 
-<ui:define name="content">
-<f:view>
-		<div class="content">
+	<ui:define name="content">
+		<f:view>
+			<h:form>
 
-			<div class="row" id="formulaire">
-				<h:form>
-					<fieldset class="col-lg-11">
+					<fieldset class="col-lg-12">
 						<legend>Informations personnelles</legend>
 
-						<div class="col-lg-5 col-md-12 col-sm-12 col-xs-12">
+						<div class="info col-lg-6 col-md-12 col-sm-12 col-xs-12">
 
-							<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12"> Civilité :</span>
-							<h:selectOneMenu class="col-lg-6 col-md-12 col-sm-12 col-xs-12" value="#{mbUser.idCivility}">
+							<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+								Civilité :</span>
+							<h:selectOneMenu class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
+								value="#{mbUser.idCivility}">
 								<f:selectItems value="#{mbUser.civilities}" var="c"
 									itemValue="#{c.idCivility}" itemLabel="#{c.civility}" />
 							</h:selectOneMenu>
-							<br /> <span class="col-lg-6 col-md-12 col-sm-12 col-xs-12"> Prénom :</span>
-							<h:inputText class="col-lg-6 col-md-12 col-sm-12 col-xs-12" value="#{mbUser.firstName}" />
+							<br /> <span class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+								Prénom :</span>
+							<h:inputText class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
+								value="#{mbUser.firstName}" />
 
-							<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12"> Nom :</span>
-							<h:inputText class="col-lg-6 col-md-12 col-sm-12 col-xs-12" value="#{mbUser.lastName}" />
+							<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12"> Nom
+								:</span>
+							<h:inputText class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
+								value="#{mbUser.lastName}" />
 
-							<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12"> Email :</span>
-							<h:inputText class="col-lg-6 col-md-12 col-sm-12 col-xs-12" value="#{mbUser.email}" />
+							<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+								Email :</span>
+							<h:inputText class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
+								value="#{mbUser.email}" />
 
-							<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12"> Mot de passe :</span>
-							<h:inputSecret class="col-lg-6 col-md-12 col-sm-12 col-xs-12" value="#{mbUser.password}" />
+							<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12"> Mot
+								de passe :</span>
+							<h:inputSecret class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
+								value="#{mbUser.password}" />
 
-							<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12"> Date de naissance :</span>
-							<h:inputText id="datepicker" class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
+							<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12"> Date
+								de naissance :</span>
+							<h:inputText id="datepicker"
+								class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
 								value="#{mbUser.birthdate}" />
 
 							<h:selectBooleanCheckbox value="true" />
 							&nbsp; <span id="cgu">J'accepte les conditions générales
 								d'utilisation de la plateforme.</span>
-								<div class="col-md-12"> 
-							<h:commandButton type="submit" class="lg-btn-default col-lg-5 col-md-5 col-sm-5 col-xs-5"
-								value="Valider" action="#{mbUser.inscription()}" />
-												<h:commandButton type="submit" class="lg-btn-default col-md-offset-1 col-lg-5 col-md-5 col-sm-5 col-xs-5"
-								value="Demonstration" action="#{mbDemo.demoInscription()}" /> 
-								</div>
-						</div>
-						<div class="col-lg-5 col-md-12 col-sm-12 col-xs-12">
-							<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12"> Rue :</span>
-							<h:inputText class="col-lg-6 col-md-12 col-sm-12 col-xs-12" value="#{mbUser.street}" />
-							<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12"> Code postal :</span>
-							<h:inputText class="col-lg-6 col-md-12 col-sm-12 col-xs-12" value="#{mbUser.zipcode}" />
 
-							<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12"> Ville :</span>
-							<h:inputText class="col-lg-6 col-md-12 col-sm-12 col-xs-12" value="#{mbUser.city}" />
-							
-							<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12"> Pays :</span>
-							<h:selectOneMenu class="col-lg-6 col-md-12 col-sm-12 col-xs-12" value="#{mbUser.country}" >
-								<f:selectItems value="#{mbUser.countries}" var="pays" itemLabel="#{pays.name}" itemValue="#{pays.idCountry}"/>
+						</div>
+						<div class="info col-lg-6 col-md-12 col-sm-12 col-xs-12">
+							<span class="col-lg-4 col-md-12 col-sm-12 col-xs-12"> Rue
+								:</span>
+							<h:inputText class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
+								value="#{mbUser.street}" />
+							<span class="col-lg-4 col-md-12 col-sm-12 col-xs-12"> Code
+								postal :</span>
+							<h:inputText class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
+								value="#{mbUser.zipcode}" />
+
+							<span class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+								Ville :</span>
+							<h:inputText class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
+								value="#{mbUser.city}" />
+
+							<span class="col-lg-4 col-md-12 col-sm-12 col-xs-12"> Pays
+								:</span>
+							<h:selectOneMenu class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
+								value="#{mbUser.country}">
+								<f:selectItems value="#{mbUser.countries}" var="pays"
+									itemLabel="#{pays.name}" itemValue="#{pays.idCountry}" />
 							</h:selectOneMenu>
 
 						</div>
-						
+						<div class="info col-lg-12">
+							<h:commandButton type="submit"
+								class="btn btn-lg-default col-lg-push-1 col-lg-5 col-md-5 col-sm-5 col-xs-5"
+								value="Valider" action="#{mbUser.inscription()}" />
+							<h:commandButton type="submit"
+								class="btn btn-lg-default col-lg-offset-1 col-lg-5 col-md-5 col-sm-5 col-xs-5"
+								value="Demonstration" action="#{mbDemo.demoInscription()}" />
+						</div>
 					</fieldset>
-				</h:form>
-			</div>
-		</div>
-
-
-	</f:view>
+				
+			</h:form>
+		</f:view>
 	</ui:define>
-	</ui:composition>
+</ui:composition>
 </html>

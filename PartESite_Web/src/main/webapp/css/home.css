@@ -18,6 +18,7 @@ h1{color:navy;font-weight: bold;text-align: center;}
 .body fieldset {width: auto;height: auto;margin:auto;border:none;font-family:CG Omega;}
 .body fieldset legend {text-transform: uppercase;color:navy;text-align:center;font-weight: bold;}
 .body fieldset .info fieldset legend {text-transform: uppercase;color:navy;text-align:center;font-weight: bold;border:none;}
+.body fieldset .info span, input, output{color:navy;font-family:CG Omega;}
 .body fieldset .tel,.ad {margin-top:2em;}
 .body fieldset .tel,.ad  span, input, output {color:navy;}
 .body fieldset fieldset span, input, output{color:navy;}

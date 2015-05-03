@@ -48,7 +48,7 @@ public class DaoPhoneImpl implements IDaoPhone {
 	public List<Phone> getByIdIdentity(Integer  idIdentity) {
 		List<Phone> phones = null;
 		Query hql = em.createQuery(
-				"SELECT ph FROM Phone ph WHERE ph.identity.idIdentity = :id_Identity")
+				"SELECT ph FROM Phone ph WHERE ph.identity.idIdentity =:id_Identity")
 				.setParameter("id_Identity", idIdentity);
 		phones = hql.getResultList();
 		return phones;
@@ -58,7 +58,7 @@ public class DaoPhoneImpl implements IDaoPhone {
 	public Boolean phoneExist(String phoneNumber) {
 		Phone phone = null;
 		Query hql = em.createQuery(
-				"SELECT ph FROM Phone ph WHERE ph.phoneNumber = :phoneNumber")
+				"SELECT ph FROM Phone ph WHERE ph.phoneNumber =:phoneNumber")
 				.setParameter("phoneNumber", phoneNumber);
 		phone = (Phone) hql.getSingleResult();
 		if (phone != null)
@@ -70,7 +70,7 @@ public class DaoPhoneImpl implements IDaoPhone {
 	@Override
 	public void delete(Integer idPhone) {
 		Query hql = em.createQuery(
-				"DELETE ph FROM Phone ph WHERE ph.idPHone =:phoneId")
+				"DELETE FROM Phone ph WHERE ph.idPHone =:phoneId")
 				.setParameter("phoneId", idPhone);
 		hql.executeUpdate();
 	}
