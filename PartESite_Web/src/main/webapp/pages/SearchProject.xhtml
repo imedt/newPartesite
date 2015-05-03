@@ -3,8 +3,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:a4j="http://richfaces.org/a4j"
-	>
+	xmlns:a4j="http://richfaces.org/a4j">
 
 <ui:composition template="../templates/TemplateHome.xhtml">
 
@@ -18,23 +17,25 @@
 				<div class="row">
 					<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
 
-						<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12" style="margin-left:1em;text-align:center;">
+						<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12"
+							style="margin-left: 1em; text-align: center;">
 							<div class="input-prepend col-lg-6">
 								<span class="add-on col-lg-2"> Nom </span>
 								<h:inputText class="span2 col-lg-10" type="text"
-									value="#{mbSearchProject.name}" >
-									<a4j:commandButton listener="{mbSearchProject.searchByName}" render="list"/>
-									</h:inputText>
-									
+									value="#{mbSearchProject.name}">
+									<a4j:commandButton listener="{mbSearchProject.searchByName}"
+										render="list" />
+								</h:inputText>
+
 							</div>
 						</div>
 
 					</div>
 
-					<div class="col-lg-12" style="text-align: center;margin-left:1em;">
-						<ui:repeat var="cat" value="#{mbSearchProject.categories}" >
-							<h:commandButton class="cat" 
-								value="#{cat.category}" var="cat"
+					<div class="col-lg-12"
+						style="text-align: center; margin-left: 1em;">
+						<ui:repeat var="cat" value="#{mbSearchProject.categories}">
+							<h:commandButton class="cat" value="#{cat.category}" var="cat"
 								action="#{mbSearchProject.searchByCategory(cat)}" id="category">
 							</h:commandButton>
 						</ui:repeat>
@@ -48,48 +49,50 @@
 						</center>
 					</h:panelGroup>
 
-<a4j:ajax>
-					<h:panelGroup rendered="#{mbSearchProject.projects.size()!=0}" id="list"
-						class="col-lg-push-1 col-lg-10 col-md-12 col-sm-12 col-xs-12">
+
+						<a4j:ajax>
+							<h:panelGroup rendered="#{mbSearchProject.projects.size()!=0}"
+								id="list" class="col-lg-push-1 col-lg-10 col-lg-push-1 col-md-12 col-sm-12 col-xs-12">
 
 
-						<h:dataTable value="#{mbSearchProject.projects}" var="project"
-							styleClass="table" headerClass="table-header"
-							rowClasses="table-odd-row vertiscaled, table-even-row vertiscaled">
+								<h:dataTable value="#{mbSearchProject.projects}" var="project"
+									class="table">
 
-							<h:column>
-								<f:facet name="header">Date de publication</f:facet>   			
+									<h:column>
+										<f:facet name="header">Date de publication</f:facet>   			
     				#{project.publishingDate}
     			</h:column>
 
-							<h:column>
-								<f:facet name="header">Auteur</f:facet>
+									<h:column>
+										<f:facet name="header">Auteur</f:facet>
     				#{project.identity.firstName}
     			</h:column>
 
-							<h:column>
-								<f:facet name="header">Projet</f:facet>
+									<h:column>
+										<f:facet name="header">Projet</f:facet>
     				#{project.projectName}
     			</h:column>
 
-							<h:column>
-								<f:facet name="header">Categorie</f:facet>
+									<h:column>
+										<f:facet name="header">Categorie</f:facet>
     				#{project.projectCategory.category}
     			</h:column>
 
-							<h:column>
-								<f:facet name="header">Montant</f:facet>
+									<h:column>
+										<f:facet name="header">Montant</f:facet>
     				#{mbConversion.getConvertedAmount(project.aimingAmount)}
     			</h:column>
-							<h:column>
-								<h:commandButton class="btn col-lg-12 lg-btn-default"  value="Details"
-									action="#{mbConsultProject.detailProject(project)}">
-								</h:commandButton>
-							</h:column>
-						</h:dataTable>
-					</h:panelGroup>
-</a4j:ajax>
-				</div>
+									<h:column>
+										<h:commandButton class="btn col-lg-12 lg-btn-default"
+											value="Details"
+											action="#{mbConsultProject.detailProject(project)}">
+										</h:commandButton>
+									</h:column>
+								</h:dataTable>
+							</h:panelGroup>
+						</a4j:ajax>
+					</div>
+			
 			</h:form>
 		</fieldset>
 		<br />

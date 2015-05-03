@@ -31,7 +31,7 @@ h1{color:navy;font-weight: bold;text-align: center;}
 .body .input-prepend  .button {color:White;border:solid 2px navy;width:100%;font-family:CG Omega;border-radius:5px;background-color:navy;}
 .body .input-prepend  .button:hover {background-color:Teal;color:white;border:solid 2px Teal;}
 
-.body table {width: auto;height: auto;margin:0;}
+.body table {width: 100%;height: auto;margin:0;}
 .body table th {background-color:Teal;color:white;font-family:CG Omega;font-weight: bold;text-align:center;width: 120px;height:2em;}
 .body table tr {text-align:center;padding-top:1em;padding-bottom:1em;color:navy;font-family:CG Omega;margin-top:1em;text-align:center;}
 
