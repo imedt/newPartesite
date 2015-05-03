@@ -34,11 +34,11 @@ public class MBModerator {
 	private String firstName;
 	private Identity identity;
 	private String direction;
-	private int projectsEnCours;
+	private Integer projectsEnCours;
 	private Double projectsEnCoursMontant;
-	private int projectsFinanced;
+	private Integer projectsFinanced;
 	private Double projectsFinancedMontant;
-	private int userBlackList;
+	private Integer userBlackList;
 	private Double rentabilite;
 	
 	private String rentabiliteString;
@@ -67,7 +67,7 @@ public class MBModerator {
 		}
 		rentabilite = projectsFinancedMontant / 10;
 		temp.clear();
-		log.info("double = "+rentabilite);
+		log.info("Double = "+rentabilite);
 		rentabiliteString = conversion.getConvertedAmount(rentabilite);
 		log.info("string = "+rentabiliteString);
 		return rentabiliteString ;
@@ -88,7 +88,7 @@ public class MBModerator {
 		log.info(temp);
 		log.info(temp.size());
 		temp.clear();
-		log.info("double = "+projectsFinancedMontant);
+		log.info("Double = "+projectsFinancedMontant);
 		projectsFinancedMontantString = conversion.getConvertedAmount(projectsFinancedMontant);
 		log.info("string = "+projectsFinancedMontantString);
 		return projectsFinancedMontantString;
@@ -110,7 +110,7 @@ public class MBModerator {
 		log.info(temp);
 		log.info(temp.size());
 		temp.clear();
-		log.info("double = "+projectsEnCoursMontant);
+		log.info("Double = "+projectsEnCoursMontant);
 		projectsEnCoursMontantString = conversion.getConvertedAmount(projectsEnCoursMontant);
 		log.info("string = "+projectsEnCoursMontantString);
 		return projectsEnCoursMontantString;
@@ -136,11 +136,11 @@ public class MBModerator {
 		this.buProject = buProject;
 	}
 
-	public int getUserBlackList() {
+	public Integer getUserBlackList() {
 		return userBlackList;
 	}
 
-	public void setUserBlackList(int userBlackList) {
+	public void setUserBlackList(Integer userBlackList) {
 		this.userBlackList = userBlackList;
 	}
 
@@ -165,7 +165,7 @@ public class MBModerator {
 		this.rentabilite = rentabilite;
 	}
 
-	public int getProjectsFinanced() {
+	public Integer getProjectsFinanced() {
 		List<Project> temp = buProject.getAllFinancedProjects();
 		projectsFinanced = temp.size();
 		log.info(temp);
@@ -174,7 +174,7 @@ public class MBModerator {
 		return projectsFinanced;
 	}
 
-	public int getProjectsEnCours() {
+	public Integer getProjectsEnCours() {
 		List<Project> temp = buProject.getAllWithItems();
 		projectsEnCours = temp.size();
 		log.info(temp);
@@ -215,7 +215,7 @@ public class MBModerator {
 		this.projectsEnCoursMontant = projectsEnCoursMontant;
 	}
 
-	public void setProjectsEnCours(int projectsEnCours) {
+	public void setProjectsEnCours(Integer projectsEnCours) {
 		this.projectsEnCours = projectsEnCours;
 	}
 
@@ -223,7 +223,7 @@ public class MBModerator {
 		this.projectsFinancedMontant = projectsFinancedMontant;
 	}
 
-	public void setProjectsFinanced(int projectsFinanced) {
+	public void setProjectsFinanced(Integer projectsFinanced) {
 		this.projectsFinanced = projectsFinanced;
 	}
 
@@ -262,7 +262,7 @@ public class MBModerator {
 		 * = null;
 		 * 
 		 * try { date = sdf.parse("birthdate"); } catch (ParseException e) {
-		 * e.printStackTrace(); }
+		 * e.prIntegerStackTrace(); }
 		 * 
 		 * identity.setBirthdate(date);
 		 */
