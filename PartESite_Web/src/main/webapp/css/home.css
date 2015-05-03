@@ -25,6 +25,10 @@ h1{color:navy;font-weight: bold;text-align: center;}
 .body .input-prepend  .button {color:White;border:solid 2px navy;width:100%;font-family:CG Omega;border-radius:5px;background-color:navy;}
 .body .input-prepend  .button:hover {background-color:Teal;color:white;border:solid 2px Teal;}
 
+.body .db {min-width:140px;min-height:140px;border-radius:50%;color:White;margin-bottom:3em;margin-right:2em;border:solid 2px navy;background-color: navy;margin-right:2em;}
+.body .db:hover {min-width:140px;min-height:140px;border-radius:50%;
+background-color:Teal;color:White;margin-bottom:3em;border:solid 2px Teal;}
+
 .body .cat {min-width:140px;min-height:140px;border-radius:50%;color:White;margin-bottom:3em;margin-right:2em;border:solid 2px navy;background-color: navy;margin-right:2em;}
 .body .cat:hover {min-width:140px;min-height:140px;border-radius:50%;
 background-color:Teal;color:White;margin-bottom:3em;border:solid 2px Teal;}
