@@ -3,7 +3,8 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:a4j="http://richfaces.org/a4j">
+	xmlns:a4j="http://richfaces.org/a4j"
+	>
 
 <ui:composition template="../templates/TemplateHome.xhtml">
 
@@ -22,7 +23,7 @@
 								<span class="add-on col-lg-2"> Nom </span>
 								<h:inputText class="span2 col-lg-10" type="text"
 									value="#{mbSearchProject.name}" >
-									<a4j:commandButton execute="keyup" listener="{mbSearchProject.searchByName}" render="list"/>
+									<a4j:commandButton listener="{mbSearchProject.searchByName}" render="list"/>
 									</h:inputText>
 									
 							</div>
