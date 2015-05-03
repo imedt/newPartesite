@@ -91,6 +91,10 @@ public class MBSearchProject {
 	public void searchByCategory() {
 		projects = buProject.getByCategory(getIdCategory());
 	}
+	
+	public void searchByCategory(ProjectCategory cat) {
+		projects = buProject.getByCategory(cat.getIdProjectCategory());
+	}
 
 	public void reset() {
 		projects = new ArrayList<>();

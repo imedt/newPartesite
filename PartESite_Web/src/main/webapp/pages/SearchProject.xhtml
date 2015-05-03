@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j">
 
 <ui:composition template="../templates/TemplateHome.xhtml">
 
@@ -39,10 +40,7 @@
 									itemLabel="#{c.category}" itemValue="#{c.idProjectCategory}" />
 							</h:selectOneMenu>
 
-							<h:commandButton class="col-lg-12" type="submit"
-								action="#{mbSearchProject.searchByCategory()}"
-								value="Recherche par catégorie">
-							</h:commandButton>
+
 
 						</div>
 						<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
@@ -51,6 +49,15 @@
 							</h:commandButton>
 						</div>
 					</div>
+					
+					<div class="col-lg-12" style="text-align:center;">
+					<ui:repeat var="cat" value="#{mbSearchProject.categories}">
+					<h:commandButton class="btn btn-lg-default" style="min-width:140px;min-height:140px;border-radius:50%;background-color:Teal;color:White;"
+					value="#{cat.category}" var="cat" action="#{mbSearchProject.searchByCategory(cat)}" id="category">
+					</h:commandButton>
+					</ui:repeat>
+					</div>
+					
 
 					<h:panelGroup rendered="#{mbSearchProject.projects.size()==0}"
 						class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
