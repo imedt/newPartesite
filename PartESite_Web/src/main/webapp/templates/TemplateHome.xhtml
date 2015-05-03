@@ -57,7 +57,7 @@
 				<div class="header">
 					<div class="col-lg-12">
 						<div class="col-lg-2" id="menu">
-							<a href="Home.xhtml"> <i class="fa-home col-lg-12" /> <span>Menu</span>
+							<a href="../pages/Home.xhtml"> <i class="fa-home col-lg-12" /> <span>Menu</span>
 							</a>
 						</div>
 						<div class="col-lg-8">
@@ -65,7 +65,7 @@
 						</div>
 						<div class="col-lg-2">
 							<div class="cart col-lg-12">
-								<a href="consulterPanier.xhtml"> <span>Panier</span></a>
+								<a href="../pages/consulterPanier.xhtml"> <span>Panier</span></a>
 							</div>
 							<h:selectOneMenu class="col-lg-12" onchange="submit()"
 								value="#{mbConnexion.devise}">
@@ -88,42 +88,42 @@
 
 					<div class="nav navbar">
 						<ul class="col-lg-12">
-							<li class="col-lg-3"><a href="../pages/NewProjects.xhtml"><i
+							<li><a href="../pages/NewProjects.xhtml"><i
 									class=" fa-newspaper-o" /><span>Nouveautés</span></a></li>
 							<h:panelGroup>
-								<li class="col-lg-3"><a href="../pages/SearchProject.xhtml"><i
+								<li><a href="../pages/SearchProject.xhtml"><i
 										class=" fa-exclamation-triangle" /> <span>Recherche</span></a></li>
 							</h:panelGroup>
 							<h:panelGroup rendered="#{mbConnexion.statut==null}">
-								<li class="col-lg-3"><a href="../pages/NewUser.xhtml"><i
+								<li><a href="../pages/NewUser.xhtml"><i
 										class=" fa-edit" /><span>Devenir Membre</span></a></li>
 							</h:panelGroup>
 							<h:panelGroup rendered="#{mbConnexion.statut==null}">
-								<li class="col-lg-3"><a href="#loginmodal"
+								<li><a href="#loginmodal"
 									id="modaltrigger" rel="login"><i class=" fa-sign-in" /><span>S'identifier</span></a></li>
 							</h:panelGroup>
 							<h:panelGroup rendered="#{mbConnexion.statut!=null}">
 
 								<h:panelGroup
 									rendered="#{mbConnexion.id.getIdentityRole().getIdIdentityRole()==3}">
-									<li class="col-lg-3"><a
+									<li><a
 										href="../pages/UserDashBoard.xhtml"><i class=" fa-user" /><span>Mon
 												Compte</span></a></li>
 								</h:panelGroup>
 								<h:panelGroup
 									rendered="#{mbConnexion.id.getIdentityRole().getIdIdentityRole()==2}">
-									<li class="col-lg-3"><a
+									<li><a
 										href="../pages/ModeratorDashBoard.xhtml"><i
 											class=" fa-user" /><span>Mon Compte</span></a></li>
 								</h:panelGroup>
 							</h:panelGroup>
 							<h:panelGroup rendered="#{mbOrder.cart!=null}">
-								<li class="col-lg-3"><a
+								<li><a
 									href="../pages/consulterPanier.xhtml"><i
 										class=" fa-shopping-cart" /> <span> Mon Panier </span> </a></li>
 							</h:panelGroup>
 							<h:panelGroup rendered="#{mbConnexion.statut!=null}">
-								<li class="col-lg-3"><h:commandLink>
+								<li><h:commandLink>
 										<i class=" fa-sign-out" action="#{mbConnexion.deconnexion()}" />
 										<span>Deconnexion</span>
 									</h:commandLink></li>
