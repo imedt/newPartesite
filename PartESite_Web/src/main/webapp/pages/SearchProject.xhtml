@@ -7,7 +7,7 @@
 
 <ui:composition template="../templates/TemplateHome.xhtml">
 
-	<ui:define name="header-title">New Projects</ui:define>
+	<ui:define name="header-title">Recherche</ui:define>
 
 
 	<ui:define name="content">
@@ -17,47 +17,28 @@
 				<div class="row">
 					<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
 
-						<div class="col-lg-6 col-sm-12 col-md-12 col-xs-12">
-							<strong><span class="col-lg-12"
-								style="text-align: left;">Nom</span></strong>
-							<h:inputText class="col-lg-12" type="text"
-								value="#{mbSearchProject.name}" />
-
-							<h:commandButton class="col-lg-12" type="submit"
-								action="#{mbSearchProject.searchByName}"
-								value="Recherche par nom">
-							</h:commandButton>
-
+						<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12" style="margin-left:1em;text-align:center;">
+							<div class="input-prepend col-lg-6">
+								<span class="add-on col-lg-2"> Nom </span>
+								<h:inputText class="span2 col-lg-10" type="text"
+									value="#{mbSearchProject.name}" >
+									<a4j:commandButton execute="keyup" listener="{mbSearchProject.searchByName}" render="list"/>
+									</h:inputText>
+									
+							</div>
 						</div>
 
-						<div class="col-lg-6 col-sm-12 col-md-12 col-xs-12">
-							<strong><span class="col-lg-12"
-								style="text-align: left;">Categories</span></strong>
-							<h:selectOneMenu class="col-lg-12" type="text"
-								value="#{mbSearchProject.idCategory}"
-								style="margin-top:1em;height:2em;">
-								<f:selectItems value="#{mbSearchProject.categories}" var="c"
-									itemLabel="#{c.category}" itemValue="#{c.idProjectCategory}" />
-							</h:selectOneMenu>
-
-
-
-						</div>
-						<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
-							<h:commandButton class="col-lg-12" type="submit"
-								action="#{mbSearchProject.reset()}" value="Reset">
-							</h:commandButton>
-						</div>
 					</div>
-					
-					<div class="col-lg-12" style="text-align:center;">
-					<ui:repeat var="cat" value="#{mbSearchProject.categories}">
-					<h:commandButton class="btn btn-lg-default" style="min-width:140px;min-height:140px;border-radius:50%;background-color:Teal;color:White;"
-					value="#{cat.category}" var="cat" action="#{mbSearchProject.searchByCategory(cat)}" id="category">
-					</h:commandButton>
-					</ui:repeat>
+
+					<div class="col-lg-12" style="text-align: center;margin-left:1em;">
+						<ui:repeat var="cat" value="#{mbSearchProject.categories}" >
+							<h:commandButton class="cat" 
+								value="#{cat.category}" var="cat"
+								action="#{mbSearchProject.searchByCategory(cat)}" id="category">
+							</h:commandButton>
+						</ui:repeat>
 					</div>
-					
+
 
 					<h:panelGroup rendered="#{mbSearchProject.projects.size()==0}"
 						class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -66,7 +47,8 @@
 						</center>
 					</h:panelGroup>
 
-					<h:panelGroup rendered="#{mbSearchProject.projects.size()!=0}"
+<a4j:ajax>
+					<h:panelGroup rendered="#{mbSearchProject.projects.size()!=0}" id="list"
 						class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
 
@@ -106,15 +88,14 @@
 							</h:column>
 						</h:dataTable>
 					</h:panelGroup>
-
+</a4j:ajax>
 				</div>
 			</h:form>
 		</fieldset>
 		<br />
 		<br />
-		
+
 	</ui:define>
 
-	<ui:define name="text-home"></ui:define>
 </ui:composition>
 </html>

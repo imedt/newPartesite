@@ -86,6 +86,7 @@ public class MBSearchProject {
 	// M�thodes 
 	public void searchByName() {
 		projects = buProject.getByNameWithCategory(name);
+		getProjects();
 	}
 
 	public void searchByCategory() {

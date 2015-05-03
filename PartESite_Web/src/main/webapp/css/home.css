@@ -16,6 +16,22 @@ h1{color:navy;font-weight: bold;text-align: center;}
 .body .titleProjectsList li:hover .ProjectsList{family-name:CG Omega; color:Teal;text-transform: uppercase;font-size:large;}
 
 
+.body .input-prepend {font-family:'FontAwesome';color:navy;padding-top:1em;padding-bottom:1em;margin-left:1em;}
+.body .input-prepend  .add-on {font-family:'FontAwesome';padding-left:1em;height:2em;}
+.body .input-prepend  .add-on i{font-family:'FontAwesome';padding-left:1em;}
+.body .input-prepend  inputTextarea .span2 {color:navy;min-height: 200px;width:auto;}
+.body .input-prepend  input .span2 {color:navy;background-color:LightGray;width:auto;margin-bottom:2em;}   
+.body .input-prepend  input .span2 {color:navy;background-color:LightGray;width:auto;margin-bottom:2em;height: 2em;} 
+.body .input-prepend  .button {color:White;border:solid 2px navy;width:100%;font-family:CG Omega;border-radius:5px;background-color:navy;}
+.body .input-prepend  .button:hover {background-color:Teal;color:white;border:solid 2px Teal;}
+
+.body .cat {min-width:140px;min-height:140px;border-radius:50%;color:White;margin-bottom:3em;margin-right:2em;border:solid 2px navy;background-color: navy;margin-right:2em;}
+.body .cat:hover {min-width:140px;min-height:140px;border-radius:50%;
+background-color:Teal;color:White;margin-bottom:3em;border:solid 2px Teal;}
+
+.body .btn {margin-top:1em;padding-top:0.2em;margin-right:2em;height:2em;background-color:Teal; color:White;}
+.body .btn:hover {margin-top:1em;padding-top:0.2em;margin-right:2em;height:2em;background-color:navy; color:White;}
+
 .footer {background-color:Beige;padding-top:3em;padding-bottom:3em;margin-top:2em;float:left;width: 100%;height: auto;}
 .footer .footer-titre{color:navy;font-family:CG Omega;}
 .footer .input-prepend {font-family:'FontAwesome';color:navy;padding-top:1em;padding-bottom:1em;}
