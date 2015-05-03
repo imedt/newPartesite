@@ -4,7 +4,7 @@ margin-left:auto;margin-right:auto;padding-bottom:2%;padding-top:2%;
 font-family:CG Omega;}
 
 h1{color:navy;font-weight: bold;text-align: center;}
-#messageSent span {color:Teal;text-transform: uppercase;}
+#messageSent span {color:Teal;text-transform: uppercase;margin-top:1em;}
 
 .header {background-color:Beige;padding-top:3em;width: 100%;height: auto;float:left;}
 .body {background-color:Beige;padding-top:3em;padding-bottom:3em;margin-top:2em;width: 100%;height: auto;float:left;}
@@ -13,8 +13,6 @@ h1{color:navy;font-weight: bold;text-align: center;}
 .body .titleProjectsList li{display: inline-block;list-style-type: none;text-align:center;}
 .body .titleProjectsList li .ProjectsList{family-name:CG Omega; color:navy;text-transform: uppercase;font-size:large;}
 .body .titleProjectsList li:hover .ProjectsList{family-name:CG Omega; color:Teal;text-transform: uppercase;font-size:large;}
-
-
 
 
 .footer {background-color:Beige;padding-top:3em;padding-bottom:3em;margin-top:2em;float:left;width: 100%;height: auto;}
@@ -47,11 +45,11 @@ h1{color:navy;font-weight: bold;text-align: center;}
 .cart span {color: navy;font-size: large;}
 
 
-.navbar {width: 100%;height: auto;text-align:center;margin-top:1em;}
-.navbar ul {width: 100%;height: auto;margin:0;padding-left:0;padding-top:1em;}
-.navbar ul li {display: inline-block;text-decoration: none;list-style: none;width: 25%;text-align: center;}
+.navbar {width: 100%;height: auto;text-align:center;margin-top:3em;margin-left:0;padding-left:0;}
+.navbar ul {width: 100%;height: auto;margin:0;padding-left:0;padding-top:1em;text-align:center;}
+.navbar ul li {display: inline-block;text-decoration: none;list-style: none;width:auto;text-align: center;margin-left:0;padding-left:0;}
 .navbar i {font-family: 'FontAwesome';color:navy ;padding-right: 1em;font-size: large;}
-.navbar a span {font-family:CG Omega;color:navy ;font-size: large;}
+.navbar a span {font-family:CG Omega;color:navy ;font-size: large;padding-right:2em;}
 .navbar li:hover i {font-family: 'FontAwesome';color:Teal ;padding-right: 1em;font-size: large;}
 .navbar li:hover a span {font-family:CG Omega;color:Teal ;font-size: large;}
 
