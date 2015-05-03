@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="../templates/TestTemplate.xhtml">
+
+	<ui:define name="content">
+		<f:view>
+		<style> 
+		.inputlabel{width:150px ;display:inline-block;}
+		</style> 
+			<div class="content" style="margin-top:50px;margin-bottom:150px;">
+				<div class="row" id="formulaire"> 
+					<div class="col-md-8">
+						<h:form>
+							<label class="col-md-12"><span class="inputlabel">Civilite</span>
+								<h:selectOneMenu value="#{mbUser.idCivility}">
+									<f:selectItems value="#{mbUser.civilities}" var="c"
+										itemValue="#{c.idCivility}" itemLabel="#{c.civility}" />
+								</h:selectOneMenu>
+							</label>
+							<label class="col-md-12"><span class="inputlabel">Prenom</span>
+								<h:inputText value="#{mbUser.firstName}" /> 
+							</label>
+							<label class="col-md-12"><span class="inputlabel">Nom</span>
+								<h:inputText value="#{mbUser.lastName}" /> 
+							</label>
+							<label class="col-md-12"><span class="inputlabel">Email</span>
+								<h:inputText value="#{mbUser.email}" /> 
+							</label>
+							<label class="col-md-12"><span class="inputlabel">Mot de passe</span> 
+								<h:inputSecret value="#{mbUser.password}" />
+							</label> 
+							<label class="col-md-12"><span class="inputlabel">Date de naissance</span> 
+								<h:inputText id="datepicker" value="#{mbUser.birthdate}" />
+							</label> 
+							<label class="col-md-12"><span 	class="inputlabel">Rue</span> 
+								<h:inputText value="#{mbUser.street}" />
+							</label> 
+							<label class="col-md-12"><span class="inputlabel">Code postal</span>
+								<h:inputText value="#{mbUser.zipcode}" />
+							</label> 
+							<label class="col-md-12"><span class="inputlabel">Ville</span> 
+								<h:inputText value="#{mbUser.city}" /> 
+							</label> 
+							<label class="col-md-12"><span class="inputlabel">Email</span> 
+								<h:selectOneMenu value="#{mbUser.country}">
+										<f:selectItems value="#{mbUser.countries}" var="pays"
+											itemLabel="#{pays.name}" itemValue="#{pays.idCountry}" />
+									</h:selectOneMenu> 
+							</label> 
+							
+							<h:selectBooleanCheckbox value="true" /> &nbsp; <span id="cgu">J'accepte les conditions générales d'utilisation de la plateforme.</span> 
+							
+							<h:commandButton type="submit"
+									class="lg-btn-default col-lg-5 col-md-5 col-sm-5 col-xs-5"
+									value="Valider" action="#{mbUser.inscription()}" /> <h:commandButton
+									type="submit"
+									class="lg-btn-default col-md-offset-1 col-lg-5 col-md-5 col-sm-5 col-xs-5"
+									value="Demonstration" action="#{mbDemo.demoInscription()}" />
+						</h:form>
+					</div>
+					<div class="col-md-4">
+									<h2>8.5 million people</h2>
+				<p>have backed a Kickstarter project</p>
+				<h2>2.6 million people</h2>
+				<p>have backed more than one project</p>
+				<h2>309 thousand people</h2>
+				<p>have backed ten or more projects</p>
+					
+					</div>
+				</div>
+			</div>
+
+
+		</f:view>
+	</ui:define>
+</ui:composition>
+</html>

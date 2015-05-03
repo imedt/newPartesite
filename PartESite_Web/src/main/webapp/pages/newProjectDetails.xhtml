@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="../templates/TestTemplate.xhtml">
+
+	<ui:define name="header-title">Consultation Projet</ui:define>
+
+	<ui:define name="content">
+		<f:event listener="#{mbConsultProject.init()}" type="preRenderView"></f:event>
+		<f:view>
+			<div class="col-md-9">
+				<div class="col-md-12 text-center">
+					<h3>#{mbConsultProject.p.projectName}</h3>
+				</div>
+				<div class="row">
+
+
+					<div class="col-md-6">
+						<img src="#{mbConsultProject.contentProjectImage.content}"
+							width="400px" height="400px" />
+					</div>
+					<div class="col-md-6">
+
+						<div class="frameBoxVideo">
+							<iframe width="100%" height="400px"
+								src="#{mbConsultProject.contentProjectVideo.content}"
+								frameborder="0"></iframe>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-12">
+					<p>A propos du projet :</p>
+					<hr />
+					<p>
+						<h:outputText
+							value="#{mbConsultProject.contentProjectConcept.content}"
+							escape="false" />
+					</p>
+				</div>
+
+				<div class="col-md-12">
+					<p>A propos de l'auteur :</p>
+					<hr />
+
+					<p>
+						<h:outputText
+							value="#{mbConsultProject.contentProjectAuthor.content}"
+							escape="false" />
+					</p>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<h:panelGroup
+					class="packBox3 col-lg-12 col-xs-12 col-sm-12 col-md-12"
+					rendered="#{mbConsultProject.wrappedPack.size()!=0}">
+					<ui:repeat var="wrappedPack"
+						value="#{mbConsultProject.wrappedPack}">
+						<div class="col-md-12">
+							<h3>Pour
+								#{mbConversion.getConvertedAmount(wrappedPack.pack.amount)}</h3>
+
+							<p class="package-name">#{wrappedPack.pack.packName}</p>
+							<p class="package-description">#{wrappedPack.pack.description}</p>
+							<p class="package-quantity">Quantité disponible :
+								#{wrappedPack.pack.stock-wrappedPack.pack.nbSale}</p>
+							<h:form>
+
+								<label>Quantité souhaitée : <h:selectOneMenu
+										class="col-lg-offset-2 col-lg-8 col-xs-12 col-sm-12 col-md-12"
+										value="#{wrappedPack.quantity}">
+										<f:selectItems
+											value="#{mbConsultProject.remplirList(wrappedPack.pack)}" />
+									</h:selectOneMenu>
+								</label>
+
+								<h:commandButton type="submit" value="Commander"
+									action="#{mbOrder.addToCart(wrappedPack)}"
+									class="button marged lg-btn-default col-lg-12 col-xs-12 col-sm-12 col-md-12" />
+							</h:form>
+
+						</div>
+					</ui:repeat>
+				</h:panelGroup>
+			</div>
+		</f:view>
+	</ui:define>
+
+</ui:composition>
+</html>

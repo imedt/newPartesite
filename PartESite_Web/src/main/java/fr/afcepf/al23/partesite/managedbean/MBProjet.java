@@ -12,6 +12,7 @@ import fr.afcepf.al23.model.entities.Identity;
 import fr.afcepf.al23.model.entities.Pack;
 import fr.afcepf.al23.model.entities.Project;
 import fr.afcepf.al23.model.entities.ProjectCategory;
+import fr.afcepf.al23.model.entities.ProjectContent;
 import fr.afcepf.al23.partesite.iservice.offer.IBusinessProject;
 
 @ManagedBean(name="mbProjet")
@@ -33,7 +34,9 @@ public class MBProjet {
 	private List<Project>allProjects;
 	private Integer financedAmount;
 
-	
+	public String sliceText(String text,int max){ 
+		return text.length() > max ? (text.substring(0, max)+"...") : text; 
+	}
 	public Integer getFinancedAmount() {
 		return financedAmount;
 	}

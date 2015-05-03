@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:body>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/PartESite_Web/pages/Home.xhtml">Business Partner's Community</a>
+			</div>
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse"
+				id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li><a href="../pages/NewProjects.xhtml"><i
+							class=" fa-newspaper-o" /><span>Nouveautés</span></a></li>
+					<h:panelGroup>
+						<li><a href="../pages/SearchProject.xhtml"><i
+								class=" fa-exclamation-triangle" /> <span>Recherche</span></a></li>
+					</h:panelGroup>
+
+					<h:panelGroup rendered="#{mbOrder.cart!=null}">
+						<li><a href="../pages/consulterPanier.xhtml"><i
+								class=" fa-shopping-cart" /> <span> Mon Panier </span> </a></li>
+					</h:panelGroup>
+					<h:panelGroup rendered="#{mbConnexion.statut!=null}">
+						<li><h:commandLink>
+								<i class=" fa-sign-out" action="#{mbConnexion.deconnexion()}" />
+								<span>Deconnexion</span>
+							</h:commandLink></li>
+					</h:panelGroup>
+				</ul>
+ 
+				<ul class="nav navbar-nav navbar-right">
+					<h:panelGroup rendered="#{mbConnexion.statut==null}">
+						<li><a href="../pages/NewUser.xhtml"><i class=" fa-edit" /><span>Devenir
+									Membre</span></a></li>
+					</h:panelGroup>
+					<h:panelGroup rendered="#{mbConnexion.statut==null}">
+						<li><a href="#loginmodal" id="modaltrigger" rel="login"><i
+								class=" fa-sign-in" /><span>S'identifier</span></a></li>
+					</h:panelGroup>
+					<h:panelGroup rendered="#{mbConnexion.statut!=null}">
+
+						<h:panelGroup
+							rendered="#{mbConnexion.id.getIdentityRole().getIdIdentityRole()==3}">
+							<li><a href="../pages/UserDashBoard.xhtml"><i
+									class=" fa-user" /><span>Mon Compte</span></a></li>
+						</h:panelGroup>
+						<h:panelGroup
+							rendered="#{mbConnexion.id.getIdentityRole().getIdIdentityRole()==2}">
+							<li><a href="../pages/ModeratorDashBoard.xhtml"><i
+									class=" fa-user" /><span>Mon Compte</span></a></li>
+						</h:panelGroup>
+					</h:panelGroup>
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container-fluid -->
+	</nav>
+
+</h:body>
+</html>

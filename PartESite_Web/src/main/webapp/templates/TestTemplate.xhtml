@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<link href="../css/newbootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<script src="../js/bootstrap.js"></script>
+	<link rel="stylesheet" type="text/css"
+		href="http://fonts.googleapis.com/css?family=Roboto" />
+
+</h:head>
+<h:body> 
+	<header>
+		<!-- navbar -->
+		<ui:include src="/templates/navbarTemplate.xhtml" /> 
+	</header>
+	<div class="content-body container">
+		<ui:insert name="content">
+ 
+		</ui:insert>
+	</div>
+	<footer>
+			<ui:include src="/templates/footerTemplate.xhtml" /> 
+	 
+	</footer>
+</h:body>
+</html>
