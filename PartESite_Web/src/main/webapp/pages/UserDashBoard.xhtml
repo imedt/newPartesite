@@ -12,17 +12,23 @@
 <f:view>
 <h:form>
 
-<div class="col-lg-12">
+<i class="fa fa-spin col-lg-2">
+<h:commandButton class="db2" value=" "/></i>
+
+<div class="col-lg-10" style="margin-top:3em;text-align:left;">
 <h:commandButton class="db" value="Projets : #{mbDashboard.allMyProjectsCount}"/>
 <h:commandButton class="db" value="Projets en ligne : #{mbDashboard.allMyProjectsOnlineCount}"/>
 <h:commandButton class="db" value="Projets financés : #{mbDashboard.allMyProjectsFinancedCount}"/>
 </div>
 
-<div class="col-lg-12">
+<div class="col-lg-10" style="margin-bottom:1em;text-align:right;">
 <h:commandButton class="db" value="Investissements : #{mbDashboard.allMyBackingsWithRewardCount}"/>
 <h:commandButton class="db" value="Dons : #{mbDashboard.allMyGivingsCount}"/>
 <h:commandButton class="db" value="Notifications : #{mbDashboard.allMyNotificationsCount}"/>
 </div>
+
+<i class="fa fa-spin col-lg-2">
+<h:commandButton class="db2" value=" "/></i>
 
 </h:form>
 </f:view>
