@@ -73,10 +73,14 @@
 							</h:selectOneMenu>
 						</div>
 					</div>
-					<h:panelGroup>
-						<h:outputText class="col-lg-12" id="messageSent"
+					<ui:insert name="message">
+					<div id="messageSent">
+						<h:outputText class="col-lg-12" 
 							value="#{mbModeratorNotifications.showMessage()}" escape="false" />
-					</h:panelGroup>
+							<h:outputText class="col-lg-12"
+							value="#{mbUser.message}" escape="false" />
+							</div>
+</ui:insert>
 
 
 

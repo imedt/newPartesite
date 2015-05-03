@@ -49,7 +49,7 @@ public class MBUser {
 	@ManagedProperty(value="#{mbConnexion}")
 	private MBConnexion cnx;
 
-
+	
 	//Civility
 	private Integer idCivility;
 	private List<Civility> civilities;
@@ -326,7 +326,15 @@ public class MBUser {
 		identity.setBirthdate(date);
 		setIdentity(buIdentity.save(identity));
 		addAddressToUser();
-		setDirection("/Home.xhtml?faces-redirect=true");
+		
+		if (identity!=null){
+			setMessage("Bienvenue "+identity.getFirstName()+" !");
+			cnx.id = new Identity();
+			cnx.setId(identity);
+			cnx.setStatut("Utilisateur");
+		}
+		
+		setDirection("../pages/UserDashBoard.xhtml?faces-redirect=true");
 
 		
 		
