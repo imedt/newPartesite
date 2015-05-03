@@ -53,14 +53,14 @@
 										<div class="col-lg-6">
 
 											<img class="model" alt="projectName"
-												src="../images/#{projet.projectCategory.category}.jpg"
+												src="#{projet.projectContents.get(0).content}"
 												id="centre"></img>
 
 										</div>
 										<div class="col-lg-6">
 											<div class="row">
 												<h2 class="title col-lg-12">
-													<a href="projectDetails.xhtml" alt="projectDetails">
+													<a href="../pages/projectDetails.xhtml" alt="projectDetails">
 														#{projet.projectName} </a>
 												</h2>
 											</div>
@@ -69,15 +69,15 @@
 
 													<div class="row">
 														<h3 class="subtitle col-lg-12">Capital :
-															#{projet.aimingAmount}0 €</h3>
+															#{projet.aimingAmount} €</h3>
 													</div>
 
 													<h3 class="subtitle col-lg-8" style="font-weight: 20px;">Financement
 														: #{(projet.financedAmount / projet.aimingAmount) * 100} %</h3>
 													<h3 class="subtitle col-lg-8" style="font-weight: 20px;">
-														#{mbConversion.getConvertedAmount(projet.financedAmount)}0
-														/ #{mbConversion.getConvertedAmount(projet.aimingAmount)}0
-														€</h3>
+														#{mbConversion.getConvertedAmount(projet.financedAmount)}
+														/ #{mbConversion.getConvertedAmount(projet.aimingAmount)}
+														</h3>
 
 
 													<ui:repeat var="pC" value="#{projet.projectContents}"
