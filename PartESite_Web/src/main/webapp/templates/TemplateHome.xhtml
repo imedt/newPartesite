@@ -19,6 +19,9 @@
 <link rel="icon" href="http://designshack.net/favicon.ico" />
 <link rel="stylesheet" type="text/css" media="all"
 	href="../css/popupLogin.css" />
+	
+<link rel="stylesheet"
+			href="../css/sequencejs-theme.modern-slide-in.css" />
 
 <script src="../js/bootstrap.js"></script>
 <script src="../js/jquery.min.js"></script>
@@ -38,6 +41,9 @@
 		});
 	});
 </script>
+
+<script src="../js/jquery.sequence.js"></script>
+<script src="../js/sequencejs-options.modern-slide-in.js"></script>
 
 <ui:insert name="style"></ui:insert>
 <ui:insert name="script"></ui:insert>
@@ -96,17 +102,20 @@
 
 								<h:panelGroup
 									rendered="#{mbConnexion.id.getIdentityRole().getIdIdentityRole()==3}">
-									<li class="col-lg-3"><a href="../pages/UserDashBoard.xhtml"><i
-											class=" fa-user" /><span>Mon Compte</span></a></li>
+									<li class="col-lg-3"><a
+										href="../pages/UserDashBoard.xhtml"><i class=" fa-user" /><span>Mon
+												Compte</span></a></li>
 								</h:panelGroup>
 								<h:panelGroup
 									rendered="#{mbConnexion.id.getIdentityRole().getIdIdentityRole()==2}">
-									<li class="col-lg-3"><a href="../pages/ModeratorDashBoard.xhtml"><i
+									<li class="col-lg-3"><a
+										href="../pages/ModeratorDashBoard.xhtml"><i
 											class=" fa-user" /><span>Mon Compte</span></a></li>
 								</h:panelGroup>
 							</h:panelGroup>
 							<h:panelGroup rendered="#{mbOrder.cart!=null}">
-								<li class="col-lg-3"><a href="../pages/consulterPanier.xhtml"><i
+								<li class="col-lg-3"><a
+									href="../pages/consulterPanier.xhtml"><i
 										class=" fa-shopping-cart" /> <span> Mon Panier </span> </a></li>
 							</h:panelGroup>
 							<h:panelGroup rendered="#{mbConnexion.statut!=null}">
