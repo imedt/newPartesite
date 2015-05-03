@@ -4,18 +4,35 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<ui:composition template="../templates/TemplateUser.xhtml">
-<ui:define name="header-title">Tableau de bord</ui:define>
+<ui:composition template="../templates/TemplateModerator.xhtml">
+	<ui:define name="header-title">Tableau de bord</ui:define>
 
 
-<ui:define name="content">
+	<ui:define name="content">
+		<f:view>
+			<h:form>
 
-#{mbModerator.projectsFinancedMontantString}
-#{mbModerator.projectsEnCours}
-#{mbModerator.projectsEnCoursMontantString}
-#{mbModerator.projectsFinanced}
-#{mbModerator.rentabiliteString}
+				<div class="col-lg-12">
+					<i class="fa fa-spin col-lg-2"> <h:commandButton class="db2"
+							value=" " /></i>
 
-</ui:define>
+					<div class="col-lg-8" style="margin-top: 3em; text-align: center;">
+						<h:commandButton class="db"
+							value="Projets en cours : #{mbModerator.projectsEnCours}"
+							action="../pages/ModeratorPublishProjects.xhtml?faces-redirect=true" />
+						<h:commandButton class="db"
+							value="Projets en financés : #{mbModerator.projectsFinanced}"
+							action="../pages/ModeratorPublishProjects.xhtml?faces-redirect=true" />
+						<h:commandButton class="db"
+							value="Rentabilité : #{mbModerator.rentabiliteString}"
+							action="../pages/ModeratorManageProfitability.xhtml?faces-redirect=true" />
+					</div>
+
+					<i class="fa fa-spin col-lg-2"> <h:commandButton class="db2"
+							value=" " /></i>
+				</div>
+			</h:form>
+		</f:view>
+	</ui:define>
 </ui:composition>
-</html> 
+</html>
