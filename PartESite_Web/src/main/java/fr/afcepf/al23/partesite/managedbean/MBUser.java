@@ -328,13 +328,10 @@ public class MBUser {
 		addAddressToUser();
 		
 		if (identity!=null){
-			setMessage("Bienvenue "+identity.getFirstName()+" !");
-			cnx.id = new Identity();
-			cnx.setId(identity);
-			cnx.setStatut("Utilisateur");
+			setMessage("Bienvenue "+identity.getFirstName()+" ! Vous pouvez désormais vous connecter...");
 		}
 		
-		setDirection("../pages/UserDashBoard.xhtml?faces-redirect=true");
+		setDirection("../pages/Home.xhtml?faces-redirect=true");
 
 		
 		

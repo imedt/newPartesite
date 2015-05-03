@@ -39,7 +39,7 @@ h1{color:navy;font-weight: bold;text-align: center;}
 #menu:hover a i {color:Teal;font-size: large;font-size:xx-large;}
 #menu:hover a span {color:Teal;font-size: large;}
 
-.separation {border-bottom:solid 2px Teal;width: 100%;float:left;margin-top:3em;}
+.separation {border-bottom:solid 2px Teal;width: 100%;float:left;}
 
 .cart {border:solid 2px navy;color:White;border-radius:5px;height: 3em;margin-bottom:3em; text-align:center;padding-top:0.5em;}
 .cart:hover {background-color:Teal;border:solid 2px Teal;}
@@ -47,7 +47,7 @@ h1{color:navy;font-weight: bold;text-align: center;}
 .cart span {color: navy;font-size: large;}
 
 
-.navbar {width: 100%;height: auto;text-align:center;margin-top:10em;}
+.navbar {width: 100%;height: auto;text-align:center;margin-top:1em;}
 .navbar ul {width: 100%;height: auto;margin:0;padding-left:0;padding-top:1em;}
 .navbar ul li {display: inline-block;text-decoration: none;list-style: none;width: 25%;text-align: center;}
 .navbar i {font-family: 'FontAwesome';color:navy ;padding-right: 1em;font-size: large;}
