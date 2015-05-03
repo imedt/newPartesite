@@ -51,11 +51,16 @@
 									<div class="col-lg-12">
 
 										<div class="col-lg-6">
-
+<h:panelGroup rendered="#{projet.projectContents.get(0).content!=''}">
 											<img class="model" alt="projectName"
 												src="#{projet.projectContents.get(0).content}"
 												id="centre"></img>
-
+</h:panelGroup>
+<h:panelGroup rendered="#{projet.projectContents.get(0).content==''}">
+											<img class="model" alt="projectName"
+												src="../images/#{projet.projectCategory.category}.jpg"
+												id="centre"></img>
+</h:panelGroup>
 										</div>
 										<div class="col-lg-6">
 											<div class="row">
