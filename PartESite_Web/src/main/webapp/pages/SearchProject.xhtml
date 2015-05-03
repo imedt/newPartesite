@@ -50,7 +50,7 @@
 
 <a4j:ajax>
 					<h:panelGroup rendered="#{mbSearchProject.projects.size()!=0}" id="list"
-						class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						class="col-lg-push-1 col-lg-10 col-md-12 col-sm-12 col-xs-12">
 
 
 						<h:dataTable value="#{mbSearchProject.projects}" var="project"
@@ -82,8 +82,7 @@
     				#{mbConversion.getConvertedAmount(project.aimingAmount)}
     			</h:column>
 							<h:column>
-								<h:commandButton class="col-lg-12 lg-btn-default"
-									style="width:auto;" value="Details"
+								<h:commandButton class="btn col-lg-12 lg-btn-default"  value="Details"
 									action="#{mbConsultProject.detailProject(project)}">
 								</h:commandButton>
 							</h:column>

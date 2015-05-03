@@ -19,9 +19,9 @@
 <link rel="icon" href="http://designshack.net/favicon.ico" />
 <link rel="stylesheet" type="text/css" media="all"
 	href="../css/popupLogin.css" />
-	
+
 <link rel="stylesheet"
-			href="../css/sequencejs-theme.modern-slide-in.css" />
+	href="../css/sequencejs-theme.modern-slide-in.css" />
 
 <script src="../js/bootstrap.js"></script>
 <script src="../js/jquery.min.js"></script>
@@ -56,11 +56,12 @@
 
 				<div class="header">
 					<div class="col-lg-12">
-					<h:panelGroup>
-						<div class="col-lg-2" id="menu">
-							<a href="../pages/Home.xhtml"> <i class="fa-home col-lg-12" /> <span>Menu</span>
-							</a>
-						</div>
+						<h:panelGroup>
+							<div class="col-lg-2" id="menu">
+								<a href="../pages/Home.xhtml"> <i class="fa-home col-lg-12" />
+									<span>Menu</span>
+								</a>
+							</div>
 						</h:panelGroup>
 						<div class="col-lg-8">
 							<h1>Business Partner's Community</h1>
@@ -76,13 +77,13 @@
 						</div>
 					</div>
 					<ui:insert name="message">
-					<div id="messageSent">
-						<h:outputText class="col-lg-12" 
-							value="#{mbModeratorNotifications.showMessage()}" escape="false" />
+						<div id="messageSent">
 							<h:outputText class="col-lg-12"
-							value="#{mbUser.message}" escape="false" />
-							</div>
-</ui:insert>
+								value="#{mbModeratorNotifications.showMessage()}" escape="false" />
+							<h:outputText class="col-lg-12" value="#{mbUser.message}"
+								escape="false" />
+						</div>
+					</ui:insert>
 
 
 
@@ -101,26 +102,23 @@
 										class=" fa-edit" /><span>Devenir Membre</span></a></li>
 							</h:panelGroup>
 							<h:panelGroup rendered="#{mbConnexion.statut==null}">
-								<li><a href="#loginmodal"
-									id="modaltrigger" rel="login"><i class=" fa-sign-in" /><span>S'identifier</span></a></li>
+								<li><a href="#loginmodal" id="modaltrigger" rel="login"><i
+										class=" fa-sign-in" /><span>S'identifier</span></a></li>
 							</h:panelGroup>
 							<h:panelGroup rendered="#{mbConnexion.statut!=null}">
 								<h:panelGroup
 									rendered="#{mbConnexion.id.getIdentityRole().getIdIdentityRole()==3}">
-									<li><a
-										href="../pages/UserDashBoard.xhtml"><i class=" fa-user" /><span>Mon
-												Compte</span></a></li>
+									<li><a href="../pages/UserDashBoard.xhtml"><i
+											class=" fa-user" /><span>Mon Compte</span></a></li>
 								</h:panelGroup>
 								<h:panelGroup
 									rendered="#{mbConnexion.id.getIdentityRole().getIdIdentityRole()==2}">
-									<li><a
-										href="../pages/ModeratorDashBoard.xhtml"><i
+									<li><a href="../pages/ModeratorDashBoard.xhtml"><i
 											class=" fa-user" /><span>Mon Compte</span></a></li>
 								</h:panelGroup>
 							</h:panelGroup>
 							<h:panelGroup rendered="#{mbOrder.cart!=null}">
-								<li><a
-									href="../pages/consulterPanier.xhtml"><i
+								<li><a href="../pages/consulterPanier.xhtml"><i
 										class=" fa-shopping-cart" /> <span> Mon Panier </span> </a></li>
 							</h:panelGroup>
 							<h:panelGroup rendered="#{mbConnexion.statut!=null}">
@@ -225,15 +223,22 @@
 				<!-- PopUp -->
 				<div id="loginmodal" style="display: none;"
 					class="col-lg-push-4 col-lg-4">
-					<h1 class="bold col-lg-12 ">Identification</h1>
+					<h1 class="identification col-lg-12 ">Bienvenue !</h1>
 
-					<span class="col-lg-12">Login</span>
-					<h:inputText class="col-lg-12" value="#{mbConnexion.login}" />
-					<span class="col-lg-12">Password</span>
-					<h:inputSecret class="password col-lg-12"
-						value="#{mbConnexion.password}" />
-					<h:commandButton class="button lg-btn-default col-lg-12"
-						action="#{mbConnexion.connexion}" value="Connexion"></h:commandButton>
+					<div class="col-lg-12">
+						<span class="login col-lg-3">Login</span>
+						<h:inputText class="col-lg-9" value="#{mbConnexion.login}" />
+					</div>
+					<div class="col-lg-12">
+						<span class="password col-lg-3">Password</span>
+						<h:inputSecret class="password col-lg-9"
+							value="#{mbConnexion.password}" />
+					</div>
+					<div class="col-lg-12">
+						<h:commandButton
+							class="btn lg-btn-default col-lg-push-3 col-lg-9"
+							action="#{mbConnexion.connexion}" value="Connexion"></h:commandButton>
+					</div>
 
 				</div>
 

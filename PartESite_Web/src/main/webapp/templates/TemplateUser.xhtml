@@ -107,8 +107,8 @@
 							<li>
 							<i class=" fa-exclamation-triangle" /> 
 							<a href="../pages/SearchProject.xhtml"><span>Recherche</span></a></li>
-							<li><h:commandLink>
-										<i class=" fa-sign-out" action="#{mbConnexion.deconnexion()}" />
+							<li><h:commandLink action="#{mbConnexion.deconnexion()}">
+										<i class=" fa-sign-out"/>
 										<span>Déconnexion</span>
 									</h:commandLink></li>
 						</ul>
@@ -204,18 +204,25 @@
 					</ui:insert>
 				</div>
 
-				<!-- PopUp -->
+					<!-- PopUp -->
 				<div id="loginmodal" style="display: none;"
 					class="col-lg-push-4 col-lg-4">
-					<h1 class="bold col-lg-12 ">Identification</h1>
+					<h1 class="identification col-lg-12 ">Bienvenue !</h1>
 
-					<span class="col-lg-12">Login</span>
-					<h:inputText class="col-lg-12" value="#{mbConnexion.login}" />
-					<span class="col-lg-12">Password</span>
-					<h:inputSecret class="password col-lg-12"
-						value="#{mbConnexion.password}" />
-					<h:commandButton class="button lg-btn-default col-lg-12"
-						action="#{mbConnexion.connexion}" value="Connexion"></h:commandButton>
+					<div class="col-lg-12">
+						<span class="login col-lg-3">Login</span>
+						<h:inputText class="col-lg-9" value="#{mbConnexion.login}" />
+					</div>
+					<div class="col-lg-12">
+						<span class="password col-lg-3">Password</span>
+						<h:inputSecret class="password col-lg-9"
+							value="#{mbConnexion.password}" />
+					</div>
+					<div class="col-lg-12">
+						<h:commandButton
+							class="btn lg-btn-default col-lg-push-3 col-lg-9"
+							action="#{mbConnexion.connexion}" value="Connexion"></h:commandButton>
+					</div>
 
 				</div>
 
