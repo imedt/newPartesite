@@ -67,4 +67,12 @@ public class DaoPhoneImpl implements IDaoPhone {
 			return false;
 	}
 
+	@Override
+	public void delete(Integer idPhone) {
+		Query hql = em.createQuery(
+				"DELETE ph FROM Phone ph WHERE ph.idPHone =:phoneId")
+				.setParameter("phoneId", idPhone);
+		hql.executeUpdate();
+	}
+
 }

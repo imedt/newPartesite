@@ -385,5 +385,12 @@ public class MBUser {
 		this.countries = countries;
 	}
 
-
+	public String deletePhoneNumber(Integer idPhone){
+		Phone ph = new Phone();
+		ph = buPhone.get(idPhone);
+		buPhone.delete(idPhone);
+		getPhones().remove(ph);
+		getPhones();
+		return "";
+	}
 }

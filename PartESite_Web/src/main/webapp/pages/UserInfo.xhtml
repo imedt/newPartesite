@@ -8,51 +8,23 @@
 
 	<ui:define name="header-title">Infos Membre</ui:define>
 
-<ui:define name="content">
-	<f:view>
-		<h:form>
-			
-			<div class="content">
+	<ui:define name="content">
+		<f:view>
+			<h:form>
 
-				<div class="nav">
-					<div class="row">
-						<ui:insert name="nav-ul">
-							<ul class="col-lg-12">
-								<li class="col-3"><a href="UserDashBoard.xhtml"
-									class="icon fa-dashboard"> <span>Tableau de bord</span>
-								</a></li>
-								<li class="col-3"><a href="UserInfo.xhtml"
-									class="icon fa-credit-card" id="selected"> <span>Mes
-											Informations</span>
-								</a></li>
-								<li class="col-3"><a href="UserProjects.xhtml"
-									class="icon fa-briefcase"> <span>Mes Projets</span>
-								</a></li>
-								<li class="col-3"><a href="UserBackings.xhtml"
-									class="icon fa-credit-card"> <span>Mes
-											Participations</span>
-								</a></li>
-								<li class="col-3"><h:commandLink class="icon fa-sign-out"
-										action="#{mbConnexion.deconnexion}">
-										<span>Deconnexion</span>
-									</h:commandLink></li>
-							</ul>
-						</ui:insert>
-					</div>
-				</div>
+				<div class="content">
 
 
-				<div class="row" id="formulaire">
-				
+					<div class="row" id="formulaire">
+
 						<fieldset class="col-lg-11">
 							<legend>Informations personnelles</legend>
 
 							<div class="info col-lg-12" rendered="#{mbConnexion.id!=null}">
 
-								<fieldset class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
-									style="margin: 0 0 0 0; padding: 0 0 0 0; border: none;">
+								<fieldset class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
 									<div style="text-align: center">
-										<strong> <h:outputText
+										<strong> <h:outputText style="margin-bottom:2em;"
 												class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
 												value="#{mbConnexion.id.civility.civility}&nbsp;#{mbConnexion.id.firstName}&nbsp;#{mbConnexion.id.lastName}" />
 										</strong>
@@ -65,139 +37,149 @@
 											value="Né le :&nbsp;#{mbConnexion.id.birthdate}">
 											<f:convertDateTime pattern="dd/MM/yyyy" />
 										</h:outputText>
+
+										<h:outputText class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+											value="Inscrit depuis le :&nbsp;#{mbConnexion.id.createdDate}">
+											<f:convertDateTime pattern="dd/MM/yyyy" />
+										</h:outputText>
 									</div>
-									<h:outputText class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
-										value="Inscrit depuis le :&nbsp;#{mbConnexion.id.createdDate}">
-										<f:convertDateTime pattern="dd/MM/yyyy" />
-									</h:outputText>
-
 								</fieldset>
-
 
 							</div>
 							<center>
 								<hr class="col-lg-push-1 col-lg-10" />
 							</center>
 
-							<div class="col-lg-12">
+							<div class="tel col-lg-12">
+								<fieldset>
+									<legend class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Telephone</legend>
+									<h:panelGroup class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
+										rendered="#{mbConnexion.id!=null}">
+										<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12">Type
+											:</span>
+										<h:inputText class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
+											value="#{mbUser.typePhoneNumber}" />
+										<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12">Numéro
+											:</span>
+										<h:inputText class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
+											value="#{mbUser.phoneNumber}" />
+										<h:commandButton
+											class="btn btn-lg-primary col-lg-push-6 col-lg-6 col-md-12 col-sm-12 col-xs-12"
+											action="#{mbUser.addPhoneToUser()}" value="Ajouter" />
+									</h:panelGroup>
 
-								<h:panelGroup class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
-									rendered="#{mbConnexion.id!=null}">
-									<strong><span
-										class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Telephone</span></strong>
-									<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12">Type
-										:</span>
-									<h:inputText class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
-										value="#{mbUser.typePhoneNumber}" />
-									<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12">Numéro
-										:</span>
-									<h:inputText class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
-										value="#{mbUser.phoneNumber}" />
-									<h:commandButton
-										class="col-lg-push-6 col-lg-6 col-md-12 col-sm-12 col-xs-12"
-										action="#{mbUser.addPhoneToUser()}" value="Ajouter" />
-								</h:panelGroup>
+									<h:panelGroup class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
+										rendered="#{mbConnexion.id.phones!=null}">
+										<div class="col-lg-12">
+											<ui:repeat value="#{mbUser.phones}" var="phone">
+												<div class="col-lg-12">
+													<h:outputLabel style="font-weight:bold;padding:0;margin:0;"
+															class="col-lg-5 col-md-12 col-sm-12 col-xs-12"
+															value="#{phone.type}" />
+													<h:outputText
+														class="col-lg-5 col-md-12 col-sm-12 col-xs-12"
+														value="#{phone.phoneNumber}" />
 
-								<h:panelGroup class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
-									rendered="#{mbConnexion.id.phones!=null}">
-									<fieldset class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
-										style="margin: 0 0 0 0; padding: 0 0 0 0; border: none;">
-										<legend>Téléphones</legend>
-										<ui:repeat value="#{mbUser.phones}" var="phone">
-											<strong> <h:outputText
-													class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
-													value="#{phone.type}" /></strong>
-											<h:outputText class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
-												value="#{phone.phoneNumber}" />
-										</ui:repeat>
+													<h:outputText class="fa-times col-lg-2"
+														style="font-family: FontAwesome;"
+														onclick="{mbUser.deletePhoneNumber(phone.idPhone)}" />
+												</div>
+											</ui:repeat>
+										</div>
+									</h:panelGroup>
+								</fieldset>
 
-
-									</fieldset>
-								</h:panelGroup>
 							</div>
 
-							<div class="col-lg-12">
+							<div class="ad col-lg-12">
+								<fieldset>
+									<legend class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Adresse</legend>
+									<h:panelGroup class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
+										rendered="#{mbConnexion.id!=null}">
 
-								<h:panelGroup class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
-									rendered="#{mbConnexion.id!=null}">
-									<strong><span
-										class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Adresse</span></strong>
 
-									<div class="col-md-12">
-										<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12">Rue
-											:</span>
+										<div class="col-md-12">
+											<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12">Rue
+												:</span>
 
-										<h:inputText class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
-											value="#{mbUser.street}" />
-									</div>
-									<div class="col-md-12">
-										<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12">Code
-											Postal :</span>
-										<h:inputText class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
-											value="#{mbUser.zipcode}" />
-									</div>
-									<div class="col-md-12">
-										<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12">Ville
-											:</span>
-										<h:inputText class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
-											value="#{mbUser.city}" />
-									</div>
-									<div class="col-md-12">
-										<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-											Pays :</span>
-										<h:selectOneMenu
-											class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
-											value="#{mbUser.country}">
-											<f:selectItems value="#{mbUser.countries}" var="pays"
-												itemLabel="#{pays.name}" itemValue="#{pays.idCountry}" />
-										</h:selectOneMenu>
-									</div>
-									<div class="col-md-12">
-										<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-											Type :</span>
-										<h:selectOneMenu
-											class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
-											value="#{mbUser.idAddressType}">
-											<f:selectItems value="#{mbUser.addressTypes}" var="a"
-												itemValue="#{a.idAddressType}" itemLabel="#{a.addressType}" />
-										</h:selectOneMenu>
-									</div>
-									<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12"></span>
-									<h:commandButton
-										class="col-lg-6 col-md-12 col-sm-12 col-xs-12 "
-										action="#{mbUser.addAddressToUser()}" value="Ajouter" />
-								</h:panelGroup>
+											<h:inputText class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
+												value="#{mbUser.street}" />
+										</div>
+										<div class="col-md-12">
+											<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12">Code
+												Postal :</span>
+											<h:inputText class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
+												value="#{mbUser.zipcode}" />
+										</div>
+										<div class="col-md-12">
+											<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12">Ville
+												:</span>
+											<h:inputText class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
+												value="#{mbUser.city}" />
+										</div>
+										<div class="col-md-12">
+											<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+												Pays :</span>
+											<h:selectOneMenu
+												class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
+												value="#{mbUser.country}">
+												<f:selectItems value="#{mbUser.countries}" var="pays"
+													itemLabel="#{pays.name}" itemValue="#{pays.idCountry}" />
+											</h:selectOneMenu>
+										</div>
+										<div class="col-md-12">
+											<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+												Type :</span>
+											<h:selectOneMenu
+												class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
+												value="#{mbUser.idAddressType}">
+												<f:selectItems value="#{mbUser.addressTypes}" var="a"
+													itemValue="#{a.idAddressType}" itemLabel="#{a.addressType}" />
+											</h:selectOneMenu>
+										</div>
+										<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12"></span>
+										<h:commandButton
+											class="btn btn-lg-primary col-lg-push-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 "
+											action="#{mbUser.addAddressToUser()}" value="Ajouter" />
+									</h:panelGroup>
 
-								<h:panelGroup class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
-									rendered="#{mbUser.addresses!=null}">
-									<fieldset class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
-										style="margin: 0 0 0 0; padding: 0 0 0 0; border: none;">
-										<strong> <legend>Adresses</legend></strong>
+									<h:panelGroup class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
+										rendered="#{mbUser.addresses!=null}">
+
 										<ui:repeat value="#{mbUser.addresses}" var="address">
-											<h:outputText class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
-												value="#{address.addressType.addressType}"
-												style="font-weight:bold;" />
-											<h:outputText class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
-												value="#{address.street}" />
-											<h:outputText class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
-												value="#{address.zipcode}" />
-											<h:outputText class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
-												value="#{address.city}" />
-											<h:outputText class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
-												value="#{mbCountry.findCountry(address.country).name}" />
-
+											<div class="col-lg-6">
+												<h:outputText
+													class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
+													value="#{address.addressType.addressType}"
+													style="font-weight:bold;" />
+													<h:outputLabel class="fa-times col-lg-6"
+														style="font-family: FontAwesome;"
+														onclick="#" />
+												<h:outputText
+													class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+													value="#{address.street}" />
+												<h:outputText
+													class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+													value="#{address.zipcode}" />
+												<h:outputText
+													class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+													value="#{address.city}" />
+												<h:outputText
+													class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+													value="#{mbCountry.findCountry(address.country).name}" />
+											</div>
 										</ui:repeat>
-									</fieldset>
-								</h:panelGroup>
+									</h:panelGroup>
+								</fieldset>
 							</div>
 
 						</fieldset>
-				
-				</div>
-			</div>
 
-		</h:form>
-	</f:view>
-</ui:define>
+					</div>
+				</div>
+
+			</h:form>
+		</f:view>
+	</ui:define>
 </ui:composition>
 </html>

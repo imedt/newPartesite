@@ -43,4 +43,9 @@ public class BusinessPhoneImpl implements IBusinessPhone {
 		return phones;
 	}
 
+	@Override
+	public void delete(Integer idPhone) {
+		daoPh.delete(idPhone);
+	}
+
 }

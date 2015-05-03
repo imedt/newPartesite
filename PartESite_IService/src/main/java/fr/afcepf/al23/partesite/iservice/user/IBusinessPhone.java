@@ -10,4 +10,5 @@ public interface IBusinessPhone {
 public Phone save(Phone phone);
 public Phone get(Integer idPhone);
 public List<Phone> getByIdIdentity(Integer idIdentity);
+public void delete(Integer idPhone);
 }

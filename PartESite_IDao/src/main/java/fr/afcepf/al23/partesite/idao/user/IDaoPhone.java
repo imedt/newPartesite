@@ -14,4 +14,5 @@ public interface IDaoPhone {
 	public Phone get(Integer idPhone);
 	public List<Phone> getByIdIdentity(Integer idIdentity);
 	public Boolean phoneExist(String phoneNumber);
+	public void delete(Integer idPhone);
 }

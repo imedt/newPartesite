@@ -108,12 +108,12 @@ public class MBConnexion {
 			log.info("User found");
 			if (id.getIdentityRole().getIdIdentityRole() == 3) {
 				log.info("Account user");
-				setDirection("/UserDashBoard.xhtml?faces-redirect=true");
+				setDirection("../pages/UserDashBoard.xhtml?faces-redirect=true");
 				setStatut("Utilisateur");
 			}
 			if (id.getIdentityRole().getIdIdentityRole() == 2) {
 				log.info("Account Moderator");
-				setDirection("/ModeratorDashBoard.xhtml?faces-redirect=true");
+				setDirection("../pages/ModeratorDashBoard.xhtml?faces-redirect=true");
 				setStatut("Moderateur");
 			}
 		}else{
@@ -126,7 +126,7 @@ public class MBConnexion {
 		try {
 			setStatut(null);
 			setId(null);
-			setDirection("/Home.xhtml?faces-redirect=true");
+			setDirection("../pages/Home.xhtml?faces-redirect=true");
 			
 			HttpServletRequest request = 
 					(HttpServletRequest)FacesContext
@@ -140,7 +140,7 @@ public class MBConnexion {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		setDirection("/Home.xhtml?faces-redirect=true");
+		setDirection("../pages/Home.xhtml?faces-redirect=true");
 		return direction;
 	}
 
