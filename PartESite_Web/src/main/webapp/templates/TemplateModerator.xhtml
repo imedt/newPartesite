@@ -49,7 +49,7 @@
 <ui:insert name="script"></ui:insert>
 </head>
 
-<body>
+<body class="page">
 	<f:view>
 		<h:form>
 			<div class="container">
@@ -57,7 +57,7 @@
 				<div class="header">
 					<div class="col-lg-12">
 						<div class="col-lg-2" id="menu">
-							<a href="../pages/Home.xhtml"> <i class="fa-home col-lg-12" /> <span>Menu</span>
+							<a href="../pages/Home.xhtml"  class="icon fa-home col-lg-12" > <span class="col-lg-12">Menu</span>
 							</a>
 						</div>
 						<div class="col-lg-8">
@@ -81,19 +81,19 @@
 
 					<div class="nav navbar">
 						<ul class="col-lg-12">
-						<li><i class="fa-dashboard" style="padding-left:10px;"/> <a
+						<li><a class="icon fa-dashboard" style="padding-left:10px;"
 								href="../pages/ModeratorDashBoard.xhtml"> <span>Tableau de bord</span>
 							</a></li>
-							<li><i class="fa-briefcase" /> <a
+							<li><a class="icon fa-briefcase" 
 								href="../pages/ModeratorPublishProjects.xhtml"><span>Projets</span>
 							</a></li>
-							<li><i class="fa-credit-card" /> <a
+							<li><a class="icon fa-credit-card" 
 								href="../pages/ModeratorManageBackings.xhtml"> <span>Participations</span>
 							</a></li>
-							<li><i class="fa-bar-chart" /> <a
+							<li><a class="icon fa-bar-chart" 
 								href="../pages/ModeratorManageProfitability.xhtml"> <span>Rentabilité</span>
 							</a></li>
-							<li><i class="fa-comments" /> <a
+							<li><a class="icon fa-comments"
 								href="../pages/ModeratorNotifications.xhtml"><span>
 										Notifications</span> </a></li>
 						</ul>
@@ -104,12 +104,12 @@
 					<div class="nav navbar" style="margin-top: 0;margin-bottom:0;">
 						<ul class="col-lg-12">
 							<li>
-							<i class=" fa-exclamation-triangle" /> 
-							<a href="../pages/SearchProject.xhtml"><span>Recherche</span></a></li>
-							<li><h:commandLink action="#{mbConnexion.deconnexion()}">
-										<i class=" fa-sign-out"/>
-										<span>Déconnexion</span>
-									</h:commandLink></li>
+							<a class="icon fa-exclamation-triangle"   href="../pages/SearchProject.xhtml">
+							<span>Recherche</span></a></li>
+							<li><a class="icon fa-sign-out"><h:commandLink action="#{mbConnexion.deconnexion()}">
+								<span >Déconnexion
+								</span></h:commandLink>
+								</a></li>
 						</ul>
 					</div>
 				</div>

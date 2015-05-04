@@ -123,10 +123,9 @@ public class MBConnexion {
 	}
 
 	public String deconnexion() {
+		
+		id = null;
 		try {
-			setStatut(null);
-			setId(null);
-			setDirection("../pages/Home.xhtml?faces-redirect=true");
 			
 			HttpServletRequest request = 
 					(HttpServletRequest)FacesContext
@@ -136,6 +135,7 @@ public class MBConnexion {
 			MBOrder mbOrder = (MBOrder)request.getAttribute("mbOrder");
 			mbOrder = new MBOrder();
 			
+			setDirection("../pages/Home.xhtml?faces-redirect=true");
 			
 		} catch (Exception e) {
 			e.printStackTrace();
