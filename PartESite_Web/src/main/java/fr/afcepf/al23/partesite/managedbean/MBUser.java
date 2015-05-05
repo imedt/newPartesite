@@ -13,11 +13,15 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
+import org.w3c.dom.Text;
+
 import fr.afcepf.al23.model.entities.Address;
 import fr.afcepf.al23.model.entities.AddressType;
 import fr.afcepf.al23.model.entities.Civility;
 import fr.afcepf.al23.model.entities.Identity;
+import fr.afcepf.al23.model.entities.Notification;
 import fr.afcepf.al23.model.entities.Phone;
+import fr.afcepf.al23.partesite.iservice.notification.IBusinessNotification;
 import fr.afcepf.al23.partesite.iservice.user.IBusinessAddress;
 import fr.afcepf.al23.partesite.iservice.user.IBusinessAddressType;
 import fr.afcepf.al23.partesite.iservice.user.IBusinessCivility;
@@ -45,6 +49,8 @@ public class MBUser {
 	private IBusinessAddress buAddress;
 	@EJB
 	private IBusinessAddressType buAddressType;
+	@EJB
+	private IBusinessNotification buNotification;
 
 	@ManagedProperty(value="#{mbConnexion}")
 	private MBConnexion cnx;
@@ -62,6 +68,10 @@ public class MBUser {
 	private String password;
 	private Identity identity;
 	private String direction;
+	private List<Identity> usersList = new ArrayList<>();
+	private Identity userToSendMessage;
+	private String objet;
+	private Text contentMessage;
 
 	//Phone
 	private List<Phone>phones=new ArrayList<>();
@@ -293,7 +303,40 @@ public class MBUser {
 	public void setMessage(String message) {
 		this.message = message;
 	}
+	public List<Identity> getUsersList() {
+		List<Identity> temp = new ArrayList<>();
+		temp = buIdentity.getAll();
+		for (Identity u : temp){
+			if (u.getIdentityRole().getIdIdentityRole()!=2){
+				usersList.add(u);
+			}
+		}
+		return usersList;
+	}
+	public void setUsersList(List<Identity> usersList) {
+		this.usersList = usersList;
+	}
 
+	public Identity getUserToSendMessage() {
+		return userToSendMessage;
+	}
+	public void setUserToSendMessage(Identity userToSendMessage) {
+		this.userToSendMessage = userToSendMessage;
+	}
+
+	public String getObjet() {
+		return objet;
+	}
+	public void setObjet(String objet) {
+		this.objet = objet;
+	}
+	public Text getContentMessage() {
+		return contentMessage;
+	}
+	public void setContentMessage(Text contentMessage) {
+		this.contentMessage = contentMessage;
+	}
+	
 	//METHODES
 
 	//M�hode inscription
@@ -394,4 +437,27 @@ public class MBUser {
 		getPhones();
 		return "";
 	}
+	
+
+	
+	public String sendNotificationToUser(){
+		Notification n = new Notification();
+		
+		n.setContentNotification(
+				"<h2>Envoyée par le modérateur</h2><br />"+
+				"<span>Objet :"+objet+"</span><br />"+
+				"<p>"+contentMessage+"</p>"
+				);
+		n.setCreatedDate(new Date());
+		n.setIdentity(cnx.getId());
+		n.setIdTarget(userToSendMessage.getIdIdentity());
+		n.setDisabled(false);
+		buNotification.save(n);
+		
+		message = "Votre message a bien été envoyé à :"+userToSendMessage.getFirstName()+" "+userToSendMessage.getLastName()+".";
+		objet = null;
+		contentMessage = null;
+		return "";
+	}
+	
 }

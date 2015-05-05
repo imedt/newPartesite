@@ -6,13 +6,14 @@ margin-left:auto;margin-right:auto;
 font-family:CG Omega;}
 
 h1{color:navy;font-weight: bold;text-align: center;}
-#messageSent span {color:Teal;text-transform: uppercase;margin-top:1em;}
+#messageSent {color:Teal;text-transform: uppercase;margin-top:1em;font-weight: bold;}
 
 .header {background-color:Beige;padding-top:1em;width: 100%;height: auto;float:left;}
 .body {background-color:Beige;padding-top:3em;padding-bottom:3em;margin-top:2em;width: 100%;height: auto;float:left;}
 
 
 .body .titleProjectsList li{display: inline-block;list-style-type: none;text-align:center;}
+.body .titleProjectsList li a span {font-size: large;font-weight: bold;}
 .body .titleProjectsList li .ProjectsList{family-name:CG Omega; color:navy;text-transform: uppercase;font-size:large;}
 .body .titleProjectsList li:hover .ProjectsList{family-name:CG Omega; color:Teal;text-transform: uppercase;font-size:large;}
 
@@ -37,6 +38,18 @@ h1{color:navy;font-weight: bold;text-align: center;}
 .body table th {background-color:Teal;color:white;font-family:CG Omega;font-weight: bold;text-align:center;width: 120px;height:2em;}
 .body table tr {text-align:center;padding-top:1em;padding-bottom:1em;color:navy;font-family:CG Omega;margin-top:1em;text-align:center;}
 
+.body .bloc {font-family:CG Omega;width:auto;height: auto;margin:0;padding:0;position:relative;z-index:1;}
+.body .bloc .textBox {margin-top:1em;margin-bottom:1em;}
+.body .bloc .textBox h3{width:100%;color:Teal;font-weight: bold;text-transform: uppercase;text-align:center;}
+.body .bloc .textBox span{color:navy;text-align: justify;font-size: large;}
+.body .bloc .frameBoxImage {width:100%;;margin-top:1em;margin-bottom:1em;}
+.body .bloc .frameBoxImage img {min-width: 100%;min-height: 400px;max-width: 100%;max-height: 400px;}
+.body .bloc .frameBoxVideo {width:100%;margin-top:1em;margin-bottom:1em;}
+.body .bloc .frameBoxVideo iframe {min-width: 100%;min-height: 400px;max-width: 100%;max-height: 400px;margin-top:3em;}
+.body .bloc .pack {margin:0;background-color:white;padding:0;background-color: white;margin-bottom:2em;position:relative;z-index:2;width: 100%;}
+.body .bloc .pack h3{width:100%;color:Teal;font-weight: bold;text-transform: uppercase;text-align:center;}
+.body .bloc .pack span{color:navy;text-align: center;font-size: small;}
+.body .bloc .pack .larger {color:navy;text-align: center;font-size: medium;margin-top:1em;font-weight: bold;}
 
 .body .db {min-width:140px;min-height:140px;border-radius:50%;color:White;margin-bottom:3em;margin-right:2em;border:solid 2px navy;background-color: navy;margin-right:1em;margin-left:1em;}
 .body .db2 {min-width:70px;min-height:70px;border-radius:50%;color:White;margin-bottom:3em;margin-right:2em;border:solid 2px orange;background-color: orange;margin-right:1em;margin-left:1em;}
@@ -50,21 +63,21 @@ background-color:Teal;color:White;margin-bottom:3em;border:solid 2px Teal;}
 .body .btn {margin-top:1em;padding-top:0.2em;margin-right:2em;height:2em;background-color:Teal; color:White;border-radius:0;}
 .body .btn:hover {margin-top:1em;padding-top:0.2em;margin-right:2em;height:2em;background-color:navy; color:White;border-radius:0;}
 
-.footer {background-color:Beige;padding-top:3em;padding-bottom:3em;margin-top:2em;float:left;width: 100%;height: auto;}
+.footer {background-color:Beige;padding-top:1em;padding-bottom:1em;margin-top:2em;float:left;width: 100%;height: auto;}
 .footer .footer-titre{color:navy;font-family:CG Omega;}
-.footer .input-prepend {font-family:'FontAwesome';color:navy;padding-top:1em;padding-bottom:1em;}
-.footer .input-prepend  .add-on .icon{font-family:'FontAwesome';padding-left:1em;color:navy;}
-.footer .input-prepend  inputTextarea .span2 {color:navy;min-height: 200px;width:auto;}
-.footer .input-prepend  input .span2 {color:navy;background-color:LightGray;width:auto;margin-bottom:2em;}   
-.footer .input-prepend  .button {color:White;border:solid 2px navy;width:100%;font-family:CG Omega;border-radius:5px;background-color:navy;}
+.footer .input-prepend {font-family:'FontAwesome';color:navy;padding-top:2em;padding-bottom:1em;}
+.footer .input-prepend  .add-on .icon{font-family:'FontAwesome';padding-top:1em;padding-left:2em;color:navy;height:2em;font-size:large;}
+.footer .input-prepend .span2 {color:navy;height:2em;}
+.footer .input-prepend .span3{color:navy;margin-top:1em;margin-bottom:1em;height:5em;background-color:white;}   
+.footer .input-prepend  .button {height:3em;color:White;border:solid 2px navy;width:100%;font-family:CG Omega;border-radius:5px;background-color:navy;}
 .footer .input-prepend  .button:hover {background-color:Teal;color:white;border:solid 2px Teal;}
 .footer p {font-family:'CG Omega';color:navy;font-weight: bold;}
 .footer ul li {font-family:'FontAwesome';color:navy;list-style-type: none;display: block;}
 .footer ul li a {font-family:CG Omega;color:navy;padding-left:2em;text-align:center;}
 .footer ul li:hover {font-family:'FontAwesome';color:Teal;}
 .footer ul li:hover a {font-family:CG Omega;color:Teal;}
-.footer p {font-family:'FontAwesome';color:navy;font-weight: inherit;width: 100%;height: auto;}
-.footer p span {font-family:CG Omega;color:navy;font-weight: inherit;text-align:center;}
+.footer p {font-family:'FontAwesome';color:navy;font-weight: inherit;width: 100%;height: auto;text-align:center;}
+.footer p span {font-family:CG Omega;color:navy;font-weight: inherit;font-size: medium;}
 
 #menu{color:navy;height: 3em; text-align:center;margin:0;padding:0;}
 #menu .icon {color:navy;font-size: large;font-size:xx-large;font-family: 'FontAwesome';}

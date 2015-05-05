@@ -2508,13 +2508,16 @@ input[type="range"] {
 }
 select[multiple],
 select[size] {
-  height: auto;
+  height: 2em;
   text-align:center;
   color:navy;
+  font-size:medium;
   padding-left:3em;
   border-radius:5px;
   font-family:CG Omega;border:none;
   background-color:beige; 
+  font-weight: bold;
+
 }
 input[type="file"]:focus,
 input[type="radio"]:focus,
