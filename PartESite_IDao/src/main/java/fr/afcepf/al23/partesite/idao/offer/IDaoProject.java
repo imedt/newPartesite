@@ -16,7 +16,10 @@ public interface IDaoProject {
 	public Project update(Project project);
 	public Project get(Integer idProject);
 	public List<Project> getAll();
+<<<<<<< HEAD
 	public List<Project> getAllWithContents();
+=======
+>>>>>>> origin/master
 	public List<Project> getAllPublish();
 	public List<Project> getByIdentity(Identity identity);
 	public List<Project> getByCategory(Integer idProjectCategory);

@@ -2,7 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
+<<<<<<< HEAD
 	xmlns:ui="http://java.sun.com/jsf/facelets">
+=======
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+>>>>>>> origin/master
 
 <ui:composition template="../templates/TemplateHome.xhtml">
 
@@ -21,10 +27,17 @@
 							style="margin-left: 1em; text-align: center;">
 							<div class="input-prepend col-lg-6">
 								<span class="add-on col-lg-2"> Nom </span>
+<<<<<<< HEAD
 								<h:inputText class="span2 col-lg-10"
 									value="#{mbSearchProject.name}">
 									<f:ajax listener="#{mbSearchProject.searchByName()}"
 										render="list" event="keyup" />
+=======
+								<h:inputText class="span2 col-lg-10" 
+									value="#{mbSearchProject.name}">
+									<a4j:ajax listener="#{mbSearchProject.searchByName()}"
+										render="list" event="keyup"/> 
+>>>>>>> origin/master
 								</h:inputText>
 
 							</div>
@@ -39,6 +52,7 @@
 								action="#{mbSearchProject.searchByCategory(cat)}" id="category">
 							</h:commandButton>
 						</ui:repeat>
+<<<<<<< HEAD
 					</div>
 
 
@@ -68,14 +82,55 @@
 									<h:outputLabel class="col-lg-12">
 									Soutien : #{mbConversion.getConvertedAmount(project.aimingAmount)}
 									</h:outputLabel>
+=======
+					</div> 
+
+<h:panelGroup id="list">
+					<h:panelGroup rendered="#{mbSearchProject.projects.size()==0}"
+						class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<center>
+							<strong> <span>AUCUN RESULTAT</span></strong>
+						</center>
+					</h:panelGroup>
+
+
+					<h:panelGroup  rendered="#{mbSearchProject.projects.size()!=0}"
+						class="col-lg-push-1 col-lg-10 col-lg-push-1 col-md-12 col-sm-12 col-xs-12">
+							<ui:repeat value="#{mbSearchProject.projects}" var="project">
+	<a4j:outputPanel>
+
+									Date de publication  			
+    				#{project.publishingDate}
+    			
+									Auteur
+    				#{project.identity.firstName}
+    			
+									Projet
+    				#{project.projectName}
+    			
+									Categorie
+    				#{project.projectCategory.category}
+    		
+									Montant
+    				#{mbConversion.getConvertedAmount(project.aimingAmount)}
+    		
+>>>>>>> origin/master
 									<h:commandButton class="btn col-lg-12 lg-btn-default"
 										value="Details"
 										action="#{mbConsultProject.detailProject(project)}">
 									</h:commandButton>
+<<<<<<< HEAD
 								</div>
 							</ui:repeat>
 						</h:panelGroup>
 					</h:panelGroup>
+=======
+								</a4j:outputPanel>
+			
+							</ui:repeat>
+					</h:panelGroup>
+</h:panelGroup>
+>>>>>>> origin/master
 				</div>
 
 			</h:form>

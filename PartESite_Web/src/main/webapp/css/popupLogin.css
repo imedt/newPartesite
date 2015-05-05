@@ -17,13 +17,21 @@
 #loginmodal input{
 border:none;
 height:3em;
+<<<<<<< HEAD
 background-color:Beige;margin-bottom:1em;
+=======
+background-color:Beige;
+>>>>>>> origin/master
 }
 
 #loginmodal span{
 margin-top:0.5em;
 color:navy;
 font-weight: bold;
+<<<<<<< HEAD
+=======
+font-weight: 200;
+>>>>>>> origin/master
 }
 
 #loginmodal .identification {
@@ -36,15 +44,24 @@ text-transform:uppercase;
 font-weight : bold;
 color:navy;
 height:3em;
+<<<<<<< HEAD
 font-size:medium;
 }
 
 #loginmodal .password {
+=======
+}
+
+#loginmodal .password  {
+>>>>>>> origin/master
 text-transform:uppercase;
 font-weight : bold;
 color:navy;
 height:3em;
+<<<<<<< HEAD
 font-size: medium;
+=======
+>>>>>>> origin/master
 }
 
 

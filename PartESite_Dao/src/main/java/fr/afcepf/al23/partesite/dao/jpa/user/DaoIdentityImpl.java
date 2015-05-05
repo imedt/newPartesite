@@ -120,7 +120,11 @@ public class DaoIdentityImpl implements IDaoIdentity {
 	public List<Identity> getAll() {
 		List<Identity> identities = null;
 		Query hql = em.createQuery(
+<<<<<<< HEAD
 				"SELECT DISTINCT ident FROM Identity ident ORDER BY ident.lastName ASC");
+=======
+				"SELECT DISTINCT ident FROM Identity ident ");
+>>>>>>> origin/master
 		identities = hql.getResultList();
 		return identities;
 	}

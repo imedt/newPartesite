@@ -30,9 +30,18 @@ public class MBProjet {
 	private ProjectCategory projectCategory;
 	private String publishingDate;
 	private Double aimingAmount;
+<<<<<<< HEAD
 	private List<Project>allProjects;
 	private Integer financedAmount;
 
+=======
+	private List<Project>allProjects;  
+	private Integer financedAmount;
+
+	public String sliceText(String text,int max){ 
+		return text.length() > max ? (text.substring(0, max)+"...") : text; 
+	}
+>>>>>>> origin/master
 	
 	public Integer getFinancedAmount() {
 		return financedAmount;
@@ -79,7 +88,11 @@ public class MBProjet {
 		this.projectCategory = projectCategory;
 	}
 	public Double getAimingAmount() {
+<<<<<<< HEAD
 		return aimingAmount;
+=======
+		return aimingAmount; 
+>>>>>>> origin/master
 	}
 	public void setAimingAmount(Double aimingAmount) {
 		this.aimingAmount = aimingAmount;

@@ -2,7 +2,7 @@
     <wb-module deploy-name="PartESite_EAR-0.0.1-SNAPSHOT">
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/ear-resources"/>
         <wb-resource deploy-path="/" source-path="/src/main/application" tag="defaultRootSource"/>
-        <dependent-module archiveName="PartESite_Web.war" deploy-path="/" handle="module:/resource/PartESite_Web/PartESite_Web">
+        <dependent-module archiveName="PartESite_Web.war" deploy-path="/" handle="module:/classpath/var/M2_REPO/fr/afcepf/al23/partesite/PartESite_Web/0.0.1-SNAPSHOT/PartESite_Web-0.0.1-SNAPSHOT.war">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <dependent-module archiveName="PartESite_Dao-0.0.1-SNAPSHOT.jar" deploy-path="/" handle="module:/resource/PartESite_Dao/PartESite_Dao">

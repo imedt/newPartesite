@@ -17,7 +17,10 @@ public interface IBusinessProject {
 	public Project publishProject(Project project);
 	public Project disableProject(Project project);
 	public List<Project> getAll();
+<<<<<<< HEAD
 	public List<Project> getAllWithContents();
+=======
+>>>>>>> origin/master
 	public List<Project> getAllWithItems();
 	public List<Project> getAllFinancedProjects();
 	public List<Project> waitingProjects();
