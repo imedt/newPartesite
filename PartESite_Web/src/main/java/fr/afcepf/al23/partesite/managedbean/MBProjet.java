@@ -30,9 +30,12 @@ public class MBProjet {
 	private ProjectCategory projectCategory;
 	private String publishingDate;
 	private Double aimingAmount;
-	private List<Project>allProjects;
+	private List<Project>allProjects; 
 	private Integer financedAmount;
 
+	public String sliceText(String text,int max){ 
+		return text.length() > max ? (text.substring(0, max)+"...") : text; 
+	}
 	
 	public Integer getFinancedAmount() {
 		return financedAmount;
