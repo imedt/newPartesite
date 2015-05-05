@@ -30,7 +30,7 @@ public class MBProjet {
 	private ProjectCategory projectCategory;
 	private String publishingDate;
 	private Double aimingAmount;
-	private List<Project>allProjects; 
+	private List<Project>allProjects;  
 	private Integer financedAmount;
 
 	public String sliceText(String text,int max){ 
@@ -82,7 +82,7 @@ public class MBProjet {
 		this.projectCategory = projectCategory;
 	}
 	public Double getAimingAmount() {
-		return aimingAmount;
+		return aimingAmount; 
 	}
 	public void setAimingAmount(Double aimingAmount) {
 		this.aimingAmount = aimingAmount;
