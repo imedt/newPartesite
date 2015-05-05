@@ -126,7 +126,7 @@ public class MBUser {
 		this.buAddressType = buAddressType;
 	}
 	public MBConnexion getCnx() {
-		return cnx;
+		return cnx; 
 	}
 	public void setCnx(MBConnexion cnx) {
 		this.cnx = cnx;
@@ -388,8 +388,8 @@ public class MBUser {
 
 	public String deletePhoneNumber(Integer idPhone){
 		Phone ph = new Phone();
-		ph = buPhone.get(idPhone);
-		buPhone.delete(idPhone);
+		ph = buPhone.get(idPhone); 
+		//buPhone.delete(); 
 		getPhones().remove(ph);
 		getPhones();
 		return "";

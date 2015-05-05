@@ -89,3 +89,6 @@ background-color:Teal;color:White;margin-bottom:3em;border:solid 2px Teal;}
 .navbar li:hover .icon {font-family: 'FontAwesome';color:Teal ;padding-right: 1em;font-size: large;}
 .navbar li:hover a span {font-family:CG Omega;color:Teal ;font-size: large;}
 
+i{
+	font-style: normal!important; 
+}
