@@ -16,6 +16,7 @@ public interface IDaoProject {
 	public Project update(Project project);
 	public Project get(Integer idProject);
 	public List<Project> getAll();
+	public List<Project> getAllWithContents();
 	public List<Project> getAllPublish();
 	public List<Project> getByIdentity(Identity identity);
 	public List<Project> getByCategory(Integer idProjectCategory);

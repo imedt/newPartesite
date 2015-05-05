@@ -83,7 +83,7 @@ public class MBSearchProject {
 	public void setProjects(List<Project> projects) {
 		this.projects = projects;
 	}
-	// M�thodes 
+	// Mï¿½thodes 
 	public void searchByName() {
 		projects = buProject.getByNameWithCategory(name);
 		System.out.println("recherche par nom :"+projects.size());

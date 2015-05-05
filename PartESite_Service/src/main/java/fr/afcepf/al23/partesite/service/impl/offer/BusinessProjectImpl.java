@@ -184,4 +184,11 @@ log.info("getAllWithItems");
 		return projects;
 	}
 
+	@Override
+	public List<Project> getAllWithContents() {
+		List<Project> projects = new ArrayList<>();
+		projects = daoProj.getAllWithContents();
+		return projects;
+	}
+
 }

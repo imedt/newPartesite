@@ -90,5 +90,15 @@ background-color:Teal;color:White;margin-bottom:3em;border:solid 2px Teal;}
 .navbar li:hover a span {font-family:CG Omega;color:Teal ;font-size: large;}
 
 i{
-	font-style: normal!important; 
+	font-style: normal; 
 }
+
+.box {min-width:80px;min-height:180px;max-height:180px;border-radius:2px;text-align:center;
+background-color:white; padding:1em 1em 1em 1em;margin-left:1em; margin-right:1em;float:left;}
+.box input, span {color:navy;font-size:x-small;}
+.box h3{color:navy;font-size:small;font-weight: bold;}
+.box img {min-width:80px;min-height:80px;max-width:80px;max-height:80px;border-radius:50%;background-color:black;}
+
+
+
+
