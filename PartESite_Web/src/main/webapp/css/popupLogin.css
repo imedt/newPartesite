@@ -13,12 +13,11 @@
 #loginmodal {
   padding: 15px 20px;
   background: white;
-  border-radius: 6px;
 }
 #loginmodal input{
 border:none;
 height:3em;
-border-radius: 6px;
+background-color:Beige;
 }
 
 #loginmodal span{

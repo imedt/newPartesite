@@ -49,27 +49,23 @@
 <ui:insert name="script"></ui:insert>
 </head>
 
-<body>
+<body class="page">
 	<f:view>
 		<h:form>
 			<div class="container">
 
 				<div class="header">
 					<div class="col-lg-12">
-						<h:panelGroup>
-							<div class="col-lg-2" id="menu">
-								<a href="../pages/Home.xhtml"> <i class="fa-home col-lg-12" />
-									<span>Menu</span>
-								</a>
-							</div>
-						</h:panelGroup>
+						<div class="col-lg-2" id="menu">
+							<a href="../pages/Home.xhtml" class="icon fa-home col-lg-12">
+								<span class="col-lg-12">Menu</span>
+							</a>
+						</div>
 						<div class="col-lg-8">
 							<h1>Business Partner's Community</h1>
 						</div>
 						<div class="col-lg-2">
-							<div class="cart col-lg-12">
-								<a href="../pages/consulterPanier.xhtml"> <span>Panier</span></a>
-							</div>
+							<div class="col-lg-12"></div>
 							<h:selectOneMenu class="col-lg-12" onchange="submit()"
 								value="#{mbConnexion.devise}">
 								<f:selectItems value="#{mbDevise.listDevise}" />
@@ -77,13 +73,15 @@
 						</div>
 					</div>
 					<ui:insert name="message">
-						<div id="messageSent">
-							<h:outputText class="col-lg-12"
-								value="#{mbModeratorNotifications.showMessage()}" escape="false" />
-							<h:outputText class="col-lg-12" value="#{mbUser.message}"
+						<div id="messageSent" class="col-lg-12">
+							<h:outputText value="#{mbModeratorNotifications.showMessage()}"
 								escape="false" />
 						</div>
 					</ui:insert>
+
+
+						<!--  
+						<a href="../pages/consulterPanier.xhtml" class="cart"><span>Panier</span></a>-->
 
 
 
@@ -91,41 +89,42 @@
 
 					<div class="nav navbar">
 						<ul class="col-lg-12">
-							<li><a href="../pages/NewProjects.xhtml"><i
-									class=" fa-newspaper-o" /> <span>Nouveautés</span></a></li>
+							<li><a href="../pages/NewProjects.xhtml"
+								class="icon fa-newspaper-o"><span>Nouveautés</span></a></li>
 							<h:panelGroup>
-								<li><a href="../pages/SearchProject.xhtml"><i
-										class=" fa-exclamation-triangle" /> <span>Recherche</span></a></li>
+								<li><a href="../pages/SearchProject.xhtml"
+									class="icon fa-exclamation-triangle"> <span>Recherche</span></a></li>
 							</h:panelGroup>
-							<h:panelGroup rendered="#{mbConnexion.statut==null}">
-								<li><a href="../pages/NewUser.xhtml"><i
-										class=" fa-edit" /><span>Devenir Membre</span></a></li>
+							<h:panelGroup rendered="#{mbConnexion.id==null}">
+								<li><a href="../pages/NewUser.xhtml" class="icon fa-edit"><span>Devenir
+											Membre</span></a></li>
 							</h:panelGroup>
-							<h:panelGroup rendered="#{mbConnexion.statut==null}">
-								<li><a href="#loginmodal" id="modaltrigger" rel="login"><i
-										class=" fa-sign-in" /><span>S'identifier</span></a></li>
+							<h:panelGroup rendered="#{mbConnexion.id==null}">
+								<li><a href="#loginmodal" id="modaltrigger" rel="login"
+									class="icon fa-sign-in"><span>S'identifier</span></a></li>
 							</h:panelGroup>
-							<h:panelGroup rendered="#{mbConnexion.statut!=null}">
+							<h:panelGroup rendered="#{mbConnexion.id!=null}">
 								<h:panelGroup
 									rendered="#{mbConnexion.id.getIdentityRole().getIdIdentityRole()==3}">
-									<li><a href="../pages/UserDashBoard.xhtml"><i
-											class=" fa-user" /><span>Mon Compte</span></a></li>
+									<li><a href="../pages/UserDashBoard.xhtml"
+										class="icon fa-user"><span>Mon Compte</span></a></li>
 								</h:panelGroup>
 								<h:panelGroup
 									rendered="#{mbConnexion.id.getIdentityRole().getIdIdentityRole()==2}">
-									<li><a href="../pages/ModeratorDashBoard.xhtml"><i
-											class=" fa-user" /><span>Mon Compte</span></a></li>
+									<li><a href="../pages/ModeratorDashBoard.xhtml"
+										class="icon fa-user"><span>Mon Compte</span></a></li>
 								</h:panelGroup>
 							</h:panelGroup>
 							<h:panelGroup rendered="#{mbOrder.cart!=null}">
-								<li><a href="../pages/consulterPanier.xhtml"><i
-										class=" fa-shopping-cart" /> <span> Mon Panier </span> </a></li>
+								<li><a href="../pages/consulterPanier.xhtml"
+									class="icon fa-shopping-cart"> <span> Mon Panier </span>
+								</a></li>
 							</h:panelGroup>
-							<h:panelGroup rendered="#{mbConnexion.statut!=null}">
-								<li><h:commandLink>
-										<i class=" fa-sign-out" action="#{mbConnexion.deconnexion()}" />
-										<span>Deconnexion</span>
-									</h:commandLink></li>
+							<h:panelGroup rendered="#{mbConnexion.id!=null}">
+								<li><a class="icon fa-sign-out"><h:commandLink
+											action="#{mbConnexion.deconnexion()}">
+											<span>Déconnexion </span>
+										</h:commandLink> </a></li>
 							</h:panelGroup>
 						</ul>
 					</div>
@@ -166,11 +165,12 @@
 
 								<section class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
 								<div class="input-prepend col-lg-12">
-									<span class="add-on col-lg-2"><i class="fa-user"></i></span>
+									<span class="add-on col-lg-2"><a class="icon fa-user"></a></span>
 									<h:inputText value="#{mbModeratorNotifications.nomMembre}"
 										class="span2 col-lg-10" type="text" placeholder="Nom" />
 
-									<span class="add-on col-lg-2"><i class="fa-envelope-o"></i></span>
+									<span class="add-on col-lg-2"><a
+										class="icon fa-envelope-o"></a></span>
 									<h:inputText value="#{mbModeratorNotifications.emailMembre}"
 										class="span2 col-lg-10" type="text" placeholder="Mail" />
 
@@ -235,8 +235,7 @@
 							value="#{mbConnexion.password}" />
 					</div>
 					<div class="col-lg-12">
-						<h:commandButton
-							class="btn lg-btn-default col-lg-push-3 col-lg-9"
+						<h:commandButton class="btn lg-btn-default col-lg-push-3 col-lg-9"
 							action="#{mbConnexion.connexion}" value="Connexion"></h:commandButton>
 					</div>
 

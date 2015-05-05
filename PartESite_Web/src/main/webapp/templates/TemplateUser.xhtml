@@ -49,7 +49,7 @@
 <ui:insert name="script"></ui:insert>
 </head>
 
-<body>
+<body class="page">
 	<f:view>
 		<h:form>
 			<div class="container">
@@ -57,15 +57,14 @@
 				<div class="header">
 					<div class="col-lg-12">
 						<div class="col-lg-2" id="menu">
-							<a href="../pages/Home.xhtml"> <i class="fa-home col-lg-12" /> <span>Menu</span>
+							<a href="../pages/Home.xhtml"  class="icon fa-home col-lg-12" > <span class="col-lg-12">Menu</span>
 							</a>
 						</div>
 						<div class="col-lg-8">
 							<h1>Business Partner's Community</h1>
 						</div>
 						<div class="col-lg-2">
-							<div class="cart col-lg-12">
-								<a href="../pages/consulterPanier.xhtml"> <span>Panier</span></a>
+							<div class="col-lg-12">
 							</div>
 							<h:selectOneMenu class="col-lg-12" onchange="submit()"
 								value="#{mbConnexion.devise}">
@@ -74,27 +73,31 @@
 						</div>
 					</div>
 					<ui:insert name="message">
-						<div id="messageSent">
-							<h:outputText class="col-lg-12"
+						<div id="messageSent" class="col-lg-12">
+							<h:outputText 
 								value="#{mbModeratorNotifications.showMessage()}" escape="false" />
 						</div>
 					</ui:insert>
+<!--  
+						<a href="../pages/consulterPanier.xhtml" class="cart"><span>Panier</span></a>-->
+
 
 					<div class="nav navbar">
 						<ul class="col-lg-12">
-						<li><i class="fa-dashboard" style="padding-left:10px;"/> <a
-								href="../pages/UserDashBoard.xhtml"> <span>Tableau de bord</span>
+							<li><a class="icon fa-dashboard" style="padding-left: 10px;"
+								href="../pages/UserDashBoard.xhtml"> <span>Tableau de
+										bord</span>
 							</a></li>
-							<li><i class="fa-user" /> <a
-								href="../pages/UserInfo.xhtml"><span>Mes Informations</span>
-							</a></li>
-							<li><i class="icon fa-briefcase" /> <a
+							<li><a class="icon fa-user" href="../pages/UserInfo.xhtml"><span>Mes
+										Informations</span> </a></li>
+							<li><a class="icon fa-briefcase"
 								href="../pages/UserProjects.xhtml"> <span>Mes Projets</span>
 							</a></li>
-							<li><i class="icon fa-credit-card" /> <a
-								href="../pages/UserBackings.xhtml"> <span>Mes Participations</span>
+							<li><a class="icon fa-credit-card"
+								href="../pages/UserBackings.xhtml"> <span>Mes
+										Participations</span>
 							</a></li>
-							<li><i class="fa-comments" /> <a
+							<li><a class="icon fa-comments"
 								href="../pages/UserNotifications.xhtml"><span>Mes
 										Notifications</span> </a></li>
 						</ul>
@@ -102,15 +105,14 @@
 
 					<div class="separation" />
 
-					<div class="nav navbar" style="margin-top: 0;margin-bottom:0;">
+					<div class="nav navbar" style="margin-top: 0; margin-bottom: 0;">
 						<ul class="col-lg-12">
-							<li>
-							<i class=" fa-exclamation-triangle" /> 
-							<a href="../pages/SearchProject.xhtml"><span>Recherche</span></a></li>
-							<li><h:commandLink action="#{mbConnexion.deconnexion()}">
-										<i class=" fa-sign-out"/>
-										<span>Déconnexion</span>
-									</h:commandLink></li>
+							<li><a class="icon fa-exclamation-triangle"
+								href="../pages/SearchProject.xhtml"><span>Recherche</span></a></li>
+							<li><a class="icon fa-sign-out"><h:commandLink action="#{mbConnexion.deconnexion()}">
+								<span >Déconnexion
+								</span></h:commandLink>
+								</a></li>
 						</ul>
 					</div>
 				</div>
@@ -204,7 +206,7 @@
 					</ui:insert>
 				</div>
 
-					<!-- PopUp -->
+				<!-- PopUp -->
 				<div id="loginmodal" style="display: none;"
 					class="col-lg-push-4 col-lg-4">
 					<h1 class="identification col-lg-12 ">Bienvenue !</h1>
@@ -219,8 +221,7 @@
 							value="#{mbConnexion.password}" />
 					</div>
 					<div class="col-lg-12">
-						<h:commandButton
-							class="btn lg-btn-default col-lg-push-3 col-lg-9"
+						<h:commandButton class="btn lg-btn-default col-lg-push-3 col-lg-9"
 							action="#{mbConnexion.connexion}" value="Connexion"></h:commandButton>
 					</div>
 

@@ -329,9 +329,10 @@ public class MBUser {
 		
 		if (identity!=null){
 			setMessage("Bienvenue "+identity.getFirstName()+" ! Vous pouvez désormais vous connecter...");
+			cnx.setId(identity);
 		}
 		
-		setDirection("../pages/Home.xhtml?faces-redirect=true");
+		setDirection("../pages/UserDashBoard.xhtml?faces-redirect=true");
 
 		
 		
