@@ -77,7 +77,7 @@ public class Project implements Serializable {
 	private ProjectCategory projectCategory;
 
 	//bi-directional many-to-one association to ProjectContent
-	@OneToMany(mappedBy="project")
+	@OneToMany(mappedBy="project",fetch=FetchType.EAGER)
 	private List<ProjectContent> projectContents;
 
 	public Project() {
