@@ -3,6 +3,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
 	xmlns:a4j="http://richfaces.org/a4j">
 
 <ui:composition template="../templates/TemplateHome.xhtml">
@@ -13,7 +14,8 @@
 	<ui:define name="content">
 
 		<fieldset>
-			<h:form>
+			<h:form name="formulaire">
+
 				<div class="row">
 					<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
 
@@ -21,10 +23,10 @@
 							style="margin-left: 1em; text-align: center;">
 							<div class="input-prepend col-lg-6">
 								<span class="add-on col-lg-2"> Nom </span>
-								<h:inputText class="span2 col-lg-10" type="text"
+								<h:inputText class="span2 col-lg-10"
 									value="#{mbSearchProject.name}">
-									<a4j:commandButton listener="{mbSearchProject.searchByName}"
-										render="list" />
+									<a4j:ajax listener="#{mbSearchProject.searchByName()}"
+										render="list" event="keyup"/>
 								</h:inputText>
 
 							</div>
@@ -41,7 +43,7 @@
 						</ui:repeat>
 					</div>
 
-
+<h:panelGroup id="list">
 					<h:panelGroup rendered="#{mbSearchProject.projects.size()==0}"
 						class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<center>
@@ -50,49 +52,37 @@
 					</h:panelGroup>
 
 
-						<a4j:ajax>
-							<h:panelGroup rendered="#{mbSearchProject.projects.size()!=0}"
-								id="list" class="col-lg-push-1 col-lg-10 col-lg-push-1 col-md-12 col-sm-12 col-xs-12">
+					<h:panelGroup  rendered="#{mbSearchProject.projects.size()!=0}"
+						class="col-lg-push-1 col-lg-10 col-lg-push-1 col-md-12 col-sm-12 col-xs-12">
+							<ui:repeat value="#{mbSearchProject.projects}" var="project">
+	<a4j:outputPanel>
 
-
-								<h:dataTable value="#{mbSearchProject.projects}" var="project"
-									class="table">
-
-									<h:column>
-										<f:facet name="header">Date de publication</f:facet>   			
+									Date de publication  			
     				#{project.publishingDate}
-    			</h:column>
-
-									<h:column>
-										<f:facet name="header">Auteur</f:facet>
+    			
+									Auteur
     				#{project.identity.firstName}
-    			</h:column>
-
-									<h:column>
-										<f:facet name="header">Projet</f:facet>
+    			
+									Projet
     				#{project.projectName}
-    			</h:column>
-
-									<h:column>
-										<f:facet name="header">Categorie</f:facet>
+    			
+									Categorie
     				#{project.projectCategory.category}
-    			</h:column>
-
-									<h:column>
-										<f:facet name="header">Montant</f:facet>
+    		
+									Montant
     				#{mbConversion.getConvertedAmount(project.aimingAmount)}
-    			</h:column>
-									<h:column>
-										<h:commandButton class="btn col-lg-12 lg-btn-default"
-											value="Details"
-											action="#{mbConsultProject.detailProject(project)}">
-										</h:commandButton>
-									</h:column>
-								</h:dataTable>
-							</h:panelGroup>
-						</a4j:ajax>
-					</div>
+    		
+									<h:commandButton class="btn col-lg-12 lg-btn-default"
+										value="Details"
+										action="#{mbConsultProject.detailProject(project)}">
+									</h:commandButton>
+								</a4j:outputPanel>
 			
+							</ui:repeat>
+					</h:panelGroup>
+</h:panelGroup>
+				</div>
+
 			</h:form>
 		</fieldset>
 		<br />
