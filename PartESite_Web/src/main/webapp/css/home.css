@@ -32,6 +32,10 @@ h1{color:navy;font-weight: bold;text-align: center;}
 .body fieldset .ad  .type {font-weight: bold;margin-bottom:1em;margin-top:1em;}
 .body fieldset fieldset span, input, output{color:navy;}
 
+.body .charts .chart {color:navy;width:100%;height: auto;}
+.body .charts .chart h1{color:navy;text-align: center;}
+.body .charts .chart h2{color:navy;text-align: center;}
+
 .body .input-prepend {font-family:'FontAwesome';color:navy;padding-top:1em;padding-bottom:1em;margin-left:1em;}
 .body .input-prepend  .add-on {font-family:'FontAwesome';padding-left:1em;height:2em;font-size:medium;}
 .body .input-prepend  .add-on .icon{font-family:'FontAwesome';padding-left:1em;font-style: normal!important;}

@@ -7,13 +7,20 @@
 	<ui:define name="header-title">Rentabilité</ui:define>
 	<ui:define name="content">
 		<f:event listener="#{mbStatistics.init()}" type="preRenderView"></f:event>
+		
+		<div class="charts col-lg-push-1 col-lg-10">
 		<h1>Indicateurs</h1>
+		
+		<div class="chart col-lg-12">
 		<h2>Projets</h2>
 		<div class="row">
 			<div class="col-md-6">
 				<div id="chart_project_cat"></div>
 			</div>
 		</div>
+		</div>
+		
+		<div class="chart col-lg-12">
 		<h2>Utilisateurs</h2>
 		<div class="row">
 
@@ -26,11 +33,16 @@
 
 			</div>
 		</div>
+		</div>
+		
+		<div class="chart col-lg-12">
 		<h2>Ventes</h2>
 		<div class="row">
 			<div class="col-md-6">
 				<div id="sales_chart"></div>
 			</div> 
+		</div>
+		</div>
 		</div>
 	</ui:define>
 
