@@ -6,6 +6,7 @@ import org.hibernate.type.StandardBasicTypes;
 public class MyDialect extends MySQLDialect{
 	public MyDialect() {  
 		registerFunction("date_add_month", new SQLFunctionTemplate(StandardBasicTypes.DATE, " DATE_ADD(?1, INTERVAL +30 DAY) "));
-		registerFunction("now()", new SQLFunctionTemplate(StandardBasicTypes.DATE, "NOW()"));
+		registerFunction("now()", new SQLFunctionTemplate(StandardBasicTypes.DATE, "NOW()"));  
+		registerFunction("date_year_month", new SQLFunctionTemplate(StandardBasicTypes.DATE, "DATE_FORMAT(?1,'%Y-%m')")); 
 	}
 }

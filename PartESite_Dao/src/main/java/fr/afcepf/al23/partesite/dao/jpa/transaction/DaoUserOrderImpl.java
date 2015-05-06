@@ -155,4 +155,12 @@ public class DaoUserOrderImpl implements IDaoUserOrder {
 		return list;
 	}
 
+	@Override
+	public List<Object> getSalesByDate() {
+		String query = "SELECT uo.createdDate, SUM(totalAmount) FROM UserOrder uo GROUP BY date_year_month(uo.createdDate)";
+		Query hql = em.createQuery(query); 
+		List<Object> lobject =  hql.getResultList();
+		return lobject; 
+	}
+
 }

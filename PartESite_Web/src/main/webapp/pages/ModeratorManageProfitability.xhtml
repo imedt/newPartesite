@@ -6,43 +6,111 @@
 <ui:composition template="../templates/TemplateModerator.xhtml">
 	<ui:define name="header-title">Rentabilité</ui:define>
 	<ui:define name="content">
-	<f:event listener="#{mbStatistics.init()}" type="preRenderView"></f:event>
-		<div id="chart_project_cat">
-		 
+		<f:event listener="#{mbStatistics.init()}" type="preRenderView"></f:event>
+		<h1>Indicateurs</h1>
+		<h2>Projets</h2>
+		<div class="row">
+			<div class="col-md-6">
+				<div id="chart_project_cat"></div>
+			</div>
 		</div>
+		<h2>Utilisateurs</h2>
+		<div class="row">
 
+			<div class="col-md-6">
+				<div id="regions_div"></div>
+
+			</div>
+			<div class="col-md-6">
+				<div id="inscription_chart"></div>
+
+			</div>
+		</div>
+		<h2>Ventes</h2>
+		<div class="row">
+			<div class="col-md-6">
+				<div id="sales_chart"></div>
+			</div> 
+		</div>
 	</ui:define>
 
 	<ui:define name="script">
- 
+
 		<script type="text/javascript">
 
       // Load the Visualization API and the piechart package.
-      google.load('visualization', '1.0', {'packages':['corechart']});
-
+      google.load('visualization', '1.0', {'packages':['corechart','geochart']});
+	
       // Set a callback to run when the Google Visualization API is loaded.
       google.setOnLoadCallback(drawChart);
+      google.setOnLoadCallback(drawRegionsMap);
+      google.setOnLoadCallback(drawLineChart);
+      google.setOnLoadCallback(drawBarChart);
 
       // Callback that creates and populates a data table,
       // instantiates the pie chart, passes in the data and
-      // draws it.
+      // draws it.	
       function drawChart() {
 
         // Create the data table.
         var data = new google.visualization.DataTable();
         data.addColumn('string', 'Topping');
         data.addColumn('number', 'Slices');
-        data.addRows(#{mbStatistics.resultPays});
+        data.addRows(#{mbStatistics.listProjectByCategories});
 
         // Set chart options
-        var options = {'title':'How Much Pizza I Ate Last Night',
-                       'width':500, 
-                       'height':300};
+        var options = {'title':'Répartition des projets'};
 
         // Instantiate and draw our chart, passing in some options.
         var chart = new google.visualization.PieChart(document.getElementById('chart_project_cat'));
         chart.draw(data, options);
       }
+      function drawRegionsMap() {
+
+          var data = google.visualization.arrayToDataTable(#{mbStatistics.listUserByCountries});
+ 
+          var options = {
+        	        region: '150'
+        	      };
+
+          var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+
+          chart.draw(data, options);
+        }
+      function drawLineChart() {
+          var data = google.visualization.arrayToDataTable(#{mbStatistics.listUserBySigninDate}); 
+
+          var options = {
+            title: 'Company Performance',
+            curveType: 'function',
+            legend: { position: 'bottom' }
+          };
+
+          var chart = new google.visualization.LineChart(document.getElementById('inscription_chart'));
+
+          chart.draw(data, options);
+        }
+    
+
+      function drawBarChart() {
+
+          var data = google.visualization.arrayToDataTable(#{mbStatistics.listSalesByDate});
+ 
+          var options = {
+            title: 'Ventes par mois',
+            hAxis: {
+              title: 'Date',             
+            },
+            vAxis: { 
+              title: 'Ventes Total (€)'
+            }
+          };
+
+          var chart = new google.visualization.ColumnChart(
+            document.getElementById('sales_chart')); 
+
+          chart.draw(data, options);
+          }    
     </script>
 
 	</ui:define>

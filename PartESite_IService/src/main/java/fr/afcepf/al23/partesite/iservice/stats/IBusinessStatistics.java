@@ -3,4 +3,5 @@ public interface IBusinessStatistics {
 	public String getProjectsByCategories();
 	public String getSignUpByDate();
 	public String getSalesByDate();
+	public String getUsersByCountry();
 }

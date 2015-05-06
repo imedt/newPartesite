@@ -22,4 +22,6 @@ public Boolean  phoneExist(String phoneNumber);
 public Boolean  emailExist(String email);
 public List<Identity> getBlackList();
 public List<Identity> getAll();
+public List<Object> getUsersByCountries();
+public List<Object> getUsersBySigninDate();
 }

@@ -1,5 +1,6 @@
 package fr.afcepf.al23.partesite.dao.jpa.user;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -123,6 +124,22 @@ public class DaoIdentityImpl implements IDaoIdentity {
 				"SELECT DISTINCT ident FROM Identity ident ORDER BY ident.lastName ASC");
 		identities = hql.getResultList();
 		return identities;
+	}
+
+	@Override
+	public List<Object> getUsersByCountries() {
+		String query = "SELECT c.name, COUNT(u) FROM Country c, Address a INNER JOIN a.identity u WHERE a.country = c.idCountry GROUP BY c.name";
+		Query hql = em.createQuery(query);
+		List<Object> lobject =  hql.getResultList();
+		return lobject; 
+	} 
+
+	@Override
+	public List<Object> getUsersBySigninDate() {
+		String query = "SELECT u.createdDate, COUNT(u) FROM Identity u GROUP BY date_year_month(u.createdDate)";
+		Query hql = em.createQuery(query); 
+		List<Object> lobject =  hql.getResultList();
+		return lobject; 
 	}
 
 }

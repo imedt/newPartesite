@@ -4,6 +4,7 @@
         <class>fr.afcepf.al23.model.entities.Address</class>
 		<class>fr.afcepf.al23.model.entities.AddressType</class>
 		<class>fr.afcepf.al23.model.entities.Civility</class>
+		<class>fr.afcepf.al23.model.entities.Country</class>
 		<class>fr.afcepf.al23.model.entities.Identity</class>
 		<class>fr.afcepf.al23.model.entities.IdentityRight</class>
 		<class>fr.afcepf.al23.model.entities.IdentityRole</class>

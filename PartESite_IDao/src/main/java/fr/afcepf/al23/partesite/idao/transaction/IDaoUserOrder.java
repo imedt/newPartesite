@@ -1,5 +1,6 @@
 package fr.afcepf.al23.partesite.idao.transaction;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -20,5 +21,6 @@ public interface IDaoUserOrder {
 	public List<UserOrder> getByCreatedDate(Date createdDate);	
 	public List<UserOrder> getByDisabled(Boolean disabled);	
 	public List<UserOrder> getByUpdatedBy(Integer idIdentity);
-	public List<UserOrder> getByUpdatedDate(Date updatedDate);	
+	public List<UserOrder> getByUpdatedDate(Date updatedDate);
+	public List<Object> getSalesByDate();	
 }
