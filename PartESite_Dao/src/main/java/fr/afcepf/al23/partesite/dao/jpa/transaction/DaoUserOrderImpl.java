@@ -14,7 +14,7 @@ import javax.persistence.Query;
 
 import org.apache.log4j.Logger;
 
-import fr.afcepf.al23.model.entities.Identity;
+import fr.afcepf.al23.model.entities.Identity; 
 import fr.afcepf.al23.model.entities.UserOrder;
 import fr.afcepf.al23.partesite.dao.offer.DaoProjectImpl;
 import fr.afcepf.al23.partesite.idao.transaction.IDaoUserOrder;

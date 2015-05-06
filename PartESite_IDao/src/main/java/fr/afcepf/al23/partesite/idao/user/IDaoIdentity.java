@@ -8,7 +8,7 @@ import fr.afcepf.al23.model.entities.Address;
 import fr.afcepf.al23.model.entities.Identity;
 import fr.afcepf.al23.model.entities.IdentityRight;
 import fr.afcepf.al23.model.entities.Phone;
-
+ 
 @Remote
 public interface IDaoIdentity {
 public Identity add(Identity identity);

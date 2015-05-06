@@ -1,53 +1,72 @@
-</div><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html">
 <ui:composition template="../templates/TemplateHome.xhtml">
-	
-<ui:define name="content">
-		<div class="row">
-			<div id="Cartmodal"
-				class="col-md-12">
 
-				<h:dataTable class="col-lg-push-1 col-lg-10" var="c"
-					styleClass="table" value="#{mbOrder.cart.orderRows}"
-					headerClass="table-header"
-					rowClasses="table-odd-row vertiscaled, table-even-row vertiscaled">
-					<h:column>  
+	<ui:define name="content">
+	<f:view>
+	<h:form>
+	
+		<div class="row">
+
+			<h:panelGroup rendered="#{mbOrder.cart.orderRows!=null}"
+			class="cart  col-lg-push-1 col-lg-10">
+
+				<h:dataTable class="table col-lg-12" var="c"
+					value="#{mbOrder.cart.orderRows}">
+					<h:column>
 						<f:facet name="header">Pack</f:facet>   			 
     				#{c.pack.packName}
     			</h:column>
 					<h:column>
-						<f:facet name="header">Montant</f:facet>   			
-    				<h:outputText value="#{mbConversion.getConvertedAmount(c.pack.amount)}">
-    					<f:convertNumber maxFractionDigits="0" minFractionDigits="0"/>
-    				</h:outputText>  
-    			</h:column> 
-					<h:column> 
+						<f:facet name="header">Montant</f:facet>
+						<h:outputText
+							value="#{mbConversion.getConvertedAmount(c.pack.amount)}">
+							<f:convertNumber maxFractionDigits="0" minFractionDigits="0" />
+						</h:outputText>
+					</h:column>
+					<h:column>
 						<f:facet name="header">Quantité</f:facet>
 						<h:outputText value="#{c.amount / c.pack.amount}" />
 					</h:column>
 					<h:column>
 						<f:facet name="header">Total</f:facet>   			
     				#{mbConversion.getConvertedAmount(c.amount)}
-    			</h:column> 
-					<h:column>
-						<f:facet name="header"></f:facet>   			
-						<h:commandButton class="col-lg-2 lg-btn-default"
-							style="width:auto;" value="Supprimer" action="#{mbOrder.removePack(c)}">
-						</h:commandButton>
     			</h:column>
-
-
+					<h:column>
+						<f:facet name="header">Supprimer</f:facet>
+						<h:commandButton class="btn" value="Supprimer"
+							action="#{mbOrder.removePack(c)}" />
+					</h:column>
 
 				</h:dataTable>
 
-			</div>
-			<div class="col-md-12" style="text-align: center">
-					<h:commandButton action="#{mbPayment.accessPaymentForm()}" value="Proceder au paiement" />
-			</div>
+
+				<div class="col-md-12" style="text-align: center">
+					<h:commandButton action="#{mbPayment.accessPaymentForm()}"
+						value="Proceder au paiement" />
+				</div>
+			</h:panelGroup>
+			
+			
+			<h:panelGroup rendered="#{mbOrder.cart.orderRows==null}"
+			class="cart  col-lg-push-1 col-lg-10">
+			
+			<h3 class="col-lg-12">Votre panier est actuellement vide.</h3>
+			
+			<a href="../pages/SearchProject.xhtml">
+			<span class="col-lg-12">
+			Consulter les projets à soutenir...
+			</span>
+			</a>
+			</h:panelGroup>
+			
 		</div>
+		
+		</h:form>
+	</f:view>
 	</ui:define>
 
 </ui:composition>

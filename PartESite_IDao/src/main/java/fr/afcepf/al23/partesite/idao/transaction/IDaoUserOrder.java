@@ -20,7 +20,7 @@ public interface IDaoUserOrder {
 	public List<UserOrder> getByCreatedBy(Integer idIdentity);
 	public List<UserOrder> getByCreatedDate(Date createdDate);	
 	public List<UserOrder> getByDisabled(Boolean disabled);	
-	public List<UserOrder> getByUpdatedBy(Integer idIdentity);
+	public List<UserOrder> getByUpdatedBy(Integer idIdentity); 
 	public List<UserOrder> getByUpdatedDate(Date updatedDate);
 	public List<Object> getSalesByDate();	
 }

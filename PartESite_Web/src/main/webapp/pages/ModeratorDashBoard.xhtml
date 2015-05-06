@@ -4,7 +4,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<ui:composition template="../templates/TemplateModerator.xhtml">
+<ui:composition template="../templates/TemplateModerator.xhtml"> 
 	<ui:define name="header-title">Tableau de bord</ui:define>
 
 
@@ -14,7 +14,7 @@
 
 				<div class="col-lg-12">
 					
-					<div class="col-lg-8" style="margin-top: 3em; text-align: center;">
+					<div class="col-lg-8" style="margin-top: 3em; text-align: center;margin-right:15em;margin-left:15em;">
 						<h:commandButton class="db"
 							value="Projets en cours : #{mbModerator.projectsEnCours}"
 							action="../pages/ModeratorPublishProjects.xhtml?faces-redirect=true" />
