@@ -10,123 +10,122 @@
 	<ui:define name="header-title">Participations</ui:define>
 
 	<ui:define name="content">
-	<f:view>
-	<h:form>
-	
-		<div class="row">
-			<div class="col-lg-12">
+		<f:view>
+			<h:form>
 
-				<h:panelGroup
-					rendered="#{mbDashboard.listBackingsWithReward.size()!=0}">
-					<center>
-						<h3 class="col-lg-push-1 col-lg-8" style="color:navy;font-weight:bold;">Mes Participations</h3></center>
-<h:dataTable class="col-lg-8"
-				value="#{mbDashboard.listBackingsWithReward}" var="p" styleClass="table"
-				headerClass="table-header"
-				rowClasses="table-odd-row, table-even-row">
-			
-				<h:column>
-					<f:facet name="header">Référence</f:facet>   			
+				<div class="row">
+					<div class="backings col-lg-12">
+
+						<h:panelGroup
+							rendered="#{mbDashboard.listBackingsWithReward.size()!=0}"
+							class="col-lg-push-1 col-lg-10">
+							<center>
+								<h3>Mes Participations</h3>
+							</center>
+							<h:dataTable class="table col-lg-12"
+								value="#{mbDashboard.listBackingsWithReward}" var="p">
+
+								<h:column>
+									<f:facet name="header">Référence</f:facet>   			
     				#{p.idUserOrder}
     			</h:column>
-				<h:column>
-					<f:facet name="header">Création</f:facet>   			
+								<h:column>
+									<f:facet name="header">Création</f:facet>   			
     				#{p.createdDate}
     			</h:column>
-				<h:column>
-					<f:facet name="header">Nom Projet(s)</f:facet>
-					<ui:repeat var="row" value="#{p.orderRows}" size="0">
+								<h:column>
+									<f:facet name="header">Nom Projet(s)</f:facet>
+									<ui:repeat var="row" value="#{p.orderRows}" size="0">
 						#{row.pack.project.projectName}
 					</ui:repeat>
-				</h:column>
-				<h:column>
-					<f:facet name="header">Participation Globale</f:facet>   			
-    				#{p.totalAmount}
+								</h:column>
+								<h:column>
+									<f:facet name="header">Participation Globale</f:facet> 
+    				#{mbConversion.getConvertedAmount(p.totalAmount)}
     			</h:column>
 
-				<h:column>
-							<f:facet name="header">Consultation</f:facet>
-							<h:commandButton class="btn col-lg-12 btn-lg-default"
-								value="Détails" action="#{mbOrder.updateBacking(p)}">
-							</h:commandButton>
-						</h:column>
-			</h:dataTable>			
-			</h:panelGroup>
+								<h:column>
+									<f:facet name="header">Consultation</f:facet>
+									<h:commandButton class="btn col-lg-12 btn-lg-default"
+										value="Détails" action="#{mbOrder.updateBacking(p)}">
+									</h:commandButton>
+								</h:column>
+							</h:dataTable>
+						</h:panelGroup>
 
-			</div>
-		</div>
+						<h:panelGroup rendered="#{mbDashboard.listGivings.size()!=0}"
+							class="col-lg-push-1 col-lg-10">
+							<center>
+								<h3>Mes Dons</h3>
+							</center>
+							<h:dataTable class="table col-lg-12"
+								value="#{mbDashboard.listGivings}" var="p">
 
-
-		<h:panelGroup rendered="#{mbDashboard.listGivings.size()!=0}">
-		<center>
-			<h3 class="col-lg-push-1 col-lg-8" style="color:navy;font-weight:bold;">Mes Dons</h3></center>
-			<h:dataTable class="col-lg-8"
-				value="#{mbDashboard.listGivings}" var="p" styleClass="table"
-				headerClass="table-header"
-				rowClasses="table-odd-row, table-even-row">
-			
-				<h:column>
-					<f:facet name="header">Référence</f:facet>   			
+								<h:column>
+									<f:facet name="header">Référence</f:facet>   			
     				#{p.idUserOrder}
     			</h:column>
-				<h:column>
-					<f:facet name="header">Création</f:facet>   			
+								<h:column>
+									<f:facet name="header">Création</f:facet>   			
     				#{p.createdDate}
     			</h:column>
-				<h:column>
-					<f:facet name="header">Nom Projet(s)</f:facet>
-					<ui:repeat var="row" value="#{p.orderRows}">
-						<span class="col-lg-3">#{row.pack.project.projectName}</span>
-					</ui:repeat>
-				</h:column>
-				<h:column>
-					<f:facet name="header">Participation Globale</f:facet>   			
-    				#{p.totalAmount}
+								<h:column>
+									<f:facet name="header">Nom Projet(s)</f:facet>
+									<ui:repeat var="row" value="#{p.orderRows}">
+										<span class="col-lg-3">#{row.pack.project.projectName}</span>
+									</ui:repeat>
+								</h:column>
+								<h:column>
+									<f:facet name="header">Participation Globale</f:facet>   			
+    				#{mbConversion.getConvertedAmount(p.totalAmount)}
     			</h:column>
 
-				<h:column>
-							<f:facet name="header">Consultation</f:facet>
-							<h:commandButton class="btn col-lg-12 btn-lg-default"
-								value="Détails" action="#{mbOrder.updateBacking(p)}">
-							</h:commandButton>
-						</h:column>
-			</h:dataTable>
-		</h:panelGroup>
+								<h:column>
+									<f:facet name="header">Consultation</f:facet>
+									<h:commandButton class="btn col-lg-12 btn-lg-default"
+										value="Détails" action="#{mbOrder.updateBacking(p)}">
+									</h:commandButton>
+								</h:column>
+							</h:dataTable>
+						</h:panelGroup>
 
 
 
-<h:panelGroup rendered="#{mbOrder.backing!=null}">
-<h3>DETAIL DE LA PARTICIPATION</h3>
-<h:dataTable class="col-lg-8"
-				value="#{mbOrder.backing.orderRows}" var="p" styleClass="table"
-				headerClass="table-header"
-				rowClasses="table-odd-row, table-even-row">
-
-<h:column>
-					<f:facet name="header">Référence</f:facet>   			
+						<h:panelGroup rendered="#{mbOrder.backing!=null}"
+							class="col-lg-push-1 col-lg-10">
+							<h3>Détail de la participation</h3>
+							<h:dataTable class="table col-lg-12"
+								value="#{mbOrder.backing.orderRows}" var="p">
+								<h:column>
+									<f:facet name="header">Référence</f:facet>   			
     				#{p.idOrderRow}
     			</h:column>
-    			<h:column>
-					<f:facet name="header">Date</f:facet>   			
+								<h:column>
+									<f:facet name="header">Date</f:facet>   			
     				#{p.createdDate}
     			</h:column>
-    			<h:column>
-    			<f:facet name="header">Pack</f:facet>   			
+								<h:column>
+									<f:facet name="header">Pack</f:facet>   			
     				#{p.pack.packName}
     			</h:column>
-    			<h:column>
-    			<f:facet name="header">Pack Description</f:facet>   			
+								<h:column>
+									<f:facet name="header">Pack Description</f:facet>  	
     				#{p.pack.description}
     			</h:column>
-    			<h:column>
-    			<f:facet name="header">Montant</f:facet>   			
-    				#{p.amount}
+								<h:column>
+									<f:facet name="header">Montant</f:facet>   			
+    				#{mbConversion.getConvertedAmount(p.amount)}
     			</h:column>
 
-</h:dataTable>
-</h:panelGroup>
-	</h:form>
-	</f:view>
+							</h:dataTable>
+						</h:panelGroup>
+
+					</div>
+				</div>
+
+
+			</h:form>
+		</f:view>
 	</ui:define>
 
 </ui:composition>
