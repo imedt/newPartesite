@@ -81,7 +81,6 @@ background-color:Teal;color:White;margin-bottom:3em;border:solid 2px Teal;}
 .body .projects .table tr{color:navy;margin-top:1em;}
 .body .projects .table tr td{color:navy;padding-left:1em;padding-right:1em;text-align:center;}
 
-
 .footer {background-color:Beige;padding-top:1em;padding-bottom:1em;margin-top:2em;float:left;width: 100%;height: auto;}
 .footer .footer-titre{color:navy;font-family:CG Omega;}
 .footer .input-prepend {font-family:'FontAwesome';color:navy;padding-top:2em;padding-bottom:1em;}
@@ -129,10 +128,10 @@ i{
 	font-style: normal; 
 }
 
-.box {min-width:80px;min-height:180px;max-height:180px;border-radius:2px;text-align:center;
+.box {min-width:300px;max-width:300px;min-height:230px;max-height:230px;border-radius:2px;text-align:center;
 background-color:white; padding:1em 1em 1em 1em;margin-left:1em; margin-right:1em;float:left;}
-.box input, span {color:navy;font-size:small;}
-.box h3{color:navy;font-size:small;font-weight: bold;}
-.box img {min-width:80px;min-height:80px;max-width:80px;max-height:80px;border-radius:50%;background-color:black;}
-
+.box  input, span {color:navy;font-size:small;}
+.box  input, span {color:navy;font-size:small;}
+.box  h3{color:Teal;font-size:medium;font-weight: bold;text-align:left;}
+.box  img {min-width:80px;min-height:80px;max-width:80px;max-height:80px;border-radius:50%;background-color:black;}
 

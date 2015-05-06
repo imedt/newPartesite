@@ -55,10 +55,10 @@
 							class="col-lg-push-1 col-lg-10 col-lg-push-1 col-md-12 col-sm-12 col-xs-12">
 							<ui:repeat value="#{mbSearchProject.projects}" var="project">
 								<div class="box col-lg-3">
+							
 								<h:outputLabel class="col-lg-12">
 								<h3 class="col-lg-6">#{project.projectName}</h3>
 								<img class="col-lg-6" src="../images/#{project.projectCategory.category}.jpg"/>	
-								
 								</h:outputLabel>
 								
 								<h:outputLabel class="col-lg-12" value="Publié le : #{project.publishingDate}">
@@ -70,13 +70,15 @@
 									<h:outputLabel class="col-lg-12">
 									Soutien : #{mbConversion.getConvertedAmount(project.aimingAmount)}
 									</h:outputLabel>
-
-									<h:commandButton class="btn col-lg-12 lg-btn-default"
+										
+										
+								<h:commandButton class="btn col-lg-12 lg-btn-default"
 										value="Details"
 										action="#{mbConsultProject.detailProject(project)}">
 									</h:commandButton>
-
-								</div>
+									
+									</div>
+							
 							</ui:repeat>
 						</h:panelGroup>
 					</h:panelGroup>

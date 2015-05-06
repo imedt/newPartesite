@@ -12,13 +12,13 @@
 <f:view>
 <h:form>
 
-<div class="col-lg-10" style="margin-top:3em;text-align:left;">
+<div class="col-lg-10" style="margin-top:3em;text-align:left;margin-left:15em;">
 <h:commandButton class="db" value="Projets : #{mbDashboard.allMyProjectsCount}" action="../pages/UserProjects.xhtml?faces-redirect=true"/>
 <h:commandButton class="db" value="Projets en ligne : #{mbDashboard.allMyProjectsOnlineCount}" action="../pages/UserProjects.xhtml?faces-redirect=true"/>
 <h:commandButton class="db" value="Projets financés : #{mbDashboard.allMyProjectsFinancedCount}" action="../pages/UserProjects.xhtml?faces-redirect=true"/>
 </div>
 
-<div class="col-lg-10" style="margin-bottom:1em;text-align:right;">
+<div class="col-lg-10" style="margin-bottom:1em;text-align:right;margin-right:15em;">
 <h:commandButton class="db" value="Investissements : #{mbDashboard.allMyBackingsWithRewardCount}" action="../pages/UserBackings.xhtml?faces-redirect=true"/>
 <h:commandButton class="db" value="Dons : #{mbDashboard.allMyGivingsCount}" action="../pages/UserBackings.xhtml?faces-redirect=true"/>
 <h:commandButton class="db" value="Notifications : #{mbDashboard.allMyNotificationsCount}" action="../pages/UserNotifications.xhtml?faces-redirect=true"/>
