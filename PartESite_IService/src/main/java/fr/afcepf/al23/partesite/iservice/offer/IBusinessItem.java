@@ -19,4 +19,4 @@ public interface IBusinessItem {
 	public List<Item> getDispoByPack(Pack pack);	
 	public List<Item> getByOrderRowId(int id);
 
-}
+} 

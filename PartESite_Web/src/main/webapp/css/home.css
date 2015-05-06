@@ -126,7 +126,7 @@ background-color:Teal;color:White;margin-bottom:3em;border:solid 2px Teal;}
 
 i{
 	font-style: normal; 
-}
+} 
 
 .box {min-width:300px;max-width:300px;min-height:230px;max-height:230px;border-radius:2px;text-align:center;
 background-color:white; padding:1em 1em 1em 1em;margin-left:1em; margin-right:1em;float:left;}

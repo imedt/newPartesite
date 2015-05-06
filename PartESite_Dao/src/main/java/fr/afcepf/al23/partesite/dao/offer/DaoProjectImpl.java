@@ -2,6 +2,7 @@ package fr.afcepf.al23.partesite.dao.offer;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -57,7 +58,7 @@ public class DaoProjectImpl implements IDaoProject {
 	public List<Project> getAll() {
 
 		Query hql = em
-				.createQuery("SELECT DISTINCT p FROM Project p inner join fetch p.packs ");
+				.createQuery("SELECT DISTINCT p FROM Project p inner join fetch p.packs AND date_add_month(p.publishingDate) > NOW() ");
 
 		List<Project> liste = null;
 
@@ -70,10 +71,10 @@ public class DaoProjectImpl implements IDaoProject {
 	@Override
 	public List<Project> getByName(String name) {
 
-		Query hql = em.createQuery("SELECT DISTINCT p FROM Project p inner join fetch p.projectCategory WHERE p.projectName LIKE :pprojectName  AND  p.publish = :ppublish");
+		Query hql = em.createQuery("SELECT DISTINCT p FROM Project p inner join fetch p.projectCategory WHERE p.projectName LIKE :pprojectName  AND  p.publish = :ppublish AND date_add_month(p.publishingDate) > NOW()");
 
 		hql.setParameter("pprojectName", "'%"+name+"%'").setParameter("ppublish", true);
-
+ 
 		List<Project> liste = null;
 
 		liste = hql.getResultList();
@@ -121,7 +122,7 @@ public class DaoProjectImpl implements IDaoProject {
 						+ " AND p.projectName=:pname"
 						+ " AND p.projectCategory=:pcategory"
 						+ " AND p.aimingAmount=:paimingAmount"
-						+ " AND p.identity=:pidentity");
+						+ " AND p.identity=:pidentity") ;
 		hql.setParameter("ppublishingDate", publishingDate);
 		hql.setParameter("pname", "'%"+name+"%'");
 		hql.setParameter("pcategory", projectCategory);
@@ -161,7 +162,7 @@ public class DaoProjectImpl implements IDaoProject {
 	public List<Project> getByCategory(Integer idProjectCategory) {
 		Query hql = em
 				.createQuery(
-						"SELECT DISTINCT p FROM Project p WHERE p.projectCategory.idProjectCategory=:pIdProjectCategory  AND  p.publish = :ppublish")
+						"SELECT DISTINCT p FROM Project p WHERE p.projectCategory.idProjectCategory=:pIdProjectCategory  AND  p.publish = :ppublish AND DATE_ADD(p.publishingDate, INTERVAL +30 DAY) > NOW()")
 				.setParameter("pIdProjectCategory", idProjectCategory).setParameter("ppublish", true);
 
 		List<Project> liste = null;
@@ -173,14 +174,24 @@ public class DaoProjectImpl implements IDaoProject {
 
 	@Override
 	public List<Project> getAllProjectsToPublish() {
+		
 		List<Project> liste = null;
 			Query hql = em
 					.createQuery(
-							"SELECT DISTINCT p FROM Project p WHERE p.publish=:ppublish AND p.disabled=:pdisabled")
+							"SELECT DISTINCT p FROM Project p WHERE p.publish=:ppublish AND p.disabled=:pdisabled AND")
 							.setParameter("ppublish", false).setParameter("pdisabled", false);
 			liste = hql.getResultList();
 
 		return liste;
+	}
+
+	@Override
+	public List<Object> getProjectsNumberByCategories() {  
+		String query = "SELECT cat.category, COUNT(p) FROM Project p INNER JOIN p.projectCategory cat WHERE date_add_month(p.publishingDate) > NOW() GROUP BY cat.category";
+		Query hql = em.createQuery(query);
+		log.info(hql.toString());
+		List result = hql.getResultList();
+		return result; 
 	}
 
 }
