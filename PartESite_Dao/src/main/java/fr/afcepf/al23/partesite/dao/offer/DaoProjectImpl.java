@@ -58,7 +58,7 @@ public class DaoProjectImpl implements IDaoProject {
 	public List<Project> getAll() {
 
 		Query hql = em
-				.createQuery("SELECT DISTINCT p FROM Project p inner join fetch p.packs AND date_add_month(p.publishingDate) > NOW() ");
+				.createQuery("SELECT DISTINCT p FROM Project p inner join fetch p.packs WHERE date_add_month(p.publishingDate) > NOW() ");
 
 		List<Project> liste = null;
 

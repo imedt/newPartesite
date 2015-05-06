@@ -46,7 +46,7 @@
 											value="#{mbConnexion.id.createdDate}">
 											<f:convertDateTime pattern="dd/MM/yyyy" />
 										</h:outputText>
-									</div>
+																</div>
 								</fieldset>
 
 							</div>
@@ -73,16 +73,23 @@
 										rendered="#{mbConnexion.id.phones!=null}">
 										<div class="col-lg-12">
 											<ui:repeat value="#{mbUser.phones}" var="phone">
-												<div class="col-lg-12" >
+												<div class="col-lg-12">
 													<h:outputLabel
-															class="col-lg-5 col-md-12 col-sm-12 col-xs-12"
-															value="#{phone.type}" />
+														class="col-lg-5 col-md-12 col-sm-12 col-xs-12"
+														value="#{phone.type}" />
 													<h:outputText
 														class="col-lg-5 col-md-12 col-sm-12 col-xs-12"
 														value="#{phone.phoneNumber}" />
 
 													<h:outputText class="icon fa-times col-lg-2"
 														onclick="{mbUser.deletePhoneNumber(phone.idPhone)}" />
+														<f:view>
+															<h:form>
+																<h:commandButton value=""
+																	action="#{mbUser.deletePhoneNumber(phone)}"
+																	styleClass="icon-ad fa-times" /> 
+															</h:form>
+														</f:view>
 												</div>
 											</ui:repeat>
 										</div>
@@ -151,9 +158,15 @@
 												<h:outputText
 													class="type col-lg-6 col-md-12 col-sm-12 col-xs-12"
 													value="#{address.addressType.addressType}">
-													</h:outputText>
-														<h:outputText class="icon-ad fa-times"/>
-												
+												</h:outputText>
+												<f:view>
+													<h:form>
+														<h:commandButton value=""
+															action="#{mbUser.deleteAddress(address)}"
+															styleClass="icon-ad fa-times" />
+													</h:form>
+												</f:view>
+
 												<h:outputText
 													class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
 													value="#{address.street}" />

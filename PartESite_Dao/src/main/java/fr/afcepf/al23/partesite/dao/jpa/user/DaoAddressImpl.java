@@ -58,4 +58,10 @@ public class DaoAddressImpl implements IDaoAddress {
 		return addresses;
 	}
 
+
+	@Override
+	public void delete(Address a) { 
+		em.remove(em.find(Address.class, a.getIdAddress()));
+	}
+
 }

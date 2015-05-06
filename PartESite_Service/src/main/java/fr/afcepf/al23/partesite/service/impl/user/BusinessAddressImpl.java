@@ -44,4 +44,9 @@ public class BusinessAddressImpl implements IBusinessAddress {
 		return addresses;
 	}
 
+	@Override
+	public void deleteAddress(Address a) {		
+		daoAdd.delete(a);
+	}
+
 }

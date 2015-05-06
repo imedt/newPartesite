@@ -12,4 +12,5 @@ public Address add(Address address);
 public Address update(Address address);
 public Address get(Integer idAddress);
 public List<Address> getByIdIdentity(Integer idIdentity);
+public void delete(Address a);
 }

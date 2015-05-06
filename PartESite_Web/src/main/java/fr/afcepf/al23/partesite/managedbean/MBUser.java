@@ -218,6 +218,11 @@ public class MBUser {
 		}
 		return phones;
 	}
+	
+	public String deleteAddress(Address a){
+		buAddress.deleteAddress(a);
+		return "";
+	}
 	public void setPhones(List<Phone> phones) {
 		this.phones = phones;
 	}
@@ -411,12 +416,8 @@ public class MBUser {
 		this.countries = countries;
 	}
 
-	public String deletePhoneNumber(Integer idPhone){
-		Phone ph = new Phone();
-		ph = buPhone.get(idPhone); 
-		//buPhone.delete(); 
-		getPhones().remove(ph);
-		getPhones();
+	public String deletePhoneNumber(Phone phone){
+		buPhone.delete(phone);
 		return "";
 	}
 	

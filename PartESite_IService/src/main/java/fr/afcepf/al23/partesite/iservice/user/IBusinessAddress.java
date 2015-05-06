@@ -10,4 +10,5 @@ public interface IBusinessAddress {
 public Address save(Address address);
 public Address get(Integer idAddress);
 public List<Address> getByIdIdentity(Integer idIdentity);
+public void deleteAddress(Address a);
 }
