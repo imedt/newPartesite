@@ -17,21 +17,23 @@
 				<center>
 				<h3 class="col-lg-10" style="color:navy;font-weight:bold;">Mes Notifications</h3></center>
 				<h:dataTable class="table col-lg-10"
-				value="#{mbDashboard.listNotifications}" var="p">
+				value="#{mbDashboard.listNotifications}" var="p" escape="false">
 				
 				<h:column>
 					<f:facet name="header">Référence</f:facet>   			
     				#{p.idNotification}
     			</h:column>
 				<h:column>
-					<f:facet name="header">Création</f:facet>   			
-    				#{p.createdDate}
+					<f:facet name="header">Création</f:facet> 
+					<h:outputLabel value="#{p.createdDate}">
+					<f:convertDateTime pattern="dd/MM/yyyy"/>
+					</h:outputLabel>  			
+    				
     			</h:column>
 				<h:column>
-					<f:facet name="header">Notification</f:facet>   			
-    				#{p.contentNotification}
+					<f:facet name="header">Notification</f:facet>  
+					<h:outputText value="#{p.contentNotification}" escape="false" /> 			
     			</h:column>
-
 				<h:column>
 							<f:facet name="header">Consultation</f:facet>
 							<h:commandButton class="btn btn-lg-default"
@@ -43,7 +45,7 @@
 
 				<h:panelGroup rendered="#{mbDashboard.listNotifications.size()==0}">
 				<center>
-					<span class="col-lg-push-1 col-lg-10" style="color:navy;font-weight:bold;">Aucune notification</span></center>
+					<span class="col-lg-push-1 col-lg-10" style="color:navy;font-weight:bold;font-size:medium;">Aucune notification</span></center>
 				</h:panelGroup>
 				
 </h:form>

@@ -23,11 +23,9 @@
 							<div class="info col-lg-12" rendered="#{mbConnexion.id!=null}">
 
 								<fieldset class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-									<div style="text-align: center">
-										<strong> <h:outputText style="margin-bottom:2em;"
+									<div><h:outputText
 												class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
 												value="#{mbConnexion.id.civility.civility}&nbsp;#{mbConnexion.id.firstName}&nbsp;#{mbConnexion.id.lastName}" />
-										</strong>
 										<h:outputText class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
 											value="Email :&nbsp;#{mbConnexion.id.email}" />
 										<h:outputText class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
@@ -72,16 +70,15 @@
 										rendered="#{mbConnexion.id.phones!=null}">
 										<div class="col-lg-12">
 											<ui:repeat value="#{mbUser.phones}" var="phone">
-												<div class="col-lg-12" style="margin-bottom:1em;">
-													<h:outputLabel style="font-weight:bold;padding:0;margin:0;"
+												<div class="col-lg-12" >
+													<h:outputLabel
 															class="col-lg-5 col-md-12 col-sm-12 col-xs-12"
 															value="#{phone.type}" />
 													<h:outputText
 														class="col-lg-5 col-md-12 col-sm-12 col-xs-12"
 														value="#{phone.phoneNumber}" />
 
-													<h:outputText class="fa-times col-lg-2"
-														style="font-family: FontAwesome;"
+													<h:outputText class="icon fa-times col-lg-2"
 														onclick="{mbUser.deletePhoneNumber(phone.idPhone)}" />
 												</div>
 											</ui:repeat>
@@ -149,12 +146,11 @@
 										<ui:repeat value="#{mbUser.addresses}" var="address">
 											<div class="col-lg-6">
 												<h:outputText
-													class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
-													value="#{address.addressType.addressType}"
-													style="font-weight:bold;" />
-													<h:outputLabel class="fa-times col-lg-6"
-														style="font-family: FontAwesome;"
-														onclick="#" />
+													class="type col-lg-6 col-md-12 col-sm-12 col-xs-12"
+													value="#{address.addressType.addressType}">
+													</h:outputText>
+														<h:outputText class="icon-ad fa-times"/>
+												
 												<h:outputText
 													class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
 													value="#{address.street}" />

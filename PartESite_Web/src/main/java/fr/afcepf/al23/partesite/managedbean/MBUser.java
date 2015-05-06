@@ -55,6 +55,8 @@ public class MBUser {
 	@ManagedProperty(value="#{mbConnexion}")
 	private MBConnexion cnx;
 
+	@ManagedProperty(value="#{mbDashBoard}")
+	private MBDashBoard mbDash;
 	
 	//Civility
 	private Integer idCivility;
@@ -385,7 +387,6 @@ public class MBUser {
 	//Enregistrement d'un nouveau t�l�phone
 	public void addPhoneToUser(){
 
-
 		Phone phone = new Phone();
 
 		phone.setType(typePhoneNumber);
@@ -400,6 +401,12 @@ public class MBUser {
 
 	}
 
+	public IBusinessNotification getBuNotification() {
+		return buNotification;
+	}
+	public void setBuNotification(IBusinessNotification buNotification) {
+		this.buNotification = buNotification;
+	}
 	//Enregistrement d'un nouveau t�l�phone
 	public void addAddressToUser(){
 
@@ -414,8 +421,6 @@ public class MBUser {
 
 		address.setIdentity(getIdentity());
 		buAddress.save(address);
-
-
 
 		addresses.add(address);
 		identity.setAddresses(addresses);
@@ -440,6 +445,12 @@ public class MBUser {
 	
 
 	
+	public MBDashBoard getMbDash() {
+		return mbDash;
+	}
+	public void setMbDash(MBDashBoard mbDash) {
+		this.mbDash = mbDash;
+	}
 	public String sendNotificationToUser(){
 		Notification n = new Notification();
 		
@@ -453,6 +464,8 @@ public class MBUser {
 		n.setIdTarget(userToSendMessage.getIdIdentity());
 		n.setDisabled(false);
 		buNotification.save(n);
+		
+		mbDash.getListNotifications();
 		
 		message = "Votre message a bien été envoyé à :"+userToSendMessage.getFirstName()+" "+userToSendMessage.getLastName()+".";
 		objet = null;

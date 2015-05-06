@@ -6,11 +6,7 @@ import javax.persistence.*;
 
 import java.util.Date;
 import java.util.List;
-<<<<<<< HEAD
 
-=======
- 
->>>>>>> origin/master
 
 /**
  * The persistent class for the project database table.
@@ -81,11 +77,7 @@ public class Project implements Serializable {
 	private ProjectCategory projectCategory;
 
 	//bi-directional many-to-one association to ProjectContent
-<<<<<<< HEAD
-	@OneToMany(mappedBy="project")
-=======
 	@OneToMany(mappedBy="project",fetch=FetchType.EAGER)
->>>>>>> origin/master
 	private List<ProjectContent> projectContents;
 
 	public Project() {

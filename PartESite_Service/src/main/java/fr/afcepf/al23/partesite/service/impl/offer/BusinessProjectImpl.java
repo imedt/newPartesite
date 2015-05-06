@@ -184,14 +184,4 @@ log.info("getAllWithItems");
 		return projects;
 	}
 
-<<<<<<< HEAD
-	@Override
-	public List<Project> getAllWithContents() {
-		List<Project> projects = new ArrayList<>();
-		projects = daoProj.getAllWithContents();
-		return projects;
-	}
-
-=======
->>>>>>> origin/master
 }

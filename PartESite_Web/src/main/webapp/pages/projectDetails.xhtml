@@ -9,15 +9,15 @@
 	<ui:define name="header-title">Consultation Projet</ui:define>
 
 	<ui:define name="content">
-<<<<<<< HEAD
 
 		<f:view>
 			<h:form>
 
 				<f:event listener="#{mbConsultProject.init()}" type="preRenderView"></f:event>
 				<div class="bloc">
-					<div class="col-lg-9">
-						<div class="col-lg-6 col-xs-12 col-sm-12 col-md-12">
+					<div class="col-lg-12">
+
+						<div class="col-lg-4 col-xs-12 col-sm-12 col-md-12">
 							<div class="textBox">
 								<h3 class="col-lg-12">#{mbConsultProject.p.projectName}</h3>
 								<h:outputText class="col-lg-12"
@@ -33,16 +33,15 @@
 							</div>
 
 						</div>
-						<div class="col-lg-6 col-xs-12 col-sm-12 col-md-12">
+
+						<div class="col-lg-4 col-xs-12 col-sm-12 col-md-12">
 							<div class="frameBoxImage">
-								<h:panelGroup
-									rendered="#{!(mbConsultProject.contentProjectImage.content eq '')}">
+								<h:panelGroup rendered="#{(mbConsultProject.contentProjectImage.content!='')}">
 									<img src="#{mbConsultProject.contentProjectImage.content}" />
 								</h:panelGroup>
-								<h:panelGroup style="padding-left: 2em; padding-right: 2em;"
-									rendered="#{mbConsultProject.contentProjectImage.content eq ''}">
-									<img
-										src="../images/#{mbConsultProject.p.projectCategory.category}.jpg" />
+
+								<h:panelGroup rendered="#{mbConsultProject.contentProjectImage.content==''}">
+									<img src="../images/#{mbConsultProject.p.projectCategory.category}.jpg" />
 								</h:panelGroup>
 							</div>
 
@@ -52,142 +51,54 @@
 							</div>
 						</div>
 
-					</div>
+						<div class=" col-lg-4 col-xs-12 col-sm-12 col-md-12">
+							<h:panelGroup class="col-lg-12 col-xs-12 col-sm-12 col-md-12"
+								rendered="#{mbConsultProject.wrappedPack.size()!=0}">
+								<h:dataTable class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+									value="#{mbConsultProject.wrappedPack}" var="wrappedPack">
 
-					<div class=" col-lg-3 col-xs-12 col-sm-12 col-md-12">
-						<h:panelGroup
-							class="col-lg-12 col-xs-12 col-sm-12 col-md-12"
-							rendered="#{mbConsultProject.wrappedPack.size()!=0}">
-							<h:dataTable class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
-								value="#{mbConsultProject.wrappedPack}" var="wrappedPack">
+									<h:column class="col-lg-12 col-xs-12 col-sm-12 col-md-12">
+										<h:panelGroup class="pack"
+											rendered="#{(wrappedPack.pack.stock-wrappedPack.pack.nbSale)!=0}">
+											<h3>#{project.projectName}</h3>
 
-								<h:column class="col-lg-12 col-xs-12 col-sm-12 col-md-12">
-									<h:panelGroup class="pack"
-										rendered="#{(wrappedPack.pack.stock-wrappedPack.pack.nbSale)!=0}">
-										<h3>#{project.projectName}</h3>
+											<h3>#{wrappedPack.pack.packName}</h3>
 
-										<h3>#{wrappedPack.pack.packName}</h3>
+											<h:outputText class="col-lg-12"
+												value="#{wrappedPack.pack.description}" />
 
-										<h:outputText class="col-lg-12" value="#{wrappedPack.pack.description}" />
-
-<h:outputText class="larger col-lg-12" value="Prix du package :
+											<h:outputText class="larger col-lg-12"
+												value="Prix du package :
 											#{mbConversion.getConvertedAmount(wrappedPack.pack.amount)}" />
-<h:outputText class="larger col-lg-12" value="Quantité disponible :
+											<h:outputText class="larger col-lg-12"
+												value="Quantité disponible :
 											#{wrappedPack.pack.stock-wrappedPack.pack.nbSale}" />
-<h:outputText class="larger col-lg-8" value="Quantité souhaitée :" />
-									
+											<h:outputText class="larger col-lg-8"
+												value="Quantité souhaitée :" />
 
-										<h:selectOneMenu
-											class="col-lg-4 col-xs-12 col-sm-12 col-md-12"
-											value="#{wrappedPack.quantity}">
-											<f:selectItems
-												value="#{mbConsultProject.remplirList(wrappedPack.pack)}" />
-										</h:selectOneMenu>
 
-										<h:commandButton type="submit" value="Commander"
-											action="#{mbOrder.addToCart(wrappedPack)}"
-											class="btn marged lg-btn-default col-lg-12 col-xs-12 col-sm-12 col-md-12" />
-									</h:panelGroup>
-								</h:column>
-							</h:dataTable>
-						</h:panelGroup>
+											<h:selectOneMenu
+												class="col-lg-4 col-xs-12 col-sm-12 col-md-12"
+												value="#{wrappedPack.quantity}">
+												<f:selectItems
+													value="#{mbConsultProject.remplirList(wrappedPack.pack)}" />
+											</h:selectOneMenu>
+
+											<h:commandButton type="submit" value="Commander"
+												action="#{mbOrder.addToCart(wrappedPack)}"
+												class="btn marged lg-btn-default col-lg-12 col-xs-12 col-sm-12 col-md-12" />
+										</h:panelGroup>
+									</h:column>
+								</h:dataTable>
+							</h:panelGroup>
+						</div>
+						
 					</div>
-
 				</div>
+				
 			</h:form>
 		</f:view>
-=======
-	
-	<f:view>
-	<h:form>
-	
-		<f:event listener="#{mbConsultProject.init()}" type="preRenderView"></f:event>
-		<div class="bloc">
-			<div class="col-lg-9">
-				<div class="col-lg-6 col-xs-12 col-sm-12 col-md-12">
-					<div class="textBox" style="padding:1em">
-						<center>
-							<p class="col-lg-12" style="text-align:center">
-								<h3>#{mbConsultProject.p.projectName}</h3>
-							</p> 
-							<p class="col-lg-12">
-								<h3><h:outputText value="#{mbConsultProject.contentProjectAuthor.content}" escape="false"/></h3> 
-							</p>
-						</center>
-					</div> 
-					<div class="frameBoxImage" style="height: 410px;">
-						<h:panelGroup style="padding-left: 2em; padding-right: 2em;" rendered="#{!(mbConsultProject.contentProjectImage.content eq '')}">
-							<img src="#{mbConsultProject.contentProjectImage.content}"
-								width="400px" height="400px"/>
-						</h:panelGroup>
-						<h:panelGroup style="padding-left: 2em; padding-right: 2em;" rendered="#{mbConsultProject.contentProjectImage.content eq ''}">
-							<img src="StylePartESite/images/#{mbConsultProject.p.projectCategory.category}.jpg"
-								width="400px" height="400px" />
-						</h:panelGroup>
-					</div>
-					<div class="frameBoxVideo" >
-						<center>
-<iframe width="560" height="315" src="#{mbConsultProject.contentProjectVideo.content}" frameborder="0"></iframe> 						</center>
-					</div> 
-				</div> 
-				<div class="col-lg-6"> 
-					<div class="textBox col-lg-12 col-xs-12 col-sm-12 col-md-12"  style="height: 1230px;">
-						<center>
-							<p>
-								<h3><h:outputText value="#{mbConsultProject.contentProjectConcept.content}" escape="false"/></h3>
-							</p> 
-						</center>
-					</div>
-				</div>
-			</div>
-	
-<div class="pack col-lg-3 col-xs-12 col-sm-12 col-md-12">		
-<h:panelGroup class="packBox3 col-lg-12 col-xs-12 col-sm-12 col-md-12"
-				rendered="#{mbConsultProject.wrappedPack.size()!=0}">	
-				<h:dataTable
-					class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
-					value="#{mbConsultProject.wrappedPack}" var="wrappedPack"
-					styleClass="table" headerClass="table-header"
-					rowClasses="table-odd-row, table-even-row">
 
-					<h:column class="col-lg-12 col-xs-12 col-sm-12 col-md-12">
-						<h:panelGroup
-							rendered="#{(wrappedPack.pack.stock-wrappedPack.pack.nbSale)!=0}">
-							<h1 style="padding-top: 1em;">#{project.projectName}</h1>
-
-							<h1>#{wrappedPack.pack.packName}</h1>
-
-							<h3>#{wrappedPack.pack.description}</h3>
-
-							<h3>Prix du package :
-								#{mbConversion.getConvertedAmount(wrappedPack.pack.amount)}</h3>
-
-							<h3>Quantité disponible :
-								#{wrappedPack.pack.stock-wrappedPack.pack.nbSale}</h3>
-
-							<h3 class="col-lg-12 col-xs-12 col-sm-12 col-md-12">Quantité
-								souhaitée :</h3>
-
-							<h:selectOneMenu
-								class="col-lg-offset-2 col-lg-8 col-xs-12 col-sm-12 col-md-12"
-								value="#{wrappedPack.quantity}">
-								<f:selectItems
-									value="#{mbConsultProject.remplirList(wrappedPack.pack)}" />
-							</h:selectOneMenu>
-
-							<h:commandButton type="submit" value="Commander"
-								action="#{mbOrder.addToCart(wrappedPack)}"
-								class="button marged lg-btn-default col-lg-12 col-xs-12 col-sm-12 col-md-12" />
-						</h:panelGroup>
-					</h:column>
-				</h:dataTable>
-		</h:panelGroup>	
-</div>
-
-		</div>
-	</h:form>
-	</f:view>
->>>>>>> origin/master
 	</ui:define>
 
 </ui:composition>

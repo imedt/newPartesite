@@ -15,19 +15,22 @@
 				<h:dataTable class="col-lg-6"
 				value="#{mbModeratorNotifications.listNotifications}" var="p" styleClass="table"
 				headerClass="table-header"
-				rowClasses="table-odd-row, table-even-row">
+				rowClasses="table-odd-row, table-even-row" escape="false">
 				
 				<h:column>
 					<f:facet name="header">Référence</f:facet>   			
     				#{p.idNotification}
     			</h:column>
 				<h:column>
-					<f:facet name="header">Création</f:facet>   			
-    				#{p.createdDate}
+					<f:facet name="header">Création</f:facet> 
+					<h:outputLabel value="#{p.createdDate}">
+					<f:convertDateTime pattern="dd/MM/yyyy"/>
+					</h:outputLabel>  			
+    				
     			</h:column>
 				<h:column>
-					<f:facet name="header">Notification</f:facet>   			
-    				#{p.contentNotification}
+					<f:facet name="header">Notification</f:facet>  
+					<h:outputText value="#{p.contentNotification}" escape="false" /> 			
     			</h:column>
 
 				<h:column>

@@ -65,32 +65,13 @@ public class DaoProjectImpl implements IDaoProject {
 
 		return liste;
 	}
-<<<<<<< HEAD
-	
-	@Override
-	public List<Project> getAllWithContents() {
 
-		Query hql = em
-				.createQuery("SELECT DISTINCT p FROM Project p inner join fetch p.projectContents ");
-
-		List<Project> liste = null;
-
-		liste = hql.getResultList();
-
-		return liste;
-	}
-=======
->>>>>>> origin/master
 
 	@Override
 	public List<Project> getByName(String name) {
 
-		Query hql = em
-<<<<<<< HEAD
-				.createQuery("SELECT DISTINCT p FROM Project p inner join fetch p.projectCategory WHERE p.projectName LIKE :pprojectName  AND  p.publish = :ppublish");
-=======
-				.createQuery("SELECT DISTINCT p FROM Project p inner join fetch p.packs WHERE p.projectName LIKE :pprojectName  AND  p.publish = :ppublish");
->>>>>>> origin/master
+		Query hql = em.createQuery("SELECT DISTINCT p FROM Project p inner join fetch p.projectCategory WHERE p.projectName LIKE :pprojectName  AND  p.publish = :ppublish");
+
 		hql.setParameter("pprojectName", "'%"+name+"%'").setParameter("ppublish", true);
 
 		List<Project> liste = null;
