@@ -162,7 +162,7 @@ public class DaoProjectImpl implements IDaoProject {
 	public List<Project> getByCategory(Integer idProjectCategory) {
 		Query hql = em
 				.createQuery(
-						"SELECT DISTINCT p FROM Project p WHERE p.projectCategory.idProjectCategory=:pIdProjectCategory  AND  p.publish = :ppublish AND DATE_ADD(p.publishingDate, INTERVAL +30 DAY) > NOW()")
+						"SELECT DISTINCT p FROM Project p WHERE p.projectCategory.idProjectCategory=:pIdProjectCategory  AND  p.publish = :ppublish AND date_add_month(p.publishingDate) > NOW()")
 				.setParameter("pIdProjectCategory", idProjectCategory).setParameter("ppublish", true);
 
 		List<Project> liste = null;

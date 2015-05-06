@@ -24,6 +24,8 @@ h1{color:navy;font-weight: bold;text-align: center;}
 .body fieldset .info fieldset legend {text-transform: uppercase;color:navy;text-align:center;font-weight: bold;border:none;}
 .body fieldset .info span, input, output{color:navy;font-family:CG Omega;font-size:medium;}
 .body fieldset .tel  span, input, output {color:navy;font-size:medium;}
+.body fieldset .tel  {margin-bottom:2em;margin-top:2em;}
+.body fieldset .ad  {margin-bottom:2em;}
 .body fieldset .tel  .icon {font-family:FontAwesome;}
 .body fieldset .ad  .icon-ad {font-family:FontAwesome;margin-top:1em;}
 .body fieldset .ad  span, input, output {color:navy;font-size:medium;}
@@ -81,6 +83,15 @@ background-color:Teal;color:White;margin-bottom:3em;border:solid 2px Teal;}
 .body .projects .table tr{color:navy;margin-top:1em;}
 .body .projects .table tr td{color:navy;padding-left:1em;padding-right:1em;text-align:center;}
 
+.body .cart h3 {color:navy;font-family:CG Omega; font-weight: bold;text-align:center;}
+.body .cart a span{color:navy;font-family:CG Omega; font-weight: bold;text-align:center;}
+.body .cart a:hover span{color:Teal;font-family:CG Omega; font-weight: bold;text-align:center;text-decoration:underline;}
+.body .cart .table {min-width: 100%;max-width:100%;height: auto;color:navy;font-family:CG Omega;}
+.body .cart .table th{background-color: Teal;color:White;}
+.body .cart .table th th{background-color: Teal;color:White;text-align:center;}
+.body .cart .table tr{color:navy;margin-top:1em;}
+.body .cart .table tr td{color:navy;padding-left:1em;padding-right:1em;text-align:center;}
+
 .footer {background-color:Beige;padding-top:1em;padding-bottom:1em;margin-top:2em;float:left;width: 100%;height: auto;}
 .footer .footer-titre{color:navy;font-family:CG Omega;}
 .footer .input-prepend {font-family:'FontAwesome';color:navy;padding-top:2em;padding-bottom:1em;}
@@ -109,10 +120,10 @@ background-color:Teal;color:White;margin-bottom:3em;border:solid 2px Teal;}
 
 .separation {border-bottom:solid 2px Teal;width: 100%;float:left;}
 
-.cart {border:solid 2px navy;color:White;height: 3em;margin-bottom:3em; text-align:center;padding-top:0.7em;}
-.cart:hover {background-color:Teal;border:solid 2px Teal;}
-.cart:hover span{color:White;}
-.cart span {color: navy;font-size: large;}
+.header .cart {border:solid 2px navy;color:White;height: 3em;margin-bottom:3em; text-align:center;padding-top:0.7em;}
+.header .cart:hover a{background-color:Teal;border:solid 2px Teal;}
+.header .cart:hover a span{color:White;}
+.header .cart span {color: navy;font-size: large;}
 
 .icon span {padding-left:1em;}
 

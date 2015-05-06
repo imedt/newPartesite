@@ -4,45 +4,59 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html">
 <ui:composition template="../templates/TemplateHome.xhtml">
-	
+
 	<ui:define name="content">
 		<f:view>
-			<div class="row" id="formulaire">
-				<h:form>
-					<div class="col-md-10 col-md-offset-1">
-									<h1>Veuillez indiquer vos informations de paiement</h1>
-						<fieldset class="black-label large-label">
-							<div class="col-md-6 col-md-offset-3">
-								<div class="row unmarged">
-									<label> Titulaire : </label>
-									<h:inputText value="#{mbPayment.m_titulaireCarte}" />
+			<h:form>
+				<div class="cart" id="formulaire">
+					<div class="col-lg-push-3 col-lg-6 col-lg-push-3">
+						<h3 class="col-lg-12">Veuillez indiquer vos informations de
+							paiement</h3>
 
-								</div> 
-								<div class="row unmarged">
-									<label> Numéro carte :</label>
-									<h:inputText value="#{mbPayment.m_numeroCarte}" />
-								</div>
-								<div class="row unmarged">
-									<label> Date expiration :</label>
-									<h:inputText value="#{mbPayment.m_dateExpiration}" />
-								</div>
-								<div class="row unmarged">
-									<label> Cryptogramme : </label>
-									<h:inputText value="#{mbPayment.m_cryptogramme}" />
-								</div>
-							</div>
-						</fieldset>
+
+						<label class="col-lg-4"> Titulaire : </label>
+						<h:inputText class="col-lg-8"
+							value="#{mbPayment.m_titulaireCarte}" />
+
+
+						<label class="col-lg-4"> Numéro carte :</label>
+						<h:inputText class="col-lg-8" value="#{mbPayment.m_numeroCarte}" />
+
+						<label class="col-lg-4"> Date expiration :</label>
+						<h:inputText class="col-lg-8"
+							value="#{mbPayment.m_dateExpiration}" />
+
+						<label class="col-lg-4"> Cryptogramme : </label>
+						<h:inputText class="col-lg-8" value="#{mbPayment.m_cryptogramme}" />
+
+
+
+
+						<h:panelGroup rendered="#{mbConnexion.id!=null}" class="col-lg-12">
+							<h:commandButton action="#{mbPayment.validatePayment()}"
+								value="Valider le moyen de paiement" class="btn col-lg-push-1 col-lg-5" />
+							<h:commandButton action="#{mbDemo.demoPaiement()}"
+								value="Demonstration" class="btn  col-lg-push-1 col-lg-5" />
+						</h:panelGroup>
+
+
 					</div>
 
-					<div class="col-md-12" style="text-align: center">
-						<h:commandButton action="#{mbPayment.validatePayment()}"
-							value="Valider le moyen de paiement" />
-						<h:commandButton action="#{mbDemo.demoPaiement()}"
-							value="Demonstration" /> 
-					</div>
+					<h:panelGroup rendered="#{mbConnexion.id==null}" class="col-lg-12">
+						<span class="col-lg-12"
+							style="text-align: center; margin-top: 1em;"> Pour
+							valider, veuillez vous identifier.</span>
+					</h:panelGroup>
 
-				</h:form>
-			</div>
+
+
+
+
+
+
+
+				</div>
+			</h:form>
 		</f:view>
 	</ui:define>
 

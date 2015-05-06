@@ -23,9 +23,12 @@
 							<div class="info col-lg-12" rendered="#{mbConnexion.id!=null}">
 
 								<fieldset class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-									<div><h:outputText
+									<div>
+									<strong>
+									<h:outputText
 												class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
 												value="#{mbConnexion.id.civility.civility}&nbsp;#{mbConnexion.id.firstName}&nbsp;#{mbConnexion.id.lastName}" />
+										</strong>
 										<h:outputText class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
 											value="Email :&nbsp;#{mbConnexion.id.email}" />
 										<h:outputText class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
@@ -35,18 +38,17 @@
 											value="Né le :&nbsp;#{mbConnexion.id.birthdate}">
 											<f:convertDateTime pattern="dd/MM/yyyy" />
 										</h:outputText>
-
+										
+										<strong>
+<h:outputText class="col-lg-12 col-md-12 col-sm-12 col-xs-12" value="Date d'inscription :" /></strong>
 										<h:outputText class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
-											value="Inscrit depuis le :&nbsp;#{mbConnexion.id.createdDate}">
+											value="#{mbConnexion.id.createdDate}">
 											<f:convertDateTime pattern="dd/MM/yyyy" />
 										</h:outputText>
 									</div>
 								</fieldset>
 
 							</div>
-							<center>
-								<hr class="col-lg-push-1 col-lg-10" />
-							</center>
 
 							<div class="tel col-lg-12">
 								<fieldset>

@@ -45,7 +45,7 @@ public class MBPayment {
 		busiPayment.save(payment);
 		mbOrder.validateCart();
 		mbOrder.setCart(new UserOrder());
-		return "congratulation.xhtml";
+		return "..pages/congratulation.xhtml";
 	}
 	
 	public double computeTotal(){
@@ -60,7 +60,7 @@ public class MBPayment {
 		return mbOrder.getCart().getOrderRows();
 	}
 	public String validatePayment(){
-		return "paymentResume.xhtml";
+		return "../pages/paymentResume.xhtml";
 	}
 	
 	public void sendNotifications(){
