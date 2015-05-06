@@ -1,6 +1,7 @@
 package fr.afcepf.al23.partesite.idao.offer;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.ejb.Remote;
@@ -26,5 +27,6 @@ public interface IDaoProject {
 			Date publishingDate, Double aimingAmount, ProjectCategory projectCategory,
 			Identity identity);
 	public List<Project> getAllProjectsToPublish();
+	public List<Object> getProjectsNumberByCategories();
 	
 }

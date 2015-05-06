@@ -4,7 +4,47 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <ui:composition template="../templates/TemplateModerator.xhtml">
-<ui:define name="header-title">Rentabilité</ui:define>
-<ui:define name="content"></ui:define>
+	<ui:define name="header-title">Rentabilité</ui:define>
+	<ui:define name="content">
+	<f:event listener="#{mbStatistics.init()}" type="preRenderView"></f:event>
+		<div id="chart_project_cat">
+		 
+		</div>
+
+	</ui:define>
+
+	<ui:define name="script">
+ 
+		<script type="text/javascript">
+
+      // Load the Visualization API and the piechart package.
+      google.load('visualization', '1.0', {'packages':['corechart']});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.setOnLoadCallback(drawChart);
+
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      function drawChart() {
+
+        // Create the data table.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Topping');
+        data.addColumn('number', 'Slices');
+        data.addRows(#{mbStatistics.resultPays});
+
+        // Set chart options
+        var options = {'title':'How Much Pizza I Ate Last Night',
+                       'width':500, 
+                       'height':300};
+
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.PieChart(document.getElementById('chart_project_cat'));
+        chart.draw(data, options);
+      }
+    </script>
+
+	</ui:define>
 </ui:composition>
 </html>

@@ -22,7 +22,7 @@
 		<class>fr.afcepf.al23.model.entities.UserOrderState</class>
 		<properties>
 			<property name="hibernate.show_sql" value="true"/>
-			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+			<property name="hibernate.dialect" value="fr.afcepf.al23.dialect.mysql.MyDialect"/>
 		</properties>
 		
 	</persistence-unit>
