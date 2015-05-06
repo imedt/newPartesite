@@ -55,8 +55,6 @@ public class MBUser {
 	@ManagedProperty(value="#{mbConnexion}")
 	private MBConnexion cnx;
 
-	@ManagedProperty(value="#{mbDashBoard}")
-	private MBDashBoard mbDash;
 	
 	//Civility
 	private Integer idCivility;
@@ -71,9 +69,7 @@ public class MBUser {
 	private Identity identity;
 	private String direction;
 	private List<Identity> usersList = new ArrayList<>();
-	private Identity userToSendMessage;
-	private String objet;
-	private Text contentMessage;
+
 
 	//Phone
 	private List<Phone>phones=new ArrayList<>();
@@ -319,25 +315,6 @@ public class MBUser {
 		this.usersList = usersList;
 	}
 
-	public Identity getUserToSendMessage() {
-		return userToSendMessage;
-	}
-	public void setUserToSendMessage(Identity userToSendMessage) {
-		this.userToSendMessage = userToSendMessage;
-	}
-
-	public String getObjet() {
-		return objet;
-	}
-	public void setObjet(String objet) {
-		this.objet = objet;
-	}
-	public Text getContentMessage() {
-		return contentMessage;
-	}
-	public void setContentMessage(Text contentMessage) {
-		this.contentMessage = contentMessage;
-	}
 	
 	//METHODES
 
@@ -445,32 +422,6 @@ public class MBUser {
 	
 
 	
-	public MBDashBoard getMbDash() {
-		return mbDash;
-	}
-	public void setMbDash(MBDashBoard mbDash) {
-		this.mbDash = mbDash;
-	}
-	public String sendNotificationToUser(){
-		Notification n = new Notification();
-		
-		n.setContentNotification(
-				"<h2>Envoyée par le modérateur</h2><br />"+
-				"<span>Objet :"+objet+"</span><br />"+
-				"<p>"+contentMessage+"</p>"
-				);
-		n.setCreatedDate(new Date());
-		n.setIdentity(cnx.getId());
-		n.setIdTarget(userToSendMessage.getIdIdentity());
-		n.setDisabled(false);
-		buNotification.save(n);
-		
-		mbDash.getListNotifications();
-		
-		message = "Votre message a bien été envoyé à :"+userToSendMessage.getFirstName()+" "+userToSendMessage.getLastName()+".";
-		objet = null;
-		contentMessage = null;
-		return "";
-	}
+	
 	
 }

@@ -79,7 +79,7 @@ public class MBModeratorNotifications {
 		Notification n = new Notification();
 		
 		n.setContentNotification(
-				"<h2>Envoyée par : "+nomMembre+"<br />Email :"+emailMembre+"<h2/><br />"+
+				"<h2>Envoyee par : "+nomMembre+"<br />Email :"+emailMembre+"<h2/><br />"+
 				"<p>"+contentMessage+"</p>"
 				);
 		n.setCreatedDate(new Date());
@@ -87,7 +87,7 @@ public class MBModeratorNotifications {
 		n.setDisabled(false);
 		buNotification.save(n);
 		
-		message = "Votre message a bien été envoyé au modérateur.";
+		message = "Votre message a bien ete envoye au moderateur.";
 		nomMembre = null;
 		emailMembre = null;
 		contentMessage = null;

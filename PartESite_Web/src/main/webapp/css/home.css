@@ -69,10 +69,23 @@ background-color:Teal;color:White;margin-bottom:3em;border:solid 2px Teal;}
 .body .btn {margin-top:1em;padding-top:0.2em;margin-right:2em;height:2em;background-color:Teal; color:White;border-radius:0;}
 .body .btn:hover {margin-top:1em;padding-top:0.2em;margin-right:2em;height:2em;background-color:navy; color:White;border-radius:0;}
 
+.body .backings h3 {color:navy;font-family:CG Omega; font-weight: bold;text-align:center;}
+.body .backings .table {min-width: 100%;height: auto;color:navy;font-family:CG Omega;}
+.body .backings .table th{background-color: Teal;color:White;text-align:center;}
+.body .backings .table tr{color:navy;margin-top:1em;}
+.body .backings .table tr td{color:navy;padding-left:1em;padding-right:1em;text-align:center;}
+
+.body .projects h3 {color:navy;font-family:CG Omega; font-weight: bold;text-align:center;}
+.body .projects .table {min-width: 100%;height: auto;color:navy;font-family:CG Omega;}
+.body .projects .table th{background-color: Teal;color:White;text-align:center;}
+.body .projects .table tr{color:navy;margin-top:1em;}
+.body .projects .table tr td{color:navy;padding-left:1em;padding-right:1em;text-align:center;}
+
 
 .footer {background-color:Beige;padding-top:1em;padding-bottom:1em;margin-top:2em;float:left;width: 100%;height: auto;}
 .footer .footer-titre{color:navy;font-family:CG Omega;}
 .footer .input-prepend {font-family:'FontAwesome';color:navy;padding-top:2em;padding-bottom:1em;}
+.footer .input-prepend  .add-on {font-family:'CG Omega';color:navy;height:2em;font-size:medium;font-weight: bold;padding-top:0.3em;text-align:left;}
 .footer .input-prepend  .add-on .icon{font-family:'FontAwesome';padding-top:1em;padding-left:2em;color:navy;height:2em;font-size:large;}
 .footer .input-prepend .span2 {color:navy;height:2em;}
 .footer .input-prepend .span3{color:navy;margin-top:1em;margin-bottom:1em;height:5em;background-color:white;}   
@@ -118,7 +131,7 @@ i{
 
 .box {min-width:80px;min-height:180px;max-height:180px;border-radius:2px;text-align:center;
 background-color:white; padding:1em 1em 1em 1em;margin-left:1em; margin-right:1em;float:left;}
-.box input, span {color:navy;font-size:x-small;}
+.box input, span {color:navy;font-size:small;}
 .box h3{color:navy;font-size:small;font-weight: bold;}
 .box img {min-width:80px;min-height:80px;max-width:80px;max-height:80px;border-radius:50%;background-color:black;}
 

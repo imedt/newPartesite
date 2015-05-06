@@ -5,30 +5,30 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <h:head>
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title><ui:insert name="header-title">Template User</ui:insert></title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title><ui:insert name="header-title">Template User</ui:insert></title>
 
-<link href="../css/home.css" rel="stylesheet" type="text/css" />
-<link href="../css/bootstrap.css" rel="stylesheet" type="text/css" />
-<link href="../css/font-awesome.min.css" rel="stylesheet"
-	type="text/css" />
+	<link href="../css/home.css" rel="stylesheet" type="text/css" />
+	<link href="../css/bootstrap.css" rel="stylesheet" type="text/css" />
+	<link href="../css/font-awesome.min.css" rel="stylesheet"
+		type="text/css" />
 
-<link rel="shortcut icon" href="http://designshack.net/favicon.ico" />
-<link rel="icon" href="http://designshack.net/favicon.ico" />
-<link rel="stylesheet" type="text/css" media="all"
-	href="../css/popupLogin.css" />
+	<link rel="shortcut icon" href="http://designshack.net/favicon.ico" />
+	<link rel="icon" href="http://designshack.net/favicon.ico" />
+	<link rel="stylesheet" type="text/css" media="all"
+		href="../css/popupLogin.css" />
 
-<link rel="stylesheet"
-	href="../css/sequencejs-theme.modern-slide-in.css" />
+	<link rel="stylesheet"
+		href="../css/sequencejs-theme.modern-slide-in.css" />
 
-<script src="../js/bootstrap.js"></script>
-<script src="../js/jquery.min.js"></script>
-<script type="text/javascript" charset="utf-8"
-	src="../js/jquery.leanModal.min.js"></script>
+	<script src="../js/bootstrap.js"></script>
+	<script src="../js/jquery.min.js"></script>
+	<script type="text/javascript" charset="utf-8"
+		src="../js/jquery.leanModal.min.js"></script>
 
-<script type="text/javascript">
+	<script type="text/javascript">
 	$(function() {
 		$('#loginmodal').submit(function(e) {
 			return true;
@@ -42,30 +42,30 @@
 	});
 </script>
 
-<script src="../js/jquery.sequence.js"></script>
-<script src="../js/sequencejs-options.modern-slide-in.js"></script>
+	<script src="../js/jquery.sequence.js"></script>
+	<script src="../js/sequencejs-options.modern-slide-in.js"></script>
 
-<ui:insert name="style"></ui:insert>
-<ui:insert name="script"></ui:insert>
+	<ui:insert name="style"></ui:insert>
+	<ui:insert name="script"></ui:insert>
 </h:head>
 
 <h:body class="page">
 	<f:view>
-		<h:form>
+		<h:form name="formulaire">
 			<div class="container">
 
 				<div class="header">
 					<div class="col-lg-12">
 						<div class="col-lg-2" id="menu">
-							<a href="../pages/Home.xhtml"  class="icon fa-home col-lg-12" > <span class="col-lg-12">Menu</span>
+							<a href="../pages/Home.xhtml" class="icon fa-home col-lg-12">
+								<span class="col-lg-12">Menu</span>
 							</a>
 						</div>
 						<div class="col-lg-8">
 							<h1>Business Partner's Community</h1>
 						</div>
 						<div class="col-lg-2">
-							<div class="col-lg-12">
-							</div>
+							<div class="col-lg-12"></div>
 							<h:selectOneMenu class="col-lg-12" onchange="submit()"
 								value="#{mbConnexion.devise}">
 								<f:selectItems value="#{mbDevise.listDevise}" />
@@ -74,11 +74,11 @@
 					</div>
 					<ui:insert name="message">
 						<div id="messageSent" class="col-lg-12">
-							<h:outputText 
-								value="#{mbModeratorNotifications.showMessage()}" escape="false" />
+							<h:outputText value="#{mbModeratorNotifications.showMessage()}"
+								escape="false" />
 						</div>
 					</ui:insert>
-<!--  
+					<!--  
 						<a href="../pages/consulterPanier.xhtml" class="cart"><span>Panier</span></a>-->
 
 
@@ -110,9 +110,9 @@
 							<li><a class="icon fa-exclamation-triangle"
 								href="../pages/SearchProject.xhtml"><span>Recherche</span></a></li>
 							<li><a class="icon fa-sign-out"><h:commandLink
-											action="#{mbConnexion.deconnexion()}">
-											<span>Déconnexion </span>
-										</h:commandLink> </a></li>
+										action="#{mbConnexion.deconnexion()}">
+										<span>Déconnexion </span>
+									</h:commandLink> </a></li>
 						</ul>
 					</div>
 				</div>
@@ -132,6 +132,7 @@
 						</div>
 					</ui:insert>
 				</div>
+				
 				<div class="footer">
 					<ui:insert name="footer">
 						<h1>
@@ -148,28 +149,23 @@
 							</p>
 						</div>
 						<div class="row">
-							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<div class="input-prepend col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
 								<section class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-								<div class="input-prepend col-lg-12">
-
+								<div class="col-lg-12">
+								
 									<span class="add-on col-lg-2"><a class="icon fa-user"></a></span>
 									<h:inputText value="#{mbModeratorNotifications.nomMembre}"
 										class="span2 col-lg-10" type="text" placeholder="Nom" />
 
-									<span class="add-on col-lg-2"><a
-										class="icon fa-envelope-o"></a></span>
-
+									<span class="add-on col-lg-2"><a class="icon fa-envelope-o" ></a></span>
 									<h:inputText value="#{mbModeratorNotifications.emailMembre}"
 										class="span2 col-lg-10" type="text" placeholder="Mail" />
 
 									<h:inputTextarea
 										value="#{mbModeratorNotifications.contentMessage}"
-
 										class="span3 col-lg-12" type="text"
-
 										placeholder="Votre message" />
-
 
 									<h:commandButton
 										class="button col-lg-12 col-md-12 col-sm-12 col-xs-12"
@@ -184,7 +180,8 @@
 								<div class="col-lg-12">
 
 
-									<div class="input-prepend col-lg-6 col-md-12 col-sm-12 col-xs-12">
+									<div
+										class="input-prepend col-lg-6 col-md-12 col-sm-12 col-xs-12">
 
 										<ul class="col-lg-6">
 											<li class="fa-envelope"><a href="#">contact@bpc.fr</a></li>
@@ -195,7 +192,8 @@
 									</div>
 
 
-									<ul class="input-prepend col-lg-6 col-md-12 col-sm-12 col-xs-12">
+									<ul
+										class="input-prepend col-lg-6 col-md-12 col-sm-12 col-xs-12">
 
 										<li class="fa-dribbble"><a href="#">dribbble.com/bpc.fr</a>
 										</li>
@@ -241,5 +239,4 @@
 		</h:form>
 	</f:view>
 </h:body>
-
 </html>
