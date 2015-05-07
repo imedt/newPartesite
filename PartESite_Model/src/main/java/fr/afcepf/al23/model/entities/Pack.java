@@ -73,9 +73,12 @@ public class Pack implements Serializable {
 	
 	@Transient
 	private Integer nbSale;
-
+	
+	@Column(name="total_quantity",nullable=false)
+	private Integer totalQuantity; 
+	
 	public Pack() {
-	}
+	} 
 
 	public Integer  getIdPack() {
 		return this.idPack;
@@ -203,4 +206,12 @@ public class Pack implements Serializable {
 		this.nbSale = nbSale;
 	}
 
+	public Integer getTotalQuantity() {
+		return totalQuantity;
+	}
+
+	public void setTotalQuantity(Integer totalQuantity) {
+		this.totalQuantity = totalQuantity;
+	}
+ 
 }

@@ -202,7 +202,8 @@ public class MBEditProject {
 			pack.setProject(p);
 			pack.setCreatedBy(cnx.getId().getIdIdentity());
 			pack.setCreatedDate(new Date()); 
-			p.setPacks(packs);
+			pack.setTotalQuantity(pack.getStock());
+			p.setPacks(packs); 
 		}		
 		return p;
 		// Enregistre le projet apres ajout du pack

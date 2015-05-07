@@ -1,6 +1,7 @@
 package fr.afcepf.al23.partesite.managedbean;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -44,14 +45,31 @@ public class MBConsultProject {
 	private List<PackWrap> wrappedPack;
 	private int i = 0;
 	
+	private Double aimingAmount;
+	private float financedAmount;
+	private int totalPacks;
+	private int totalSaledPacks;
+	private Date projectEndDate;
 	public void init(){
-		log.info("in preRenderView");
+		log.info("in preRenderView"); 
 		packs = getPacks();
 		wrappedPack = new ArrayList<PackWrap>();
+		//reset vars
+		financedAmount = 0;
+		totalPacks = 0;
+		totalSaledPacks = 0; 
 		for(Pack pack : packs){
 			PackWrap pw = new PackWrap(pack);
 			wrappedPack.add(pw); 
+			totalPacks+=pack.getTotalQuantity();
+			totalSaledPacks+=pack.getNbSale();
+			financedAmount+=(pack.getAmount()*pack.getNbSale());			 
 		}
+		log.info("project : "+p);
+		this.aimingAmount = p.getAimingAmount();
+		this.projectEndDate = p.getPublishingDate();
+		projectEndDate.setTime(projectEndDate.getTime()+(3600*24*30));
+		
 		log.info("there is : "+wrappedPack.size()+" packs");
 	}
 	
@@ -217,6 +235,50 @@ public class MBConsultProject {
 
 	public void setWrappedPack(List<PackWrap> wrappedPack) {
 		this.wrappedPack = wrappedPack;
+	}
+
+	public Double getAimingAmount() {
+		return aimingAmount;
+	}
+
+	public void setAimingAmount(Double aimingAmount) {
+		this.aimingAmount = aimingAmount;
+	}
+
+	public float getFinancedAmount() {
+		return financedAmount;
+	}
+
+	public void setFinancedAmount(float financedAmount) {
+		this.financedAmount = financedAmount;
+	}
+
+	public int getTotalPacks() {
+		return totalPacks;
+	}
+
+	public void setTotalPacks(int totalPacks) {
+		this.totalPacks = totalPacks;
+	}
+
+	public int getTotalSaledPacks() {
+		return totalSaledPacks;
+	}
+
+	public void setTotalSaledPacks(int totalSaledPacks) {
+		this.totalSaledPacks = totalSaledPacks;
+	}
+
+	public Date getProjectEndDate() {
+		return projectEndDate;
+	}
+
+	public void setProjectEndDate(Date projectEndDate) {
+		this.projectEndDate = projectEndDate;
+	}
+
+	public void setNbPackToOrder(int nbPackToOrder) {
+		this.nbPackToOrder = nbPackToOrder;
 	}
 	
 }

@@ -5,100 +5,96 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <ui:composition template="../templates/TemplateHome.xhtml">
-
 	<ui:define name="header-title">Consultation Projet</ui:define>
 
 	<ui:define name="content">
-
+		<f:event listener="#{mbConsultProject.init()}" type="preRenderView"></f:event>
 		<f:view>
-			<h:form>
+			<div class="col-md-9">
+				<div class="col-md-12 text-center">
+					<h3>#{mbConsultProject.p.projectName}</h3>
+				</div>
+				<div class="row">
 
-				<f:event listener="#{mbConsultProject.init()}" type="preRenderView"></f:event>
-				<div class="bloc">
-					<div class="col-lg-12">
 
-						<div class="col-lg-4 col-xs-12 col-sm-12 col-md-12">
-							<div class="textBox">
-								<h3 class="col-lg-12">#{mbConsultProject.p.projectName}</h3>
-								<h:outputText class="col-lg-12"
-									value="#{mbConsultProject.contentProjectAuthor.content}"
-									escape="false" />
-							</div>
+					<div class="col-md-6">
+						<img src="#{mbConsultProject.contentProjectImage.content}"
+							width="100%" height="400px" />
+					</div> 
+					<div class="col-md-6">
 
-							<div class="textBox">
-								<h3 class="col-lg-12">Concept</h3>
-								<h:outputText class="col-lg-12"
-									value="#{mbConsultProject.contentProjectConcept.content}"
-									escape="false" />
-							</div>
-
+						<div class="frameBoxVideo">
+							<iframe width="100%" height="400px"
+								src="#{mbConsultProject.contentProjectVideo.content}"
+								frameborder="0"></iframe>
 						</div>
-
-						<div class="col-lg-4 col-xs-12 col-sm-12 col-md-12">
-							<div class="frameBoxImage">
-								<h:panelGroup rendered="#{(mbConsultProject.contentProjectImage.content!='')}">
-									<img src="#{mbConsultProject.contentProjectImage.content}" />
-								</h:panelGroup>
-
-								<h:panelGroup rendered="#{mbConsultProject.contentProjectImage.content==''}">
-									<img src="../images/#{mbConsultProject.p.projectCategory.category}.jpg" />
-								</h:panelGroup>
-							</div>
-
-							<div class="frameBoxVideo">
-								<iframe src="#{mbConsultProject.contentProjectVideo.content}"
-									frameborder="0"></iframe>
-							</div>
-						</div>
-
-						<div class=" col-lg-4 col-xs-12 col-sm-12 col-md-12">
-							<h:panelGroup class="col-lg-12 col-xs-12 col-sm-12 col-md-12"
-								rendered="#{mbConsultProject.wrappedPack.size()!=0}">
-								<h:dataTable class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
-									value="#{mbConsultProject.wrappedPack}" var="wrappedPack">
-
-									<h:column class="col-lg-12 col-xs-12 col-sm-12 col-md-12">
-										<h:panelGroup class="pack"
-											rendered="#{(wrappedPack.pack.stock-wrappedPack.pack.nbSale)!=0}">
-											<h3>#{project.projectName}</h3>
-
-											<h3>#{wrappedPack.pack.packName}</h3>
-
-											<h:outputText class="col-lg-12"
-												value="#{wrappedPack.pack.description}" />
-
-											<h:outputText class="larger col-lg-12"
-												value="Prix du package :
-											#{mbConversion.getConvertedAmount(wrappedPack.pack.amount)}" />
-											<h:outputText class="larger col-lg-12"
-												value="Quantité disponible :
-											#{wrappedPack.pack.stock-wrappedPack.pack.nbSale}" />
-											<h:outputText class="larger col-lg-8"
-												value="Quantité souhaitée :" />
-
-
-											<h:selectOneMenu
-												class="col-lg-4 col-xs-12 col-sm-12 col-md-12"
-												value="#{wrappedPack.quantity}">
-												<f:selectItems
-													value="#{mbConsultProject.remplirList(wrappedPack.pack)}" />
-											</h:selectOneMenu>
-
-											<h:commandButton type="submit" value="Commander"
-												action="#{mbOrder.addToCart(wrappedPack)}"
-												class="btn marged lg-btn-default col-lg-12 col-xs-12 col-sm-12 col-md-12" />
-										</h:panelGroup>
-									</h:column>
-								</h:dataTable>
-							</h:panelGroup>
-						</div>
-						
 					</div>
 				</div>
-				
-			</h:form>
-		</f:view>
+				<div class="col-md-12">
+					<h3>A propos du projet :</h3>
+					<hr />
+					<p>
+						<h:outputText
+							value="#{mbConsultProject.contentProjectConcept.content}"
+							escape="false" />
+					</p>
+				</div>
 
+				<div class="col-md-12">
+					<h3>A propos de l'auteur :</h3>
+					<hr />  
+
+					<p>
+						<h:outputText
+							value="#{mbConsultProject.contentProjectAuthor.content}"
+							escape="false" />
+					</p>
+				</div>
+			</div>
+			<div class="col-md-3">
+			<div class="participation-states">
+				<h3>Etat du projet</h3> 
+				<p>#{mbConsultProject.aimingAmount} </p>
+				<p>#{mbConsultProject.financedAmount}</p>
+				<p>#{mbConsultProject.totalPacks}</p>
+				<p>#{mbConsultProject.totalSaledPacks}</p>
+				<p>#{mbConsultProject.projectEndDate}</p>
+			</div>
+ 				<h:panelGroup
+					class="packBox3 col-lg-12 col-xs-12 col-sm-12 col-md-12"
+					rendered="#{mbConsultProject.wrappedPack.size()!=0}">
+					<ui:repeat var="wrappedPack"
+						value="#{mbConsultProject.wrappedPack}">
+						<h:panelGroup rendered="#{(wrappedPack.pack.stock-wrappedPack.pack.nbSale) &gt; 0}"> 
+							<div class="col-md-12">  
+								<h3>Pour
+									#{mbConversion.getConvertedAmount(wrappedPack.pack.amount)}</h3>
+
+								<p class="package-name">#{wrappedPack.pack.packName}</p> 
+								<p class="package-description">#{wrappedPack.pack.description}</p>
+								<p class="package-quantity">Quantité disponible :
+									#{wrappedPack.pack.stock-wrappedPack.pack.nbSale}</p>
+								<h:form>
+
+									<label>Quantité souhaitée : <h:selectOneMenu
+											class="col-lg-offset-2 col-lg-8 col-xs-12 col-sm-12 col-md-12"
+											value="#{wrappedPack.quantity}">
+											<f:selectItems
+												value="#{mbConsultProject.remplirList(wrappedPack.pack)}" />
+										</h:selectOneMenu>
+									</label>
+
+									<h:commandButton type="submit" value="Commander"
+										action="#{mbOrder.addToCart(wrappedPack)}"
+										class="button marged lg-btn-default col-lg-12 col-xs-12 col-sm-12 col-md-12" />
+								</h:form>
+
+							</div>
+						</h:panelGroup>
+					</ui:repeat>
+				</h:panelGroup>
+			</div>
+		</f:view>
 	</ui:define>
 
 </ui:composition>
