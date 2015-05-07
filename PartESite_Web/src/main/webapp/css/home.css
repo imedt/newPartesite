@@ -149,4 +149,5 @@ background-color:white; padding:1em 1em 1em 1em;margin-left:1em; margin-right:1e
 .box  input, span {color:navy;font-size:small;}
 .box  h3{color:Teal;font-size:medium;font-weight: bold;text-align:left;}
 .box  img {min-width:80px;min-height:80px;max-width:80px;max-height:80px;border-radius:50%;background-color:black;}
-
+ 
+input.cat{    outline: none;}
