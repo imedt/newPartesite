@@ -46,7 +46,6 @@
 
 
 					<h:panelGroup id="list">
-						<h1>Résultat de la recherche</h1>
 						<h:panelGroup rendered="#{mbSearchProject.projects.size()==0}"
 							class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<center>
@@ -55,27 +54,34 @@
 						</h:panelGroup>
 						<h:panelGroup rendered="#{mbSearchProject.projects.size()!=0}"
 							class="col-lg-push-1 col-lg-10 col-lg-push-1 col-md-12 col-sm-12 col-xs-12">
+							<h1>Résultat de la recherche</h1>
 							<ui:repeat value="#{mbSearchProject.projects}" var="project">
-								<div class="box col-lg-3">
+								<div class="col-md-3 project-desc">
+								<div class="project-wrap">
+									<div class="row">
+										<h3>#{mbProjet.sliceText(project.projectName,40)}</h3>
+									</div> 
+									<div class="row"> 
+										<div class="col-md-6">
+											<img src="#{project.projectContents[0].content}"
+												alt="Image not found"
+												onError="this.onerror=null;this.src='../images/#{project.projectCategory.category}.jpg';" />
+										</div>    
+										<div class="col-md-6 project-data">
+											<h:outputText styleClass="col-md-12  project-info" escape="false" value="Publié le : &lt;br /&gt; #{project.publishingDate}">
+												<f:convertDateTime pattern="dd/MM/YYYY" timeZone="Europe" />
+											</h:outputText>
+											<h:outputText  styleClass="col-md-12 project-info" escape="false" value=" Par : &lt;br /&gt; #{project.identity.firstName}" />
+											<h:outputText  styleClass="col-md-12 project-info" escape="false"
+												value="Soutien : &lt;br /&gt; #{mbConversion.getConvertedAmount(project.aimingAmount)}" />
 
-									<h:outputLabel class="col-lg-12">
-										<h3 class="col-lg-6">#{mbProjet project.projectName}</h3>
-										
-										<img src="#{project.projectContents[0].content}" alt="Image not found" onError="this.onerror=null;this.src='../images/#{project.projectCategory.category}.jpg';" />
-									</h:outputLabel>   
- 
-									<h:outputLabel class="col-lg-12"
-										value="Publié le : #{project.publishingDate}">
-										<f:convertDateTime pattern="dd/MM/yyyy" timeZone="Europe" />
-									</h:outputLabel>
-									<h:outputLabel class="col-lg-12">
-									Par : #{project.identity.firstName}
-									</h:outputLabel>
-									<h:outputLabel class="col-lg-12">
-									Soutien : #{mbConversion.getConvertedAmount(project.aimingAmount)}
-									</h:outputLabel>
-
-
+										</div> 
+									</div>
+									<div class="row">
+										<h:outputText
+											value="#{mbProjet.sliceText(project.projectContents[3].content,130)}" escape="false"/>
+									</div> 
+									</div>
 									<h:commandButton class="btn col-lg-12 lg-btn-default"
 										value="Details"
 										action="#{mbConsultProject.detailProject(project)}">
@@ -91,9 +97,6 @@
 
 			</h:form>
 		</fieldset>
-		<br />
-		<br />
-
 	</ui:define>
 
 </ui:composition>

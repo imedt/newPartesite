@@ -149,5 +149,31 @@ background-color:white; padding:1em 1em 1em 1em;margin-left:1em; margin-right:1e
 .box  input, span {color:navy;font-size:small;}
 .box  h3{color:Teal;font-size:medium;font-weight: bold;text-align:left;}
 .box  img {min-width:80px;min-height:80px;max-width:80px;max-height:80px;border-radius:50%;background-color:black;}
- 
-input.cat{    outline: none;}
+   
+input.cat{outline: none;}
+.project-desc img{
+	width:100%;
+	height:100px;
+	margin-bottom:10px;  
+}
+.project-desc h3{
+	font-size:1.3em;
+	font-weight: bold;
+} 
+.project-desc{ 
+background:white; 
+	min-height:300px;
+	padding:0 50px 0 50px;
+	margin-right:10px;
+	text-align: center;
+	font-weight: bold;
+}  
+.project-wrap{
+	height:260px;
+ }
+.project-data,.project-data *{
+	padding:0px;
+	margin:0px; 
+	text-align:left; 
+}  
+.project-info{margin-bottom:10px;}

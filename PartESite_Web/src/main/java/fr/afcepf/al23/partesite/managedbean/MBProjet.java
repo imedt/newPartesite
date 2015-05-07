@@ -84,6 +84,15 @@ public class MBProjet {
 	public void setAimingAmount(Double aimingAmount) {
 		this.aimingAmount = aimingAmount;
 	}
-
+	
+	public String sliceText(String text,int size){
+		if(text.length() > size){
+			text = text.substring(0,size)+"...";			
+		}  
+		return text;
+	}
+	public double getRandomNumber(){
+		return Math.ceil(Math.random()*100000); 
+	}
 
 }
