@@ -133,4 +133,9 @@ public class BusinessOrderRowImpl implements IBusinessOrderRow {
 		return daoOrderRow.getByUserRow(userOrder);
 	}
 
+	@Override
+	public void changeUserOrder(UserOrder cart, UserOrder currentCart) {
+		daoOrderRow.switchCart(cart.getIdUserOrder(),currentCart.getIdUserOrder());
+	}
+
 }

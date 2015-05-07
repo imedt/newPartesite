@@ -8,6 +8,8 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 
+import org.apache.log4j.Logger;
+
 import fr.afcepf.al23.model.entities.OrderRow;
 import fr.afcepf.al23.model.entities.Payment;
 import fr.afcepf.al23.model.entities.UserOrder;
@@ -17,7 +19,7 @@ import fr.afcepf.al23.partesite.managedbean.MBConnexion;
 @ManagedBean(name="mbPayment")
 @SessionScoped
 public class MBPayment {
-
+	private Logger log = Logger.getLogger(MBPayment.class); 
 	@ManagedProperty(value="#{mbOrder}")
 	private MBOrder mbOrder;
 
@@ -35,33 +37,46 @@ public class MBPayment {
 	public String accessPaymentForm(){
 		return "paymentForm.xhtml";
 	}
+	private Double totalPrice;
 	
 	public String finalizePayment(){
+		if(mbOrder.getCart().getIdUserOrder() == null){
+			return "/pages/index.xhtml";
+		}
+		log.info("creation paiement");
 		Payment payment = new Payment();
 		payment.setCreatedDate(new Date());
 		payment.setCreatedBy(mbCnx.getId().getIdIdentity());
 		payment.setDisabled(false);
-		payment.setUserOrder(mbOrder.getCart());
+		payment.setUserOrder(mbOrder.getCart()); 
+		log.info("save paiement");
 		busiPayment.save(payment);
-		mbOrder.validateCart();
+		log.info("pre validate cart");
+		mbOrder.validateCart();  
 		mbOrder.setCart(new UserOrder());
-		return "..pages/congratulation.xhtml";
-	}
-	
+		return "/pages/congratulation.xhtml?faces-redirect=true";
+	} 
+	 
 	public double computeTotal(){
 		double total = 0;
-		for(OrderRow or : mbOrder.getCart().getOrderRows()){
-			total+=or.getAmount();
+		try{
+			log.info("Cart : "+mbOrder.getCart().getIdUserOrder());
+			for(OrderRow or : mbOrder.getCart().getOrderRows()){
+				total+=or.getAmount();
+			} 
+			totalPrice = new Double(total);
+			return total;
+		}catch(Exception e){
+			return totalPrice;
 		}
-		return total;
 	}
 	
 	public List<OrderRow> getCurrentCartOrderRows(){
 		return mbOrder.getCart().getOrderRows();
 	}
 	public String validatePayment(){
-		return "../pages/paymentResume.xhtml";
-	}
+		return "/pages/paymentResume.xhtml?faces-redirect=true";
+	} 
 	
 	public void sendNotifications(){
 		

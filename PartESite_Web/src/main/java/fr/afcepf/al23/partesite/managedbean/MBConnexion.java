@@ -1,6 +1,7 @@
 package fr.afcepf.al23.partesite.managedbean;
 
 import javax.ejb.EJB;
+import javax.el.ELContext;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 
 import fr.afcepf.al23.model.entities.Identity;
+import fr.afcepf.al23.model.entities.UserOrder;
 import fr.afcepf.al23.partesite.iservice.user.IBusinessIdentity;
 import fr.afcepf.al23.partesite.managedbean.transaction.MBOrder;
 
@@ -18,15 +20,15 @@ public class MBConnexion {
 	private Logger log = Logger.getLogger(MBConnexion.class);
 
 	@EJB
-	IBusinessIdentity buIdentity;
+	private IBusinessIdentity buIdentity;
 
-	String statut;
-	String login;
-	String password;
-	String bienvenue;
-	String direction;
-	Identity id;
-	String devise = "EUR";
+	private String statut;
+	private String login;
+	private String password;
+	private String bienvenue;
+	private String direction;
+	private Identity id;
+	private String devise = "EUR";
 
 	public String getDevise() {
 		return devise;
@@ -102,7 +104,6 @@ public class MBConnexion {
 
 	public String connexion() {
 		log.info("In connexion");
-		id = new Identity();
 		id = buIdentity.connexion(login, password);
 		if ( id!= null){
 			log.info("User found");
@@ -114,8 +115,12 @@ public class MBConnexion {
 			if (id.getIdentityRole().getIdIdentityRole() == 2) {
 				log.info("Account Moderator");
 				setDirection("../pages/ModeratorDashBoard.xhtml?faces-redirect=true");
-				setStatut("Moderateur");
+				setStatut("Moderateur"); 
 			}
+			ELContext elContext = FacesContext.getCurrentInstance().getELContext();
+			MBOrder mbOrder  = (MBOrder) FacesContext.getCurrentInstance().getApplication().getELResolver().getValue(elContext, null, "mbOrder");
+			mbOrder.mergeCart();
+
 		}else{
 			direction = "Login.xhtml";
 		}
@@ -123,27 +128,29 @@ public class MBConnexion {
 	}
 
 	public String deconnexion() {
-		
+
 		id = null;
 		try {
-			
+
 			HttpServletRequest request = 
 					(HttpServletRequest)FacesContext
 					.getCurrentInstance()
 					.getExternalContext().getRequest();
-			
+
 			MBOrder mbOrder = (MBOrder)request.getAttribute("mbOrder");
 			mbOrder = new MBOrder();
-			
+
 			setDirection("../pages/Home.xhtml?faces-redirect=true");
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		setDirection("../pages/Home.xhtml?faces-redirect=true");
+		ELContext elContext = FacesContext.getCurrentInstance().getELContext();
+		MBOrder mbOrder  = (MBOrder) FacesContext.getCurrentInstance().getApplication().getELResolver().getValue(elContext, null, "mbOrder");
+		mbOrder.setCart(new UserOrder());
+ 		setDirection("../pages/Home.xhtml?faces-redirect=true");
 		return direction;
 	}
 
-	
-	
+
 }

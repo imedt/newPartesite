@@ -22,5 +22,8 @@ public interface IDaoUserOrder {
 	public List<UserOrder> getByDisabled(Boolean disabled);	
 	public List<UserOrder> getByUpdatedBy(Integer idIdentity); 
 	public List<UserOrder> getByUpdatedDate(Date updatedDate);
-	public List<Object> getSalesByDate();	
+	public List<Object> getSalesByDate();
+	public UserOrder getCurrentUserOrder(Integer idIdentity);
+	public void deleteUserOrderIfExists(UserOrder cart);
+	public UserOrder setCartPaid(UserOrder cart);	
 }

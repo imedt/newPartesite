@@ -24,7 +24,7 @@ public class MBDemonstration {
 	
 	@ManagedProperty(value="#{mbPayment}")
 	private MBPayment mbPayment;
-	
+	 
 	@EJB
 	private IBusinessProjectCategory buProjectCategory;
 	
@@ -88,6 +88,12 @@ public class MBDemonstration {
 	}
 	public void setMbPayment(MBPayment mbPayment) {
 		this.mbPayment = mbPayment;
+	}
+	public IBusinessProjectCategory getBuProjectCategory() {
+		return buProjectCategory;
+	}
+	public void setBuProjectCategory(IBusinessProjectCategory buProjectCategory) {
+		this.buProjectCategory = buProjectCategory;
 	}
 	
 	

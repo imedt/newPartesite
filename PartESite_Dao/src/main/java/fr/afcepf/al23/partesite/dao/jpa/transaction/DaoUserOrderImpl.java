@@ -16,6 +16,7 @@ import org.apache.log4j.Logger;
 
 import fr.afcepf.al23.model.entities.Identity; 
 import fr.afcepf.al23.model.entities.UserOrder;
+import fr.afcepf.al23.model.entities.UserOrderState;
 import fr.afcepf.al23.partesite.dao.offer.DaoProjectImpl;
 import fr.afcepf.al23.partesite.idao.transaction.IDaoUserOrder;
 
@@ -36,8 +37,11 @@ public class DaoUserOrderImpl implements IDaoUserOrder {
 	 */
 	@Override
 	public Integer add(UserOrder userOrder) {
-		em.persist(userOrder);
-		em.flush();
+		if(userOrder.getUserOrderState() == null){
+			userOrder.setUserOrderState(em.find(UserOrderState.class, 1));
+		}
+		em.persist(userOrder);  
+ 		em.flush();
 		return userOrder.getIdUserOrder();
 	}
 
@@ -45,7 +49,7 @@ public class DaoUserOrderImpl implements IDaoUserOrder {
 	 * @see fr.afcepf.al23.partesite.idao.transaction.IDaoUserOrder#update(fr.afcepf.al23.partesite.model.entities.UserOrder)
 	 */
 	@Override
-	public UserOrder update(UserOrder userOrder) {
+	public UserOrder update(UserOrder userOrder) { 
 		userOrder = em.merge(userOrder);
 		em.flush();
 		return userOrder;
@@ -161,6 +165,33 @@ public class DaoUserOrderImpl implements IDaoUserOrder {
 		Query hql = em.createQuery(query); 
 		List<Object> lobject =  hql.getResultList();
 		return lobject; 
+	} 
+
+	@Override 
+	public UserOrder getCurrentUserOrder(Integer idIdentity) { 
+		try{
+			String query = "SELECT uo FROM UserOrder uo WHERE uo.identity.idIdentity = :uid AND uo.userOrderState = 1";
+			Query hql = em.createQuery(query).setParameter("uid", idIdentity); 
+			return (UserOrder) hql.getSingleResult(); 
+		}catch(Exception e){
+			return null; 
+		}
+	}
+
+	@Override
+	public void deleteUserOrderIfExists(UserOrder cart) {
+		try{
+			cart = em.find(UserOrder.class,cart.getIdUserOrder());
+			em.remove(cart);
+		}catch(Exception e){
+	 	}
+	}
+
+	@Override
+	public UserOrder setCartPaid(UserOrder cart) {
+		cart.setUserOrderState(em.find(UserOrderState.class, 2));
+		cart = em.merge(cart);
+		return cart; 
 	}
 
 }

@@ -163,6 +163,13 @@ public class DaoOrderRowImpl implements IDaoOrderRow {
 				.setParameter("userOrder", userOrder);
 		List<OrderRow> list = hql.getResultList();
 		return list;
+	} 
+
+	@Override
+	public void switchCart(Integer fromOrderId, Integer toUserOrder) { 
+		String query = "UPDATE OrderRow uo SET uo.userOrder.idUserOrder = :newUserOrderId WHERE uo.userOrder.idUserOrder = :oldUserOrderId";
+		Query hql = em.createQuery(query).setParameter("newUserOrderId", toUserOrder).setParameter("oldUserOrderId", fromOrderId);
+		hql.executeUpdate();
 	}
 
 }

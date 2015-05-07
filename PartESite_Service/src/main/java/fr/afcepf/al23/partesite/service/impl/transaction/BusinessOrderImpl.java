@@ -138,7 +138,7 @@ public class BusinessOrderImpl implements IBusinessOrder {
 	 * (non-Javadoc)
 	 * 
 	 * @see fr.afcepf.al23.partesite.iservice.transaction.IBusinessUserOrder#
-	 * getByUpdatedBy(Identity)
+	 * getByUpdatedBy(Identity) 
 	 */
 	@Override
 	public List<UserOrder> getByUpdatedBy(Identity identity) {
@@ -165,47 +165,50 @@ public class BusinessOrderImpl implements IBusinessOrder {
 	}
 
 	@Override
-	public UserOrder addOrderRow(Identity identity, UserOrder oldOrder,
+	public UserOrder addOrderRow(Identity identity, UserOrder order,
 			Integer nb, Pack pack) {
 
 		log.info("addOrderRow in BusinessOrderImpl ");
 		log.info(pack.getIdPack());
-		UserOrder newOrder = oldOrder;
 		// si commande/panier inexistant => creation
-		if (newOrder == null) {
-			newOrder = new UserOrder(null, 1, new Date(), null, 0d, 1,
-					new Date(), null, null, identity, new UserOrderState(1,
-							null, null, null, null, null, "EN COURS", null));
-			log.info("0");
-			newOrder.setIdUserOrder(daoUserOrder.add(newOrder));
+		//Un panier par défaut existe obligatoirement, mais id = null tant qu'il n'y a pas de produit dedans
+		if (order.getIdUserOrder() == null) {
+			order = createNewOrder(identity);
+			log.info("0"); 
+			order.setIdUserOrder(daoUserOrder.add(order));
 		}
-		log.info("1");
-		if (newOrder.getIdUserOrder() == null)
-			return null;
-		log.info("2");
-		log.info("idOrder = " + newOrder.getIdUserOrder());
+ 
+		log.info("idOrder = " + order.getIdUserOrder());
 		// creation de la ligne de commande
 		OrderRow newOR = new OrderRow(null, pack.getAmount() * nb, 1,
-				new Date(), null, 1, new Date(), pack, newOrder);
-		log.info("3");
+				new Date(), null, 1, new Date(), pack, order);
 		newOR = daoOrderRow.add(newOR);
-		newOrder.setTotalAmount(newOrder.getTotalAmount() + newOR.getAmount());
-		newOrder = daoUserOrder.update(newOrder);
+		//Mise a jour du prix total de la commande
+		order.setTotalAmount(order.getTotalAmount() + newOR.getAmount());
+		//Mise a jour du panier
+		order = daoUserOrder.update(order);
 		log.info("pre blocage item : "+nb+" "+pack+" "+newOR.getIdOrderRow());
 		// reservation des items.
 		newOR.setItems(daoItem.holdItemByNbByPack(nb, pack,
 				newOR.getIdOrderRow()));
-		log.info("idOrderRow = " + newOR.getIdOrderRow());
+		//Création du order row
+ 		log.info("idOrderRow = " + newOR.getIdOrderRow());
 		List<OrderRow> orList = new ArrayList<OrderRow>();
-		if (newOrder.getOrderRows() != null)
-			orList = newOrder.getOrderRows();
-		
+		//Ajout du orderRow a la collection existante
+		if (order.getOrderRows() != null){
+			orList = order.getOrderRows();
+		}
 		orList.add(newOR);
+		order.setOrderRows(orList);
+		daoUserOrder.update(order);
+	 	log.info(order.getOrderRows().size());
+		return order;
+	}
 
-		newOrder.setOrderRows(orList);
-		log.info("5");
-		log.info(newOrder.getOrderRows().size());
-		return newOrder;
+	public UserOrder createNewOrder(Identity identity) {
+		return new UserOrder(null, 1, new Date(), null, 0d, 1,
+				new Date(), null, null, identity, new UserOrderState(1,
+						null, null, null, null, null, "EN COURS", null)); 
 	}
 
 	@Override
@@ -267,9 +270,50 @@ public class BusinessOrderImpl implements IBusinessOrder {
 			Pack pack = row.getPack(); 
 			pack.setStock(pack.getStock() - itemToEdit.size());
 			daoPack.update(pack);
-		} 
+		}
 		cart = daoUserOrder.update(cart);
+		cart = daoUserOrder.setCartPaid(cart);
 		return cart;
+	}
+
+	@Override
+	public UserOrder getCurrentUserCart(Identity id) {
+		log.info("getting user cart");
+		log.info("user id : "+id.getIdIdentity());
+		UserOrder cart = daoUserOrder.getCurrentUserOrder(id.getIdIdentity());
+		log.info("cart found : "+cart);
+ 		if(cart == null){
+			cart = createNewOrder(id); 
+			cart.setIdentity(id); 
+	}
+		if(cart.getOrderRows() == null){
+			cart.setOrderRows(new ArrayList<OrderRow>());
+		} 
+		return cart;
+	}
+
+	@Override
+	public void updateOrder(UserOrder currentCart) {
+		if(currentCart.getIdUserOrder() == null){
+			daoUserOrder.add(currentCart);
+		}else{
+			daoUserOrder.update(currentCart);
+		}
+	}
+
+	@Override
+	public void deleteUserOrderIfExists(UserOrder cart) {
+		daoUserOrder.deleteUserOrderIfExists(cart);
+	}
+
+	@Override
+	public UserOrder reloadOrder(UserOrder cart) {
+		double total = 0;
+		for(OrderRow or : cart.getOrderRows()){
+			total+= (or.getAmount());
+		}
+		cart.setTotalAmount(total);
+		return cart; 
 	}
 
 }

@@ -23,4 +23,5 @@ public interface IDaoOrderRow {
 	public List<OrderRow> getByUpdatedDate(Date updatedDate);
 	public List<OrderRow> getByItem(Item item);
 	public List<OrderRow> getByUserRow(UserOrder userOrder);
+	public void switchCart(Integer fromOrderId, Integer toUserOrder);
 }

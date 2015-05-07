@@ -1,8 +1,10 @@
 package fr.afcepf.al23.partesite.managedbean.transaction;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -47,14 +49,14 @@ public class MBOrder {
 	
 	@ManagedProperty(value = "#{mbConnexion}")
 	private MBConnexion MBCnx;
-	
-
-
 	private UserOrder backing;
 	List<UserOrder> orders;
 	double totalAmount; 
 	private UserOrder cart;
-
+	@PostConstruct
+	private void init(){
+		cart = new UserOrder(); 
+	}
 	public UserOrder getCart() {
 		return cart;
 	}
@@ -180,8 +182,7 @@ public class MBOrder {
 		n1.setDisabled(false);
 		log.info("save notification 2");
 		buNotification.save(n1);	
-		this.cart = new UserOrder();
-	}
+ 	}
 	
 	public String removePack(OrderRow or){
 		this.cart.getOrderRows().remove(or); 
@@ -227,4 +228,28 @@ public class MBOrder {
 		this.buPack = buPack;
 	}
 
+	public void mergeCart() {
+		UserOrder currentCart = buOrder.getCurrentUserCart(MBCnx.getId());
+		log.info(cart.getIdentity()); 
+		if(cart != null && cart.getOrderRows() != null && cart.getIdentity() == null){ 
+			log.info(cart);  
+			log.info("transfer order rows"); 
+			for(OrderRow or : cart.getOrderRows()){
+				log.info("transfer: add to "+or);
+				currentCart.addOrderRow(or);
+				log.info("transfer: remove from"); 
+				//cart.removeOrderRow(or);
+			}
+			log.info("transfer userOrder");
+			buOrderRow.changeUserOrder(cart,currentCart);
+			log.info("reload cart");
+currentCart = buOrder.reloadOrder(currentCart);
+			log.info("update current");
+			buOrder.updateOrder(currentCart);
+			log.info("remove old : "+cart.getIdUserOrder());
+			buOrder.deleteUserOrderIfExists(cart);    
+		}
+		this.cart = currentCart;
+	}
+ 
 }
