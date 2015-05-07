@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:body>
+				<h1>
+							<ui:insert name="footer-titre">
+						Partagez votre expérience sur <br /> <strong>Business Partner's
+									Community</strong>!  
+					</ui:insert>
+						</h1>
+
+						<div class="col-lg-push-3 col-lg-6">
+							<p class="col-lg-12">
+								<span> 3 rue Danton, 92240 Malakoff FRANCE - 00 33 1 41
+									45 45 45</span>
+							</p>
+						</div>
+						<div class="row">
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+								<section class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+								<div class="input-prepend col-lg-12">
+									<span class="add-on col-lg-2"><a class="icon fa-user"></a></span>
+									<h:inputText value="#{mbModeratorNotifications.nomMembre}"
+										class="span2 col-lg-10" type="text" placeholder="Nom" />
+
+									<span class="add-on col-lg-2"><a
+										class="icon fa-envelope-o"></a></span>
+									<h:inputText value="#{mbModeratorNotifications.emailMembre}"
+										class="span2 col-lg-10" type="text" placeholder="Mail" />
+
+									<h:inputTextarea
+										value="#{mbModeratorNotifications.contentMessage}"
+										class="span3 col-lg-12" type="text"
+										placeholder="Votre message" />
+
+
+									<h:commandButton
+										class="button col-lg-12 col-md-12 col-sm-12 col-xs-12"
+										type="submit" value="Envoyer"
+										action="#{mbModeratorNotifications.sendNotification()}"
+										render="messageSent" />
+
+								</div>
+								</section>
+								<section class="col-lg-6">
+
+								<div class="col-lg-12">
+
+
+									<div
+										class="input-prepend col-lg-6 col-md-12 col-sm-12 col-xs-12">
+
+										<ul class="col-lg-6">
+											<li class="fa-envelope"><a href="#">contact@bpc.fr</a></li>
+											<li class="fa-twitter"><a href="#">@bpc.fr</a></li>
+											<li class="fa-instagram"><a href="#">instagram.com/bpc.fr</a>
+											</li>
+										</ul>
+									</div>
+
+
+									<ul
+										class="input-prepend col-lg-6 col-md-12 col-sm-12 col-xs-12">
+
+										<li class="fa-dribbble"><a href="#">dribbble.com/bpc.fr</a>
+										</li>
+										<li class="fa-facebook"><a href="#">facebook.com/bpc.fr</a>
+										</li>
+									</ul>
+
+
+								</div>
+
+								</section>
+
+							</div>
+						</div>
+</h:body>
+</html>
