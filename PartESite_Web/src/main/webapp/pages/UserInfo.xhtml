@@ -24,8 +24,7 @@
 
 								<fieldset class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
 									<div>
-									<strong>
-									<h:outputText
+										<strong> <h:outputText
 												class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
 												value="#{mbConnexion.id.civility.civility}&nbsp;#{mbConnexion.id.firstName}&nbsp;#{mbConnexion.id.lastName}" />
 										</strong>
@@ -34,19 +33,21 @@
 										<h:outputText class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
 											value="Mot de passe :&nbsp;#{mbConnexion.id.mdp}" />
 
-<h:outputText value="Né le :&nbsp;" class="col-lg-2 col-md-12 col-sm-12 col-xs-12"/>
+										<h:outputText value="Né le :&nbsp;"
+											class="col-lg-2 col-md-12 col-sm-12 col-xs-12" />
 										<h:outputText class="col-lg-10 col-md-12 col-sm-12 col-xs-12"
 											value="#{mbConnexion.id.birthdate}">
 											<f:convertDateTime pattern="dd/MM/yyyy" />
 										</h:outputText>
-										
-										<strong>
-<h:outputText class="col-lg-2 col-md-12 col-sm-12 col-xs-12" value="Date d'inscription :" /></strong>
+
+										<strong> <h:outputText
+												class="col-lg-2 col-md-12 col-sm-12 col-xs-12"
+												value="Date d'inscription :" /></strong>
 										<h:outputText class="col-lg-10 col-md-12 col-sm-12 col-xs-12"
 											value="#{mbConnexion.id.createdDate}">
 											<f:convertDateTime pattern="dd/MM/yyyy" />
 										</h:outputText>
-																</div>
+									</div>
 								</fieldset>
 
 							</div>
@@ -69,7 +70,7 @@
 											action="#{mbUser.addPhoneToUser()}" value="Ajouter" />
 									</h:panelGroup>
 
-									<h:panelGroup class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
+									<h:panelGroup class="col-lg-6 col-md-12 col-sm-12 col-xs-12" id="phonelist"
 										rendered="#{mbConnexion.id.phones!=null}">
 										<div class="col-lg-12">
 											<ui:repeat value="#{mbUser.phones}" var="phone">
@@ -80,17 +81,16 @@
 													<h:outputText
 														class="col-lg-5 col-md-12 col-sm-12 col-xs-12"
 														value="#{phone.phoneNumber}" />
-
-													<h:outputText class="icon fa-times col-lg-2"
-														onclick="{mbUser.deletePhoneNumber(phone.idPhone)}" />
-														<f:view>
-															<h:form>
-																<h:commandButton value=""
-																	action="#{mbUser.deletePhoneNumber(phone)}"
-																	styleClass="icon-ad fa-times" /> 
-															</h:form>
-														</f:view>
-												</div>
+													<f:view>  
+														<h:form> 
+															<h:commandLink>
+																	<h:outputText class="icon fa-times col-lg-2"/> 
+																<f:ajax listener="#{mbUser.deletePhoneNumber(phone)}" immediate="true"  render=":formulaire:j_idt19:phonelist" execute="@form"></f:ajax>
+															</h:commandLink>
+															 
+														</h:form>
+													</f:view>
+												</div> 
 											</ui:repeat>
 										</div>
 									</h:panelGroup>
@@ -145,12 +145,12 @@
 											</h:selectOneMenu>
 										</div>
 										<span class="col-lg-6 col-md-12 col-sm-12 col-xs-12"></span>
-										<h:commandButton
+										<h:commandButton 
 											class="btn btn-lg-primary col-lg-push-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 "
 											action="#{mbUser.addAddressToUser()}" value="Ajouter" />
 									</h:panelGroup>
 
-									<h:panelGroup class="col-lg-6 col-md-12 col-sm-12 col-xs-12"
+									<h:panelGroup class="col-lg-6 col-md-12 col-sm-12 col-xs-12" id="addresslist"
 										rendered="#{mbUser.addresses!=null}">
 
 										<ui:repeat value="#{mbUser.addresses}" var="address">
@@ -159,14 +159,15 @@
 													class="type col-lg-6 col-md-12 col-sm-12 col-xs-12"
 													value="#{address.addressType.addressType}">
 												</h:outputText>
-												<f:view>
-													<h:form>
-														<h:commandButton value=""
-															action="#{mbUser.deleteAddress(address)}"
-															styleClass="icon-ad fa-times" />
-													</h:form>
-												</f:view>
-
+													<f:view>  
+														<h:form> 
+															<h:commandLink>
+																	<h:outputText class="icon fa-times col-lg-2 force-fa"/> 
+																<f:ajax listener="#{mbUser.deleteAddress(address)}" immediate="true"  render=":formulaire:j_idt19:addresslist" execute="@form"></f:ajax>
+															</h:commandLink>  
+															 
+														</h:form>
+													</f:view> 
 												<h:outputText
 													class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
 													value="#{address.street}" />
