@@ -128,7 +128,7 @@ public class MBConnexion {
 	}
 
 	public String deconnexion() {
-
+		log.info("deconnexion");
 		id = null;
 		try {
 
@@ -139,18 +139,17 @@ public class MBConnexion {
 
 			MBOrder mbOrder = (MBOrder)request.getAttribute("mbOrder");
 			mbOrder = new MBOrder();
-
-			setDirection("../pages/Home.xhtml?faces-redirect=true");
-
+			log.info("fin initialisisation mborder");
 		} catch (Exception e) {
+			log.info("erreur init");
 			e.printStackTrace();
 		}
 		ELContext elContext = FacesContext.getCurrentInstance().getELContext();
 		MBOrder mbOrder  = (MBOrder) FacesContext.getCurrentInstance().getApplication().getELResolver().getValue(elContext, null, "mbOrder");
 		mbOrder.setCart(new UserOrder());
- 		setDirection("../pages/Home.xhtml?faces-redirect=true");
-		return direction;
+		log.info("direction : "+direction); 
+		return "Home.xhtml?faces-redirect=true";
 	}
-
+ 
 
 }
