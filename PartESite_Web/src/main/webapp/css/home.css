@@ -180,4 +180,13 @@ background:white;
 	margin:0px; 
 	text-align:left; 
 }  
+.descrip{
+	font-size:1.1em!important; 
+} 
 .project-info{margin-bottom:10px;}
+.newProjectThumb{ 
+	width:80%!important;
+	height:500px!important;  
+	margin-right:10%;  
+	margin-left:10%;  
+}
