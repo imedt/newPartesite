@@ -20,7 +20,7 @@
 					<div class="col-md-6">
 						<img src="#{mbConsultProject.contentProjectImage.content}"
 							width="100%" height="400px" />
-					</div> 
+					</div>
 					<div class="col-md-6">
 
 						<div class="frameBoxVideo">
@@ -42,7 +42,7 @@
 
 				<div class="col-md-12">
 					<h3>A propos de l'auteur :</h3>
-					<hr />  
+					<hr />
 
 					<p>
 						<h:outputText
@@ -52,35 +52,45 @@
 				</div>
 			</div>
 			<div class="col-md-3">
-			<div class="participation-states">
-				<h3>Etat du projet</h3> 
-				<p>#{mbConsultProject.aimingAmount} </p>
-				<p>#{mbConsultProject.financedAmount}</p> 
-				<p>#{mbConsultProject.percentage}</p>
-				<p>#{mbConsultProject.totalPacks}</p>
-				<p>#{mbConsultProject.totalSaledPacks}</p>
-				<p>#{mbConsultProject.projectEndDate}</p>
-			</div>
- 				<h:panelGroup
+				<div class="participation-states">
+					<h3>Etat du projet</h3>
+					<div class="">
+						<div> 
+							<p style="float: left">Financé : #{mbConsultProject.financedAmount} &euro;</p>
+							<p style="float: right">Objectif : #{mbConsultProject.aimingAmount} &euro;</p>
+						</div>  
+						<div  
+							style="border: 3px solid black; border-radius: 4px; width: 100%; overflow: hidden;">
+							<div style="width: #{mbConsultProject.percentage}%; background: #55FF55;max-width:100%;" class="text-center">
+													<div style="color:black;">#{mbConsultProject.percentage} %</div>  
+							</div>  
+						</div>
+					</div>
+					<p>Le financement se termine le <h:outputText value="#{mbConsultProject.projectEndDate}"><f:convertDateTime type="date" pattern="dd-MM-YYYY"/> </h:outputText></p>
+					<p>Nombre de package initiale : #{mbConsultProject.totalPacks}</p>  
+					<p>Nombre de package restant : #{mbConsultProject.totalSaledPacks}</p>
+					<p>Il reste #{mbConsultProject.totalPacks-mbConsultProject.totalSaledPacks} package(s) à commander.</p>
+				</div>  
+				<h:panelGroup
 					class="packBox3 col-lg-12 col-xs-12 col-sm-12 col-md-12"
 					rendered="#{mbConsultProject.wrappedPack.size()!=0}">
 					<ui:repeat var="wrappedPack"
 						value="#{mbConsultProject.wrappedPack}">
-						<h:panelGroup rendered="#{(wrappedPack.pack.stock-wrappedPack.pack.nbSale) &gt; 0}"> 
-							<div class="col-md-12">  
+						<h:panelGroup
+							rendered="#{(wrappedPack.pack.stock-wrappedPack.pack.nbSale) &gt; 0}">
+							<div class="col-md-12">
 								<h3>Pour
 									#{mbConversion.getConvertedAmount(wrappedPack.pack.amount)}</h3>
 
-								<p class="package-name">#{wrappedPack.pack.packName}</p> 
+								<p class="package-name">#{wrappedPack.pack.packName}</p>
 								<p class="package-description">#{wrappedPack.pack.description}</p>
 								<p class="package-quantity">Quantité disponible :
-									#{wrappedPack.pack.stock-wrappedPack.pack.nbSale}								
-									</p>
-<h:form>
+									#{wrappedPack.pack.stock-wrappedPack.pack.nbSale}</p>
+								<h:form>
 
 									<label>Quantité souhaitée : <h:selectOneMenu
 											value="#{wrappedPack.quantity}">
-																						<f:selectItems
+											<f:selectItems
 												value="#{mbConsultProject.remplirList(wrappedPack.pack)}" />
 										</h:selectOneMenu>
 									</label>

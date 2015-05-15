@@ -255,7 +255,7 @@ public class BusinessOrderImpl implements IBusinessOrder {
 		UserOrderState userOrderState = new UserOrderState();
 		userOrderState.setIdUserOrderState(2);
 		userOrderState.setUserOrderStateName("PAYE");
-		log.info("there is "+cart.getOrderRows()+" order rows");
+		log.info("there is "+cart.getOrderRows().size()+" order rows");  
 		for(OrderRow row : cart.getOrderRows()){
 			List<Item> itemToEdit = row.getItems();
 			log.info("state item : "+itemToEdit);
@@ -266,10 +266,12 @@ public class BusinessOrderImpl implements IBusinessOrder {
 			for(Item item : itemToEdit){
 				log.info("item state : "+item); 
 				item.setItemState(itemState); 
-			}
+			}	
 			Pack pack = row.getPack(); 
-			pack.setStock(pack.getStock() - itemToEdit.size());
-			daoPack.update(pack);
+			log.info("items to edit size : "+itemToEdit.size());
+			//@TODO Nettoyer ce bordel
+			pack.setStock((int) (pack.getStock() - (Math.round(row.getAmount()/row.getPack().getAmount())))); 
+			daoPack.update(pack); 
 		}
 		cart = daoUserOrder.update(cart);
 		cart = daoUserOrder.setCartPaid(cart);
