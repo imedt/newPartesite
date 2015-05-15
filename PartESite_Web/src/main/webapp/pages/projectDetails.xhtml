@@ -73,13 +73,13 @@
 								<p class="package-name">#{wrappedPack.pack.packName}</p> 
 								<p class="package-description">#{wrappedPack.pack.description}</p>
 								<p class="package-quantity">Quantité disponible :
-									#{wrappedPack.pack.stock-wrappedPack.pack.nbSale}</p>
-								<h:form>
+									#{wrappedPack.pack.stock-wrappedPack.pack.nbSale}								
+									</p>
+<h:form>
 
 									<label>Quantité souhaitée : <h:selectOneMenu
-											class="col-lg-offset-2 col-lg-8 col-xs-12 col-sm-12 col-md-12"
 											value="#{wrappedPack.quantity}">
-											<f:selectItems
+																						<f:selectItems
 												value="#{mbConsultProject.remplirList(wrappedPack.pack)}" />
 										</h:selectOneMenu>
 									</label>
@@ -88,7 +88,6 @@
 										action="#{mbOrder.addToCart(wrappedPack)}"
 										class="button marged lg-btn-default col-lg-12 col-xs-12 col-sm-12 col-md-12" />
 								</h:form>
-
 							</div>
 						</h:panelGroup>
 					</ui:repeat>

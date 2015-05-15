@@ -203,25 +203,7 @@
 				</div>
 
 					<!-- PopUp -->
-				<div id="loginmodal" style="display: none;"
-					class="col-lg-push-4 col-lg-4">
-					<h1 class="identification col-lg-12 ">Bienvenue !</h1>
-
-					<div class="col-lg-12">
-						<span class="login col-lg-3">Login</span>
-						<h:inputText class="col-lg-9" value="#{mbConnexion.login}" />
-					</div>
-					<div class="col-lg-12">
-						<span class="password col-lg-3">Password</span>
-						<h:inputSecret class="password col-lg-9"
-							value="#{mbConnexion.password}" />
-					</div>
-					<div class="col-lg-12">
-						<h:commandButton
-							class="btn lg-btn-default col-lg-push-3 col-lg-9"
-							action="#{mbConnexion.connexion}" value="Connexion" ></h:commandButton>
-					</div>
-
+					<ui:include src="/templates/loginModal.xhtml" />
 				</div>
 
 

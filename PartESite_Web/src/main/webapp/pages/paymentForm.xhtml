@@ -34,7 +34,8 @@
 
 						<h:panelGroup rendered="#{mbConnexion.id!=null}" class="col-lg-12">
 							<h:commandButton action="#{mbPayment.validatePayment()}"
-								value="Valider le moyen de paiement" class="btn col-lg-push-1 col-lg-5" />
+								value="Valider le moyen de paiement"
+								class="btn col-lg-push-1 col-lg-5" />
 							<h:commandButton action="#{mbDemo.demoPaiement()}"
 								value="Demonstration" class="btn  col-lg-push-1 col-lg-5" />
 						</h:panelGroup>
@@ -46,15 +47,13 @@
 						<span class="col-lg-12"
 							style="text-align: center; margin-top: 1em;"> Pour
 							valider, veuillez vous identifier.</span>
+						<script> 
+							$(document).ready(function(){
+								$("#modal-title").html("Pour valider, veuillez vous identifier.");
+								$( "#modaltrigger" ).trigger( "click" )
+							}); 
+							</script>
 					</h:panelGroup>
-
-
-
-
-
-
-
-
 				</div>
 			</h:form>
 		</f:view>

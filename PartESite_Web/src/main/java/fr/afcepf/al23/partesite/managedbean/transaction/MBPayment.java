@@ -35,13 +35,13 @@ public class MBPayment {
 	private String m_cryptogramme;
 	
 	public String accessPaymentForm(){
-		return "paymentForm.xhtml";
+		return "paymentForm.xhtml?faces-redirect=true";
 	}
 	private Double totalPrice;
 	
-	public String finalizePayment(){
+	public String finalizePayment(){ 
 		if(mbOrder.getCart().getIdUserOrder() == null){
-			return "/pages/index.xhtml";
+			return "/pages/index.xhtml?faces-redirect=true";
 		}
 		log.info("creation paiement");
 		Payment payment = new Payment();
