@@ -9,14 +9,14 @@
 	<ui:define name="header-title">Mes Projets</ui:define>
 
 	<ui:define name="content">
-	<a href="UserEditProjects.xhtml">Nouveau projets</a>
 		<f:view> 
 			<h:form>
 
 				<div class="row">
 					
 <div class="projects col-lg-push-1 col-lg-10">
-
+	<a class="btn" href="UserEditProjects.xhtml">Créer un projet</a>
+  
 
 						<h:panelGroup rendered="#{mbDashboard.projects.size()!=0}">
 						<div class="col-md-12"> 
