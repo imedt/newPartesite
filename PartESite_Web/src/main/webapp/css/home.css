@@ -192,4 +192,7 @@ background:white;
 }
 .force-fa{
 	font-family:FontAwesome; 
-} 
+}
+.charts *{
+	max-width:100%!important; 
+}

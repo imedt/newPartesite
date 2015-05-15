@@ -27,7 +27,7 @@ public class BusinessStatistics implements IBusinessStatistics{
 	private IDaoIdentity daoIdentity;
 	@EJB
 	private IDaoUserOrder daoUserOrder;
-	
+	 
 	@Override
 	public String getProjectsByCategories() {
 		ArrayList<Object> listProjects = (ArrayList<Object>) daoProject.getProjectsNumberByCategories();
@@ -38,21 +38,21 @@ public class BusinessStatistics implements IBusinessStatistics{
 	@Override
 	public String getUsersByCountry() {
 		ArrayList<Object> list = (ArrayList<Object>) daoIdentity.getUsersByCountries();
-		String result = "[['country','members'],";
+		String result = "[['Pays','Membres'],";
 		return formatToJSON(list,result);
 	}
 	
 	@Override
 	public String getSignUpByDate() {
 		ArrayList<Object> list = (ArrayList<Object>) daoIdentity.getUsersBySigninDate();
-		String result = "[['date','nbInscription'],";
+		String result = "[['Date','Nombre inscription'],";
 		return formatToJSON(list,result); 
 	}
 
 	@Override
 	public String getSalesByDate() {
 		ArrayList<Object> list = (ArrayList<Object>) daoUserOrder.getSalesByDate();
-		String result = "[['Year', 'Visitations'],"; 
+		String result = "[['Année', 'Ventes'],"; 
 		return formatToJSON(list,result); 
 	}
 	private String formatToJSON(ArrayList<Object> list,String result){

@@ -31,9 +31,9 @@
         font-family: 'Roboto', serif; 
       } 
     </style>
- 
+ 	<script src="../js/jquery.min.js"></script>
+  
 	<script src="../js/bootstrap.js"></script>
-	<script src="../js/jquery.min.js"></script>
 	<script type="text/javascript" charset="utf-8"
 		src="../js/jquery.leanModal.min.js"></script>
 
@@ -79,9 +79,9 @@
 						<div class="col-lg-2">
 							<div class="col-lg-12"></div>
 							<h:selectOneMenu class="col-lg-12" onchange="submit()"
-								value="#{mbConnexion.devise}">
-								<f:selectItems value="#{mbDevise.listDevise}" />
-							</h:selectOneMenu>
+								value="#{mbConnexion.devise}"> 
+								<f:selectItems value="#{mbDevise.listDevise}" var="currency" itemValue="#{currency}" itemLabel="#{currency} (#{mbConversion.getCurrencySymbol(currency)})" />
+							</h:selectOneMenu> 
 						</div>
 
 					</div>

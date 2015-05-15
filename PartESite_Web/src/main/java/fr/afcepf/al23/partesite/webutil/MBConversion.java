@@ -65,7 +65,9 @@ public class MBConversion {
 			return String.format("%10.2f", number); // dj_segfault
 		}
 	}
-
+	public String getCurrencySymbol(String currency){
+		return tab.get(currency); 
+	}
 	public MBConnexion getMBCnx() {
 		return MBCnx;
 	}
