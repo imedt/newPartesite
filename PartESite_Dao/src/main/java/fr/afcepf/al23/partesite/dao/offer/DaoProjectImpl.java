@@ -178,7 +178,7 @@ public class DaoProjectImpl implements IDaoProject {
 		List<Project> liste = null;
 			Query hql = em
 					.createQuery(
-							"SELECT DISTINCT p FROM Project p WHERE p.publish=:ppublish AND p.disabled=:pdisabled AND")
+							"SELECT DISTINCT p FROM Project p WHERE p.publish=:ppublish AND p.disabled=:pdisabled")
 							.setParameter("ppublish", false).setParameter("pdisabled", false);
 			liste = hql.getResultList();
 
@@ -191,7 +191,7 @@ public class DaoProjectImpl implements IDaoProject {
 		Query hql = em.createQuery(query);
 		log.info(hql.toString());
 		List result = hql.getResultList();
-		return result; 
+		return result;  
 	}
 
 }

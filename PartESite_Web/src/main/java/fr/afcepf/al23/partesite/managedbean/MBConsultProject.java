@@ -50,6 +50,7 @@ public class MBConsultProject {
 	private int totalPacks;
 	private int totalSaledPacks;
 	private Date projectEndDate;
+	private float percentage;
 	public void init(){
 		log.info("in preRenderView"); 
 		packs = getPacks();
@@ -61,17 +62,18 @@ public class MBConsultProject {
 		for(Pack pack : packs){
 			PackWrap pw = new PackWrap(pack);
 			wrappedPack.add(pw); 
-			totalPacks+=pack.getTotalQuantity();
-			totalSaledPacks+=pack.getNbSale();
-			financedAmount+=(pack.getAmount()*pack.getNbSale());			 
+			totalPacks+=pack.getTotalQuantity(); 
+			totalSaledPacks+=(pack.getTotalQuantity()-pack.getStock());
+			log.info(financedAmount);  
+			financedAmount+=(pack.getAmount()*(pack.getTotalQuantity()-pack.getStock()));			 
 		}
 		log.info("project : "+p);
 		this.aimingAmount = p.getAimingAmount();
 		this.projectEndDate = p.getPublishingDate();
 		projectEndDate.setTime(projectEndDate.getTime()+(3600*24*30));
-		
-		log.info("there is : "+wrappedPack.size()+" packs");
-	}
+		percentage = (float) Math.ceil((financedAmount*100)/aimingAmount);
+		log.info("there is : "+wrappedPack.size()+" packs"); 
+	} 
 	
 	// pour le panier : nbCommand�
 	private int nbPackToOrder;
@@ -279,6 +281,14 @@ public class MBConsultProject {
 
 	public void setNbPackToOrder(int nbPackToOrder) {
 		this.nbPackToOrder = nbPackToOrder;
+	}
+
+	public float getPercentage() {
+		return percentage;
+	}
+
+	public void setPercentage(float percentage) {
+		this.percentage = percentage;
 	}
 	
 }

@@ -9,7 +9,8 @@
 	<ui:define name="header-title">Mes Projets</ui:define>
 
 	<ui:define name="content">
-		<f:view>
+	<a href="UserEditProjects.xhtml">Nouveau projets</a>
+		<f:view> 
 			<h:form>
 
 				<div class="row">
@@ -17,13 +18,13 @@
 <div class="projects col-lg-push-1 col-lg-10">
 
 
-						<h:panelGroup rendered="#{mbDashboard.projects.size()!=0}"
-							class="col-lg-12">
-							<center>
+						<h:panelGroup rendered="#{mbDashboard.projects.size()!=0}">
+						<div class="col-md-12"> 
+							<center> 
 								<h3 class="col-lg-12">Mes Projets</h3>
 							</center>
 
-
+ 
 							<h:dataTable class="table col-lg-10"
 								value="#{mbDashboard.projects}" var="p">
 								<h:column>
@@ -51,15 +52,16 @@
 								</h:column>
 
 							</h:dataTable>
+							</div>
 						</h:panelGroup>
 
 
-						<h:panelGroup rendered="#{mbDashboard.listOnline.size()!=0}"
-							class="col-lg-12">
-
+						<h:panelGroup rendered="#{mbDashboard.listOnline.size()!=0}">
+						<div class="col-md-12">
+ 
 							<h3 class="col-lg-12">Projets en ligne</h3>
 
-							<h:dataTable class="table col-lg-push-1 col-lg-10"
+							<h:dataTable class="table col-lg-10" 
 								value="#{mbDashboard.listOnline}" var="p">
 
 								<h:column>
@@ -86,6 +88,7 @@
 									</h:commandButton>
 								</h:column>
 							</h:dataTable>
+							</div>  
 						</h:panelGroup>
 
 

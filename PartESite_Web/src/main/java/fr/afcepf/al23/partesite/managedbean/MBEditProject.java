@@ -147,6 +147,9 @@ public class MBEditProject {
 	}
 	public void saveProject(){
 		log.info("save project");
+		log.info("projet : "+p);
+		log.info("aiming : "+p.getAimingAmount());
+		log.info("CPT : "+cpt);
 		p.setAimingAmount(cpt.process(createPayload(p.getAimingAmount())).getMontantTTC());
 		p = buProject.save(p);
 		log.info("save project content");
