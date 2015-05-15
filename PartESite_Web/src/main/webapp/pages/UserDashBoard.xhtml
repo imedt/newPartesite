@@ -9,22 +9,19 @@
 <ui:define name="header-title">Tableau de bord</ui:define>
 
 <ui:define name="content">
-<f:view> 
-<h:form>
+<f:view>  
+<h:form> 
+   
+<div class="col-md-8 col-md-offset-3">
+<h:commandButton class="db" value="Projets :  &#10; #{mbDashboard.allMyProjectsCount}" action="../pages/UserProjects.xhtml?faces-redirect=true"/>
+<h:commandButton class="db" value="Projets en ligne : &#10;  #{mbDashboard.allMyProjectsOnlineCount}" action="../pages/UserProjects.xhtml?faces-redirect=true"/>
+<h:commandButton class="db" value="Projets financés :  &#10; #{mbDashboard.allMyProjectsFinancedCount}" action="../pages/UserProjects.xhtml?faces-redirect=true"/>
+<h:commandButton class="db" action="../pages/UserBackings.xhtml?faces-redirect=true" value="Investissements : &#10; #{mbDashboard.allMyBackingsWithRewardCount}" />
+<h:commandButton class="db" value="Dons :  &#10; #{mbDashboard.allMyGivingsCount}" action="../pages/UserBackings.xhtml?faces-redirect=true"/>  
+<h:commandButton class="db" value="Notifications : &#10;  #{mbDashboard.allMyNotificationsCount}" action="../pages/UserNotifications.xhtml?faces-redirect=true"/>
+</div> 
 
-<div class="col-lg-10" style="margin-top:3em;text-align:left;margin-left:15em;">
-<h:commandButton class="db" value="Projets : #{mbDashboard.allMyProjectsCount}" action="../pages/UserProjects.xhtml?faces-redirect=true"/>
-<h:commandButton class="db" value="Projets en ligne : #{mbDashboard.allMyProjectsOnlineCount}" action="../pages/UserProjects.xhtml?faces-redirect=true"/>
-<h:commandButton class="db" value="Projets financés : #{mbDashboard.allMyProjectsFinancedCount}" action="../pages/UserProjects.xhtml?faces-redirect=true"/>
-</div>
-
-<div class="col-lg-10" style="margin-bottom:1em;text-align:right;margin-right:15em;">
-<h:commandButton class="db" value="Investissements : #{mbDashboard.allMyBackingsWithRewardCount}" action="../pages/UserBackings.xhtml?faces-redirect=true"/>
-<h:commandButton class="db" value="Dons : #{mbDashboard.allMyGivingsCount}" action="../pages/UserBackings.xhtml?faces-redirect=true"/>
-<h:commandButton class="db" value="Notifications : #{mbDashboard.allMyNotificationsCount}" action="../pages/UserNotifications.xhtml?faces-redirect=true"/>
-</div>
-
-</h:form>
+</h:form> 
 </f:view>
 </ui:define>
 </ui:composition>
