@@ -8,6 +8,11 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>fr.afcepf.al23</groupId>
+			<artifactId>MongoDB</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
 			<groupId>fr.afcepf.al23.partesite</groupId>
 			<artifactId>PartESite_IService</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
@@ -18,11 +23,11 @@
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
-	<groupId>org.hibernate</groupId>
-	<artifactId>hibernate-entitymanager</artifactId>
-	<version>4.3.1.Final</version>
-</dependency>
-		
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>4.3.1.Final</version>
+		</dependency>
+
 		<dependency>
 			<groupId>javax</groupId>
 			<artifactId>javaee-api</artifactId>
