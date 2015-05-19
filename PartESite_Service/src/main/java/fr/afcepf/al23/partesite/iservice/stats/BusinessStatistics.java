@@ -11,6 +11,7 @@ import javax.ejb.Stateless;
 import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.json.JSONString;
 
 import fr.afcepf.al23.partesite.idao.offer.IDaoProject;
 import fr.afcepf.al23.partesite.idao.transaction.IDaoPayment;
@@ -56,6 +57,7 @@ public class BusinessStatistics implements IBusinessStatistics{
 		return formatToJSON(list,result); 
 	}
 	private String formatToJSON(ArrayList<Object> list,String result){
+
 		for(int i = 0; i < list.size();i++){
 			Object[] oarray = (Object[]) list.get(i);
 			String[] t1 = {oarray[0]+"",(oarray[1]+"")};

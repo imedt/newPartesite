@@ -14,11 +14,19 @@
 					<div class="row">
  
 						<div class="col-md-6">
-											<h2>Répartition des projets</h2>
+							<h2>Répartition des projets</h2>
 							<div id="chart_project_cat"></div>
- 
+  
 						</div>  
 						<div class="col-md-6"> 
+						<f:view>
+						<h:form>
+							<h:selectOneMenu value="#{mbStatistics.salesYearSelect}"> 
+								<f:selectItems value="#{mbStatistics.listYears}" var="annee" itemLabel="#{annee}" itemValue="#{annee}" />
+								<f:ajax event="change" listener="#{mbStatistics.getSales()}" render=":scriptBarChart" execute="@form"></f:ajax>
+							</h:selectOneMenu>   
+						</h:form> 
+						</f:view>  
 											<h2>Ventes par dates</h2>
 							<div id="sales_chart"></div> 
 
@@ -56,7 +64,6 @@
       google.setOnLoadCallback(drawChart);
       google.setOnLoadCallback(drawRegionsMap);
       google.setOnLoadCallback(drawLineChart);
-      google.setOnLoadCallback(drawBarChart);
 
       // Callback that creates and populates a data table,
       // instantiates the pie chart, passes in the data and
@@ -105,9 +112,12 @@
           chart.draw(data, options);
         }
     
-
-      function drawBarChart() {
-
+</script>
+<h:panelGroup id="scriptBarChart">
+<script>   
+google.setOnLoadCallback(drawBarChart);
+   function drawBarChart() {
+	   console.log("hello"); 
           var data = google.visualization.arrayToDataTable(#{mbStatistics.listSalesByDate});
  
           var options = {
@@ -124,9 +134,14 @@
             document.getElementById('sales_chart')); 
 
           chart.draw(data, options);
-          }    
-    </script>
+          }
+   $(document).ready(function(){
+	   drawBarChart(); 
+   }) 
+     </script>
+</h:panelGroup>
 
+ 
 	</ui:define>
 </ui:composition>
 </html>
