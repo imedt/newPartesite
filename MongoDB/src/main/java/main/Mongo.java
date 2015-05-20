@@ -72,7 +72,7 @@ public class Mongo {
 				"Slovaquie"			,
 				"Slovénie"			,
 				"Espagne"			,
-				"Bosnie-Herzégovine"	,
+				"Bosnie-	"	,
 				"Bulgarie"			,
 				"Croatie"			,
 				"Républiquetchèque"	,
