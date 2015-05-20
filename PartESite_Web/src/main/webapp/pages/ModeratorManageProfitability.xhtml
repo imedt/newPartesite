@@ -19,6 +19,7 @@
   
 						</div>  
 						<div class="col-md-6"> 
+																<h2>Ventes par dates</h2>
 						<f:view>
 						<h:form>
 							<h:selectOneMenu value="#{mbStatistics.salesYearSelect}"> 
@@ -27,10 +28,9 @@
 							</h:selectOneMenu>   
 						</h:form> 
 						</f:view>  
-											<h2>Ventes par dates</h2>
 							<div id="sales_chart"></div> 
 
-						</div>
+						</div> 
 					</div>
 				</div>
 			</div>
@@ -44,6 +44,15 @@
 
 						</div>
 						<div class="col-md-6"> 
+												<f:view>
+						<h:form> 
+							<h:selectOneMenu value="#{mbStatistics.userDateYearSelect}"> 
+								<f:selectItems value="#{mbStatistics.listYears}" var="annee" itemLabel="#{annee}" itemValue="#{annee}" />
+								<f:ajax event="change" listener="#{mbStatistics.getUserBySignUpDate()}" render=":scriptLineChart" execute="@form"></f:ajax>
+							</h:selectOneMenu>   
+						</h:form> 
+						</f:view>  
+						 
 							<div id="inscription_chart"></div>
 
 						</div>
@@ -62,8 +71,6 @@
 	
       // Set a callback to run when the Google Visualization API is loaded.
       google.setOnLoadCallback(drawChart);
-      google.setOnLoadCallback(drawRegionsMap);
-      google.setOnLoadCallback(drawLineChart);
 
       // Callback that creates and populates a data table,
       // instantiates the pie chart, passes in the data and
@@ -83,7 +90,8 @@
         var chart = new google.visualization.PieChart(document.getElementById('chart_project_cat'));
         chart.draw(data, options);
       }
-      function drawRegionsMap() {
+      google.setOnLoadCallback(drawRegionsMap);
+           function drawRegionsMap() {
 
           var data = google.visualization.arrayToDataTable(#{mbStatistics.listUserByCountries});
  
@@ -98,26 +106,12 @@
 
           chart.draw(data, options);
         }
-      function drawLineChart() {
-          var data = google.visualization.arrayToDataTable(#{mbStatistics.listUserBySigninDate}); 
-
-          var options = {
-            title: 'Suivi du nombre d\'inscription',
-            curveType: 'function', 
-            legend: { position: 'bottom' },height:400
-          };
-
-          var chart = new google.visualization.LineChart(document.getElementById('inscription_chart'));
-
-          chart.draw(data, options);
-        }
-    
 </script>
 <h:panelGroup id="scriptBarChart">
 <script>   
 google.setOnLoadCallback(drawBarChart);
    function drawBarChart() {
-	   console.log("hello"); 
+	   console.log("hello");   
           var data = google.visualization.arrayToDataTable(#{mbStatistics.listSalesByDate});
  
           var options = {
@@ -140,7 +134,29 @@ google.setOnLoadCallback(drawBarChart);
    }) 
      </script>
 </h:panelGroup>
+<h:panelGroup id="scriptLineChart">
+<script> 
+google.setOnLoadCallback(drawLineChart);
+function drawLineChart() { 
+  var data = google.visualization.arrayToDataTable(#{mbStatistics.listUserBySigninDate}); 
 
+  var options = {
+    title: 'Suivi du nombre d\'inscription',
+    curveType: 'function', 
+    legend: { position: 'bottom' },height:400
+  };
+
+  var chart = new google.visualization.LineChart(document.getElementById('inscription_chart'));
+
+  chart.draw(data, options);
+}
+$(document).ready(function(){
+	   drawLineChart(); 
+}) 
+
+
+</script>
+</h:panelGroup>
  
 	</ui:define>
 </ui:composition>

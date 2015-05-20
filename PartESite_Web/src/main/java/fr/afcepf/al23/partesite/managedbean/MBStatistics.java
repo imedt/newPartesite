@@ -35,22 +35,27 @@ public class MBStatistics {
 	private String listUserBySigninDate;
 	private String listSalesByDate;
 	private int salesYearSelect;
+	private int userDateYearSelect;
 	private ArrayList<Integer> listYears;
-
+	
+	@PostConstruct
+	public void postcons(){
+		log.info("in post construct");
+		listYears = new ArrayList<Integer>(); 
+		salesYearSelect = 2015;
+		userDateYearSelect = 2015;
+		for(int i = 2015; i >= 1975;i--){   
+			listYears.add(new Integer(i));   
+		} 
+  
+	}
 	public void init(){ 
 		listProjectByCategories = getByCategories();
-		listUserByCountries = buStats.getUsersByCountry();
-		listUserBySigninDate = buStats.getSignUpByDate(); 
-		listYears = new ArrayList<Integer>(); 
-		if(salesYearSelect == 0){
-			salesYearSelect = 2015;
-		}
-		for(int i = 2015; i >= 1975;i--){  
-			listYears.add(new Integer(i));  
-		} 
-		getSales();   
- 
+		listUserByCountries = getUserByCountries(); 
+		listUserBySigninDate = getUserBySignUpDate(); 
+		getSales();      
 	}
+	 
 	public static Logger getLog() { 
 		return log;
 	}
@@ -164,7 +169,7 @@ public class MBStatistics {
 		return result+"]";
 	}
 	
-	public void getSales(){
+	public String getSales(){
 		MongoClient mongoClient = null;
 		try {
 			mongoClient = new MongoClient("localhost", 27017);
@@ -175,19 +180,67 @@ public class MBStatistics {
 		DBCollection coll = db.getCollection("ventes");
 		 
 		DBObject project = (DBObject) JSON.parse("{$project:{year:{$year:'$sale_date'},month:{$month:'$sale_date'},amount:'$amount'}}");
-		DBObject sort = (DBObject) JSON.parse("{$sort:{month:-1}}");
+		DBObject sort = (DBObject) JSON.parse("{$sort:{'_id.month':1}}");
 		DBObject group = (DBObject) JSON.parse("{$group:{'_id':{year:'$year',month:'$month'},'ventes':{'$sum':'$amount'}}}");
 		DBObject findYear = (DBObject) JSON.parse("{'$match':{'year':"+salesYearSelect+"}}");  
 		DBObject reproject = (DBObject) JSON.parse("{'$project':{'_id':0,'sale_date':{$concat:[{'$substr':['$_id.year',0,4]},'-',{'$substr':['$_id.month',0,2]}]},'zventes':'$ventes'}}");
 		log.info(reproject.toString());  
-		AggregationOutput output = coll.aggregate(project,findYear,sort,group,reproject);  
+		AggregationOutput output = coll.aggregate(project,findYear,group,sort,reproject);  
 		log.info("updated");  
 		System.out.println(project.toString()); 
 		Iterator<DBObject> cursor = output.results().iterator();
  
 		String result = "[['Année', 'Ventes'],";  
 		result = formatToJSON( cursor, result,true); 
-		this.listSalesByDate = result;
+		this.listSalesByDate = result; 
+		return result;
+	}
+	
+	public String getUserBySignUpDate(){
+		MongoClient mongoClient = null;
+		try {
+			mongoClient = new MongoClient("localhost", 27017);
+		} catch (UnknownHostException e) {
+			System.out.println(e.getMessage());
+		}
+		DB db = mongoClient.getDB("bpc");
+		DBCollection coll = db.getCollection("user");
+		 
+		DBObject project = (DBObject) JSON.parse("{$project:{year:{$year:'$inscription_date'},month:{$month:'$inscription_date'}}}");
+		DBObject findYear = (DBObject) JSON.parse("{'$match':{'year':"+userDateYearSelect+"}}");  
+		DBObject group = (DBObject) JSON.parse("{$group:{'_id':{year:'$year',month:'$month'},'nbInscription':{'$sum':1}}}");
+		DBObject sort = (DBObject) JSON.parse("{$sort:{'_id.month':1}}");
+		DBObject reproject = (DBObject) JSON.parse("{'$project':{'_id':0,'inscriptiondate':{$concat:[{'$substr':['$_id.year',0,4]},'-',{'$substr':['$_id.month',0,2]}]},'nbinscription':'$nbInscription'}}");
+		log.info(reproject.toString());    
+		AggregationOutput output = coll.aggregate(project,findYear,group,sort,reproject);   
+		log.info("updated");    
+		System.out.println(project.toString()); 
+		Iterator<DBObject> cursor = output.results().iterator(); 
+  
+		String result = "[['Année', 'nombre inscription'],";  
+		result = formatToJSON( cursor, result,true); 
+		this.listUserBySigninDate = result;
+		return result;
+	}
+	public String getUserByCountries(){
+		MongoClient mongoClient = null;
+		try {
+			mongoClient = new MongoClient("localhost", 27017);
+		} catch (UnknownHostException e) {
+			System.out.println(e.getMessage());
+		}
+		DB db = mongoClient.getDB("bpc");
+		DBCollection coll = db.getCollection("user");
+		 
+		DBObject groupUser = (DBObject) JSON.parse("{$group:{'_id':'$country','nbUser':{$sum:1}}}");
+		AggregationOutput output = coll.aggregate(groupUser);  
+		System.out.println(groupUser.toString()); 
+		Iterator<DBObject> cursor = output.results().iterator();
+  
+		String result = "[['Pays','Nombre inscription'],";  
+		result = formatToJSON( cursor, result,true); 
+		this.listUserByCountries = result;
+		return result; 
 	}
 	public int getSalesYearSelect() {
 		return salesYearSelect;
@@ -200,6 +253,12 @@ public class MBStatistics {
 	}
 	public void setListYears(ArrayList<Integer> listYears) {
 		this.listYears = listYears;
+	}
+	public int getUserDateYearSelect() {
+		return userDateYearSelect;
+	}
+	public void setUserDateYearSelect(int userDateYearSelect) {
+		this.userDateYearSelect = userDateYearSelect;
 	}
 	
 

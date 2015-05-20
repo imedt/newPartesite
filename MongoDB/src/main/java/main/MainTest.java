@@ -19,8 +19,10 @@ import fr.afcepf.al23.dto.Project;
 public class MainTest {
 	public static void main(String[] args) {
 //		new Mongo().insertProjects();
-	//	new Mongo().insertSales();
-		new Mongo().generateUser();
+	//	new Mongo().insertSales(); 
+		for(int i = 0; i < 100;i++){
+			new Mongo().generateUser();
+		}
 		System.out.println(getSales());
 	//	System.out.println(getByPulishingDate());
 	//	System.out.println(getByCategories());
