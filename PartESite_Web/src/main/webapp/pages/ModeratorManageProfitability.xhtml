@@ -84,8 +84,7 @@
         data.addRows(#{mbStatistics.listProjectByCategories});
 
         // Set chart options
-        var options = {'title':'Répartition des projets',height:400};  
-   
+        var options = {'title':'Répartition des projets',height:400};
         // Instantiate and draw our chart, passing in some options.
         var chart = new google.visualization.PieChart(document.getElementById('chart_project_cat'));
         chart.draw(data, options);
@@ -98,10 +97,10 @@
           var options = {
         	        region: '150' 
         	        ,height:400,
-        	        colorAxis: {colors: ['blue', 'red']}
-	   
+        	        colorAxis: {colors: ['blue',"green","purple","red"]}
+	    
         	      };   
-
+ 
           var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
 
           chart.draw(data, options);

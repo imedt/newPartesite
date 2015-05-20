@@ -3,6 +3,8 @@ package fr.afcepf.al23.partesite.iservice.stats;
 import java.awt.List;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Set;
 
 import javax.ejb.EJB;
 import javax.ejb.Remote;
@@ -13,85 +15,51 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONString;
 
+import com.mongodb.AggregationOutput;
+import com.mongodb.DBObject;
+
 import fr.afcepf.al23.partesite.idao.offer.IDaoProject;
 import fr.afcepf.al23.partesite.idao.transaction.IDaoPayment;
 import fr.afcepf.al23.partesite.idao.transaction.IDaoUserOrder;
 import fr.afcepf.al23.partesite.idao.user.IDaoIdentity;
+import fr.afcepf.al23.partesite.mongo.stats.IDaoStats;
 
 @Remote(IBusinessStatistics.class)
-@Stateless
+@Stateless 
 public class BusinessStatistics implements IBusinessStatistics{
 	private static Logger log = Logger.getLogger(BusinessStatistics.class);
 	@EJB
-	private IDaoProject daoProject;
-	@EJB
-	private IDaoIdentity daoIdentity;
-	@EJB
-	private IDaoUserOrder daoUserOrder;
+	private IDaoStats daoStats;
 	 
 	@Override
 	public String getProjectsByCategories() {
-		ArrayList<Object> listProjects = (ArrayList<Object>) daoProject.getProjectsNumberByCategories();
-		String result = "[";
-		return formatToJSON(listProjects,result); 
+		return daoStats.getProjectsByCategories();
+	}
+
+	@Override 
+	public String getUsersByCountry() {
+		return daoStats.getUsersByCountries();
 	}
 
 	@Override
-	public String getUsersByCountry() {
-		ArrayList<Object> list = (ArrayList<Object>) daoIdentity.getUsersByCountries();
-		String result = "[['Pays','Membres'],";
-		return formatToJSON(list,result);
+	public String getSalesByDate(int year){
+		return daoStats.getSalesByDate(year);
+	}
+ 
+	@Override
+	public String getUsersBySignInDate(int year) {
+		return daoStats.getUsersBySignInDate(year);
 	}
 	
-	@Override
-	public String getSignUpByDate() {
-		ArrayList<Object> list = (ArrayList<Object>) daoIdentity.getUsersBySigninDate();
-		String result = "[['Date','Nombre inscription'],";
-		return formatToJSON(list,result); 
+	public IDaoStats getDaoStats() {
+		return daoStats;
 	}
 
-	@Override
-	public String getSalesByDate() {
-		ArrayList<Object> list = (ArrayList<Object>) daoUserOrder.getSalesByDate();
-		String result = "[['Année', 'Ventes'],"; 
-		return formatToJSON(list,result); 
-	}
-	private String formatToJSON(ArrayList<Object> list,String result){
-
-		for(int i = 0; i < list.size();i++){
-			Object[] oarray = (Object[]) list.get(i);
-			String[] t1 = {oarray[0]+"",(oarray[1]+"")};
-			result+="['"+oarray[0]+"',"+oarray[1]+"]";
-			if(i < list.size()-1){ 
-				result+=",";
-			}
-			
-		} 
-		return result+"]";
-	}
-	public IDaoProject getDaoProject() {
-		return daoProject;
+	public void setDaoStats(IDaoStats daoStats) {
+		this.daoStats = daoStats;
 	}
 
-	public void setDaoProject(IDaoProject daoProject) {
-		this.daoProject = daoProject;
-	}
-
-	public IDaoIdentity getDaoIdentity() {
-		return daoIdentity;
-	}
-
-	public void setDaoIdentity(IDaoIdentity daoIdentity) {
-		this.daoIdentity = daoIdentity;
-	}
-
-	public IDaoUserOrder getDaoUserOrder() {
-		return daoUserOrder;
-	}
-
-	public void setDaoUserOrder(IDaoUserOrder daoUserOrder) {
-		this.daoUserOrder = daoUserOrder;
-	}
+	
 
 
 }
