@@ -24,8 +24,10 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
+    private final static QName _GetTauxChange_QNAME = new QName("http://service.conversion.al23.afcepf.fr/", "getTauxChange");
     private final static QName _Conversion_QNAME = new QName("http://service.conversion.al23.afcepf.fr/", "conversion");
     private final static QName _ConversionResponse_QNAME = new QName("http://service.conversion.al23.afcepf.fr/", "conversionResponse");
+    private final static QName _GetTauxChangeResponse_QNAME = new QName("http://service.conversion.al23.afcepf.fr/", "getTauxChangeResponse");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: fr.afcepf.al23.conversion.service
@@ -51,6 +53,31 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetTauxChangeResponse }
+     * 
+     */
+    public GetTauxChangeResponse createGetTauxChangeResponse() {
+        return new GetTauxChangeResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetTauxChange }
+     * 
+     */
+    public GetTauxChange createGetTauxChange() {
+        return new GetTauxChange();
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetTauxChange }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.conversion.al23.afcepf.fr/", name = "getTauxChange")
+    public JAXBElement<GetTauxChange> createGetTauxChange(GetTauxChange value) {
+        return new JAXBElement<GetTauxChange>(_GetTauxChange_QNAME, GetTauxChange.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link Conversion }{@code >}}
      * 
      */
@@ -66,6 +93,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://service.conversion.al23.afcepf.fr/", name = "conversionResponse")
     public JAXBElement<ConversionResponse> createConversionResponse(ConversionResponse value) {
         return new JAXBElement<ConversionResponse>(_ConversionResponse_QNAME, ConversionResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetTauxChangeResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.conversion.al23.afcepf.fr/", name = "getTauxChangeResponse")
+    public JAXBElement<GetTauxChangeResponse> createGetTauxChangeResponse(GetTauxChangeResponse value) {
+        return new JAXBElement<GetTauxChangeResponse>(_GetTauxChangeResponse_QNAME, GetTauxChangeResponse.class, null, value);
     }
 
 }

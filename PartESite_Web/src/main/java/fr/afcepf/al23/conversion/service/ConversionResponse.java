@@ -7,9 +7,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Classe Java pour conversionResponse complex type.
+ * <p>Java class for conversionResponse complex type.
  * 
- * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType name="conversionResponse">
@@ -34,7 +34,7 @@ public class ConversionResponse {
     protected double montantHTApresConversion;
 
     /**
-     * Obtient la valeur de la propriété montantHTApresConversion.
+     * Gets the value of the montantHTApresConversion property.
      * 
      */
     public double getMontantHTApresConversion() {
@@ -42,7 +42,7 @@ public class ConversionResponse {
     }
 
     /**
-     * Définit la valeur de la propriété montantHTApresConversion.
+     * Sets the value of the montantHTApresConversion property.
      * 
      */
     public void setMontantHTApresConversion(double value) {

@@ -22,9 +22,11 @@ public class Project implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_project")
 	private Integer idProject;
-
+	
+	@Transient
+	private Double aimingAmountEur;
 	@Column(name="aiming_amount")
-	private Double aimingAmount;
+	private Double aimingAmount; 
 	
 	@Transient
 	private Double financedAmount;
@@ -221,6 +223,14 @@ public class Project implements Serializable {
 		projectContent.setProject(null);
 
 		return projectContent;
+	}
+
+	public Double getAimingAmountEur() {
+		return aimingAmountEur;
+	}
+
+	public void setAimingAmountEur(Double aimingAmountEur) {
+		this.aimingAmountEur = aimingAmountEur;
 	}
 
 }

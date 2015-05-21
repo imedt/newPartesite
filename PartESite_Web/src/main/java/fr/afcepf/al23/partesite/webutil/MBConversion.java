@@ -33,7 +33,7 @@ public class MBConversion {
 		tab.put("HUF", "Ft");
 		tab.put("MKD", "ден");
 		tab.put("NOK", "kr");
-		tab.put("PLN", "zł");
+		tab.put("PLN", "zł"); 
 		tab.put("SEK", "kr");
 		tab.put("CHF", "CHF");
 		tab.put("TRY", "TRY");
@@ -50,7 +50,7 @@ public class MBConversion {
 
 		if(currency == "")
 			currency = "EUR";
-		//Definition BPEL
+		//Definition BPEL 
 
 		double convertedAmount = conversionService.conversion(amount, "EUR", MBCnx.getDevise());
 		
@@ -74,6 +74,14 @@ public class MBConversion {
 
 	public void setMBCnx(MBConnexion mBCnx) {
 		MBCnx = mBCnx;
+	}
+	
+	public double getTauxChange(String devise) {
+		if(devise.equals("EUR")){
+			return 1;
+		}
+		return conversionService.getTauxChange("EUR", devise);
+		//return conversionService.getTauxChange("EUR",devise);
 	}
 
 }

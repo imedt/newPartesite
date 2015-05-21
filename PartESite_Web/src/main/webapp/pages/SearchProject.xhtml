@@ -10,8 +10,8 @@
 
 
 	<ui:define name="content">
-
-		<fieldset>
+	<f:event listener="#{mbSearchProject.reinitProjects()}" type="preRenderView"></f:event>
+		<fieldset> 
 			<h:form name="formulaire">
 
 				<div class="row">
@@ -73,8 +73,8 @@
 											</h:outputText>
 											<h:outputText  styleClass="col-md-12 project-info" escape="false" value=" Par : &lt;br /&gt; #{project.identity.firstName}" />
 											<h:outputText  styleClass="col-md-12 project-info" escape="false"
-												value="Soutien : &lt;br /&gt; #{mbConversion.getConvertedAmount(project.aimingAmount)}" />
-
+												value="Soutien : &lt;br /&gt; #{project.aimingAmount} #{mbConversion.getCurrencySymbol(mbConnexion.devise)}" />
+  
 										</div> 
 									</div>
 									<div class="row">
