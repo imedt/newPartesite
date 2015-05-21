@@ -115,7 +115,7 @@ public class BusinessPaymentImpl implements IBusinessPayment {
 	}
 
 	@Override
-	public List<Payment> getAllBuyByIdentity(Identity id) {
+	public List<UserOrder> getAllBuyByIdentity(Identity id) {
 		return daoPayment.getAllBuyedByIdentity(id);
 	}
 

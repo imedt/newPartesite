@@ -21,5 +21,5 @@ public interface IDaoPayment {
 	public List<Payment> getByUpdatedBy(Integer idIdentity);
 	public List<Payment> getByUpdatedDate(Date updatedDate);
 	public List<Payment> getByUserOrder(UserOrder userOrder);
-	public List<Payment> getAllBuyedByIdentity(Identity id);
+	public List<UserOrder> getAllBuyedByIdentity(Identity id);
 }

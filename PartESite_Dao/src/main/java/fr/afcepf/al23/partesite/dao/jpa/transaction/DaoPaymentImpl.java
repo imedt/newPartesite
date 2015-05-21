@@ -141,12 +141,12 @@ public class DaoPaymentImpl implements IDaoPayment {
 	}
 
 	@Override
-	public List<Payment> getAllBuyedByIdentity(Identity id) {
-		Query hql = em.createQuery("SELECT p FROM Payment p INNER JOIN FETCH p.userOrder uo INNER JOIN FETCH uo.orderRows orderrow INNER JOIN FETCH orderrow.pack "
-				+ "WHERE p.createdBy = :uid");
-		hql.setParameter("uid", id.getIdIdentity());  
-		List<Payment> list = hql.getResultList();
-		return list;
+	public List<UserOrder> getAllBuyedByIdentity(Identity id) {
+		Query hql = em.createQuery("SELECT DISTINCT uo FROM UserOrder uo INNER JOIN FETCH uo.orderRows orderrow INNER JOIN FETCH orderrow.pack pack INNER JOIN FETCH pack.project "
+				+ "WHERE uo.identity = :uid AND uo.userOrderState = 2");
+		hql.setParameter("uid", id);
+		List<UserOrder> list = hql.getResultList();
+		return list;   
 	}
 
 }

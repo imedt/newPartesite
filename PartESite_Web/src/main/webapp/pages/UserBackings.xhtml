@@ -20,7 +20,7 @@
 							rendered="#{mbDashboard.listBackingsWithReward.size()==0}"
 							class="col-lg-push-1 col-lg-10">
 							<center>
-								<h3 style="color:navy;">Aucune participation</h3>
+								<h3 style="color: navy;">Aucune participation</h3>
 							</center>
 						</h:panelGroup>
 					</div>
@@ -37,36 +37,37 @@
 								<h3>Mes Participations</h3>
 							</center>
 							<h:dataTable class="table col-lg-12"
-								value="#{mbDashboard.listBackingsWithReward}" var="p">
+								value="#{mbDashboard.listBackingsWithReward}" var="orderRow">
 
 								<h:column>
 									<f:facet name="header">Référence</f:facet>   			
-    				#{p.idUserOrder}
+    				#{orderRow.idOrderRow}
     			</h:column>
-								<h:column>
+								<h:column> 
 									<f:facet name="header">Création</f:facet>
-									<h:outputLabel value="#{p.createdDate}">
+									<h:outputLabel value="#{orderRow.createdDate}">
 										<f:convertDateTime pattern="dd/MM/yyyy" />
 									</h:outputLabel>
 								</h:column>
 								<h:column>
 									<f:facet name="header">Nom Projet(s)</f:facet>
-									<ui:repeat var="row" value="#{p.orderRows}" size="0">
-						#{row.pack.project.projectName}
-					</ui:repeat>
-								</h:column>
+									<span class="col-lg-12">#{orderRow.pack.project.projectName}</span>
+								</h:column> 
+
 								<h:column>
-									<f:facet name="header">Participation Globale</f:facet> 
-    				#{mbConversion.getConvertedAmount(p.totalAmount)}
-    			</h:column>
+									<f:facet name="header">Participation Globale</f:facet>
+									<span class="col-lg-3">#{orderRow.amount}</span>
+								</h:column>
 
 								<h:column>
 									<f:facet name="header">Consultation</f:facet>
-									<h:commandButton class="btn col-lg-12 btn-lg-default"
-										value="Détails" action="#{mbOrder.updateBacking(p)}">
+									<h:commandButton class="btn col-lg-12 lg-btn-default"
+										value="Details"
+										action="#{mbConsultProject.detailProject(orderRow.pack.project)}">
 									</h:commandButton>
 								</h:column>
 							</h:dataTable>
+
 						</h:panelGroup>
 
 						<h:panelGroup rendered="#{mbDashboard.listGivings.size()!=0}"
@@ -74,37 +75,6 @@
 							<center>
 								<h3>Mes Dons</h3>
 							</center>
-							<h:dataTable class="table col-lg-12"
-								value="#{mbDashboard.listGivings}" var="p">
-
-								<h:column>
-									<f:facet name="header">Référence</f:facet>   			
-    				#{p.idUserOrder}
-    			</h:column>
-								<h:column>
-									<f:facet name="header">Création</f:facet>
-									<h:outputLabel value="#{p.createdDate}">
-										<f:convertDateTime pattern="dd/MM/yyyy" />
-									</h:outputLabel>
-								</h:column>
-								<h:column>
-									<f:facet name="header">Nom Projet(s)</f:facet>
-									<ui:repeat var="row" value="#{p.orderRows}">
-										<span class="col-lg-3">#{row.pack.project.projectName}</span>
-									</ui:repeat>
-								</h:column>
-								<h:column>
-									<f:facet name="header">Participation Globale</f:facet>   			
-    				#{mbConversion.getConvertedAmount(p.totalAmount)}
-    			</h:column>
-
-								<h:column>
-									<f:facet name="header">Consultation</f:facet>
-									<h:commandButton class="btn col-lg-12 btn-lg-default"
-										value="Détails" action="#{mbOrder.updateBacking(p)}">
-									</h:commandButton>
-								</h:column>
-							</h:dataTable>
 						</h:panelGroup>
 
 

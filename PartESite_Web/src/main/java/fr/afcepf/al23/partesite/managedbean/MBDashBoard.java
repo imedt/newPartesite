@@ -61,14 +61,14 @@ public class MBDashBoard {
 	private List<Project> listOnline = new ArrayList<>();
 	private List<Project> listFinanced = new ArrayList<>();
 	private List<Project> listDisabled = new ArrayList<>();
-	private List<UserOrder> listBackingsWithReward = new ArrayList<>();
-	private List<UserOrder> listGivings = new ArrayList<>();
+	private List<OrderRow> listBackingsWithReward = new ArrayList<>();
+	private List<OrderRow> listGivings = new ArrayList<>();
 	private List<Notification> listNotifications = new ArrayList<>();
 	private Double backingsAmount;
 	// on initialise les montants � comparer pour chaque projet
 	private Double aimingAmount = 0.00;
 	private Double backings = 0.00;
-	private List<Payment> allOrders;
+	private List<UserOrder> allOrders;
 
 	public void preRender() {
 		if (cnx.getId() == null) {
@@ -119,6 +119,23 @@ public class MBDashBoard {
 	
 	public void loadParticipations(){
 		allOrders = buPayment.getAllBuyByIdentity(cnx.getId()); 
+		listBackingsWithReward = new ArrayList<OrderRow>();
+		listGivings = new ArrayList<OrderRow>();
+		for(UserOrder uo : allOrders){ 
+			log.info("userorder : "+uo.getOrderRows().size());
+			for(OrderRow or : uo.getOrderRows()){ 
+				log.info("has pack"+or);
+				log.info("project ref : "+or.getPack().getProject()); 
+				log.info("pack name : "+or.getPack().getProject().getProjectName()); 
+				if(or.getPack().getReward() == null || or.getPack().getReward() == false){
+					listBackingsWithReward.add(or);  
+				}else{
+					listGivings.add(or); 
+				} 
+			}
+		}
+		allMyGivingsCount = listGivings.size();
+		allMyBackingsWithRewardCount = listBackingsWithReward.size(); 
 	}
 
 	public Logger getLog() {
@@ -266,19 +283,19 @@ public class MBDashBoard {
 		this.listDisabled = listDisabled;
 	}
 
-	public List<UserOrder> getListBackingsWithReward() {
+	public List<OrderRow> getListBackingsWithReward() {
 		return listBackingsWithReward;
 	}
 
-	public void setListBackingsWithReward(List<UserOrder> listBackingsWithReward) {
+	public void setListBackingsWithReward(List<OrderRow> listBackingsWithReward) {
 		this.listBackingsWithReward = listBackingsWithReward;
 	}
 
-	public List<UserOrder> getListGivings() {
+	public List<OrderRow> getListGivings() {
 		return listGivings;
 	}
 
-	public void setListGivings(List<UserOrder> listGivings) {
+	public void setListGivings(List<OrderRow> listGivings) {
 		this.listGivings = listGivings;
 	}
 
@@ -322,11 +339,11 @@ public class MBDashBoard {
 		this.mbConversion = mbConversion;
 	}
 
-	public List<Payment> getAllOrders() {
+	public List<UserOrder> getAllOrders() {
 		return allOrders;
 	}
 
-	public void setAllOrders(List<Payment> allOrders) {
+	public void setAllOrders(List<UserOrder> allOrders) {
 		this.allOrders = allOrders; 
 	}
 

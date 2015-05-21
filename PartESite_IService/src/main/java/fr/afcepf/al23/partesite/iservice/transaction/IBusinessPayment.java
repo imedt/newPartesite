@@ -20,5 +20,5 @@ public interface IBusinessPayment {
 	public List<Payment> getByUpdatedBy(Integer idIdentity);
 	public List<Payment> getByUpdatedDate(Date updatedDate);
 	public List<Payment> getByUserOrder(UserOrder userOrder);
-	public List<Payment> getAllBuyByIdentity(Identity id);
+	public List<UserOrder> getAllBuyByIdentity(Identity id);
 }
