@@ -1,15 +1,18 @@
 package fr.afcepf.al23.partesite.webutil;
 
 import java.util.Hashtable;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
 import org.apache.log4j.Logger;
+import org.jsoup.Jsoup;
 
 import fr.afcepf.al23.conversion.service.ConversionImplService;
 import fr.afcepf.al23.conversion.service.IConversion;
+import fr.afcepf.al23.model.entities.Project;
 import fr.afcepf.al23.partesite.managedbean.MBConnexion;
 
 
@@ -86,5 +89,14 @@ public class MBConversion {
 		return conversionService.getTauxChange("EUR", devise);
 		//return conversionService.getTauxChange("EUR",devise);
 	}
+	public List<Project> processConversion(List<Project> projects,String devise){
+		double taux = getTauxChange(devise);
+		for(Project p : projects){
+			p.setAimingAmountEur(p.getAimingAmount());
+			p.setAimingAmount(p.getAimingAmountEur()*taux);
+		}      
+		return projects;
 
+	}
+ 
 }

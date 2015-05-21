@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.ejb.Remote;
 
+import fr.afcepf.al23.model.entities.Identity;
 import fr.afcepf.al23.model.entities.Payment;
 import fr.afcepf.al23.model.entities.UserOrder;
 
@@ -19,4 +20,5 @@ public interface IBusinessPayment {
 	public List<Payment> getByUpdatedBy(Integer idIdentity);
 	public List<Payment> getByUpdatedDate(Date updatedDate);
 	public List<Payment> getByUserOrder(UserOrder userOrder);
+	public List<Payment> getAllBuyByIdentity(Identity id);
 }

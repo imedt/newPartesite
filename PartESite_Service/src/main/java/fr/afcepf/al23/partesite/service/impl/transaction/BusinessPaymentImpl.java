@@ -11,6 +11,7 @@ import javax.ejb.Stateless;
 
 import org.apache.log4j.Logger;
 
+import fr.afcepf.al23.model.entities.Identity;
 import fr.afcepf.al23.model.entities.Payment;
 import fr.afcepf.al23.model.entities.UserOrder;
 import fr.afcepf.al23.partesite.idao.transaction.IDaoPayment;
@@ -111,6 +112,11 @@ public class BusinessPaymentImpl implements IBusinessPayment {
 	public List<Payment> getByUserOrder(UserOrder userOrder) {
 		log.info("BusinessPaymentImpl, getByUserOrder");
 		return daoPayment.getByUserOrder(userOrder);
+	}
+
+	@Override
+	public List<Payment> getAllBuyByIdentity(Identity id) {
+		return daoPayment.getAllBuyedByIdentity(id);
 	}
 
 }

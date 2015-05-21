@@ -13,6 +13,7 @@ import javax.persistence.Query;
 
 import org.apache.log4j.Logger;
 
+import fr.afcepf.al23.model.entities.Identity;
 import fr.afcepf.al23.model.entities.Payment;
 import fr.afcepf.al23.model.entities.UserOrder;
 import fr.afcepf.al23.partesite.dao.offer.DaoProjectImpl;
@@ -135,6 +136,15 @@ public class DaoPaymentImpl implements IDaoPayment {
 		Query hql = em.createQuery("SELECT p FROM Payment p "
 				+ "WHERE p.userOrder = :userOrder");
 		hql.setParameter("userOrder", userOrder);
+		List<Payment> list = hql.getResultList();
+		return list;
+	}
+
+	@Override
+	public List<Payment> getAllBuyedByIdentity(Identity id) {
+		Query hql = em.createQuery("SELECT p FROM Payment p INNER JOIN FETCH p.userOrder uo INNER JOIN FETCH uo.orderRows or INNER JOIN FETCH or.pack "
+				+ "WHERE p.createdBy = :uid");
+		hql.setParameter("uid", id.getIdIdentity()); 
 		List<Payment> list = hql.getResultList();
 		return list;
 	}

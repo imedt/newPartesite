@@ -2,6 +2,8 @@ package fr.afcepf.al23.partesite.managedbean;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -15,13 +17,16 @@ import org.apache.log4j.Logger;
 import fr.afcepf.al23.model.entities.Notification;
 import fr.afcepf.al23.model.entities.OrderRow;
 import fr.afcepf.al23.model.entities.Pack;
+import fr.afcepf.al23.model.entities.Payment;
 import fr.afcepf.al23.model.entities.Project;
 import fr.afcepf.al23.model.entities.UserOrder;
 import fr.afcepf.al23.partesite.iservice.notification.IBusinessNotification;
 import fr.afcepf.al23.partesite.iservice.offer.IBusinessPack;
 import fr.afcepf.al23.partesite.iservice.offer.IBusinessProject;
 import fr.afcepf.al23.partesite.iservice.transaction.IBusinessOrder;
+import fr.afcepf.al23.partesite.iservice.transaction.IBusinessPayment;
 import fr.afcepf.al23.partesite.iservice.user.IBusinessIdentity;
+import fr.afcepf.al23.partesite.webutil.MBConversion;
 
 @ManagedBean(name = "mbDashboard")
 @SessionScoped
@@ -34,13 +39,16 @@ public class MBDashBoard {
 	@EJB
 	private IBusinessOrder buUserOrder;
 	@EJB
+	private IBusinessPayment buPayment;
+	@EJB
 	private IBusinessProject buProjects;
 	@EJB
 	private IBusinessPack buPacks;
 
 	@ManagedProperty(value = "#{mbConnexion}")
 	private MBConnexion cnx;
-
+	@ManagedProperty(value = "#{mbConversion}")
+	private MBConversion mbConversion;
 
 	private Integer allMyProjectsCount;
 	private Integer allMyProjectsDisabledCount;
@@ -60,43 +68,59 @@ public class MBDashBoard {
 	// on initialise les montants � comparer pour chaque projet
 	private Double aimingAmount = 0.00;
 	private Double backings = 0.00;
+	private List<Payment> allOrders;
 
-	public void preRender(){
-		if(cnx.getId() == null){
+	public void preRender() {
+		if (cnx.getId() == null) {
 			try {
-				FacesContext.getCurrentInstance().getExternalContext().redirect("Home.xhtml");
+				FacesContext.getCurrentInstance().getExternalContext()
+						.redirect("Home.xhtml");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 		this.projects = buProjects.getByIdentity(cnx.getId());
-		allMyProjectsCount = projects.size(); 
+		this.projects = mbConversion.processConversion(projects, cnx.getDevise());
+		
+		allMyProjectsCount = projects.size();
 		allMyProjectsOnlineCount = 0;
 		allMyProjectsFinancedCount = 0;
-		for(Project p : projects){
-			if(p.getPublish()){
-				listOnline.add(p);   
+		listOnline = new ArrayList<Project>();
+		listFinanced = new ArrayList<Project>(); 
+		for (Project p : projects) {
+			if (p.getPublish()) {
+				listOnline.add(p);
 				allMyProjectsOnlineCount++;
 			}
 			Double aiming = p.getAimingAmount();
 			Double current = 0d;
-			for(Pack pack : p.getPacks()){ 
-				current += (pack.getAmount()*(pack.getTotalQuantity()-pack.getStock()));
+			for (Pack pack : p.getPacks()) {
+				current += (pack.getAmount() * (pack.getTotalQuantity() - pack
+						.getStock()));
 			}
-			if(aiming < current){
+			if (aiming < current) {
 				listFinanced.add(p);
-				allMyProjectsFinancedCount++; 
+				allMyProjectsFinancedCount++;
 			}
 		}
-		listNotifications = buNotification.getByTarget(cnx.getId().getIdIdentity());
-		allMyNotificationsCount = listNotifications.size();  
-	} 
-	public void reloadNotifications(){
-		listNotifications = buNotification.getByTarget(cnx.getId().getIdIdentity());
-		allMyNotificationsCount = listNotifications.size();  
-	
+ 		listNotifications = buNotification.getByTarget(cnx.getId()
+				.getIdIdentity());
+		allMyNotificationsCount = listNotifications.size();
+		loadParticipations();
+		log.info("nb achats : "+allOrders.size()); 
 	}
+
+	public void reloadNotifications() {
+		listNotifications = buNotification.getByTarget(cnx.getId()
+				.getIdIdentity());
+		allMyNotificationsCount = listNotifications.size();
+	}
+	
+	public void loadParticipations(){
+		allOrders = buPayment.getAllBuyByIdentity(cnx.getId()); 
+	}
+
 	public Logger getLog() {
 		return log;
 	}
@@ -189,7 +213,8 @@ public class MBDashBoard {
 		return allMyBackingsWithRewardCount;
 	}
 
-	public void setAllMyBackingsWithRewardCount(Integer allMyBackingsWithRewardCount) {
+	public void setAllMyBackingsWithRewardCount(
+			Integer allMyBackingsWithRewardCount) {
 		this.allMyBackingsWithRewardCount = allMyBackingsWithRewardCount;
 	}
 
@@ -288,5 +313,21 @@ public class MBDashBoard {
 	public void setBackings(Double backings) {
 		this.backings = backings;
 	}
-	
+
+	public MBConversion getMbConversion() {
+		return mbConversion;
+	}
+
+	public void setMbConversion(MBConversion mbConversion) {
+		this.mbConversion = mbConversion;
+	}
+
+	public List<Payment> getAllOrders() {
+		return allOrders;
+	}
+
+	public void setAllOrders(List<Payment> allOrders) {
+		this.allOrders = allOrders; 
+	}
+
 }

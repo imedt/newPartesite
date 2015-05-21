@@ -71,8 +71,8 @@ public class DaoProjectImpl implements IDaoProject {
 	@Override
 	public List<Project> getByName(String name) {
 
-		Query hql = em.createQuery("SELECT DISTINCT p FROM Project p inner join fetch p.projectCategory WHERE p.projectName LIKE :pprojectName  AND  p.publish = :ppublish AND date_add_month(p.publishingDate) > NOW()");
-
+		Query hql = em.createQuery("SELECT DISTINCT p FROM Project p INNER JOIN FETCH p.projectContents inner join fetch p.projectCategory WHERE p.projectName LIKE :pprojectName  AND  p.publish = :ppublish AND date_add_month(p.publishingDate) > NOW()");
+ 
 		hql.setParameter("pprojectName", "'%"+name+"%'").setParameter("ppublish", true);
  
 		List<Project> liste = null;
@@ -87,7 +87,7 @@ public class DaoProjectImpl implements IDaoProject {
 	public List<Project> getByNameWithCategory(String name) {
 
 		Query hql = em
-				.createQuery("SELECT DISTINCT p FROM Project p inner join fetch p.projectCategory WHERE p.projectName LIKE :pName AND  p.publish = :ppublish")
+				.createQuery("SELECT DISTINCT p FROM Project p inner join fetch p.projectCategory INNER JOIN FETCH p.projectContents WHERE p.projectName LIKE :pName AND  p.publish = :ppublish")
 				.setParameter("pName", "%"+name+"%").setParameter("ppublish", true);
 		
 		List<Project> liste = null;
@@ -152,8 +152,8 @@ public class DaoProjectImpl implements IDaoProject {
 	public List<Project> getByIdentity(Identity identity) {
 		List<Project> projects = null;
 		Query hql = em.createQuery(
-				"SELECT DISTINCT p FROM Project p  inner join fetch p.packs WHERE p.identity=:pidentity")
-				.setParameter("pidentity", identity);
+				"SELECT DISTINCT p FROM Project p  inner join fetch p.packs WHERE p.identity=:pidentity ORDER BY p.createdDate DESC")
+				.setParameter("pidentity", identity); 
 		projects = hql.getResultList();
 		return projects;
 	}
@@ -162,10 +162,10 @@ public class DaoProjectImpl implements IDaoProject {
 	public List<Project> getByCategory(Integer idProjectCategory) {
 		Query hql = em
 				.createQuery(
-						"SELECT DISTINCT p FROM Project p WHERE p.projectCategory.idProjectCategory=:pIdProjectCategory  AND  p.publish = :ppublish AND date_add_month(p.publishingDate) > NOW()")
+						"SELECT DISTINCT p FROM Project p INNER JOIN FETCH p.projectContents WHERE p.projectCategory.idProjectCategory=:pIdProjectCategory  AND  p.publish = :ppublish AND date_add_month(p.publishingDate) > NOW()")
 				.setParameter("pIdProjectCategory", idProjectCategory).setParameter("ppublish", true);
 
-		List<Project> liste = null;
+		List<Project> liste = null; 
 
 		liste = hql.getResultList(); 
 
@@ -190,14 +190,14 @@ public class DaoProjectImpl implements IDaoProject {
 		String query = "SELECT cat.category, COUNT(p) FROM Project p INNER JOIN p.projectCategory cat WHERE date_add_month(p.publishingDate) > NOW() GROUP BY cat.category";
 		Query hql = em.createQuery(query);
 		log.info(hql.toString());
-		List result = hql.getResultList();
+		List result = hql.getResultList(); 
 		return result;  
 	}
 
 	@Override
 	public List<Project> getNewestPublished() {
-		String query = "SELECT p FROM Project p INNER JOIN FETCH p.projectContents ORDER BY p.publishingDate ASC";
-		Query hql = em.createQuery(query); 
+		String query = "SELECT p FROM Project p INNER JOIN FETCH p.projectContents WHERE p.publishingDate IS NOT NULL ORDER BY p.publishingDate DESC";
+		Query hql = em.createQuery(query);  
 		hql.setMaxResults(5);
 		log.info(hql.toString());
 		List result = hql.getResultList();

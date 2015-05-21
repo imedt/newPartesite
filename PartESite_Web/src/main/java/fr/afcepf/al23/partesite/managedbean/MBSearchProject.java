@@ -38,7 +38,7 @@ public class MBSearchProject {
 
 	// Get & Set
 	public void reinitProjects(){
-		processConversion(projects); 
+		mbConversion.processConversion(projects,mbConnexion.getDevise()); 
 	}
 	public List<ProjectCategory> getCategories() {
 		categories = buProjectCategory.getAll();
@@ -94,15 +94,15 @@ public class MBSearchProject {
 	// Méthodes 
 
 	public void searchByName() {
-		projects = process(buProject.getByNameWithCategory(name));
+		projects = process(buProject.getByNameWithCategory(name),mbConnexion.getDevise());
 	}  
 	
 	public void searchByCategory() {
-		projects = process(buProject.getByCategory(getIdCategory()));
+		projects = process(buProject.getByCategory(getIdCategory()),mbConnexion.getDevise());
 	}
 	
 	public void searchByCategory(ProjectCategory cat) {
-		projects = process(buProject.getByCategory(cat.getIdProjectCategory()));
+		projects = process(buProject.getByCategory(cat.getIdProjectCategory()),mbConnexion.getDevise());
 	}
   
 	public void reset() { 
@@ -120,8 +120,8 @@ public class MBSearchProject {
 	public void setMbConnexion(MBConnexion mbConnexion) {
 		this.mbConnexion = mbConnexion;
 	}
-	private List<Project> process(List<Project> projects){
-		double taux = mbConversion.getTauxChange(mbConnexion.getDevise());
+	public List<Project> process(List<Project> projects,String devise){
+		double taux = mbConversion.getTauxChange(mbConnexion.getDevise()); 
 		for(Project p : projects){
 			p.setAimingAmountEur(p.getAimingAmount());
 			p.setAimingAmount(p.getAimingAmountEur()*taux);
@@ -130,13 +130,5 @@ public class MBSearchProject {
 		return projects;
 
 	}
-	private List<Project> processConversion(List<Project> projects){
-		double taux = mbConversion.getTauxChange(mbConnexion.getDevise());
-		for(Project p : projects){
-			p.setAimingAmount(p.getAimingAmountEur()*taux);
-			p.getProjectContents().get(3).setContent(Jsoup.parse(p.getProjectContents().get(3).getContent()).text());
-		}      
-		return projects;
 
-	}
 }

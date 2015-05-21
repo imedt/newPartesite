@@ -9,9 +9,10 @@
 	<ui:define name="header-title">Mes Projets</ui:define>
 
 	<ui:define name="content">
-		<f:view> 
+	<f:event listener="#{mbDashboard.preRender()}" type="preRenderView"></f:event>
+		<f:view>  
 			<h:form>
-
+ 
 				<div class="row">
 					
 <div class="projects col-lg-push-1 col-lg-10">
@@ -44,7 +45,7 @@
     			</h:column>
 								<h:column>
 									<f:facet name="header">Capital Soutenu</f:facet>   			
-    			#{mbConversion.getConvertedAmount(p.aimingAmount)}
+    		#{(p.aimingAmount)} #{(mbConversion.getCurrencySymbol(mbConnexion.devise))}
     			</h:column>
 							</h:dataTable>
 							</div>
@@ -77,8 +78,8 @@
     			</h:column>
 								<h:column>
 									<f:facet name="header">Capital Soutenu</f:facet>   			
-    			#{mbConversion.getConvertedAmount(p.aimingAmount)}
-    			</h:column>
+    		#{(p.aimingAmount)} #{(mbConversion.getCurrencySymbol(mbConnexion.devise))}
+    			</h:column> 
 								<h:column>
 									<f:facet name="header">Consultation</f:facet>
 									<h:commandButton class="btn col-lg-12 lg-btn-default"
@@ -116,8 +117,8 @@
     			</h:column>
 								<h:column>
 									<f:facet name="header">Capital Soutenu</f:facet>   			
-    			#{mbConversion.getConvertedAmount(p.aimingAmount)}
-    			</h:column>
+    		#{(p.aimingAmount)} #{(mbConversion.getCurrencySymbol(mbConnexion.devise))}
+    			</h:column> 
 								<h:column>
 									<f:facet name="header">Consultation</f:facet>
 									<h:commandButton class="btn col-lg-12 lg-btn-default"
@@ -153,8 +154,8 @@
     			</h:column>
 								<h:column>
 									<f:facet name="header">Capital Soutenu</f:facet>   			
-    		#{mbConversion.getConvertedAmount(p.aimingAmount)}
-    			</h:column>
+    		#{(p.aimingAmount)} #{(mbConversion.getCurrencySymbol(mbConnexion.devise))}
+    			</h:column> 
 								<h:column>
 									<f:facet name="header">Consultation</f:facet>
 									<h:commandButton class="btn col-lg-12 lg-btn-default"
