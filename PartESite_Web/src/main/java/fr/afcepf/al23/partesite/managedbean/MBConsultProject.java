@@ -51,6 +51,7 @@ public class MBConsultProject {
 	private int totalSaledPacks;
 	private Date projectEndDate;
 	private float percentage;
+	
 	public void init(){
 		log.info("in preRenderView"); 
 		packs = getPacks();

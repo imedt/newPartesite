@@ -17,6 +17,20 @@
 					<div class="backings col-lg-12">
 
 						<h:panelGroup
+							rendered="#{mbDashboard.listBackingsWithReward.size()==0}"
+							class="col-lg-push-1 col-lg-10">
+							<center>
+								<h3 style="color:navy;">Aucune participation</h3>
+							</center>
+						</h:panelGroup>
+					</div>
+				</div>
+
+
+				<div class="row">
+					<div class="backings col-lg-12">
+
+						<h:panelGroup
 							rendered="#{mbDashboard.listBackingsWithReward.size()!=0}"
 							class="col-lg-push-1 col-lg-10">
 							<center>
@@ -30,9 +44,11 @@
     				#{p.idUserOrder}
     			</h:column>
 								<h:column>
-									<f:facet name="header">Création</f:facet>   			
-    				#{p.createdDate}
-    			</h:column>
+									<f:facet name="header">Création</f:facet>
+									<h:outputLabel value="#{p.createdDate}">
+										<f:convertDateTime pattern="dd/MM/yyyy" />
+									</h:outputLabel>
+								</h:column>
 								<h:column>
 									<f:facet name="header">Nom Projet(s)</f:facet>
 									<ui:repeat var="row" value="#{p.orderRows}" size="0">
@@ -66,9 +82,11 @@
     				#{p.idUserOrder}
     			</h:column>
 								<h:column>
-									<f:facet name="header">Création</f:facet>   			
-    				#{p.createdDate}
-    			</h:column>
+									<f:facet name="header">Création</f:facet>
+									<h:outputLabel value="#{p.createdDate}">
+										<f:convertDateTime pattern="dd/MM/yyyy" />
+									</h:outputLabel>
+								</h:column>
 								<h:column>
 									<f:facet name="header">Nom Projet(s)</f:facet>
 									<ui:repeat var="row" value="#{p.orderRows}">
@@ -101,9 +119,11 @@
     				#{p.idOrderRow}
     			</h:column>
 								<h:column>
-									<f:facet name="header">Date</f:facet>   			
-    				#{p.createdDate}
-    			</h:column>
+									<f:facet name="header">Date</f:facet>
+									<h:outputLabel value="#{p.createdDate}">
+										<f:convertDateTime pattern="dd/MM/yyyy" />
+									</h:outputLabel>
+								</h:column>
 								<h:column>
 									<f:facet name="header">Pack</f:facet>   			
     				#{p.pack.packName}

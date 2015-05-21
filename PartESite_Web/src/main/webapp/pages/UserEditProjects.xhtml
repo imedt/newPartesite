@@ -7,9 +7,10 @@
 <ui:composition template="../templates/TemplateUser.xhtml">
 
 	<ui:define name="header-title">Nouveau Projet</ui:define>
-	
+
 	<ui:define name="script">
-		<script type="text/javascript" src="../tinymce/js/tinymce/tinymce.min.js"></script>
+		<script type="text/javascript"
+			src="../tinymce/js/tinymce/tinymce.min.js"></script>
 		<script type="text/javascript"> 
 tinymce.init({
     selector: ".textarea-tinymce", 
@@ -22,103 +23,115 @@ tinymce.init({
 </script>
 	</ui:define>
 	<ui:define name="content">
-<f:view>
-<h:form id="newProjectForm">
+		<f:view>
+			<h:form id="newProjectForm">
 
-		<div class="row">
-			<div class="col-lg-push-1 col-lg-10">
- 
-				<fieldset>
-					<legend>Création du projet</legend>
+				<div class="row">
+					<div class="col-lg-push-1 col-lg-10">
 
-					<span class="col-lg-3">Nom du projet :</span>
-					<h:inputText class="col-lg-9" value="#{mbEditProject.projectName}" />
-					<span class="col-lg-3">Capital sollicité :</span>
-					<h:inputText class="col-lg-9" value="#{mbEditProject.aimingAmount}" />
-					<span class="col-lg-3">Catégorie :</span>
-					<h:selectOneMenu value="#{mbEditProject.idProjectCategory}"
-						class="col-lg-9" style="height:2em;">
-						<f:selectItems value="#{mbEditProject.categories}" var="c"
-							itemValue="#{c.idProjectCategory}" itemLabel="#{c.category}" />
-					</h:selectOneMenu>
+						<fieldset>
+							<legend>Création du projet</legend>
 
-				</fieldset>
-</div>
-			<div class="col-lg-push-1 col-lg-10">
-  
-				<fieldset>
-					<legend>Contenu</legend>
-					<div class="col-md-12" style="margin: 0; padding: 0;">
-						<span class="col-md-3">Présentation auteur :</span>
-						<div class="col-md-9" style="margin: 0; padding: 0;">
-							<h:inputTextarea class="textarea-tinymce"
-								value="#{mbEditProject.cPContentAuthor}" />
-						</div>
+							<span class="col-lg-3">Nom du projet :</span>
+							<h:inputText class="col-lg-9"
+								value="#{mbEditProject.projectName}" />
+							<span class="col-lg-3">Capital sollicité :</span>
+							<h:inputText class="col-lg-9"
+								value="#{mbEditProject.aimingAmount}" />
+							<span class="col-lg-3">Catégorie :</span>
+							<h:selectOneMenu value="#{mbEditProject.idProjectCategory}"
+								class="col-lg-9" style="height:2em;">
+								<f:selectItems value="#{mbEditProject.categories}" var="c"
+									itemValue="#{c.idProjectCategory}" itemLabel="#{c.category}" />
+							</h:selectOneMenu>
 
+						</fieldset>
 					</div>
-					<div class="col-md-12" style="margin: 0; padding: 0;">
-						<span class="col-md-3">Description concept :</span>
-						<div class="col-md-9" style="margin: 0; padding: 0;">
-							<h:inputTextarea class="textarea-tinymce"
-								value="#{mbEditProject.cPContentConcept}" />
-						</div>
-					</div>
-					<span class="col-lg-3">Image :</span>
-					<h:inputText class="col-lg-9"
-						value="#{mbEditProject.cPContentImage}" />
-					<span class="col-lg-3">Vidéo :</span>
-					<h:inputText class="col-lg-9"
-						value="#{mbEditProject.cPContentVideo}" />
+					<div class="col-lg-push-1 col-lg-10">
 
-				</fieldset> 
- 
-				<fieldset style="margin-top:20px;">
-					<legend>Package (3 maximum)</legend>
-					<h:panelGroup id="packageList">
-						<ui:repeat var="pack" value="#{mbEditProject.packs}">
-							<div class="pack-form">
-								<span class="col-lg-3">Nom du Package :</span>
-								<h:inputText class="col-lg-9" value="#{pack.packName}" />
+						<fieldset>
+							<legend>Contenu</legend>
+							<div class="col-md-12" style="margin: 0; padding: 0;">
+								<span class="col-md-3">Présentation auteur :</span>
+								<div class="col-md-9" style="margin: 0; padding: 0;">
+									<h:inputTextarea class="textarea-tinymce"
+										value="#{mbEditProject.cPContentAuthor}" />
+								</div>
 
-								<span class="col-lg-3">Choix du Reward :</span>
-								<h:selectOneMenu class="col-lg-9" style="height:2em;"
-									value="#{pack.reward}">
-									<f:selectItem itemValue="true" itemLabel="Investissement" />
-									<f:selectItem itemValue="false" itemLabel="Don" />
-								</h:selectOneMenu>
-								<span class="col-lg-3">Décrire le reward octroyé :</span>
-								<h:inputText class="col-lg-9" value="#{pack.description}" />
-
-								<span class="col-lg-3">Montant à régler par package :</span>
-								<h:inputText class="col-lg-9" value="#{pack.amount}" />
-
-								<span class="col-lg-3">Quantité de package :</span>
-								<h:inputText class="col-lg-9" value="#{pack.stock}" />
 							</div>
-							<h:panelGroup rendered="#{mbEditProject.nbTotalPack &gt; 1}">
-								<h:commandButton style="margin-right:50px;" value="Supprimer">
-								 <f:ajax execute="@form" render=":formulaire:newProjectForm:packageList" immediate="true" listener="#{mbEditProject.onButtonRemoveFieldClick(pack)}"/>
-							 		</h:commandButton>  
- 							</h:panelGroup>
-						</ui:repeat>
-									<h:panelGroup rendered="#{mbEditProject.packs.size() &lt; 3}">
-						<h:commandButton value="Ajouter un package ">  
-						 	<f:ajax listener="#{mbEditProject.onButtonAddFieldClick}"
-								execute="@form" render=":formulaire:newProjectForm:packageList" immediate="true" /> 
-						 </h:commandButton>  
-					</h:panelGroup>
-				 	</h:panelGroup>  
-				</fieldset>
+							<div class="col-md-12" style="margin: 0; padding: 0;">
+								<span class="col-md-3">Description concept :</span>
+								<div class="col-md-9" style="margin: 0; padding: 0;">
+									<h:inputTextarea class="textarea-tinymce"
+										value="#{mbEditProject.cPContentConcept}" />
+								</div>
+							</div>
+							<span class="col-lg-3">Image :</span>
+							<h:inputText class="col-lg-9"
+								value="#{mbEditProject.cPContentImage}" />
+							<span class="col-lg-3">Vidéo :</span>
+							<h:inputText class="col-lg-9"
+								value="#{mbEditProject.cPContentVideo}" />
 
-			</div>
-			<h:commandButton class="col-lg-push-2  col-lg-8" type="submit"
-				action="#{mbEditProject.validateProject}" value="Enregistrer" />
-			<h:commandButton class="col-lg-push-2  col-lg-8" type="submit"
-				action="#{mbDemo.demoCreationProjet()}" value="Demonstration" />
+						</fieldset>
 
-		</div>
-		</h:form>
-</f:view>
+						<fieldset style="margin-top: 20px;">
+							<legend>Package (3 maximum)</legend>
+							<h:panelGroup id="packageList">
+								<ui:repeat var="pack" value="#{mbEditProject.packs}">
+									<div class="pack-form">
+										<span class="col-lg-3">Nom du Package :</span>
+										<h:inputText class="col-lg-9" value="#{pack.packName}" />
+
+										<span class="col-lg-3">Choix du Reward :</span>
+										<h:selectOneMenu class="col-lg-9" style="height:2em;"
+											value="#{pack.reward}">
+											<f:selectItem itemValue="true" itemLabel="Investissement" />
+											<f:selectItem itemValue="false" itemLabel="Don" />
+										</h:selectOneMenu>
+										<span class="col-lg-3">Décrire le reward octroyé :</span>
+										<h:inputText class="col-lg-9" value="#{pack.description}" />
+
+										<span class="col-lg-3">Montant à régler par package :</span>
+										<h:inputText class="col-lg-9" value="#{pack.amount}" />
+
+										<span class="col-lg-3">Quantité de package :</span>
+										<h:inputText class="col-lg-9" value="#{pack.stock}" />
+									</div>
+									<h:panelGroup rendered="#{mbEditProject.nbTotalPack &gt; 1}"
+										class="col-lg-12">
+										<h:commandButton style="margin-right:50px;margin-bottom:1em;"
+											value="Supprimer" class="btn col-lg-3">
+											<f:ajax execute="@form"
+												render=":formulaire:newProjectForm:packageList"
+												immediate="true"
+												listener="#{mbEditProject.onButtonRemoveFieldClick(pack)}" />
+										</h:commandButton>
+									</h:panelGroup>
+								</ui:repeat>
+								<h:panelGroup rendered="#{mbEditProject.packs.size() &lt; 3}"
+									class="col-lg-12">
+									<h:commandButton value="Ajouter un package "
+										class="btn col-lg-3">
+										<f:ajax listener="#{mbEditProject.onButtonAddFieldClick}"
+											execute="@form"
+											render=":formulaire:newProjectForm:packageList"
+											immediate="true" />
+									</h:commandButton>
+								</h:panelGroup>
+							</h:panelGroup>
+						</fieldset>
+
+					</div>
+					<div class="col-lg-12">
+						<h:commandButton class="btn col-lg-push-4  col-lg-7" type="submit"
+							action="#{mbEditProject.validateProject}" value="Enregistrer" />
+						<h:commandButton class="btn col-lg-push-4  col-lg-7" type="submit"
+							action="#{mbDemo.demoCreationProjet()}" value="Demonstration" />
+					</div>
+				</div>
+			</h:form>
+		</f:view>
 	</ui:define>
 
 </ui:composition>

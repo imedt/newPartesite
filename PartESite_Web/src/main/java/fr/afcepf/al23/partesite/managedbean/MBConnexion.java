@@ -109,7 +109,7 @@ public class MBConnexion {
 			log.info("User found");
 			if (id.getIdentityRole().getIdIdentityRole() == 3) {
 				log.info("Account user");
-				setDirection("../pages/UserDashBoard.xhtml?faces-redirect=true");
+				setDirection("../pages/UserInfo.xhtml?faces-redirect=true");
 				setStatut("Utilisateur");
 			}
 			if (id.getIdentityRole().getIdIdentityRole() == 2) {

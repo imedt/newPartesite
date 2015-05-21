@@ -26,10 +26,18 @@ public class MBPublishProjects {
 	private IBusinessProject buProject;
 	@EJB
 	private IBusinessNotification buNotification;
+	
 	@ManagedProperty(value="#{mbConnexion}")
 	private MBConnexion mbCnx;
+	
+	@ManagedProperty(value="#{mbModerator}")
+	private MBModerator mbModo;
+	
 	private List<Project> projects = new ArrayList<>();
 
+	
+	
+	
 	public List<Project> getProjects() {
 		return projects= buProject.getAllProjectsToPublish();
 	}
