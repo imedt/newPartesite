@@ -168,14 +168,9 @@ public class MBUser {
 			e.printStackTrace();
 		}
 		return identity;
-		
-	}public void setIdentity(Identity identity) {
-		try {
-			if ( cnx.getId()!=null)
-				identity = cnx.getId();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	}
+	public void setIdentity(Identity identity) {
+
 		this.identity = identity;
 	}
 	public String getDirection() {
@@ -354,16 +349,17 @@ public class MBUser {
 		setIdentity(buIdentity.save(identity));
 		addAddressToUser();
 		
-		if (identity!=null){
-			setMessage("Bienvenue "+identity.getFirstName()+" ! Vous pouvez désormais vous connecter...");
-			cnx.setId(identity);
-		}
+		setMessage("Bienvenue "+identity.getFirstName()+" ! Vous pouvez désormais vous connecter...");
 		
-		setDirection("../pages/UserDashBoard.xhtml?faces-redirect=true");
-
-		
+		setDirection("../pages/Home.xhtml?faces-redirect=true");
 		
 		return direction;
+	}
+	
+	public String showMessage(){
+		String copy = message;
+		message = "";
+		return copy;
 	}
 
 	//Enregistrement d'un nouveau t�l�phone
@@ -420,6 +416,7 @@ public class MBUser {
 		buPhone.delete(phone);
 		return "";
 	}
+
 	
 
 	

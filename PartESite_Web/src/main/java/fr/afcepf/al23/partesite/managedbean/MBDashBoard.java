@@ -81,7 +81,7 @@ public class MBDashBoard {
 	}
 
 	public Integer getAllMyNotificationsCount() {
-		return allMyNotificationsCount = this.allMyNotifications();
+		return allMyNotificationsCount=this.allMyNotifications();
 	}
 
 	public IBusinessProject getBuProjects() {
@@ -280,8 +280,7 @@ public class MBDashBoard {
 	}
 
 	public List<Notification> getListNotifications() {
-		return listNotifications = buNotification.getByTarget(cnx.getId()
-				.getIdIdentity());
+		return listNotifications = buNotification.getByTarget(40);
 	}
 
 	public void setListNotifications(List<Notification> listNotifications) {
