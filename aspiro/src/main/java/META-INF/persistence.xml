@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1"
+	xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="PartESite_Dao">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<class>fr.afcepf.al23.model.entities.Address</class>
+		<class>fr.afcepf.al23.model.entities.AddressType</class>
+		<class>fr.afcepf.al23.model.entities.Civility</class> 
+		<class>fr.afcepf.al23.model.entities.Country</class> 
+		<class>fr.afcepf.al23.model.entities.Identity</class>
+		<class>fr.afcepf.al23.model.entities.IdentityRight</class>
+		<class>fr.afcepf.al23.model.entities.IdentityRole</class>
+		<class>fr.afcepf.al23.model.entities.Item</class>
+		<class>fr.afcepf.al23.model.entities.ItemState</class>
+		<class>fr.afcepf.al23.model.entities.Notification</class>
+		<class>fr.afcepf.al23.model.entities.OrderRow</class>
+		<class>fr.afcepf.al23.model.entities.Pack</class>
+		<class>fr.afcepf.al23.model.entities.Payment</class>
+		<class>fr.afcepf.al23.model.entities.Phone</class>
+		<class>fr.afcepf.al23.model.entities.Project</class>
+		<class>fr.afcepf.al23.model.entities.ProjectCategory</class>
+		<class>fr.afcepf.al23.model.entities.ProjectContent</class>
+		<class>fr.afcepf.al23.model.entities.TargetType</class>
+		<class>fr.afcepf.al23.model.entities.UserOrder</class>
+		<class>fr.afcepf.al23.model.entities.UserOrderState</class>
+		<properties>  
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://127.0.0.1:3306/partesite"/>
+			<property name="javax.persistence.jdbc.user" value="root"/> 
+			<property name="javax.persistence.jdbc.password" value="83e36f2aef"/> 
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+			<property name="hibernate.hbm2ddl.auto" value="update"/>
+			<property name="hibernate.show_sql" value="true"/> 
+		</properties>
+	</persistence-unit>
+</persistence>

@@ -59,12 +59,7 @@ public class MBModerator {
 
 	public String getRentabiliteString() {		
 		List<Project> temp = buProject.getAllFinancedProjects();
-		projectsFinancedMontant = (double) 0;
-		for (Project project : temp) {
-			for (Pack pack : project.getPacks()) {
-				projectsFinancedMontant += pack.getAmount() * pack.getNbSale();
-			}
-		}
+		projectsFinancedMontant = (double) 0;  
 		rentabilite = projectsFinancedMontant / 10;
 		temp.clear();
 		log.info("Double = "+rentabilite);

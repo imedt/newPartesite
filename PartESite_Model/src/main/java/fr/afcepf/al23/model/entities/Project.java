@@ -79,11 +79,11 @@ public class Project implements Serializable {
 	private ProjectCategory projectCategory;
 
 	//bi-directional many-to-one association to ProjectContent
-	@OneToMany(mappedBy="project",fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="project",fetch=FetchType.LAZY)
 	private List<ProjectContent> projectContents;
 
 	public Project() {
-	}
+	} 
 
 	public Integer getIdProject() {
 		return this.idProject;

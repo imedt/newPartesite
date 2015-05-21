@@ -1,45 +1,40 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>fr.afcepf.al23.partesite</groupId>
-	<artifactId>PartESite_Web</artifactId>
+	<groupId>aspiro</groupId>
+	<artifactId>aspiro</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
-
 	<dependencies>
 		<dependency>
-			<groupId>fr.afcepf.al23</groupId>
-			<artifactId>MongoDB</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<groupId>org.jsoup</groupId>
+			<artifactId>jsoup</artifactId>
+			<version>1.7.2</version>
 		</dependency>
 		<dependency>
-	<groupId>org.jsoup</groupId>
-	<artifactId>jsoup</artifactId>
-	<version>1.7.2</version>
-</dependency>
-		 
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.27</version>
+		</dependency>
 		<dependency>
-			<groupId>fr.afcepf.al23.partesite</groupId>
-			<artifactId>PartESite_IService</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>4.3.9.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.16</version>
 		</dependency>
 		<dependency>
 			<groupId>fr.afcepf.al23.partesite</groupId>
 			<artifactId>PartESite_Model</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-		<dependency>
-			<groupId>org.hibernate</groupId>
+		<dependency> 
+			<groupId>org.hibernate</groupId> 
 			<artifactId>hibernate-entitymanager</artifactId>
-			<version>4.3.1.Final</version>
+			<version>4.3.9.Final</version>
 		</dependency>
-		<dependency>
-			<groupId>javax</groupId>
-			<artifactId>javaee-api</artifactId>
-			<version>6.0</version>
-			<scope>provided</scope>
-		</dependency>
-
 
 	</dependencies>
 	<build>
@@ -55,4 +50,5 @@
 			</plugin>
 		</plugins>
 	</build>
+
 </project>

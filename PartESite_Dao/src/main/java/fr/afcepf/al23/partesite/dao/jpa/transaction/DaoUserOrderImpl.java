@@ -155,6 +155,7 @@ public class DaoUserOrderImpl implements IDaoUserOrder {
 			list = hql.getResultList();
 		} catch (Exception e) {
 			e.printStackTrace();
+			log.info("in error"); 
 		}
 		return list;
 	}

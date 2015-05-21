@@ -10,7 +10,8 @@
 	<ui:define name="header-title">Notifications</ui:define>
 
 	<ui:define name="content">
-<f:view>
+<f:event listener="#{mbDashboard.reloadNotifications}" type="preRenderView"></f:event>
+<f:view> 
 <h:form>
 
 				<h:panelGroup rendered="#{mbUserNotifications.listNotifications.size()!=0}" class="col-lg-12">

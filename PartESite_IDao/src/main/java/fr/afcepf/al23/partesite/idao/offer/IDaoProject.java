@@ -28,5 +28,6 @@ public interface IDaoProject {
 			Identity identity);
 	public List<Project> getAllProjectsToPublish();
 	public List<Object> getProjectsNumberByCategories();
+	public List<Project> getNewestPublished();
 	
 }

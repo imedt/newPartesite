@@ -194,4 +194,15 @@ public class DaoProjectImpl implements IDaoProject {
 		return result;  
 	}
 
+	@Override
+	public List<Project> getNewestPublished() {
+		String query = "SELECT p FROM Project p INNER JOIN FETCH p.projectContents ORDER BY p.publishingDate ASC";
+		Query hql = em.createQuery(query); 
+		hql.setMaxResults(5);
+		log.info(hql.toString());
+		List result = hql.getResultList();
+		log.info("list newest : "+result.size());
+		return result;  
+	}
+
 }

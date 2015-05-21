@@ -8,8 +8,9 @@
 
 <ui:define name="header-title">Tableau de bord</ui:define>
 
-<ui:define name="content">
-<f:view>  
+<ui:define name="content"> 
+<f:event listener="#{mbDashboard.preRender}" type="preRenderView"></f:event>
+<f:view>   
 <h:form> 
         
 <div class="col-md-12 text-center">

@@ -7,6 +7,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import org.apache.log4j.Logger;
+import org.jsoup.Jsoup;
 
 import fr.afcepf.al23.model.entities.Identity;
 import fr.afcepf.al23.model.entities.Pack;
@@ -45,6 +46,17 @@ public class MBProjet {
 		allProjects=buProject.getAllPublish();
 		return allProjects;
 	}
+	
+	public List<Project> getNewestProjects(){
+		allProjects=null;
+		allProjects=buProject.getNewestPublished();
+		return allProjects;
+	}
+	
+	public String sliceHtml(String text){
+		return Jsoup.parse(text).text(); 
+	}
+	
 	public void setAllProjects(List<Project> allProjects) {
 		this.allProjects = allProjects;
 	}

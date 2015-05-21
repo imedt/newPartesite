@@ -33,4 +33,5 @@ public interface IBusinessProject {
 	public List<Project> getAllPublish();
 	public List<Project> getAllProjectsToPublish();
 	public List<Project> getByIdentity(Identity identity);
+	public List<Project> getNewestPublished();
 }

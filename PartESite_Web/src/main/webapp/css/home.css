@@ -165,14 +165,17 @@ input.cat{outline: none;}
 	font-weight: bold;
 } 
 .project-desc{ 
-background:white; 
 	min-height:300px;
 	padding:0 50px 0 50px;
-	margin-right:10px;
 	text-align: center;
-	font-weight: bold;
-}  
+ 	font-weight: bold;
+ 
+}
+.project-title{
+	height:66px; 
+}
 .project-wrap{
+background:white; 
 	height:260px;
  }
 .project-data,.project-data *{
@@ -196,3 +199,7 @@ background:white;
 .charts *{
 	max-width:100%!important; 
 }
+.srcBtn{
+	  margin-top: 5px!important;
+  margin: 2px!important;  
+} 

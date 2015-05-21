@@ -1,5 +1,6 @@
 package fr.afcepf.al23.partesite.managedbean;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,6 +8,7 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 import org.apache.log4j.Logger;
 
@@ -59,86 +61,80 @@ public class MBDashBoard {
 	private Double aimingAmount = 0.00;
 	private Double backings = 0.00;
 
-
-	public Integer getAllMyProjectsCount() {
-		return allMyProjectsCount = this.allMyProjects();
+	public void preRender(){
+		if(cnx.getId() == null){
+			try {
+				FacesContext.getCurrentInstance().getExternalContext().redirect("Home.xhtml");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		this.projects = buProjects.getByIdentity(cnx.getId());
+		allMyProjectsCount = projects.size(); 
+		allMyProjectsOnlineCount = 0;
+		allMyProjectsFinancedCount = 0;
+		for(Project p : projects){
+			if(p.getPublish()){
+				listOnline.add(p);   
+				allMyProjectsOnlineCount++;
+			}
+			Double aiming = p.getAimingAmount();
+			Double current = 0d;
+			for(Pack pack : p.getPacks()){ 
+				current += (pack.getAmount()*(pack.getTotalQuantity()-pack.getStock()));
+			}
+			if(aiming < current){
+				listFinanced.add(p);
+				allMyProjectsFinancedCount++; 
+			}
+		}
+		listNotifications = buNotification.getByTarget(cnx.getId().getIdIdentity());
+		allMyNotificationsCount = listNotifications.size();  
+	} 
+	public void reloadNotifications(){
+		listNotifications = buNotification.getByTarget(cnx.getId().getIdIdentity());
+		allMyNotificationsCount = listNotifications.size();  
+	
+	}
+	public Logger getLog() {
+		return log;
 	}
 
-	public Integer getAllMyProjectsDisabledCount() {
-		return allMyProjectsDisabledCount = this.allMyProjectsDisabled();
-	}
-
-	public Integer getAllMyProjectsOnlineCount() {
-		return allMyProjectsOnlineCount = this.allMyProjectsOnline();
-	}
-
-	public Integer getAllMyProjectsFinancedCount() {
-		return allMyProjectsFinancedCount = this.allMyProjectsFinanced();
-	}
-
-	public Integer getAllMyBackingsWithRewardCount() {
-		return allMyBackingsWithRewardCount = this.allMyBackingsWithReward();
-	}
-
-	public Integer getAllMyNotificationsCount() {
-		return allMyNotificationsCount=this.allMyNotifications();
-	}
-
-	public IBusinessProject getBuProjects() {
-		return buProjects;
+	public void setLog(Logger log) {
+		this.log = log;
 	}
 
 	public IBusinessIdentity getBuIdentity() {
 		return buIdentity;
 	}
 
-	public MBConnexion getCnx() {
-		return cnx;
-	}
-
-	public void setAllMyProjectsCount(Integer allMyProjectsCount) {
-		this.allMyProjectsCount = allMyProjectsCount;
-	}
-
-	public void setAllMyProjectsDisabledCount(Integer allMyProjectsDisabledCount) {
-		this.allMyProjectsDisabledCount = allMyProjectsDisabledCount;
-	}
-
-	public void setAllMyProjectsOnlineCount(Integer allMyProjectsOnlineCount) {
-		this.allMyProjectsOnlineCount = allMyProjectsOnlineCount;
-	}
-
-	public void setAllMyProjectsFinancedCount(Integer allMyProjectsFinancedCount) {
-		this.allMyProjectsFinancedCount = allMyProjectsFinancedCount;
-	}
-
-	public void setAllMyBackingsWithRewardCount(
-			Integer allMyBackingsWithRewardCount) {
-		this.allMyBackingsWithRewardCount = allMyBackingsWithRewardCount;
-	}
-
-	public void setAllMyNotificationsCount(Integer allMyNotificationsCount) {
-		this.allMyNotificationsCount = allMyNotificationsCount;
-	}
-
-	public void setBuProjects(IBusinessProject buProjects) {
-		this.buProjects = buProjects;
-	}
-
 	public void setBuIdentity(IBusinessIdentity buIdentity) {
 		this.buIdentity = buIdentity;
 	}
 
-	public void setCnx(MBConnexion cnx) {
-		this.cnx = cnx;
+	public IBusinessNotification getBuNotification() {
+		return buNotification;
 	}
 
-	public Integer getAllMyGivingsCount() {
-		return allMyGivingsCount = this.allMyGivings();
+	public void setBuNotification(IBusinessNotification buNotification) {
+		this.buNotification = buNotification;
 	}
 
-	public void setAllMyGivingsCount(Integer allMyGivingsCount) {
-		this.allMyGivingsCount = allMyGivingsCount;
+	public IBusinessOrder getBuUserOrder() {
+		return buUserOrder;
+	}
+
+	public void setBuUserOrder(IBusinessOrder buUserOrder) {
+		this.buUserOrder = buUserOrder;
+	}
+
+	public IBusinessProject getBuProjects() {
+		return buProjects;
+	}
+
+	public void setBuProjects(IBusinessProject buProjects) {
+		this.buProjects = buProjects;
 	}
 
 	public IBusinessPack getBuPacks() {
@@ -147,6 +143,134 @@ public class MBDashBoard {
 
 	public void setBuPacks(IBusinessPack buPacks) {
 		this.buPacks = buPacks;
+	}
+
+	public MBConnexion getCnx() {
+		return cnx;
+	}
+
+	public void setCnx(MBConnexion cnx) {
+		this.cnx = cnx;
+	}
+
+	public Integer getAllMyProjectsCount() {
+		return allMyProjectsCount;
+	}
+
+	public void setAllMyProjectsCount(Integer allMyProjectsCount) {
+		this.allMyProjectsCount = allMyProjectsCount;
+	}
+
+	public Integer getAllMyProjectsDisabledCount() {
+		return allMyProjectsDisabledCount;
+	}
+
+	public void setAllMyProjectsDisabledCount(Integer allMyProjectsDisabledCount) {
+		this.allMyProjectsDisabledCount = allMyProjectsDisabledCount;
+	}
+
+	public Integer getAllMyProjectsOnlineCount() {
+		return allMyProjectsOnlineCount;
+	}
+
+	public void setAllMyProjectsOnlineCount(Integer allMyProjectsOnlineCount) {
+		this.allMyProjectsOnlineCount = allMyProjectsOnlineCount;
+	}
+
+	public Integer getAllMyProjectsFinancedCount() {
+		return allMyProjectsFinancedCount;
+	}
+
+	public void setAllMyProjectsFinancedCount(Integer allMyProjectsFinancedCount) {
+		this.allMyProjectsFinancedCount = allMyProjectsFinancedCount;
+	}
+
+	public Integer getAllMyBackingsWithRewardCount() {
+		return allMyBackingsWithRewardCount;
+	}
+
+	public void setAllMyBackingsWithRewardCount(Integer allMyBackingsWithRewardCount) {
+		this.allMyBackingsWithRewardCount = allMyBackingsWithRewardCount;
+	}
+
+	public Integer getAllMyGivingsCount() {
+		return allMyGivingsCount;
+	}
+
+	public void setAllMyGivingsCount(Integer allMyGivingsCount) {
+		this.allMyGivingsCount = allMyGivingsCount;
+	}
+
+	public Integer getAllMyNotificationsCount() {
+		return allMyNotificationsCount;
+	}
+
+	public void setAllMyNotificationsCount(Integer allMyNotificationsCount) {
+		this.allMyNotificationsCount = allMyNotificationsCount;
+	}
+
+	public List<Project> getProjects() {
+		return projects;
+	}
+
+	public void setProjects(List<Project> projects) {
+		this.projects = projects;
+	}
+
+	public List<Project> getListOnline() {
+		return listOnline;
+	}
+
+	public void setListOnline(List<Project> listOnline) {
+		this.listOnline = listOnline;
+	}
+
+	public List<Project> getListFinanced() {
+		return listFinanced;
+	}
+
+	public void setListFinanced(List<Project> listFinanced) {
+		this.listFinanced = listFinanced;
+	}
+
+	public List<Project> getListDisabled() {
+		return listDisabled;
+	}
+
+	public void setListDisabled(List<Project> listDisabled) {
+		this.listDisabled = listDisabled;
+	}
+
+	public List<UserOrder> getListBackingsWithReward() {
+		return listBackingsWithReward;
+	}
+
+	public void setListBackingsWithReward(List<UserOrder> listBackingsWithReward) {
+		this.listBackingsWithReward = listBackingsWithReward;
+	}
+
+	public List<UserOrder> getListGivings() {
+		return listGivings;
+	}
+
+	public void setListGivings(List<UserOrder> listGivings) {
+		this.listGivings = listGivings;
+	}
+
+	public List<Notification> getListNotifications() {
+		return listNotifications;
+	}
+
+	public void setListNotifications(List<Notification> listNotifications) {
+		this.listNotifications = listNotifications;
+	}
+
+	public Double getBackingsAmount() {
+		return backingsAmount;
+	}
+
+	public void setBackingsAmount(Double backingsAmount) {
+		this.backingsAmount = backingsAmount;
 	}
 
 	public Double getAimingAmount() {
@@ -164,265 +288,5 @@ public class MBDashBoard {
 	public void setBackings(Double backings) {
 		this.backings = backings;
 	}
-
-	public IBusinessOrder getBuUserOrder() {
-		return buUserOrder;
-	}
-
-	public void setBuUserOrder(IBusinessOrder buUserOrder) {
-		this.buUserOrder = buUserOrder;
-	}
-
-	public List<Project> getProjects() {
-		return projects = buProjects.getByIdentity(cnx.getId());
-	}
-
-	public void setProjects(List<Project> projects) {
-		this.projects = projects;
-	}
-
-	public List<Project> getListOnline() {
-		List<Project> list = buProjects.getByIdentity(cnx.getId());
-		listOnline = new ArrayList<>();
-		for (Project p : list) {
-			if (p.getPublish() == true) {
-				listOnline.add(p);
-			}
-		}
-		return listOnline;
-	}
-
-	public void setListOnline(List<Project> listOnline) {
-		this.listOnline = listOnline;
-	}
-
-	public List<Project> getListFinanced() {
-		List<Project> list;
-		try {
-			list = buProjects.getByIdentity(cnx.getId());
-			listFinanced = new ArrayList<>();
-
-			for (Project p : list) {
-
-				// on recupere le montant a financer
-				aimingAmount = p.getAimingAmount();
-
-				List<Pack> packs = buPacks.getByidProject(p.getIdProject());
-				System.out.println("id projet from get list financed : " + p.getIdProject());
-
-				for (Pack pack : packs) {
-					backings += (double) (pack.getAmount() * pack.getNbSale());
-				}
-				if (backings >= aimingAmount) {
-					listFinanced.add(p);
-				}
-				aimingAmount = 0.00;
-				backings = 0.00;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return listFinanced;
-	}
-
-	public void setListFinanced(List<Project> listFinanced) {
-		this.listFinanced = listFinanced;
-	}
-
-	public List<Project> getListDisabled() {
-		List<Project> list = buProjects.getByIdentity(cnx.getId());
-		listDisabled = new ArrayList<>();
-		for (Project p : list) {
-			if (p.getDisabled() == true) {
-				listDisabled.add(p);
-			}
-		}
-		return listDisabled;
-	}
-
-	public void setListDisabled(List<Project> listDisabled) {
-		this.listDisabled = listDisabled;
-	}
-
-	public List<UserOrder> getListBackingsWithReward() {
-		List<UserOrder> list = buUserOrder.getByIdentity(cnx.getId());
-		listBackingsWithReward = new ArrayList<>();
-		for (UserOrder uo : list) {
-			for (OrderRow or : uo.getOrderRows()) {
-				if (or.getPack().getReward() == true) {
-					listBackingsWithReward.add(uo);
-				}
-			}
-		}
-		return listBackingsWithReward;
-	}
-
-	public void setListBackingsWithReward(List<UserOrder> listBackingsWithReward) {
-		this.listBackingsWithReward = listBackingsWithReward;
-	}
-
-	public List<UserOrder> getListGivings() {
-		List<UserOrder> list = buUserOrder.getByIdentity(cnx.getId());
-		listGivings = new ArrayList<>();
-		for (UserOrder uo : list) {
-			for (OrderRow or : uo.getOrderRows()) {
-				if (or.getPack().getReward() == false) {
-					listGivings.add(uo);
-				}
-			}
-		}
-		return listGivings;
-	}
-
-	public void setListGivings(List<UserOrder> listGivings) {
-		this.listGivings = listGivings;
-	}
-
-	public List<Notification> getListNotifications() {
-		return listNotifications = buNotification.getByTarget(40);
-	}
-
-	public void setListNotifications(List<Notification> listNotifications) {
-		this.listNotifications = listNotifications;
-	}
-
-	public IBusinessNotification getBuNotification() {
-		return buNotification;
-	}
-
-	public void setBuNotification(IBusinessNotification buNotification) {
-		this.buNotification = buNotification;
-	}
-
-	public Double getBackingsAmount() {
-		return backingsAmount;
-	}
-
-	public void setBackingsAmount(Double backingsAmount) {
-		this.backingsAmount = backingsAmount;
-	}
-
-	// M�thodes
-	public Integer allMyProjects() {
-		projects = buProjects.getByIdentity(cnx.getId());
-		if (projects.size() != 0)
-			return allMyProjectsCount = projects.size();
-		else
-			return 0;
-	}
-
-	public Integer allMyProjectsOnline() {
-		List<Project> list = buProjects.getByIdentity(cnx.getId());
-		listOnline = new ArrayList<>();
-		for (Project p : list) {
-			if (p.getPublish() == true) {
-				listOnline.add(p);
-			}
-		}
-		if (listOnline.size() != 0)
-			return allMyProjectsOnlineCount = listOnline.size();
-		else
-			return 0;
-	}
-
-	public Integer allMyProjectsDisabled() {
-		List<Project> list = buProjects.getByIdentity(cnx.getId());
-		listDisabled = new ArrayList<>();
-		for (Project p : list) {
-			if (p.getDisabled() == true) {
-				listDisabled.add(p);
-			}
-		}
-		if (listDisabled.size() != 0)
-			return allMyProjectsDisabledCount = listDisabled.size();
-		else
-			return 0;
-	}
-
-	public Integer allMyProjectsFinanced() {
-		List<Project> list;
-		try {
-			list = buProjects.getByIdentity(cnx.getId());
-			listFinanced = new ArrayList<>();
-
-			for (Project p : list) {
-
-				// on recupere le montant a financer
-				aimingAmount = p.getAimingAmount();
-
-				List<Pack> packs = buPacks.getByidProject(p.getIdProject());
-				System.out.println("id projet from all my projects : " + p.getIdProject());
-
-				for (Pack pack : packs) {
-					backings += (double) (pack.getAmount() * pack.getNbSale());
-				}
-				if (backings >= aimingAmount) {
-					listFinanced.add(p);
-				}
-				aimingAmount = 0.00;
-				backings = 0.00;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		if (listFinanced.size() != 0)
-			return allMyProjectsFinancedCount = listFinanced.size();
-		else
-			return 0;
-	}
-
-	public Integer allMyBackingsWithReward() {
-		List<UserOrder> list = buUserOrder.getByIdentity(cnx.getId());
-		listBackingsWithReward = new ArrayList<>();
-		log.info("there is "+list.size()+" user order");
-		for (UserOrder uo : list) {
-			log.info("there is "+uo.getOrderRows().size()+" user order row");
-			for (OrderRow or : uo.getOrderRows()) {
-				log.info("the pack inside : "+or.getPack());
-				if(or.getPack() == null){
-					continue;
-				}
-				log.info("has reward : "+(or.getPack().getReward()));
-				if (or.getPack().getReward() != null && or.getPack().getReward() == true) { 
-					listBackingsWithReward.add(uo); 
-				}
-			}
-		}
-		if (listBackingsWithReward.size() != 0)
-			return allMyBackingsWithRewardCount = listBackingsWithReward.size();
-		else
-			return 0;
-	}
-
-	public Integer allMyGivings() {
-		List<UserOrder> list = buUserOrder.getByIdentity(cnx.getId());
-		listGivings = new ArrayList<>();
-		log.info("there is "+list.size()+" user order");
-		for (UserOrder uo : list) {
-			log.info("there is "+uo.getOrderRows().size()+" user order row");
-			for (OrderRow or : uo.getOrderRows()) {
-				log.info("the pack inside : "+or.getPack());
-				if(or.getPack() == null){
-					continue;
-				}
-				log.info("has reward : "+(or.getPack().getReward()));
-				if (or.getPack().getReward() != null && or.getPack().getReward() == false) {
-					listGivings.add(uo); 
-				}
-			}
-		}		if (listGivings.size() != 0)
-			return allMyGivingsCount = listGivings.size();
-		else
-			return 0;
-	}
-
-	public Integer allMyNotifications() {
-		listNotifications = buNotification.getByTarget(cnx.getId()
-				.getIdIdentity());
-		if (listNotifications.size() != 0)
-			return allMyNotificationsCount = listNotifications.size();
-		else
-			return 0;
-	}
+	
 }

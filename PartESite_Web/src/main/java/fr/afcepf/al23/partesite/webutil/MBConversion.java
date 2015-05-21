@@ -51,7 +51,10 @@ public class MBConversion {
 		if(currency == "")
 			currency = "EUR";
 		//Definition BPEL 
-
+		if(conversionService == null){
+			conversionService = new ConversionImplService().getPort(IConversion.class); 	
+		}
+		log.info("Conversion : "+amount+" EUR TO "+MBCnx.getDevise());
 		double convertedAmount = conversionService.conversion(amount, "EUR", MBCnx.getDevise());
 		
 		return formatDecimal(convertedAmount)+" "+ tab.get(currency);

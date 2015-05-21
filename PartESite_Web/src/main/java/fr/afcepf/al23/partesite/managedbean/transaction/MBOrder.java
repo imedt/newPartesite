@@ -136,8 +136,8 @@ public class MBOrder {
 	public String addToCart( PackWrap wrappedPack) {
 		log.info("wanted quantity = "+wrappedPack.getQuantity());
 		cart = buOrder.addOrderRow(MBCnx.getId(), cart, wrappedPack.getQuantity(), wrappedPack.getPack());
-		return "consulterPanier.xhtml"; 
-	}
+		return "consulterPanier.xhtml?faces-redirect=true"; 
+	} 
 
 	public UserOrder modifyToCart(Integer nb, Pack pack) {
 		cart = buOrder.modifyOrderRow(cart, nb, pack);

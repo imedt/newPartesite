@@ -92,6 +92,7 @@ public class BusinessProjectImpl implements IBusinessProject {
 
 	@Override
 	public List<Project> getAllWithItems() {
+		/*
 log.info("getAllWithItems");
 		List<Project> projects = daoProj.getAll();
 		log.info("nombre de projets : "+projects.size());
@@ -104,8 +105,9 @@ log.info("getAllWithItems");
 						project.setFinancedAmount(project.getFinancedAmount() + pack.getNbSale() * pack.getAmount());
 					}
 
-			}
-		return projects;
+			}*/
+		List<Project> projects = daoProj.getAll();
+		return projects; 
 	}
 
 	@Override
@@ -113,25 +115,25 @@ log.info("getAllWithItems");
 
 		List<Project> projectsToReturn = new ArrayList<Project>();
 		List<Project> projects = daoProj.getAll();
-		if (projects != null)
-			for (Project project : projects) {
-				project.setFinancedAmount(0d);
-				Double amountTemp = (double)0;
-				if (project.getPacks() != null) {
-					for (Pack pack : project.getPacks()) {
-						pack.setNbSale(daoPack.getNbSale(pack));
-						amountTemp += pack.getNbSale() * pack.getAmount();
-						project.setFinancedAmount(project.getFinancedAmount() + pack.getNbSale() * pack.getAmount());
-					}
-				}
-				
-				if(project.getAimingAmount() <= amountTemp)
-				{
-					projectsToReturn.add(project);
-				}
-				
-				
-			}
+//		if (projects != null)
+//			for (Project project : projects) {
+//				project.setFinancedAmount(0d);
+//				Double amountTemp = (double)0;
+//				if (project.getPacks() != null) {
+//					for (Pack pack : project.getPacks()) {
+//						pack.setNbSale(daoPack.getNbSale(pack));
+//						amountTemp += pack.getNbSale() * pack.getAmount();
+//						project.setFinancedAmount(project.getFinancedAmount() + pack.getNbSale() * pack.getAmount());
+//					}
+//				}
+//				
+//				if(project.getAimingAmount() <= amountTemp)
+//				{
+//					projectsToReturn.add(project);
+//				} 
+//				
+//				
+//			}
 		return projectsToReturn;
 	}
 
@@ -144,7 +146,7 @@ log.info("getAllWithItems");
 			{
 				projectsToReturn.add(project);
 			}
-		}
+		} 
 		return projectsToReturn;
 	}
 
@@ -182,6 +184,11 @@ log.info("getAllWithItems");
 			e.printStackTrace();
 		}
 		return projects;
+	}
+
+	@Override
+	public List<Project> getNewestPublished() {
+		return daoProj.getNewestPublished();
 	}
 
 }

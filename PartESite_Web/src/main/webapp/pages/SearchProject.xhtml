@@ -10,8 +10,9 @@
 
 
 	<ui:define name="content">
-	<f:event listener="#{mbSearchProject.reinitProjects()}" type="preRenderView"></f:event>
-		<fieldset> 
+		<f:event listener="#{mbSearchProject.reinitProjects()}"
+			type="preRenderView"></f:event>
+		<fieldset>
 			<h:form name="formulaire">
 
 				<div class="row">
@@ -19,17 +20,18 @@
 
 						<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12"
 							style="margin-left: 1em; text-align: center;">
-							<div class="input-prepend col-lg-6">
-								<span class="col-lg-2 add-on">Nom</span>
-
-								<h:inputText class="span2 col-lg-10 projectSearchBar"
-									value="#{mbSearchProject.name}">  
-									<f:ajax listener="#{mbSearchProject.searchByName()}"
-										render="list" event="keyup" />
-								</h:inputText>
-
-							</div>
-						</div>
+							<div class="input-prepend col-lg-6">    
+								<label class="col-md-2 add-on">Nom</label>
+								<div class="col-md-8">
+								<h:inputText styleClass="col-md-3 span2 projectSearchBar form-control " 
+									value="#{mbSearchProject.name}"> 
+								</h:inputText>    
+								</div>
+								<div class="col-md-2">
+								<h:commandButton value="Rechercher" action="#{mbSearchProject.searchByName()}" styleClass="btn btn-primary srcBtn" />		
+								</div> 
+							</div> 
+						</div> 
 
 					</div>
 
@@ -51,41 +53,50 @@
 							<center>
 								<h4 class="loaderplaceholder">AUCUN RESULTAT</h4>
 							</center>
-						</h:panelGroup> 
+						</h:panelGroup>
 						<h:panelGroup rendered="#{mbSearchProject.projects.size()!=0}"
-							style="display:block;" class="col-lg-push-1 col-lg-10 col-lg-push-1 col-md-12 col-sm-12 col-xs-12 text-center">
-							<h1>Résultat de la recherche <span class="loaderplaceholder"></span></h1> 
+							style="display:block;"
+							class="col-lg-push-1 col-lg-10 col-lg-push-1 col-md-12 col-sm-12 col-xs-12 text-center">
+							<h1>
+								Résultat de la recherche <span class="loaderplaceholder"></span>
+							</h1>
 							<ui:repeat value="#{mbSearchProject.projects}" var="project">
 								<div class="col-md-3 project-desc">
-								<div class="project-wrap">
-									<div class="row">
-										<h3>#{mbProjet.sliceText(project.projectName,40)}</h3>
-									</div> 
-									<div class="row"> 
-										<div class="col-md-6">
-											<img src="#{project.projectContents[0].content}"
-												alt="Image not found"
-												onError="this.onerror=null;this.src='../images/#{project.projectCategory.category}.jpg';" />
-										</div>    
-										<div class="col-md-6 project-data">
-											<h:outputText styleClass="col-md-12  project-info" escape="false" value="Publié le : &lt;br /&gt; #{project.publishingDate}">
-												<f:convertDateTime pattern="dd/MM/YYYY" timeZone="Europe" /> 
-											</h:outputText>
-											<h:outputText  styleClass="col-md-12 project-info" escape="false" value=" Par : &lt;br /&gt; #{project.identity.firstName}" />
-											<h:outputText  styleClass="col-md-12 project-info" escape="false"
-												value="Soutien : &lt;br /&gt; #{project.aimingAmount} #{mbConversion.getCurrencySymbol(mbConnexion.devise)}" />
-  
-										</div> 
+									<div class="project-wrap">
+										<div class="col-md-12 project-title">
+											<h3>#{mbProjet.sliceText(project.projectName,40)}</h3>
+										</div>
+										<div class="col-md-12">
+											<div class="col-md-6">
+												<img src="#{project.projectContents[0].content}"
+													alt="Image not found"
+													onError="this.onerror=null;this.src='../images/#{project.projectCategory.category}.jpg';" />
+											</div>
+											<div class="col-md-6 project-data">
+												<h:outputText styleClass="col-md-12  project-info"
+													escape="false"
+													value="Publié le : &lt;br /&gt; #{project.publishingDate}">
+													<f:convertDateTime pattern="dd/MM/YYYY" timeZone="Europe" />
+												</h:outputText>
+												<h:outputText styleClass="col-md-12 project-info"
+													escape="false"
+													value=" Par : &lt;br /&gt; #{project.identity.firstName}" />
+												<h:outputText styleClass="col-md-12 project-info"
+													escape="false"
+													value="Soutien : &lt;br /&gt; #{project.aimingAmount} #{mbConversion.getCurrencySymbol(mbConnexion.devise)}" />
+
+											</div>
+										</div>
+										<div class="col-md-12">
+											<h:outputText
+												value="#{mbProjet.sliceText(project.projectContents[3].content,130)}"
+												escape="false" />
+										</div>
+										<h:commandButton class="btn col-lg-12 lg-btn-default"
+											value="Details"
+											action="#{mbConsultProject.detailProject(project)}">
+										</h:commandButton>
 									</div>
-									<div class="row">
-										<h:outputText
-											value="#{mbProjet.sliceText(project.projectContents[3].content,130)}" escape="false"/>
-									</div> 
-									</div>
-									<h:commandButton class="btn col-lg-12 lg-btn-default"
-										value="Details"
-										action="#{mbConsultProject.detailProject(project)}">
-									</h:commandButton>
 
 								</div>
 
@@ -96,16 +107,8 @@
 				</div>
 
 			</h:form>
-		</fieldset>
-		<script>
-		$(document).ready(function(){
-				$(".projectSearchBar").keyup(function(){
-						var loader = $('<img></img>').attr('src','../images/ajax-loader.gif');
-						$('.loaderplaceholder').empty(); 
-						$('.loaderplaceholder').append(loader);   
-				})  
-				}); 
-				</script>
+		</fieldset> 
+
 	</ui:define>
 
 </ui:composition>
