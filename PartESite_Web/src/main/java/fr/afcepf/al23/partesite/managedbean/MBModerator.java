@@ -1,5 +1,6 @@
 package fr.afcepf.al23.partesite.managedbean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -30,7 +31,6 @@ public class MBModerator {
 
 	// @ManagedProperty(value = "#{mbConnexion}")
 	// private MBConnexion cnx;
-
 	private String firstName;
 	private Identity identity;
 	private String direction;
@@ -47,179 +47,38 @@ public class MBModerator {
 	
 	@ManagedProperty(value = "#{mbConversion}")
 	private MBConversion conversion;
-	
 
-	public MBConversion getConversion() {
-		return conversion;
-	}
-
-	public void setConversion(MBConversion conversion) {
-		this.conversion = conversion;
-	}
-
-	public String getRentabiliteString() {		
-		List<Project> temp = buProject.getAllFinancedProjects();
-		projectsFinancedMontant = (double) 0;  
-		rentabilite = projectsFinancedMontant / 10;
-		temp.clear();
-		log.info("Double = "+rentabilite);
+	public void preRender(){
+		ArrayList<Project> lProjet = (ArrayList<Project>) buProject.getAllCurrentlyPublished();
+		projectsEnCours = lProjet.size();
+		projectsFinanced = 0; 
+		rentabilite = 0d;
+		Double buff = 0d;
+		for (Project p : lProjet) {
+			Double aiming = p.getAimingAmount();
+			Double current = 0d;
+			for (Pack pack : p.getPacks()) {
+				current += (pack.getAmount() * (pack.getTotalQuantity() - pack
+						.getStock()));
+			}
+			if (aiming < current) {
+				projectsFinanced++;
+			}
+			buff+=current; 
+			rentabilite+=((current*10)/100);
+		} 
 		rentabiliteString = conversion.getConvertedAmount(rentabilite);
-		log.info("string = "+rentabiliteString);
-		return rentabiliteString ;
-	}
+	} 
 
-	public void setRentabiliteString(String rentabiliteString) {
-		this.rentabiliteString = rentabiliteString;
+	public void loadUnpublishedProjects(){
+		
 	}
-
-	public String getProjectsFinancedMontantString() {
-		List<Project> temp = buProject.getAllFinancedProjects();
-		projectsFinancedMontant = (double) 0;
-		for (Project project : temp) {
-			for (Pack pack : project.getPacks()) {
-				projectsEnCoursMontant += pack.getAmount() * pack.getNbSale();
-			}
-		}
-		log.info(temp);
-		log.info(temp.size());
-		temp.clear();
-		log.info("Double = "+projectsFinancedMontant);
-		projectsFinancedMontantString = conversion.getConvertedAmount(projectsFinancedMontant);
-		log.info("string = "+projectsFinancedMontantString);
-		return projectsFinancedMontantString;
-	}
-
-	public void setProjectsFinancedMontantString(
-			String projectsFinancedMontantString) {
-		this.projectsFinancedMontantString = projectsFinancedMontantString;
-	}
-
-	public String getProjectsEnCoursMontantString() {
-		List<Project> temp = buProject.getAllWithItems();
-		projectsEnCoursMontant = (double) 0;
-		for (Project project : temp) {
-			for (Pack pack : project.getPacks()) {
-				projectsEnCoursMontant += pack.getAmount() * pack.getNbSale();
-			}
-		}
-		log.info(temp);
-		log.info(temp.size());
-		temp.clear();
-		log.info("Double = "+projectsEnCoursMontant);
-		projectsEnCoursMontantString = conversion.getConvertedAmount(projectsEnCoursMontant);
-		log.info("string = "+projectsEnCoursMontantString);
-		return projectsEnCoursMontantString;
-	}
-
-	public void setProjectsEnCoursMontantString(String projectsEnCoursMontantString) {
-		this.projectsEnCoursMontantString = projectsEnCoursMontantString;
-	}
-
 	public Logger getLog() {
 		return log;
 	}
 
 	public void setLog(Logger log) {
 		this.log = log;
-	}
-
-	public IBusinessProject getBuProject() {
-		return buProject;
-	}
-
-	public void setBuProject(IBusinessProject buProject) {
-		this.buProject = buProject;
-	}
-
-	public Integer getUserBlackList() {
-		return userBlackList;
-	}
-
-	public void setUserBlackList(Integer userBlackList) {
-		this.userBlackList = userBlackList;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public Double getRentabilite() {
-		List<Project> temp = buProject.getAllFinancedProjects();
-		projectsFinancedMontant = (double) 0;
-		for (Project project : temp) {
-			for (Pack pack : project.getPacks()) {
-				projectsFinancedMontant += pack.getAmount() * pack.getNbSale();
-			}
-		}
-		rentabilite = projectsFinancedMontant / 10;
-		temp.clear();
-		return rentabilite;
-	}
-
-	public void setRentabilite(Double rentabilite) {
-		this.rentabilite = rentabilite;
-	}
-
-	public Integer getProjectsFinanced() {
-		List<Project> temp = buProject.getAllFinancedProjects();
-		projectsFinanced = temp.size();
-		log.info(temp);
-		log.info(temp.size());
-		temp.clear();
-		return projectsFinanced;
-	}
-
-	public Integer getProjectsEnCours() {
-		List<Project> temp = buProject.getAllWithItems();
-		projectsEnCours = temp.size();
-		log.info(temp);
-		log.info(temp.size());
-		temp.clear();
-		return projectsEnCours;
-	}
-
-	public Double getProjectsEnCoursMontant() {
-		List<Project> temp = buProject.getAllWithItems();
-		projectsEnCoursMontant = (double) 0;
-		for (Project project : temp) {
-			for (Pack pack : project.getPacks()) {
-				projectsEnCoursMontant += pack.getAmount() * pack.getNbSale();
-			}
-		}
-		log.info(temp);
-		log.info(temp.size());
-		temp.clear();
-		return projectsEnCoursMontant;
-	}
-
-	public Double getProjectsFinancedMontant() {
-		List<Project> temp = buProject.getAllFinancedProjects();
-		projectsFinancedMontant = (double) 0;
-		for (Project project : temp) {
-			for (Pack pack : project.getPacks()) {
-				projectsEnCoursMontant += pack.getAmount() * pack.getNbSale();
-			}
-		}
-		log.info(temp);
-		log.info(temp.size());
-		temp.clear();
-		return projectsFinancedMontant;
-	}
-
-	public void setProjectsEnCoursMontant(Double projectsEnCoursMontant) {
-		this.projectsEnCoursMontant = projectsEnCoursMontant;
-	}
-
-	public void setProjectsEnCours(Integer projectsEnCours) {
-		this.projectsEnCours = projectsEnCours;
-	}
-
-	public void setProjectsFinancedMontant(Double projectsFinancedMontant) {
-		this.projectsFinancedMontant = projectsFinancedMontant;
-	}
-
-	public void setProjectsFinanced(Integer projectsFinanced) {
-		this.projectsFinanced = projectsFinanced;
 	}
 
 	public IBusinessIdentity getBuIdentity() {
@@ -230,10 +89,17 @@ public class MBModerator {
 		this.buIdentity = buIdentity;
 	}
 
-	// public String getFirstName() {
-	// firstName = cnx.getId().getFirstName();
-	// return firstName;
-	// }
+	public IBusinessProject getBuProject() {
+		return buProject;
+	}
+
+	public void setBuProject(IBusinessProject buProject) {
+		this.buProject = buProject;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
 
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
@@ -247,32 +113,6 @@ public class MBModerator {
 		this.identity = identity;
 	}
 
-	public String inscription() {
-
-		identity = new Identity();
-		identity.setFirstName(firstName);
-
-		/*
-		 * SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy"); Date date
-		 * = null;
-		 * 
-		 * try { date = sdf.parse("birthdate"); } catch (ParseException e) {
-		 * e.prIntegerStackTrace(); }
-		 * 
-		 * identity.setBirthdate(date);
-		 */
-
-		if (identity != null) {
-			setDirection("/Home.xhtml?faces-redirect=true");
-		} else {
-			setDirection("/UserDashBoard.xhtml?faces-redirect=true");
-		}
-
-		identity = buIdentity.save(identity);
-
-		return direction;
-	}
-
 	public String getDirection() {
 		return direction;
 	}
@@ -280,5 +120,88 @@ public class MBModerator {
 	public void setDirection(String direction) {
 		this.direction = direction;
 	}
+
+	public Integer getProjectsEnCours() {
+		return projectsEnCours;
+	}
+
+	public void setProjectsEnCours(Integer projectsEnCours) {
+		this.projectsEnCours = projectsEnCours;
+	}
+
+	public Double getProjectsEnCoursMontant() {
+		return projectsEnCoursMontant;
+	}
+
+	public void setProjectsEnCoursMontant(Double projectsEnCoursMontant) {
+		this.projectsEnCoursMontant = projectsEnCoursMontant;
+	}
+
+	public Integer getProjectsFinanced() {
+		return projectsFinanced;
+	}
+
+	public void setProjectsFinanced(Integer projectsFinanced) {
+		this.projectsFinanced = projectsFinanced;
+	}
+
+	public Double getProjectsFinancedMontant() {
+		return projectsFinancedMontant;
+	}
+
+	public void setProjectsFinancedMontant(Double projectsFinancedMontant) {
+		this.projectsFinancedMontant = projectsFinancedMontant;
+	}
+
+	public Integer getUserBlackList() {
+		return userBlackList;
+	}
+
+	public void setUserBlackList(Integer userBlackList) {
+		this.userBlackList = userBlackList;
+	}
+
+	public Double getRentabilite() {
+		return rentabilite;
+	}
+ 
+	public void setRentabilite(Double rentabilite) {
+		this.rentabilite = rentabilite;
+	}
+
+	public String getRentabiliteString() {
+		return rentabiliteString;
+	}
+
+	public void setRentabiliteString(String rentabiliteString) {
+		this.rentabiliteString = rentabiliteString;
+	}
+
+	public String getProjectsFinancedMontantString() {
+		return projectsFinancedMontantString;
+	}
+
+	public void setProjectsFinancedMontantString(
+			String projectsFinancedMontantString) {
+		this.projectsFinancedMontantString = projectsFinancedMontantString;
+	}
+
+	public String getProjectsEnCoursMontantString() {
+		return projectsEnCoursMontantString;
+	}
+
+	public void setProjectsEnCoursMontantString(String projectsEnCoursMontantString) {
+		this.projectsEnCoursMontantString = projectsEnCoursMontantString;
+	}
+
+	public MBConversion getConversion() {
+		return conversion;
+	}
+
+	public void setConversion(MBConversion conversion) {
+		this.conversion = conversion;
+	}
+	
+
 
 }

@@ -1,5 +1,6 @@
 package fr.afcepf.al23.partesite.iservice.offer;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -34,4 +35,5 @@ public interface IBusinessProject {
 	public List<Project> getAllProjectsToPublish();
 	public List<Project> getByIdentity(Identity identity);
 	public List<Project> getNewestPublished();
+	public List<Project> getAllCurrentlyPublished();
 }

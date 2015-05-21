@@ -205,4 +205,14 @@ public class DaoProjectImpl implements IDaoProject {
 		return result;  
 	}
 
+	@Override
+	public List<Project> getAllCurrentlyPublished() { 
+		String query = "SELECT p FROM Project p INNER JOIN FETCH p.packs pack WHERE p.publish = 1 AND p.publishingDate IS NOT NULL ";
+		Query hql = em.createQuery(query);  
+		log.info(hql.toString());
+		List<Project> result = hql.getResultList();
+		log.info("list published in progress : "+result.size());
+		return result;
+	}
+
 }

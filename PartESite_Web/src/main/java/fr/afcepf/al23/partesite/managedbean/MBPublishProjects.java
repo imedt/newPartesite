@@ -15,6 +15,7 @@ import fr.afcepf.al23.model.entities.Project;
 import fr.afcepf.al23.partesite.iservice.notification.IBusinessNotification;
 import fr.afcepf.al23.partesite.iservice.offer.IBusinessProject;
 import fr.afcepf.al23.partesite.iservice.user.IBusinessIdentity;
+import fr.afcepf.al23.partesite.webutil.MBConversion;
 
 @ManagedBean(name = "mbPublishProjects")
 @SessionScoped
@@ -29,6 +30,9 @@ public class MBPublishProjects {
 	
 	@ManagedProperty(value="#{mbConnexion}")
 	private MBConnexion mbCnx;
+	
+	@ManagedProperty(value="#{mbConversion}")
+	private MBConversion mbConversion;
 
 	
 	private List<Project> projects = new ArrayList<>();
@@ -37,13 +41,17 @@ public class MBPublishProjects {
 	
 	
 	public List<Project> getProjects() {
-		return projects= buProject.getAllProjectsToPublish();
+		return projects;
 	}
 
 	public void setProjects(List<Project> projects) {
 		this.projects = projects;
 	}
-
+	
+	public void preRender(){
+		projects = mbConversion.processConversion(buProject.getAllProjectsToPublish(),mbCnx.getDevise());
+	}
+	 
 	public void publish(Project p){
 		
 		p.setPublish(true);
@@ -92,6 +100,14 @@ public class MBPublishProjects {
 
 	public void setMbCnx(MBConnexion mbCnx) {
 		this.mbCnx = mbCnx;
+	}
+
+	public MBConversion getMbConversion() {
+		return mbConversion;
+	}
+
+	public void setMbConversion(MBConversion mbConversion) {
+		this.mbConversion = mbConversion;
 	}
 	
 }

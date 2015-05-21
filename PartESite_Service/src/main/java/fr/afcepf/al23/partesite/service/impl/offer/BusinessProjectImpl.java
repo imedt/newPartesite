@@ -191,4 +191,9 @@ log.info("getAllWithItems");
 		return daoProj.getNewestPublished();
 	}
 
+	@Override
+	public List<Project> getAllCurrentlyPublished() {
+		return daoProj.getAllCurrentlyPublished();
+	}
+
 }
