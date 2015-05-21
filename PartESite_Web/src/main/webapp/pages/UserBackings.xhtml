@@ -10,6 +10,7 @@
 	<ui:define name="header-title">Participations</ui:define>
 
 	<ui:define name="content">
+	<f:event listener="#{mbDashboard.loadParticipations()}" type="preRenderView"></f:event>
 		<f:view>
 			<h:form>
 
