@@ -9,9 +9,9 @@
 			<h:form>
 
 				<div class="row">
-					<div class="col-md-10 col-md-offset-1 black-label">
-						<fieldset class="col-xs-12 black-label large-label">
-							<div class="col-md-6 col-md-offset-3">
+					<div class="col-lg-push-3 col-lg-6" style="text-align: center;">
+						<fieldset class="col-lg-12">
+							<div class="col-lg-12">
 								<h1
 									style="font-size: 1.5em; margin-top: 15px; margin-bottom: 15px;">Recapitulatif
 									de la commande</h1>
@@ -42,26 +42,30 @@
 								<div class="col-md-12 black-label reset-margin">
 									<ui:repeat value="#{mbUser.addresses[0]}" var="address"
 										size="1">
-										<h:outputText class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
-											value="#{address.addressType.addressType}"
-											style="font-weight:bold;" />
-										<h:outputText class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
-											value="#{address.street}" />
-										<h:outputText class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
-											value="#{address.zipcode}" />
-										<h:outputText class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
-											value="#{address.city}" />
-										<h:outputText class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
-											value="#{mbCountry.findCountry(address.country).name}" />
+										<div style="text-align: center;" class="col-lg-12">
+											<h:outputText class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+												value="#{address.addressType.addressType}"
+												style="font-weight:bold;" />
+											<h:outputText class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+												value="#{address.street}" />
+											<h:outputText class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+												value="#{address.zipcode}" />
+											<h:outputText class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+												value="#{address.city}" />
+											<h:outputText class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+												value="#{mbCountry.findCountry(address.country).name}" />
+										</div>
 									</ui:repeat>
 								</div>
 							</div>
 						</fieldset>
 					</div>
+					<div class="col-lg-12">
+						<h:commandButton styleClass="btn col-lg-push-5 col-lg-2"
+							action="#{mbPayment.finalizePayment()}" value="Valider" />
+					</div>
 				</div>
 
-				<h:commandButton styleClass="col-md-offset-5"
-					action="#{mbPayment.finalizePayment()}" value="Valider" />
 
 				<style>
 .reset-margin * {

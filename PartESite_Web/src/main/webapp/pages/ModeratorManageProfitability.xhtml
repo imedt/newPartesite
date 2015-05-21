@@ -19,7 +19,7 @@
   
 						</div>  
 						<div class="col-md-6"> 
-																<h2>Ventes par dates</h2>
+																<h2>Ventes par Année</h2>
 						<f:view>
 						<h:form>
 							<h:selectOneMenu value="#{mbStatistics.salesYearSelect}"> 
@@ -119,7 +119,7 @@ google.setOnLoadCallback(drawBarChart);
               title: 'Date',             
             },
             vAxis: { 
-              title: 'Ventes Total (€)'
+              title: 'Ventes Totales (€)'
             },height:400  
           };
 
@@ -140,7 +140,7 @@ function drawLineChart() {
   var data = google.visualization.arrayToDataTable(#{mbStatistics.listUserBySigninDate}); 
 
   var options = {
-    title: 'Suivi du nombre d\'inscription',
+    title: 'Suivi du nombre d\'inscriptions',
     curveType: 'function', 
     legend: { position: 'bottom' },height:400
   };
