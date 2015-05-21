@@ -59,7 +59,9 @@
 												<div class="row">
 													<h2 class="title col-lg-12">
 														<a href="../pages/projectDetails.xhtml"
-															alt="projectDetails"> #{projet.projectName} </a>
+															alt="projectDetails"> 
+															<h:inputHidden value="#{mbConsultProject.detailProject(projet)}" />
+															#{projet.projectName} </a>
 													</h2>
 												</div>
 												<div class="row">
