@@ -71,6 +71,9 @@ public class MBConsultProject {
 		log.info("project : "+p);
 		this.aimingAmount = p.getAimingAmount();
 		this.projectEndDate = p.getPublishingDate();
+		if (projectEndDate==null){
+			projectEndDate= new Date();
+		}
 		projectEndDate.setTime(projectEndDate.getTime()+(3600*24*30));
 		percentage = (float) Math.ceil((financedAmount*100)/aimingAmount);
 		log.info("there is : "+wrappedPack.size()+" packs"); 

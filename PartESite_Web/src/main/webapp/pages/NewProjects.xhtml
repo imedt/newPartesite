@@ -58,10 +58,11 @@
 											<div class="col-lg-6">
 												<div class="row">
 													<h2 class="title col-lg-12">
+													<h:inputHidden value="#{mbConsultProject.detailProject(projet)}">
 														<a href="../pages/projectDetails.xhtml"
 															alt="projectDetails"> 
-															<h:inputHidden value="#{mbConsultProject.detailProject(projet)}" />
 															#{projet.projectName} </a>
+															</h:inputHidden>
 													</h2>
 												</div>
 												<div class="row">
