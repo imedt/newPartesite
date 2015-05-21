@@ -243,8 +243,9 @@ public class MBOrder {
 			log.info("transfer userOrder");
 			buOrderRow.changeUserOrder(cart,currentCart);
 			log.info("reload cart");
-currentCart = buOrder.reloadOrder(currentCart);
+			currentCart = buOrder.reloadOrder(currentCart);
 			log.info("update current");
+			log.info("le cart de l'utilisateur possede "+currentCart.getOrderRows().size());
 			buOrder.updateOrder(currentCart);
 			log.info("remove old : "+cart.getIdUserOrder());
 			buOrder.deleteUserOrderIfExists(cart);    

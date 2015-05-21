@@ -13,6 +13,7 @@ import org.apache.log4j.Logger;
 import fr.afcepf.al23.model.entities.OrderRow;
 import fr.afcepf.al23.model.entities.Payment;
 import fr.afcepf.al23.model.entities.UserOrder;
+import fr.afcepf.al23.partesite.iservice.transaction.IBusinessOrder;
 import fr.afcepf.al23.partesite.iservice.transaction.IBusinessPayment;
 import fr.afcepf.al23.partesite.managedbean.MBConnexion;
 
@@ -28,6 +29,8 @@ public class MBPayment {
 	
 	@EJB
 	private IBusinessPayment busiPayment;
+	@EJB
+	private IBusinessOrder busiOrder;
 	
 	private String m_titulaireCarte;
 	private String m_numeroCarte;
@@ -40,6 +43,7 @@ public class MBPayment {
 	private Double totalPrice;
 	
 	public String finalizePayment(){ 
+		mbOrder.setCart(busiOrder.getCurrentUserCart(mbCnx.getId()));
 		if(mbOrder.getCart().getIdUserOrder() == null){
 			return "/pages/index.xhtml?faces-redirect=true";
 		}

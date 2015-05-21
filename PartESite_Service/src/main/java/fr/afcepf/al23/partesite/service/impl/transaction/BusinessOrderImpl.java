@@ -287,7 +287,7 @@ public class BusinessOrderImpl implements IBusinessOrder {
  		if(cart == null){
 			cart = createNewOrder(id); 
 			cart.setIdentity(id); 
-	}
+ 		} 
 		if(cart.getOrderRows() == null){
 			cart.setOrderRows(new ArrayList<OrderRow>());
 		} 
@@ -297,9 +297,18 @@ public class BusinessOrderImpl implements IBusinessOrder {
 	@Override
 	public void updateOrder(UserOrder currentCart) {
 		if(currentCart.getIdUserOrder() == null){
-			daoUserOrder.add(currentCart);
-		}else{
+			Integer id = daoUserOrder.add(currentCart);
+			currentCart.setIdUserOrder(id);
+			for(OrderRow or : currentCart.getOrderRows()){
+				or.setUserOrder(currentCart);
+				daoOrderRow.update(or); 
+			}
+	}else{ 
 			daoUserOrder.update(currentCart);
+			for(OrderRow or : currentCart.getOrderRows()){
+				or.setUserOrder(currentCart);
+				daoOrderRow.update(or);
+			}
 		}
 	}
 
